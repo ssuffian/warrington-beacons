@@ -11,6 +11,11 @@ Lion's Pride Park
 --
 
 [JSON Data File](https://lions-pride-park-configuration.s3.us-east-2.amazonaws.com/lionsPrideData.json)
+(legacy Lions Pride Park data — the AWS account is inaccessible; a
+local copy is preserved in `server/lions-pride-park/` at the repo
+root. The app now loads US202 data from
+`https://trails.warringtoneac.org/us-202/`, set via `base_url_string`
+in `LionsPride/Info.plist`.)
 
 [Google Sheet for updating data](https://docs.google.com/spreadsheets/d/1zaS5Gm6D1ukShIyJ1eN_7_A6c8kUTmqMx9ZZDJn6EvY)
 

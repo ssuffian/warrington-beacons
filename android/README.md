@@ -9,7 +9,9 @@
 ## Overview
 
 This app uses data files and images currently hosted at
-https://lionspride.chariotsolutions.cloud/us202/
+https://trails.warringtoneac.org/us-202/
+(GitHub Pages, deployed from the `server/` folder at the root of
+this repo — see the top-level README for details)
 
 The main data file is `us202trail-v2.json` which includes
 the trail geometry and landmarks
@@ -29,29 +31,27 @@ On the US202 to Bradford Dam trail the beacons are farther apart.
 
 ## Cloud Resources
 
+Data files and images are served by GitHub Pages from the `server/`
+folder at the root of this repo, at the township-owned domain
+`trails.warringtoneac.org` (a CNAME on `warringtoneac.org`, whose
+DNS is at Namecheap).  See the top-level README for how deploys and
+DNS are wired.
+
+### Hosting history
+
 The original AWS account with the S3 bucket
 `lions-pride-park-configuration` was owned by email
 `info@lionspridepark.org` but that domain has been abandoned
 and the email address is no longer accessible, making 2FA login
-using an emailed code impossible.  Thus the files for the original
-Lions Pride app and iOS US202-to-Bradford-Dam app were at:
+using an emailed code impossible.  The files for the original
+Lions Pride app and iOS US202-to-Bradford-Dam app were there
+(`lionsPrideData.json` and `202ConnectorData.json` — local copies
+are now preserved in `server/`).
 
-https://lions-pride-park-configuration.s3.us-east-2.amazonaws.com/
-
-with data files:
-* https://lions-pride-park-configuration.s3.us-east-2.amazonaws.com/lionsPrideData.json
-* https://lions-pride-park-configuration.s3.us-east-2.amazonaws.com/202ConnectorData.json
-
-However, without further access to that account, the current files
-used for Android are in Chariot sandbox 897893808641 in S3 bucket
-`lionspride.chariotsolutions.cloud`.  That was originally used to
-host a Web app for generating code for park apps like this, but that
-effort was also abandoned.  While the app code is still there, it's
-not being used.  There's a subdirectory `us202` to hold the current
-files for this app (data file and images).  Ultimately this should
-all be moved to an AWS account owned by Warrington Township.
-
-https://lionspride.chariotsolutions.cloud/us202/us202trail-v2.json
+After that account was lost, files were hosted in Chariot sandbox
+897893808641 in S3 bucket `lionspride.chariotsolutions.cloud` under
+`us202/`, until hosting moved to GitHub Pages in this repo
+(July 2026).
 
 There is also a Google Cloud project for the Google Maps API Key,
 which is called "Lions Pride Android Maps" and owned by Russ Diamond

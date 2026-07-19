@@ -11,9 +11,8 @@ Monorepo for the Warrington Township beacon-guided trail apps
 * `ios/` — iOS app (the original Lions Pride codebase, since pointed
   at the US202 to Bradford Dam trail as "202 Connector").
   See `ios/README.md` for design links and history.
-* `server/` — local copies of every remotely hosted file the apps
-  reference, staged here so hosting can be moved (ultimately to an
-  AWS account owned by Warrington Township).
+* `server/` — every remotely hosted file the apps reference, served
+  by GitHub Pages at `https://trails.warringtoneac.org/` (see below).
 
 ## Hosted files (`server/`)
 
