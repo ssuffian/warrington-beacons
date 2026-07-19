@@ -39,7 +39,7 @@ fun LandmarkBottomSheet(
         Column(modifier = Modifier.padding(bottom = 24.dp)) {
             if (landmark != null) {
                 AsyncImage(
-                    model = "https://ssuffian.github.io/warrington-beacons/us-202/images/${landmark.imageName}.jpg",
+                    model = "https://trails.warringtoneac.org/us-202/images/${landmark.imageName}.jpg",
                     contentDescription = landmark.name,
                     modifier = Modifier
                         .fillMaxWidth()

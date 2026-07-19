@@ -20,12 +20,17 @@ Monorepo for the Warrington Township beacon-guided trail apps
 Both apps load their data and images from GitHub Pages:
 
 ```
-https://ssuffian.github.io/warrington-beacons/us-202/
+https://trails.warringtoneac.org/us-202/
 ```
 
 The `server/` folder is the source of truth: pushing a change to
 anything under `server/` on `main` redeploys it automatically via
-`.github/workflows/pages.yml`. (Files were previously hosted at
+`.github/workflows/pages.yml`. The domain is a `trails` CNAME record
+on `warringtoneac.org` (DNS at Namecheap) pointing to
+`ssuffian.github.io`, set as the custom domain in this repo's Pages
+settings. Because the township owns the domain, hosting can move
+anywhere later with just a DNS change — no app re-release. (Files
+were previously hosted at
 `https://lionspride.chariotsolutions.cloud/us202/`, a Chariot sandbox
 S3 bucket.) Contents, organized by app:
 
