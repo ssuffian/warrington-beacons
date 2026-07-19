@@ -53,11 +53,18 @@ After that account was lost, files were hosted in Chariot sandbox
 `us202/`, until hosting moved to GitHub Pages in this repo
 (July 2026).
 
-There is also a Google Cloud project for the Google Maps API Key,
-which is called "Lions Pride Android Maps" and owned by Russ Diamond
+There is also a legacy Google Cloud project for a Google Maps API
+Key, called "Lions Pride Android Maps" and owned by Russ Diamond
 (the main Lions Club contact), with his credit card(s) on file.
-Aaron Mulder has access to add new API Key configuration (e.g. to add
-a new app ID/fingerprint if needed).
+Aaron Mulder has access to the API Key configuration.  **Nothing
+uses it anymore and it should be shut down**: this app uses
+osmdroid/OpenStreetMap, the iOS apps use Apple MapKit, and the old
+Lions Pride Park Android app that needed the key was removed from
+the Play Store (its listing 404s as of July 2026).  Russ or Aaron
+can delete the project at console.cloud.google.com (IAM & Admin →
+Settings → Shut down), which removes the billing exposure on Russ's
+card.  GCP keeps a 30-day recovery window after shutdown in case
+anything unexpected breaks.
 
 ## App Store Accounts
 
