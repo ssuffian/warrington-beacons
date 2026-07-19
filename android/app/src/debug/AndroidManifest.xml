@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- Debug-only: lets `adb shell am broadcast` fake beacon detections.
+             Exported so the adb shell user can target it; never merged into release. -->
+        <receiver
+            android:name=".beacon.FakeBeaconReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.warringtontownship.us202.FAKE_BEACON" />
+                <action android:name="org.warringtontownship.us202.FAKE_BEACON_CLEAR" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

@@ -1,0 +1,847 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C547D962874C9EC00028DBD /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C547D952874C9EC00028DBD /* Data.json */; };
+		7300FCA2249A80620088B619 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7300FCA1249A80620088B619 /* BluetoothService.swift */; };
+		7300FCA6249C07410088B619 /* LionsPrideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7300FCA5249C07410088B619 /* LionsPrideData.swift */; };
+		7300FCAF249D274F0088B619 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7300FCAE249D274F0088B619 /* Utils.swift */; };
+		7314641E248A6C740082F41E /* AccessibilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7314641D248A6C740082F41E /* AccessibilityService.swift */; };
+		732F4A2424913111005F6DD7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F4A2324913111005F6DD7 /* NotificationService.swift */; };
+		733AF7B724B5FBF0000D5808 /* field-photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 733AF7B624B5FBF0000D5808 /* field-photo.jpg */; };
+		73420193245C7EA6009504FC /* CloseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73420192245C7EA6009504FC /* CloseButtonView.swift */; };
+		734201AC2461B5ED009504FC /* BeaconScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734201AB2461B5ED009504FC /* BeaconScanner.swift */; };
+		734201B2246593FB009504FC /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734201B1246593FB009504FC /* MapService.swift */; };
+		734DF8AE24802DA4009EBFA0 /* TrailTourMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DF8AD24802DA4009EBFA0 /* TrailTourMapView.swift */; };
+		734DF8B124802DC5009EBFA0 /* LandmarkSearchFieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DF8AF24802DC5009EBFA0 /* LandmarkSearchFieldValue.swift */; };
+		734DF8B224802DC5009EBFA0 /* NextPointOfInterestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DF8B024802DC5009EBFA0 /* NextPointOfInterestDetailsView.swift */; };
+		7350DA7C244DDAA400735E15 /* PointOfInterestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350DA7B244DDAA400735E15 /* PointOfInterestDetailsView.swift */; };
+		7350DA82244DE0A000735E15 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350DA81244DE0A000735E15 /* BottomSheetView.swift */; };
+		735245BB2493B1B10083DA42 /* TrailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735245BA2493B1B10083DA42 /* TrailRowView.swift */; };
+		737A8D6E243FBB4B00C2C7B1 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A8D6D243FBB4B00C2C7B1 /* MainMapView.swift */; };
+		7384E8CB24531E4100BB1765 /* LandmarkSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384E8CA24531E4100BB1765 /* LandmarkSearchView.swift */; };
+		7384E8D72457301100BB1765 /* LandmarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384E8D62457301100BB1765 /* LandmarkService.swift */; };
+		738FEB99246D9B940008395F /* NextPointOfInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738FEB98246D9B940008395F /* NextPointOfInterestView.swift */; };
+		738FEBA3246ED2680008395F /* MainMapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738FEBA2246ED2680008395F /* MainMapContainerView.swift */; };
+		738FEBA5246EE3770008395F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738FEBA4246EE3770008395F /* TestView.swift */; };
+		738FEBA72472CA650008395F /* LineArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738FEBA62472CA640008395F /* LineArrowView.swift */; };
+		7396C3CA2434EA3C002BD3CC /* BradfordTrailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C3C92434EA3C002BD3CC /* BradfordTrailApp.swift */; };
+		7396C3D02434EA40002BD3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7396C3CF2434EA40002BD3CC /* Assets.xcassets */; };
+		7396C3D32434EA40002BD3CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7396C3D22434EA40002BD3CC /* Preview Assets.xcassets */; };
+		7396C3D62434EA40002BD3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7396C3D42434EA40002BD3CC /* LaunchScreen.storyboard */; };
+		7396C3EC2434EA40002BD3CC /* LionsPrideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C3EB2434EA40002BD3CC /* LionsPrideUITests.swift */; };
+		7396C5452436C277002BD3CC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C5442436C277002BD3CC /* MainView.swift */; };
+		7396C54B2436C50B002BD3CC /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C54A2436C50B002BD3CC /* UserData.swift */; };
+		7396C55E2437AF54002BD3CC /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C55D2437AF54002BD3CC /* SplashScreenView.swift */; };
+		7396C5612437AFA8002BD3CC /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7396C55F2437AFA8002BD3CC /* map_icon.png */; };
+		7396C5642437B3F3002BD3CC /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7396C5632437B3F3002BD3CC /* logo.jpg */; };
+		7396C5692437B7EE002BD3CC /* info-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7396C5652437B7EE002BD3CC /* info-icon.jpg */; };
+		7396C56A2437B7EE002BD3CC /* map-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7396C5662437B7EE002BD3CC /* map-icon.jpg */; };
+		7396C56B2437B7EE002BD3CC /* settings-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7396C5672437B7EE002BD3CC /* settings-icon.jpg */; };
+		7396C56C2437B7EE002BD3CC /* trail-tours-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7396C5682437B7EE002BD3CC /* trail-tours-icon.jpg */; };
+		7396C5732437D432002BD3CC /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C5722437D432002BD3CC /* AboutView.swift */; };
+		7396C577243B628E002BD3CC /* TrailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C576243B628E002BD3CC /* TrailListView.swift */; };
+		7396C579243B6349002BD3CC /* LandmarkRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C578243B6349002BD3CC /* LandmarkRowView.swift */; };
+		7396C57B243B636F002BD3CC /* TrailTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C57A243B636F002BD3CC /* TrailTourView.swift */; };
+		7396C585243B75C3002BD3CC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396C584243B75C3002BD3CC /* SettingsView.swift */; };
+		73A7B60D2486BE1F000C91A5 /* PointOfInterestSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7B60C2486BE1F000C91A5 /* PointOfInterestSummaryView.swift */; };
+		73CECF2A243CA2E0003D6CBA /* CommonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CECF29243CA2E0003D6CBA /* CommonStyles.swift */; };
+		73CECF2C243CB54B003D6CBA /* AboutTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CECF2B243CB54B003D6CBA /* AboutTextView.swift */; };
+		73CECF2E243CB5EF003D6CBA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CECF2D243CB5EF003D6CBA /* WelcomeView.swift */; };
+		73E253E7246AEBA700CC5361 /* MapServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E253E6246AEBA700CC5361 /* MapServiceTest.swift */; };
+		73E253F1246B357500CC5361 /* TrailDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E253F0246B357500CC5361 /* TrailDetailsView.swift */; };
+		73E253F3246B382A00CC5361 /* DirectionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E253F2246B382A00CC5361 /* DirectionButtonView.swift */; };
+		73E253F5246C165600CC5361 /* ArrowRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E253F4246C165600CC5361 /* ArrowRenderer.swift */; };
+		73E253F9246C4CE200CC5361 /* TrailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E253F8246C4CE200CC5361 /* TrailMapView.swift */; };
+		73EA75192440B1E70018F148 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA75182440B1E70018F148 /* Trail.swift */; };
+		73EA752A24449F650018F148 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA752824449F650018F148 /* Landmark.swift */; };
+		73EA752D2444A46D0018F148 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA752C2444A46D0018F148 /* ImageStore.swift */; };
+		8428D7862C7D274200ECF97C /* warrington-township-pa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8428D7852C7D274200ECF97C /* warrington-township-pa.jpg */; };
+		84B7B3F02522693700C7F1F7 /* NamedPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7B3EF2522693700C7F1F7 /* NamedPolyline.swift */; };
+		84FBA5D42512A4F300352DAD /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FBA5D32512A4F300352DAD /* Site.swift */; };
+		F633E51B24DA5B59002D063B /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F633E51A24DA5B58002D063B /* BeaconView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7396C3DD2434EA40002BD3CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7396C3BE2434EA3C002BD3CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7396C3C52434EA3C002BD3CC;
+			remoteInfo = LionsPride;
+		};
+		7396C3E82434EA40002BD3CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7396C3BE2434EA3C002BD3CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7396C3C52434EA3C002BD3CC;
+			remoteInfo = LionsPride;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4C547D952874C9EC00028DBD /* Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
+		7300FCA1249A80620088B619 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		7300FCA5249C07410088B619 /* LionsPrideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionsPrideData.swift; sourceTree = "<group>"; };
+		7300FCAE249D274F0088B619 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		7314641D248A6C740082F41E /* AccessibilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityService.swift; sourceTree = "<group>"; };
+		732F4A2324913111005F6DD7 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		733AF7B624B5FBF0000D5808 /* field-photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-photo.jpg"; sourceTree = "<group>"; };
+		73420192245C7EA6009504FC /* CloseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonView.swift; sourceTree = "<group>"; };
+		734201AB2461B5ED009504FC /* BeaconScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconScanner.swift; sourceTree = "<group>"; };
+		734201B1246593FB009504FC /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
+		734DF8AD24802DA4009EBFA0 /* TrailTourMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailTourMapView.swift; sourceTree = "<group>"; };
+		734DF8AF24802DC5009EBFA0 /* LandmarkSearchFieldValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandmarkSearchFieldValue.swift; sourceTree = "<group>"; };
+		734DF8B024802DC5009EBFA0 /* NextPointOfInterestDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextPointOfInterestDetailsView.swift; sourceTree = "<group>"; };
+		7350DA7B244DDAA400735E15 /* PointOfInterestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterestDetailsView.swift; sourceTree = "<group>"; };
+		7350DA81244DE0A000735E15 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		735245BA2493B1B10083DA42 /* TrailRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailRowView.swift; sourceTree = "<group>"; };
+		737A8D6D243FBB4B00C2C7B1 /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
+		7384E8CA24531E4100BB1765 /* LandmarkSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkSearchView.swift; sourceTree = "<group>"; };
+		7384E8D62457301100BB1765 /* LandmarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkService.swift; sourceTree = "<group>"; };
+		738FEB98246D9B940008395F /* NextPointOfInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPointOfInterestView.swift; sourceTree = "<group>"; };
+		738FEBA2246ED2680008395F /* MainMapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapContainerView.swift; sourceTree = "<group>"; };
+		738FEBA4246EE3770008395F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		738FEBA62472CA640008395F /* LineArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineArrowView.swift; sourceTree = "<group>"; };
+		7396C3C62434EA3C002BD3CC /* 202Connector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 202Connector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7396C3C92434EA3C002BD3CC /* BradfordTrailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BradfordTrailApp.swift; sourceTree = "<group>"; };
+		7396C3CF2434EA40002BD3CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7396C3D22434EA40002BD3CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7396C3D52434EA40002BD3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7396C3D72434EA40002BD3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7396C3DC2434EA40002BD3CC /* 202ConnectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 202ConnectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7396C3E22434EA40002BD3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7396C3E72434EA40002BD3CC /* 202ConnectorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 202ConnectorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7396C3EB2434EA40002BD3CC /* LionsPrideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionsPrideUITests.swift; sourceTree = "<group>"; };
+		7396C3ED2434EA40002BD3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7396C5442436C277002BD3CC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7396C54A2436C50B002BD3CC /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		7396C55D2437AF54002BD3CC /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		7396C55F2437AFA8002BD3CC /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
+		7396C5632437B3F3002BD3CC /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
+		7396C5652437B7EE002BD3CC /* info-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "info-icon.jpg"; sourceTree = "<group>"; };
+		7396C5662437B7EE002BD3CC /* map-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "map-icon.jpg"; sourceTree = "<group>"; };
+		7396C5672437B7EE002BD3CC /* settings-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "settings-icon.jpg"; sourceTree = "<group>"; };
+		7396C5682437B7EE002BD3CC /* trail-tours-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "trail-tours-icon.jpg"; sourceTree = "<group>"; };
+		7396C5722437D432002BD3CC /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		7396C576243B628E002BD3CC /* TrailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailListView.swift; sourceTree = "<group>"; };
+		7396C578243B6349002BD3CC /* LandmarkRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRowView.swift; sourceTree = "<group>"; };
+		7396C57A243B636F002BD3CC /* TrailTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailTourView.swift; sourceTree = "<group>"; };
+		7396C584243B75C3002BD3CC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		73A7B60C2486BE1F000C91A5 /* PointOfInterestSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterestSummaryView.swift; sourceTree = "<group>"; };
+		73CECF29243CA2E0003D6CBA /* CommonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonStyles.swift; sourceTree = "<group>"; };
+		73CECF2B243CB54B003D6CBA /* AboutTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTextView.swift; sourceTree = "<group>"; };
+		73CECF2D243CB5EF003D6CBA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		73E253E6246AEBA700CC5361 /* MapServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapServiceTest.swift; sourceTree = "<group>"; };
+		73E253F0246B357500CC5361 /* TrailDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsView.swift; sourceTree = "<group>"; };
+		73E253F2246B382A00CC5361 /* DirectionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonView.swift; sourceTree = "<group>"; };
+		73E253F4246C165600CC5361 /* ArrowRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowRenderer.swift; sourceTree = "<group>"; };
+		73E253F8246C4CE200CC5361 /* TrailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailMapView.swift; sourceTree = "<group>"; };
+		73EA75182440B1E70018F148 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
+		73EA752824449F650018F148 /* Landmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		73EA752C2444A46D0018F148 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
+		8428D7852C7D274200ECF97C /* warrington-township-pa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "warrington-township-pa.jpg"; sourceTree = "<group>"; };
+		84B7B3EF2522693700C7F1F7 /* NamedPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedPolyline.swift; sourceTree = "<group>"; };
+		84FBA5D32512A4F300352DAD /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
+		F633E51A24DA5B58002D063B /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7396C3C32434EA3C002BD3CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7396C3D92434EA40002BD3CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7396C3E42434EA40002BD3CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7384E8D524572FFD00BB1765 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7384E8D62457301100BB1765 /* LandmarkService.swift */,
+				734201AB2461B5ED009504FC /* BeaconScanner.swift */,
+				734201B1246593FB009504FC /* MapService.swift */,
+				7314641D248A6C740082F41E /* AccessibilityService.swift */,
+				732F4A2324913111005F6DD7 /* NotificationService.swift */,
+				7300FCA1249A80620088B619 /* BluetoothService.swift */,
+				7300FCAE249D274F0088B619 /* Utils.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		7396C3BD2434EA3C002BD3CC = {
+			isa = PBXGroup;
+			children = (
+				7396C3C82434EA3C002BD3CC /* LionsPride */,
+				7396C3DF2434EA40002BD3CC /* LionsPrideTests */,
+				7396C3EA2434EA40002BD3CC /* LionsPrideUITests */,
+				7396C3C72434EA3C002BD3CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7396C3C72434EA3C002BD3CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7396C3C62434EA3C002BD3CC /* 202Connector.app */,
+				7396C3DC2434EA40002BD3CC /* 202ConnectorTests.xctest */,
+				7396C3E72434EA40002BD3CC /* 202ConnectorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7396C3C82434EA3C002BD3CC /* LionsPride */ = {
+			isa = PBXGroup;
+			children = (
+				7396C5722437D432002BD3CC /* AboutView.swift */,
+				7396C3C92434EA3C002BD3CC /* BradfordTrailApp.swift */,
+				7396C3CF2434EA40002BD3CC /* Assets.xcassets */,
+				F633E51A24DA5B58002D063B /* BeaconView.swift */,
+				7396C3D72434EA40002BD3CC /* Info.plist */,
+				7384E8CA24531E4100BB1765 /* LandmarkSearchView.swift */,
+				7396C3D42434EA40002BD3CC /* LaunchScreen.storyboard */,
+				738FEBA62472CA640008395F /* LineArrowView.swift */,
+				7396C5442436C277002BD3CC /* MainView.swift */,
+				7396C53D243687C8002BD3CC /* Model */,
+				7396C3D12434EA40002BD3CC /* Preview Content */,
+				7396C54C2436C5A6002BD3CC /* Resources */,
+				7384E8D524572FFD00BB1765 /* Service */,
+				7396C584243B75C3002BD3CC /* SettingsView.swift */,
+				7396C55D2437AF54002BD3CC /* SplashScreenView.swift */,
+				7396C56D2437BC9B002BD3CC /* Supporting Views */,
+				738FEBA4246EE3770008395F /* TestView.swift */,
+				73E253F0246B357500CC5361 /* TrailDetailsView.swift */,
+				7396C576243B628E002BD3CC /* TrailListView.swift */,
+				7396C57A243B636F002BD3CC /* TrailTourView.swift */,
+				7396C54A2436C50B002BD3CC /* UserData.swift */,
+				73CECF2D243CB5EF003D6CBA /* WelcomeView.swift */,
+			);
+			path = LionsPride;
+			sourceTree = "<group>";
+		};
+		7396C3D12434EA40002BD3CC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7396C3D22434EA40002BD3CC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7396C3DF2434EA40002BD3CC /* LionsPrideTests */ = {
+			isa = PBXGroup;
+			children = (
+				7396C3E22434EA40002BD3CC /* Info.plist */,
+				73E253E6246AEBA700CC5361 /* MapServiceTest.swift */,
+				4C547D952874C9EC00028DBD /* Data.json */,
+			);
+			path = LionsPrideTests;
+			sourceTree = "<group>";
+		};
+		7396C3EA2434EA40002BD3CC /* LionsPrideUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7396C3EB2434EA40002BD3CC /* LionsPrideUITests.swift */,
+				7396C3ED2434EA40002BD3CC /* Info.plist */,
+			);
+			path = LionsPrideUITests;
+			sourceTree = "<group>";
+		};
+		7396C53D243687C8002BD3CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				73EA752C2444A46D0018F148 /* ImageStore.swift */,
+				73EA752824449F650018F148 /* Landmark.swift */,
+				7300FCA5249C07410088B619 /* LionsPrideData.swift */,
+				84FBA5D32512A4F300352DAD /* Site.swift */,
+				73EA75182440B1E70018F148 /* Trail.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7396C54C2436C5A6002BD3CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8428D7852C7D274200ECF97C /* warrington-township-pa.jpg */,
+				733AF7B624B5FBF0000D5808 /* field-photo.jpg */,
+				7396C5652437B7EE002BD3CC /* info-icon.jpg */,
+				7396C5662437B7EE002BD3CC /* map-icon.jpg */,
+				7396C5672437B7EE002BD3CC /* settings-icon.jpg */,
+				7396C5682437B7EE002BD3CC /* trail-tours-icon.jpg */,
+				7396C5632437B3F3002BD3CC /* logo.jpg */,
+				7396C55F2437AFA8002BD3CC /* map_icon.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7396C56D2437BC9B002BD3CC /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				73CECF2B243CB54B003D6CBA /* AboutTextView.swift */,
+				73E253F4246C165600CC5361 /* ArrowRenderer.swift */,
+				7350DA81244DE0A000735E15 /* BottomSheetView.swift */,
+				73420192245C7EA6009504FC /* CloseButtonView.swift */,
+				73CECF29243CA2E0003D6CBA /* CommonStyles.swift */,
+				73E253F2246B382A00CC5361 /* DirectionButtonView.swift */,
+				7396C578243B6349002BD3CC /* LandmarkRowView.swift */,
+				734DF8AF24802DC5009EBFA0 /* LandmarkSearchFieldValue.swift */,
+				738FEBA2246ED2680008395F /* MainMapContainerView.swift */,
+				737A8D6D243FBB4B00C2C7B1 /* MainMapView.swift */,
+				84B7B3EF2522693700C7F1F7 /* NamedPolyline.swift */,
+				734DF8B024802DC5009EBFA0 /* NextPointOfInterestDetailsView.swift */,
+				738FEB98246D9B940008395F /* NextPointOfInterestView.swift */,
+				7350DA7B244DDAA400735E15 /* PointOfInterestDetailsView.swift */,
+				73A7B60C2486BE1F000C91A5 /* PointOfInterestSummaryView.swift */,
+				73E253F8246C4CE200CC5361 /* TrailMapView.swift */,
+				735245BA2493B1B10083DA42 /* TrailRowView.swift */,
+				734DF8AD24802DA4009EBFA0 /* TrailTourMapView.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7396C3C52434EA3C002BD3CC /* 202Connector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7396C3F02434EA40002BD3CC /* Build configuration list for PBXNativeTarget "202Connector" */;
+			buildPhases = (
+				7396C3C22434EA3C002BD3CC /* Sources */,
+				7396C3C32434EA3C002BD3CC /* Frameworks */,
+				7396C3C42434EA3C002BD3CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 202Connector;
+			productName = LionsPride;
+			productReference = 7396C3C62434EA3C002BD3CC /* 202Connector.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7396C3DB2434EA40002BD3CC /* 202ConnectorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7396C3F32434EA40002BD3CC /* Build configuration list for PBXNativeTarget "202ConnectorTests" */;
+			buildPhases = (
+				7396C3D82434EA40002BD3CC /* Sources */,
+				7396C3D92434EA40002BD3CC /* Frameworks */,
+				7396C3DA2434EA40002BD3CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7396C3DE2434EA40002BD3CC /* PBXTargetDependency */,
+			);
+			name = 202ConnectorTests;
+			productName = LionsPrideTests;
+			productReference = 7396C3DC2434EA40002BD3CC /* 202ConnectorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7396C3E62434EA40002BD3CC /* 202ConnectorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7396C3F62434EA40002BD3CC /* Build configuration list for PBXNativeTarget "202ConnectorUITests" */;
+			buildPhases = (
+				7396C3E32434EA40002BD3CC /* Sources */,
+				7396C3E42434EA40002BD3CC /* Frameworks */,
+				7396C3E52434EA40002BD3CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7396C3E92434EA40002BD3CC /* PBXTargetDependency */,
+			);
+			name = 202ConnectorUITests;
+			productName = LionsPrideUITests;
+			productReference = 7396C3E72434EA40002BD3CC /* 202ConnectorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7396C3BE2434EA3C002BD3CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1540;
+				ORGANIZATIONNAME = "Kevin Grainer";
+				TargetAttributes = {
+					7396C3C52434EA3C002BD3CC = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					7396C3DB2434EA40002BD3CC = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 7396C3C52434EA3C002BD3CC;
+					};
+					7396C3E62434EA40002BD3CC = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 7396C3C52434EA3C002BD3CC;
+					};
+				};
+			};
+			buildConfigurationList = 7396C3C12434EA3C002BD3CC /* Build configuration list for PBXProject "202Connector" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7396C3BD2434EA3C002BD3CC;
+			productRefGroup = 7396C3C72434EA3C002BD3CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7396C3C52434EA3C002BD3CC /* 202Connector */,
+				7396C3DB2434EA40002BD3CC /* 202ConnectorTests */,
+				7396C3E62434EA40002BD3CC /* 202ConnectorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7396C3C42434EA3C002BD3CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7396C5692437B7EE002BD3CC /* info-icon.jpg in Resources */,
+				7396C5612437AFA8002BD3CC /* map_icon.png in Resources */,
+				7396C3D62434EA40002BD3CC /* LaunchScreen.storyboard in Resources */,
+				733AF7B724B5FBF0000D5808 /* field-photo.jpg in Resources */,
+				8428D7862C7D274200ECF97C /* warrington-township-pa.jpg in Resources */,
+				7396C5642437B3F3002BD3CC /* logo.jpg in Resources */,
+				7396C3D32434EA40002BD3CC /* Preview Assets.xcassets in Resources */,
+				7396C3D02434EA40002BD3CC /* Assets.xcassets in Resources */,
+				7396C56B2437B7EE002BD3CC /* settings-icon.jpg in Resources */,
+				7396C56A2437B7EE002BD3CC /* map-icon.jpg in Resources */,
+				7396C56C2437B7EE002BD3CC /* trail-tours-icon.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7396C3DA2434EA40002BD3CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C547D962874C9EC00028DBD /* Data.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7396C3E52434EA40002BD3CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7396C3C22434EA3C002BD3CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7396C5452436C277002BD3CC /* MainView.swift in Sources */,
+				73EA752A24449F650018F148 /* Landmark.swift in Sources */,
+				7300FCA6249C07410088B619 /* LionsPrideData.swift in Sources */,
+				73A7B60D2486BE1F000C91A5 /* PointOfInterestSummaryView.swift in Sources */,
+				738FEBA3246ED2680008395F /* MainMapContainerView.swift in Sources */,
+				7396C3CA2434EA3C002BD3CC /* BradfordTrailApp.swift in Sources */,
+				73CECF2A243CA2E0003D6CBA /* CommonStyles.swift in Sources */,
+				7300FCA2249A80620088B619 /* BluetoothService.swift in Sources */,
+				7396C585243B75C3002BD3CC /* SettingsView.swift in Sources */,
+				73420193245C7EA6009504FC /* CloseButtonView.swift in Sources */,
+				7384E8D72457301100BB1765 /* LandmarkService.swift in Sources */,
+				738FEBA72472CA650008395F /* LineArrowView.swift in Sources */,
+				73E253F1246B357500CC5361 /* TrailDetailsView.swift in Sources */,
+				7396C5732437D432002BD3CC /* AboutView.swift in Sources */,
+				73CECF2C243CB54B003D6CBA /* AboutTextView.swift in Sources */,
+				73CECF2E243CB5EF003D6CBA /* WelcomeView.swift in Sources */,
+				738FEB99246D9B940008395F /* NextPointOfInterestView.swift in Sources */,
+				73EA75192440B1E70018F148 /* Trail.swift in Sources */,
+				7396C55E2437AF54002BD3CC /* SplashScreenView.swift in Sources */,
+				73EA752D2444A46D0018F148 /* ImageStore.swift in Sources */,
+				734DF8B224802DC5009EBFA0 /* NextPointOfInterestDetailsView.swift in Sources */,
+				84B7B3F02522693700C7F1F7 /* NamedPolyline.swift in Sources */,
+				7300FCAF249D274F0088B619 /* Utils.swift in Sources */,
+				737A8D6E243FBB4B00C2C7B1 /* MainMapView.swift in Sources */,
+				7384E8CB24531E4100BB1765 /* LandmarkSearchView.swift in Sources */,
+				734DF8AE24802DA4009EBFA0 /* TrailTourMapView.swift in Sources */,
+				F633E51B24DA5B59002D063B /* BeaconView.swift in Sources */,
+				734201B2246593FB009504FC /* MapService.swift in Sources */,
+				73E253F3246B382A00CC5361 /* DirectionButtonView.swift in Sources */,
+				73E253F5246C165600CC5361 /* ArrowRenderer.swift in Sources */,
+				738FEBA5246EE3770008395F /* TestView.swift in Sources */,
+				7396C54B2436C50B002BD3CC /* UserData.swift in Sources */,
+				734DF8B124802DC5009EBFA0 /* LandmarkSearchFieldValue.swift in Sources */,
+				7350DA82244DE0A000735E15 /* BottomSheetView.swift in Sources */,
+				7314641E248A6C740082F41E /* AccessibilityService.swift in Sources */,
+				734201AC2461B5ED009504FC /* BeaconScanner.swift in Sources */,
+				73E253F9246C4CE200CC5361 /* TrailMapView.swift in Sources */,
+				735245BB2493B1B10083DA42 /* TrailRowView.swift in Sources */,
+				7350DA7C244DDAA400735E15 /* PointOfInterestDetailsView.swift in Sources */,
+				732F4A2424913111005F6DD7 /* NotificationService.swift in Sources */,
+				7396C57B243B636F002BD3CC /* TrailTourView.swift in Sources */,
+				7396C577243B628E002BD3CC /* TrailListView.swift in Sources */,
+				84FBA5D42512A4F300352DAD /* Site.swift in Sources */,
+				7396C579243B6349002BD3CC /* LandmarkRowView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7396C3D82434EA40002BD3CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73E253E7246AEBA700CC5361 /* MapServiceTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7396C3E32434EA40002BD3CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7396C3EC2434EA40002BD3CC /* LionsPrideUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7396C3DE2434EA40002BD3CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7396C3C52434EA3C002BD3CC /* 202Connector */;
+			targetProxy = 7396C3DD2434EA40002BD3CC /* PBXContainerItemProxy */;
+		};
+		7396C3E92434EA40002BD3CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7396C3C52434EA3C002BD3CC /* 202Connector */;
+			targetProxy = 7396C3E82434EA40002BD3CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7396C3D42434EA40002BD3CC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7396C3D52434EA40002BD3CC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7396C3EE2434EA40002BD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7396C3EF2434EA40002BD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7396C3F12434EA40002BD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20250130.1;
+				DEVELOPMENT_ASSET_PATHS = "\"LionsPride/Preview Content\"";
+				DEVELOPMENT_TEAM = ZA7MADZY65;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LionsPride/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Route 202 to Bradford Dam Trail";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.202connector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7396C3F22434EA40002BD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20250130.1;
+				DEVELOPMENT_ASSET_PATHS = "\"LionsPride/Preview Content\"";
+				DEVELOPMENT_TEAM = ZA7MADZY65;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LionsPride/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Route 202 to Bradford Dam Trail";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.202connector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7396C3F42434EA40002BD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ZRZL4M7J7;
+				INFOPLIST_FILE = LionsPrideTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chariot.LionsPrideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/202Connector.app/202Connector";
+			};
+			name = Debug;
+		};
+		7396C3F52434EA40002BD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ZRZL4M7J7;
+				INFOPLIST_FILE = LionsPrideTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chariot.LionsPrideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/202Connector.app/202Connector";
+			};
+			name = Release;
+		};
+		7396C3F72434EA40002BD3CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ZRZL4M7J7;
+				INFOPLIST_FILE = LionsPrideUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chariot.LionsPrideUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = 202Connector;
+			};
+			name = Debug;
+		};
+		7396C3F82434EA40002BD3CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ZRZL4M7J7;
+				INFOPLIST_FILE = LionsPrideUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chariot.LionsPrideUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = 202Connector;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7396C3C12434EA3C002BD3CC /* Build configuration list for PBXProject "202Connector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7396C3EE2434EA40002BD3CC /* Debug */,
+				7396C3EF2434EA40002BD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7396C3F02434EA40002BD3CC /* Build configuration list for PBXNativeTarget "202Connector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7396C3F12434EA40002BD3CC /* Debug */,
+				7396C3F22434EA40002BD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7396C3F32434EA40002BD3CC /* Build configuration list for PBXNativeTarget "202ConnectorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7396C3F42434EA40002BD3CC /* Debug */,
+				7396C3F52434EA40002BD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7396C3F62434EA40002BD3CC /* Build configuration list for PBXNativeTarget "202ConnectorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7396C3F72434EA40002BD3CC /* Debug */,
+				7396C3F82434EA40002BD3CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 7396C3BE2434EA3C002BD3CC /* Project object */;
+}

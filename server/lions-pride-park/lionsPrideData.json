@@ -1,0 +1,766 @@
+{
+  "site": {
+    "boundaryCoordinates": [
+      {
+        "latitude": 40.248287,
+        "longitude": -75.176472
+      },
+      {
+        "latitude": 40.248519,
+        "longitude": -75.178043
+      },
+      {
+        "latitude": 40.24614,
+        "longitude": -75.179355
+      },
+      {
+        "latitude": 40.245275,
+        "longitude": -75.178377
+      },
+      {
+        "latitude": 40.246074,
+        "longitude": -75.177482
+      },
+      {
+        "latitude": 40.247434,
+        "longitude": -75.177391
+      },
+      {
+        "latitude": 40.248361,
+        "longitude": -75.176682
+      }
+    ],
+    "beaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+    "beaconMajorCode": 17
+  },
+  "landmarks": [
+    {
+      "coordinates": {
+        "latitude": 40.24613,
+        "longitude": -75.177778
+      },
+      "id": 1002,
+      "name": "Yellow Trail",
+      "category": "Trail",
+      "longDescription": "The yellow trail is a 0.4-mile paved loop around the park and connects with the trail around IPW and the rest of Upper Nike.",
+      "imageName": "Yellow_trail",
+      "imageAlt": "Picture of Yellow Trail",
+      "isOpen": false,
+      "trailDistanceDescription": "This is a paved 0.4 mile trail around Kids Mountain and the Grove.  Just to the right of the main entrance is a link to the IPW Park around the soccer fields. About half-way around, is a connector to the Green Trail.",
+      "description": "This paved trail leads you around the outside of the park and is great exercise."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24615,
+        "longitude": -75.17755
+      },
+      "id": 1009,
+      "name": "Park Entrance",
+      "category": "PointOfInterest",
+      "longDescription": "Welcome to Lions Pride Park. You can walk or run on ADA accessible paths, relax in a chair under a canopy of trees, pay a tune in the music grove, climb a 15 foot mountain to get a bird\u2019s eye view of the park, walk across a bridge to a 9 foot mountain, climb a rope spider web, find 4 ways to slide down the mountain, create sand castles using the digger, play a game of chess using life size pieces or examine the native pollinator bushes which attract many helpful insects. All in all, this park offers choices for everyone-no matter your interests.  At the back of the park, you can see the pond-to-wetland project that is underway and examine a rain garden that serves as a detention basin.",
+      "imageName": "park_entrance",
+      "imageAlt": "View of trees and field from park entrance",
+      "description": "Welcome! This is the entrance to Lions Pride Park."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.2461,
+        "longitude": -75.178297
+      },
+      "id": 1011,
+      "name": "Restrooms",
+      "category": "Building",
+      "longDescription": "The restrooms are located at the south of the park just south of the pavilion on the Yellow Trail. There are Men's (Right side door) and Women's restrooms (Left side door), both ADA accessible, and each has a changing table. There is a water fountain at the rear of the building.",
+      "imageName": "restrooms",
+      "imageAlt": "Small white building with two entrances for bathrooms",
+      "description": "Men's (Right side door), Women's restrooms (Left side door) with changing tables. There is a water fountain at the rear of the building."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.246653,
+        "longitude": -75.177983
+      },
+      "id": 1012,
+      "name": "The Grove",
+      "category": "PointOfInterest",
+      "longDescription": "The Grove offers intergenerational experiences set in scenic beauty, including playing life-size games and enjoying picnics that will build lasting family memories. Seating areas incorporate benches and tables that accommodate people with various physical needs. The center of the grove is a large circular area dedicated to the Warrington Lions Club. It is surrounded by tables with built in checker/chess boards and more. Around the Grove are barbecue pits (BYO charcoal), picnic tables, Adirondack chairs and hammocks.",
+      "imageName": "the_grove",
+      "imageAlt": "Picture of the Grove",
+      "description": "The grove is a relaxing family area with games to play and chairs, tables and hammocks to relax on."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24682,
+        "longitude": -75.17761
+      },
+      "id": 1003,
+      "name": "Kids Mountain",
+      "category": "PointOfInterest",
+      "longDescription": "Kids Mountain, an exciting state-of-the-art play area fully accessible to people of all abilities, includes swings, slides, climbing towers, and rope bridges. The topography lends itself to climbing, sledding, walking, and enjoying the views. This fifteen-foot-high mountain has multiple means to ascend and descend for children of all ages and abilities.\nThe two main blue slides begin from the peak of Kids Mountain; both are accessible by individuals of all abilities. The first slide is a spiral slide that can be accessed from the tower's highest level and ends with a transfer station (for handicapped persons) at the bottom. The second slide is a straight slide that is steep and fast. Again, this has transfer areas at both the top and bottom.",
+      "imageName": "kids_mountain",
+      "imageAlt": "Picture of the Kids Mountain",
+      "description": "Kids Mountain is loaded with swings, slides, climbing towers and rope bridges for hours of fun."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24643,
+        "longitude": -75.178332
+      },
+      "id": 1015,
+      "name": "Pavilion",
+      "category": "Building",
+      "longDescription": "The covered pavilion can hold 50-75 people. The pavilion can be rented out for parties and gatherings. It is conveniently located next to the grove, grills, and picnic tables.",
+      "imageName": "pavilion",
+      "imageAlt": "Picture of the Pavilion",
+      "description": "The Pavilion is a covered gathering place next to the Grove."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.246183,
+        "longitude": -75.178878
+      },
+      "id": 1016,
+      "name": "Tennis Courts",
+      "category": "PointOfInterest",
+      "longDescription": "The tennis/pickleball courts are open to the public on a first come-first served basis. Bring your own equipment.",
+      "imageName": "tennis_pickleball",
+      "imageAlt": "Picture of the Tennis Courts",
+      "description": "Tennis/Pickleball Courts are open to all on a first come- first served basis."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.2469,
+        "longitude": -75.177882
+      },
+      "id": 1017,
+      "name": "Small Mountain",
+      "category": "PointOfInterest",
+      "longDescription": "The small mountain is connected to Kids Mountain by a rope bridge starting at the big tower. This hill has a net climbing structure to move about in as well as several different activities along the edges: A smaller zigzag climbing ladder, one spider web climbing net, sliding pipes and a 4-foot-wide sliding board. Along this hill are many colorful half domes that children can use to make their way both up and down the hill. There is a tot lot, ideal for kids 2-5 with a sandbox, diggers, a dish swing, mommy & me swings and various other activities.",
+      "imageName": "Small_mountain",
+      "imageAlt": "Picture of the Small Mountain",
+      "description": "The Small Mountain is a fun play area for toddlers and anyone not comfortable with climbing the Kids Mountain."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24772,
+        "longitude": -75.17827
+      },
+      "id": 2001,
+      "name": "Invasive Species and The Woods",
+      "category": "PointOfInterest",
+      "longDescription": "The woods along the side of the loop trail are comprised of uplands, wetlands and floodplains. In the near future, the existing pond will be converted to a wetland restoration area. The trail will pass through the woods and around the created wetland habitat for a whole new educational nature experience.\nInvasive species are known as plants or animals that did not originate (are not native to) the area in which they currently reside. In short, they spread quickly, and can cause environmental and subsequently economic damage. They make up around 41% of the vegetation in Pennsylvania. Invasive plants diminish the available habitat for native wildlife, and \u201cout-compete\u201d native plants in a way that disrupts the food chain as well as the natural balance of our local environment.",
+      "imageName": "invasive_species",
+      "imageAlt": "Spotted lantern fly on a branch",
+      "description": "Here's some information about invasive plants in the area and their effect on the environment. Invasive plants are plants that didn't start in this area and can have a bad effect on the natural habitat."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24601,
+        "longitude": -75.1774
+      },
+      "id": 2002,
+      "name": "Recycling",
+      "category": "PointOfInterest",
+      "longDescription": "The recycling bins at Lions Pride Park allow visitors to separate and recycle their food containers, paper products, empty plastic and glass bottles and aluminum cans from their trash. Please do not place plastic bags in the recycling cans as these can damage recycling equipment. Plastic bags can be recycled in supermarkets. Recycling is critical to the health of our planet and it reduces landfill space. Only paper you read and write on is recyclable. All containers must be completely empty before recycling to avoid contamination.",
+      "imageName": "Recycling",
+      "imageAlt": "Recycling at Lions Pride Park",
+      "description": "The recycling bins at Lions Pride Park allow visitors to separate and recycle their food containers, paper products, empty plastic and glass bottles and aluminum cans from their trash. Please do not place plastic bags in the recycling cans as these can damage recycling equipment. Plastic bags can be recycled in supermarkets. Recycling is critical to the health of our planet and it reduces landfill space. Only paper you read and write on is recyclable. All containers must be completely empty before recycling to avoid contamination."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24665,
+        "longitude": -75.17764
+      },
+      "id": 2003,
+      "name": "Small Slides and Rope Ladder",
+      "category": "PointOfInterest",
+      "longDescription": "This rope ladder is another means to transition from the top to the bottom of Kids Mountain. The ropes have handholds to guide you in a zigzag pattern as you are slightly above the ground. This feature encourages both eye/hand and eye/foot coordination to complete the journey.\nThe three small green slides will bring you down from the top of the mountain through two areas filled with sand. The sand areas are just one of the different surfaces that are present throughout the park. Access to the slide is either from the walking path that winds up the mountain or by two sets of stairs between them. These are smaller less steep slides than the large main slides.",
+      "imageName": "small_slides",
+      "imageAlt": "Small slides",
+      "description": "Small Slides take you down Kids Mountain through two areas filled with sand. Get to the slides from Kids Mountain Trail or by using the stairs between the slides."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.2479,
+        "longitude": -75.17664
+      },
+      "id": 2005,
+      "name": "Bees",
+      "category": "PointOfInterest",
+      "longDescription": "Bees are insects known as pollinators. Western honeybees are well known for producing honey, and pollination of flowers, fruits, and vegetables. Most crops require insect pollination in order to produce seeds. Bees live in colonies, also known as hives. This is where they reproduce and make honey to store for the winter. Honeybees fly extremely fast, and beat their wings around 200 times per second. Unfortunately, bees are declining at an alarming rate due to viruses, climate change, decreasing crop diversity, and loss of habitat. Reducing the use of pesticides and diminishing the effects of climate change will help these important pollinators to repopulate. You can help increase the bee population by planting native shrubs and flowers that in your yard. Recently, beekeeping has become an interesting and popular hobby.",
+      "imageName": "bees",
+      "imageAlt": "Honey bee gathering pollen from a yellow flower",
+      "description": "Here's some information about bees which are very important to the environment and some things we can do to help them thrive."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24822,
+        "longitude": -75.17676
+      },
+      "id": 2006,
+      "name": "Butterflies",
+      "category": "PointOfInterest",
+      "longDescription": "Butterflies and moths are pollinators of plant and food sources for other animals. They make up the second largest order of insects. Butterflies have thousands of tiny overlapping scales covering their wings. Each scale is a single color and collectively these scales create the complex color patterns seen on their wings. Monarch butterflies are facing extinction. Populations in the last ten years have declined by over 90%. Butterflies in general are in trouble, but with just a few nectar and hosts plants you can attract and sustain dozens of butterfly species. Limiting the use of insecticides and herbicides will also help to increase their population.",
+      "imageName": "butterfly",
+      "imageAlt": "Monarch butterfly standing on a stick",
+      "description": "Here's some information about butterflies."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24673,
+        "longitude": -75.17747
+      },
+      "id": 2007,
+      "name": "Natural Slope",
+      "category": "PointOfInterest",
+      "longDescription": "This side (back of the mountain) is natural and allows individuals to run up, roll down and in the winter is an excellent sledding hill. The area is accessed from Kids Mountain Trail.",
+      "imageName": "slope",
+      "imageAlt": "Natural slope",
+      "description": "The side of Kids Mountain is a natural play area and is great for sledding. Get to it from the Kids Mountain Trail."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24852,
+        "longitude": -75.17754
+      },
+      "id": 3001,
+      "name": "Green Trail",
+      "category": "Trail",
+      "longDescription": "The green trail  is a crushed stone trail and will tie into the proposed wetlands trail. It currently extends three fourths of the way around around the water garden nature area.",
+      "imageName": "trail",
+      "imageAlt": "Picture of Green Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This is a crushed stone U-shaped trail about .25 miles around the back of the park leading to the Rain Garden nature area. The link from the Yellow trail allows you to walk left toward the Rain Garden, or right around the lacrosse field to the rain garden and some informative nature signs. the two ends do not currently connect to one another. This will change when the pond to wetland project is completed.",
+      "description": "This is a crushed stone trail passing the meadow and water garden with some interesting information along the way."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.246175,
+        "longitude": -75.177667
+      },
+      "id": 3002,
+      "name": "Kids Mountain Trail",
+      "category": "Trail",
+      "longDescription": "This gently sloping paved ADA compliant trail leads to the top of Kids Mountain, It is ideal for those with physical limitations and is wheelchair friendly. There is a rest area along the trail that is a perfect place to sit and enjoy the scenic view of the park.",
+      "imageName": "Mountain_trail",
+      "imageAlt": "Kids Mountain Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This is a 400 foot trail leading to the top of Kids Mountain. The slope is ADA compliant and friendly for those with mobility issues.",
+      "description": "Paved ADA compliant trail takes you to the top of Kids Mountain and the fun activities you will find there."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.247069,
+        "longitude": -75.177786
+      },
+      "id": 3004,
+      "name": "Music Grove",
+      "category": "PointOfInterest",
+      "longDescription": "Located behind the small mountain and next to the swings is the Music Grove. Visitors will  find an array of oversized and tuned percussion musical instruments to play.",
+      "imageName": "music_grove",
+      "imageAlt": "The Music Grove",
+      "description": "Tuned musical instruments are for your use and enjoyment. Have fun!"
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24779,
+        "longitude": -75.1766
+      },
+      "id": 3005,
+      "name": "Rain Garden",
+      "category": "PointOfInterest",
+      "longDescription": "This rain garden collects stormwater from the park. Also known as a bioretention basin, runoff that originates from rain, snow, hail, and sleet are diverted via underground pipes into this rain garden and soak into the soil. Rain gardens, such as this, are effective in removing up to 90% of nutrients and chemicals and up to 80% of sediments before they enter a water body. This garden will look dry most of the time, but will accumulate water during storm events and will drain within 12 to 48 hours, thereby cleaning the water before it enters the Little Neshaminy Watershed. Native plants and wildflowers are typically planted in rain gardens.",
+      "imageName": "rain_garden",
+      "imageAlt": "The Rain Garden",
+      "description": "The rain garden collects water which runs off from different parts of the park. Our rain garden hosts many native plants and small wildlife."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.24667,
+        "longitude": -75.17826
+      },
+      "id": 3006,
+      "name": "Recycled Plastic Furniture",
+      "category": "PointOfInterest",
+      "longDescription": "All of the adirondack chairs, benches and picnic tables in the park are made from 100% recycled plastic. By using recycled plastic furnishings, we are playing an important role on closing the loop on recycling. Through the incorporation of recycled plastic into outdoor products, we are conserving virgin resources, reducing the need to log, drill and mine for raw materials. Using recycled content in products creates the demand needed to make recycling economically viable and turn used materials into new products.",
+      "imageName": "recycled_furn",
+      "imageAlt": "Recycled Furniture",
+      "description": "All of the adirondack chairs, benches and picnic tables in the park are made from 100% recycled plastic. Recycling helps the planet."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.246353,
+        "longitude": -75.177675
+      },
+      "id": 3007,
+      "name": "Pollinator Plants",
+      "category": "PointOfInterest",
+      "longDescription": "Native pollinator plants are essential to ensure the production of nectar and pollen that support a diversity of butterflies, bees, bats, hummingbirds and other insects. These plants are also essential for plant reproduction and provide food and shelter for wildlife.",
+      "imageName": "pollinators",
+      "imageAlt": "Some Pollinator Plants",
+      "description": "Pollinator plants TBA"
+    },
+    {
+      "coordinates": {
+        "latitude": 40.248108,
+        "longitude": -75.176708
+      },
+      "id": 3008,
+      "name": "Insects",
+      "category": "PointOfInterest",
+      "longDescription": "Insects are the largest species on earth. There are up to 10 million different types of insects in all shapes, colors and sizes. However all insects have a few common characteristics; no backbone, 3 separate parts to their body, 2 antennae on their head and 6 legs. Some of the benefits of insects include pollination, spreading seeds and providing a high protein food for humans.",
+      "imageName": "insects",
+      "imageAlt": "Some Insects",
+      "description": "Insects TBA"
+    },
+    {
+      "coordinates": {
+        "latitude": 40.247383,
+        "longitude": -75.178521
+      },
+      "id": 3003,
+      "name": "Green Trail Turn-off",
+      "category": "PointOfInterest",
+      "longDescription": "If you bear left at this junction, you'll connect to the Green Trail. Otherwise, continue on the Yellow Trail toward the park entrance.",
+      "imageName": "Green_Trail_Connection",
+      "imageAlt": "Green Trail Connection",
+      "description": "Walk along the edge of the woods and see what plants and wildlife you can see."
+    },
+    {
+      "coordinates": {
+        "latitude": 40.2478,
+        "longitude": -75.178281
+      },
+      "id": 2004,
+      "name": "Green Trail Mid-Point",
+      "category": "PointOfInterest",
+      "longDescription": "This is the mid-point entry to the Green Trail. Turn Left to walk along the woods  to the beginning of the trail near the pond. Turn Right to head to the rain garden nature area.",
+      "imageName": "Green_Trail_mid",
+      "imageAlt": "Mid-point entry to the Green Trail",
+      "description": "Turn left to go to the beginning of the Green Trail, turn right to go to the Rain Garden nature area"
+    }
+  ],
+  "trails": [
+    {
+      "name": "Yellow Trail",
+      "id": 1002,
+      "isOpen": false,
+      "trailDistanceDescription": "This is a paved 0.4 mile trail around Kids Mountain and the Grove.  Just to the right of the main entrance is a link to the IPW Park around the soccer fields. About half-way around, is a connector to the Green Trail.",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24613,
+          "longitude": -75.177778,
+          "landmarkId": 1002,
+          "distanceToNextClockwise": "160 feet",
+          "distanceToNextClockwiseDescription": "From the entrance, proceed on the trail to the left approximately 160 feet to the restrooms or 200 feet straight ahead to the Grove",
+          "distanceToNextCounterClockwise": "500 feet",
+          "distanceToNextCounterClockwiseDescription": "In 500 feet, you will reach one of the entrances to the Green Trail"
+        },
+        {
+          "latitude": 40.246128,
+          "longitude": -75.177847
+        },
+        {
+          "latitude": 40.246125,
+          "longitude": -75.177931
+        },
+        {
+          "latitude": 40.246111,
+          "longitude": -75.178014
+        },
+        {
+          "latitude": 40.246086,
+          "longitude": -75.178094
+        },
+        {
+          "latitude": 40.246069,
+          "longitude": -75.178194
+        },
+        {
+          "latitude": 40.246075,
+          "longitude": -75.178292
+        },
+        {
+          "latitude": 40.2461,
+          "longitude": -75.178297,
+          "landmarkId": 1011,
+          "distanceToNextClockwise": "75 feet",
+          "distanceToNextClockwiseDescription": "Continue on the trail 75 feet and the pavilion is on the right, 50 feet from the trail",
+          "distanceToNextCounterClockwise": "160 feet",
+          "distanceToNextCounterClockwiseDescription": "From the restrooms, continue 160 feet to the park entrance"
+        },
+        {
+          "latitude": 40.2461,
+          "longitude": -75.178386
+        },
+        {
+          "latitude": 40.246206,
+          "longitude": -75.178528
+        },
+        {
+          "latitude": 40.246275,
+          "longitude": -75.178567
+        },
+        {
+          "latitude": 40.246353,
+          "longitude": -75.178575
+        },
+        {
+          "latitude": 40.246425,
+          "longitude": -75.178561
+        },
+        {
+          "latitude": 40.246492,
+          "longitude": -75.178536
+        },
+        {
+          "latitude": 40.246558,
+          "longitude": -75.178514
+        },
+        {
+          "latitude": 40.246619,
+          "longitude": -75.178503
+        },
+        {
+          "latitude": 40.246683,
+          "longitude": -75.178508
+        },
+        {
+          "latitude": 40.246747,
+          "longitude": -75.178528
+        },
+        {
+          "latitude": 40.246811,
+          "longitude": -75.178561
+        },
+        {
+          "latitude": 40.246881,
+          "longitude": -75.178583
+        },
+        {
+          "latitude": 40.246953,
+          "longitude": -75.178592
+        },
+        {
+          "latitude": 40.247028,
+          "longitude": -75.178583
+        },
+        {
+          "latitude": 40.247097,
+          "longitude": -75.178561
+        },
+        {
+          "latitude": 40.247225,
+          "longitude": -75.178469
+        },
+        {
+          "latitude": 40.247328,
+          "longitude": -75.178336,
+          "landmarkId": 3003,
+          "distanceToNextClockwise": "150 feet",
+          "distanceToNextClockwiseDescription": "125 feet to sign  on left for The Woods and Invasive Species and 25 feet more to the Green Trail",
+          "distanceToNextCounterClockwise": "350 feet",
+          "distanceToNextCounterClockwiseDescription": "350 feet to the Pavilion on the left"
+        },
+        {
+          "latitude": 40.2474,
+          "longitude": -75.178172
+        },
+        {
+          "latitude": 40.247425,
+          "longitude": -75.178086
+        },
+        {
+          "latitude": 40.247439,
+          "longitude": -75.177994
+        },
+        {
+          "latitude": 40.247444,
+          "longitude": -75.177897
+        },
+        {
+          "latitude": 40.247439,
+          "longitude": -75.177803
+        },
+        {
+          "latitude": 40.247422,
+          "longitude": -75.177711
+        },
+        {
+          "latitude": 40.247397,
+          "longitude": -75.177622
+        },
+        {
+          "latitude": 40.247364,
+          "longitude": -75.177539
+        },
+        {
+          "latitude": 40.247322,
+          "longitude": -75.177464
+        },
+        {
+          "latitude": 40.247272,
+          "longitude": -75.177394
+        },
+        {
+          "latitude": 40.247219,
+          "longitude": -75.177339
+        },
+        {
+          "latitude": 40.247153,
+          "longitude": -75.177289
+        },
+        {
+          "latitude": 40.247092,
+          "longitude": -75.177247
+        },
+        {
+          "latitude": 40.247025,
+          "longitude": -75.177214
+        },
+        {
+          "latitude": 40.246956,
+          "longitude": -75.177186
+        },
+        {
+          "latitude": 40.246886,
+          "longitude": -75.177167
+        },
+        {
+          "latitude": 40.246817,
+          "longitude": -75.177156
+        },
+        {
+          "latitude": 40.246744,
+          "longitude": -75.177153
+        },
+        {
+          "latitude": 40.246689,
+          "longitude": -75.177156
+        },
+        {
+          "latitude": 40.246622,
+          "longitude": -75.177164
+        },
+        {
+          "latitude": 40.246556,
+          "longitude": -75.177181
+        },
+        {
+          "latitude": 40.246492,
+          "longitude": -75.177203
+        },
+        {
+          "latitude": 40.246431,
+          "longitude": -75.177233
+        },
+        {
+          "latitude": 40.246311,
+          "longitude": -75.177311
+        },
+        {
+          "latitude": 40.246256,
+          "longitude": -75.177358
+        },
+        {
+          "latitude": 40.246203,
+          "longitude": -75.177411
+        },
+        {
+          "latitude": 40.246158,
+          "longitude": -75.177464
+        },
+        {
+          "latitude": 40.246108,
+          "longitude": -75.177533
+        },
+        {
+          "latitude": 40.246097,
+          "longitude": -75.177544
+        }
+      ]
+    },
+    {
+      "name": "Green Trail",
+      "id": 3001,
+      "isOpen": true,
+      "trailDistanceDescription": "This is a crushed stone U-shaped trail about .25 miles around the back of the park leading to the Rain Garden nature area. The link from the Yellow trail allows you to walk left toward the Rain Garden, or right around the lacrosse field to the rain garden and some informative nature signs. the two ends do not currently connect to one another. This will change when the pond to wetland project is completed.",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24852,
+          "longitude": -75.17754,
+          "landmarkId": 3001,
+          "distanceToNextClockwise": "350 feet",
+          "distanceToNextClockwiseDescription": "This will take you along the woods and back to the Yellow Trail",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the beginning of the Green Trail"
+        },
+        {
+          "latitude": 40.248418,
+          "longitude": -75.177905
+        },
+        {
+          "latitude": 40.248089,
+          "longitude": -75.178239
+        },
+        {
+          "latitude": 40.248036,
+          "longitude": -75.178289
+        },
+        {
+          "latitude": 40.247917,
+          "longitude": -75.178325
+        },
+        {
+          "latitude": 40.2478,
+          "longitude": -75.178281,
+          "landmarkId": 2004,
+          "distanceToNextClockwise": "350 feet",
+          "distanceToNextClockwiseDescription": "Returning to the Yellow Trail allows you to turn right and walk 350 feet to the pavilion or turn left to return to the park entrance in about 700 feet.",
+          "distanceToNextCounterClockwise": "600 feet",
+          "distanceToNextCounterClockwiseDescription": "The link from the Yellow Trail enters the Green Trail at its mid-point. The trail to the left will take you 350 feet along the treeline to the area which ends at the Green trailhead near the pond. To the right takes you 600 feet to the Rain Garden"
+        },
+        {
+          "latitude": 40.247719,
+          "longitude": -75.178167
+        },
+        {
+          "latitude": 40.247653,
+          "longitude": -75.178014
+        },
+        {
+          "latitude": 40.247578,
+          "longitude": -75.177864
+        },
+        {
+          "latitude": 40.247497,
+          "longitude": -75.177722
+        },
+        {
+          "latitude": 40.247231,
+          "longitude": -75.177158
+        },
+        {
+          "latitude": 40.247333,
+          "longitude": -75.177039
+        },
+        {
+          "latitude": 40.247436,
+          "longitude": -75.176922
+        },
+        {
+          "latitude": 40.247539,
+          "longitude": -75.176803
+        },
+        {
+          "latitude": 40.247642,
+          "longitude": -75.176683
+        },
+        {
+          "latitude": 40.24779,
+          "longitude": -75.1766,
+          "landmarkId": 3005,
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about bees.",
+          "distanceToNextCounterClockwise": "650 feet",
+          "distanceToNextCounterClockwiseDescription": "Walk back 275 feet toward Kids Mountain to rejoin the Yellow Trail or continue to the right 650 feet back toward the Green trail connection and the beginning of the Green Trail"
+        },
+        {
+          "latitude": 40.2479,
+          "longitude": -75.17664,
+          "landmarkId": 2005,
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about insects.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about the Rain Garden"
+        },
+        {
+          "latitude": 40.248108,
+          "longitude": -75.176708,
+          "landmarkId": 3008,
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about butterflies.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about bees."
+        },
+        {
+          "latitude": 40.24822,
+          "longitude": -75.17676,
+          "landmarkId": 2006,
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the end of the Green Trail.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about insects."
+        }
+      ]
+    },
+    {
+      "name": "Kids Mountain Trail",
+      "id": 3002,
+      "isOpen": true,
+      "trailDistanceDescription": "This is a 400 foot trail leading to the top of Kids Mountain. The slope is ADA compliant and friendly for those with mobility issues.",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.246175,
+          "longitude": -75.177667,
+          "landmarkId": 3002,
+          "distanceToNextClockwise": "75 feet",
+          "distanceToNextClockwiseDescription": "Along the left side of the trail is a sign  with information about pollinator plants. There is a rope handrail on the right side",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the beginning of the Kids Mountain Trail. The park entrance is 30 feet further downhill on your left"
+        },
+        {
+          "latitude": 40.246353,
+          "longitude": -75.177675,
+          "landmarkId": 3007,
+          "distanceToNextClockwise": "300 feet",
+          "distanceToNextClockwiseDescription": "300 feet up the pleasantly inclined trail takes you to the gentle slope, open in winter for sledding.",
+          "distanceToNextCounterClockwise": "75 feet",
+          "distanceToNextCounterClockwiseDescription": "Takes you back to the beginning of Kids Mountain Trail"
+        },
+        {
+          "latitude": 40.246483,
+          "longitude": -75.177761
+        },
+        {
+          "latitude": 40.246581,
+          "longitude": -75.177908
+        },
+        {
+          "latitude": 40.246572,
+          "longitude": -75.177844
+        },
+        {
+          "latitude": 40.246669,
+          "longitude": -75.177825
+        },
+        {
+          "latitude": 40.246581,
+          "longitude": -75.177431
+        },
+        {
+          "latitude": 40.246761,
+          "longitude": -75.177772
+        },
+        {
+          "latitude": 40.24673,
+          "longitude": -75.17747,
+          "landmarkId": 2007,
+          "distanceToNextClockwise": "55 feet",
+          "distanceToNextClockwiseDescription": "Another 55 feet takes you to the summit of Kids Mountain.  Let the good times roll!!",
+          "distanceToNextCounterClockwise": "300 feet",
+          "distanceToNextCounterClockwiseDescription": "Along the right side of the trail is a sign  with information about pollinator plants"
+        },
+        {
+          "latitude": 40.24682,
+          "longitude": -75.17761,
+          "landmarkId": 1003,
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the top of Kids Mountain and end of the trail.",
+          "distanceToNextCounterClockwise": "55 feet",
+          "distanceToNextCounterClockwiseDescription": "Downhill on the trail takes you to the gentle slope, open in winter for sledding. There is a rope handrail along the left side of the trail."
+        }
+      ]
+    }
+  ]
+}
