@@ -17,9 +17,17 @@ Monorepo for the Warrington Township beacon-guided trail apps
 
 ## Hosted files (`server/`)
 
-Both apps load their data and images from
-`https://lionspride.chariotsolutions.cloud/us202/` (a Chariot sandbox
-S3 bucket). `server/` holds local copies, organized by app:
+Both apps load their data and images from GitHub Pages:
+
+```
+https://ssuffian.github.io/warrington-beacons/us-202/
+```
+
+The `server/` folder is the source of truth: pushing a change to
+anything under `server/` on `main` redeploys it automatically via
+`.github/workflows/pages.yml`. (Files were previously hosted at
+`https://lionspride.chariotsolutions.cloud/us202/`, a Chariot sandbox
+S3 bucket.) Contents, organized by app:
 
 * `server/us-202/` — the US202 to Bradford Dam trail. Everything the
   apps need is here:
@@ -38,9 +46,9 @@ S3 bucket). `server/` holds local copies, organized by app:
 
 ### Moving to a new host
 
-The new host must serve the contents of `server/us-202/` (minus
-`legacy/`) with `us202trail-v2.json` at the base URL and the photos
-under `images/`. Then update the hardcoded URLs:
+Any new host must serve the contents of `server/` with
+`us-202/us202trail-v2.json` and the photos under `us-202/images/`
+reachable from the base URL. The hardcoded URLs to update are:
 
 * Android:
   * `android/app/src/main/java/org/warringtontownship/us202/android/di/AppModule.kt`

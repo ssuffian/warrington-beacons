@@ -48,7 +48,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("https://lionspride.chariotsolutions.cloud/us202/")
+        .baseUrl("https://ssuffian.github.io/warrington-beacons/us-202/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
