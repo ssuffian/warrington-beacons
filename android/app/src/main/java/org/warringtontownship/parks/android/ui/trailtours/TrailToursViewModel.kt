@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
 import org.warringtontownship.parks.android.data.model.Trail
+import org.warringtontownship.parks.android.data.model.Location
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,7 +21,7 @@ import org.warringtontownship.parks.android.data.model.Landmark
 import javax.inject.Inject
 
 data class TrailToursUiState(
-    val trails: List<Trail> = emptyList(),
+    val trailsByLocation: List<Pair<Location, List<Trail>>> = emptyList(),
     val isLoading: Boolean = false,
     val error: String? = null,
 )
@@ -50,7 +51,9 @@ class TrailToursViewModel @Inject constructor(
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
                 trailRepository.loadData()
-                _uiState.value = TrailToursUiState(trails = trailRepository.getTrails())
+                _uiState.value = TrailToursUiState(
+                    trailsByLocation = trailRepository.getTrailsByLocation(),
+                )
                 beaconRegions = trailRepository.getBeaconRegions()
                 if (scanning) {
                     startScanningIfReady()

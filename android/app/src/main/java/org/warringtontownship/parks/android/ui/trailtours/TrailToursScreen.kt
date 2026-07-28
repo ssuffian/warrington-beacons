@@ -58,29 +58,39 @@ fun TrailToursScreen(
                     modifier = Modifier.padding(vertical = 8.dp),
                 )
             }
-            items(uiState.trails) { trail ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                        .clickable { onTrailClick(trail.id) },
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text(
-                            text = trail.name,
-                            style = MaterialTheme.typography.titleLarge,
-                        )
-                        Text(
-                            text = "${landmarkCount(trail)} Points of Interest",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.primary,
-                        )
-                        Text(
-                            text = trail.trailDistanceDescription,
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.padding(top = 4.dp),
-                        )
+            uiState.trailsByLocation.forEach { (location, trails) ->
+                item(key = "header-${location.id}") {
+                    Text(
+                        text = location.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(top = 16.dp, bottom = 4.dp),
+                    )
+                }
+                items(trails, key = { it.id }) { trail ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                            .clickable { onTrailClick(trail.id) },
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+                    ) {
+                        Column(modifier = Modifier.padding(16.dp)) {
+                            Text(
+                                text = trail.name,
+                                style = MaterialTheme.typography.titleLarge,
+                            )
+                            Text(
+                                text = "${landmarkCount(trail)} Points of Interest",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                            Text(
+                                text = trail.trailDistanceDescription,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.padding(top = 4.dp),
+                            )
+                        }
                     }
                 }
             }
