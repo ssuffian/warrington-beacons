@@ -30,10 +30,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.warringtontownship.parks.android.R
+import org.warringtontownship.parks.android.ui.common.LocationsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen() {
+fun AboutScreen(viewModel: LocationsViewModel = hiltViewModel()) {
+    val locations by viewModel.locations.collectAsStateWithLifecycle()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +56,7 @@ fun AboutScreen() {
         ) {
             Spacer(modifier = Modifier.height(48.dp))
             Text(
-                text = "Welcome to the US-202 to Bradford Dam connector trail",
+                text = "Welcome to Warrington's parks and trails",
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -69,18 +71,18 @@ fun AboutScreen() {
                 contentScale = ContentScale.Crop,
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Trailhead",
-                style = MaterialTheme.typography.bodyLarge,
-            )
-            Text(
-                text = "Stump Road across from 785",
-                style = MaterialTheme.typography.bodyLarge,
-            )
-            Text(
-                text = "Chalfont, PA 18914",
-                style = MaterialTheme.typography.bodyLarge,
-            )
+            locations.forEach { location ->
+                Text(
+                    text = location.name,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    text = location.address,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+            }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "This app is designed to enrich your trail experience by providing information about the trail.  As you move along the trail you will be alerted when there is a new point of interest nearby.",
