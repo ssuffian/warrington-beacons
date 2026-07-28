@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
-import org.warringtontownship.parks.android.data.network.ConnectorApiService
+import org.warringtontownship.parks.android.data.network.TrailsApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
@@ -55,6 +55,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideConnectorApiService(retrofit: Retrofit): ConnectorApiService =
-        retrofit.create(ConnectorApiService::class.java)
+    fun provideTrailsApiService(retrofit: Retrofit): TrailsApiService =
+        retrofit.create(TrailsApiService::class.java)
 }

@@ -119,7 +119,7 @@ fun TrailTourScreen(
             longitude = stop.longitude,
         )
     }
-    val bounds = viewModel.getBounds()
+    val bounds = viewModel.getBoundsForTrail(trailId)
 
     Scaffold(
         topBar = {

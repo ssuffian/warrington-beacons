@@ -2,6 +2,7 @@ package org.warringtontownship.parks.android.ui.parkmap
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -46,8 +47,7 @@ class ParkMapViewModel @Inject constructor(
     private val _navigationEvent = MutableSharedFlow<Int>()
     val navigationEvent: SharedFlow<Int> = _navigationEvent.asSharedFlow()
 
-    private var beaconUuid: String? = null
-    private var beaconMajorCode: Int? = null
+    private var beaconRegions: List<BeaconRegion> = emptyList()
     private var screenActive = false
 
     init {
@@ -70,14 +70,11 @@ class ParkMapViewModel @Inject constructor(
                         longitude = mark.coordinates.longitude,
                     )
                 }
-                val coordinates = trailRepository.getFirstTrail()?.boundaryCoordinates?.map { item ->
-                    Coordinates(item.latitude, item.longitude)
-                } ?: emptyList()
-                val boundary = trailRepository.getBoundary()
+                val coordinates = emptyList<Coordinates>()
+                val boundary = trailRepository.getCombinedBounds()
                 _uiState.value = ParkMapUiState(markers = markers, coordinates = coordinates, boundary = boundary)
 
-                beaconUuid = trailRepository.getBeaconUUID()
-                beaconMajorCode = trailRepository.getBeaconMajorCode()
+                beaconRegions = trailRepository.getBeaconRegions()
                 if (screenActive) {
                     startScanningIfReady()
                 }
@@ -109,9 +106,8 @@ class ParkMapViewModel @Inject constructor(
     }
 
     private fun startScanningIfReady() {
-        val uuid = beaconUuid ?: return
-        val majorCode = beaconMajorCode ?: return
-        beaconScanner.startScanning(SCAN_CONSUMER, uuid, majorCode)
+        val region = beaconRegions.firstOrNull() ?: return
+        beaconScanner.startScanning(SCAN_CONSUMER, region.uuid, region.majorCode)
     }
 
     override fun onCleared() {

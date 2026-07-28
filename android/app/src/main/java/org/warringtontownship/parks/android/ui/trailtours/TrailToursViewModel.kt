@@ -2,6 +2,7 @@ package org.warringtontownship.parks.android.ui.trailtours
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
 import org.warringtontownship.parks.android.data.model.Trail
 import org.warringtontownship.parks.android.data.repository.TrailRepository
@@ -36,8 +37,7 @@ class TrailToursViewModel @Inject constructor(
     private val _beaconEvent = MutableSharedFlow<Int>()
     val beaconEvent: SharedFlow<Int> = _beaconEvent.asSharedFlow()
 
-    private var beaconUuid: String? = null
-    private var beaconMajorCode: Int? = null
+    private var beaconRegions: List<BeaconRegion> = emptyList()
     private var scanning = false
 
     init {
@@ -51,8 +51,7 @@ class TrailToursViewModel @Inject constructor(
             try {
                 trailRepository.loadData()
                 _uiState.value = TrailToursUiState(trails = trailRepository.getTrails())
-                beaconUuid = trailRepository.getBeaconUUID()
-                beaconMajorCode = trailRepository.getBeaconMajorCode()
+                beaconRegions = trailRepository.getBeaconRegions()
                 if (scanning) {
                     startScanningIfReady()
                 }
@@ -86,9 +85,8 @@ class TrailToursViewModel @Inject constructor(
     }
 
     private fun startScanningIfReady() {
-        val uuid = beaconUuid ?: return
-        val majorCode = beaconMajorCode ?: return
-        beaconScanner.startScanning(SCAN_CONSUMER, uuid, majorCode)
+        val region = beaconRegions.firstOrNull() ?: return
+        beaconScanner.startScanning(SCAN_CONSUMER, region.uuid, region.majorCode)
     }
 
     override fun onCleared() {
@@ -103,5 +101,5 @@ class TrailToursViewModel @Inject constructor(
     fun getClosestBeaconMinorCode(): Int? = beaconScanner.closestBeaconMinorCode.value
     fun getTrailById(id: Int): Trail? = trailRepository.getTrailById(id)
     fun getLandmarkById(id: Int): Landmark? = trailRepository.getLandmarkById(id)
-    fun getBounds(): List<Coordinates> = trailRepository.getBoundary()
+    fun getBoundsForTrail(trailId: Int): List<Coordinates> = trailRepository.getBoundsForTrail(trailId)
 }

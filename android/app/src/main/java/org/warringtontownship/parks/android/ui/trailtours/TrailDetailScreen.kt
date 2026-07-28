@@ -44,7 +44,7 @@ fun TrailDetailScreen(
     viewModel: TrailToursViewModel = hiltViewModel(),
 ) {
     val trail = viewModel.getTrailById(trailId)
-    val bounds = viewModel.getBounds()
+    val bounds = viewModel.getBoundsForTrail(trailId)
     var reverse by remember { mutableStateOf(false) }
     var selectedLandmarkId by remember { mutableStateOf<Int?>(null) }
 

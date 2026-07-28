@@ -3,7 +3,7 @@ package org.warringtontownship.parks.android.data.network
 import org.warringtontownship.parks.android.data.model.TrailsData
 import retrofit2.http.GET
 
-interface ConnectorApiService {
+interface TrailsApiService {
     @GET("warrington-trails.json")
-    suspend fun getConnectorData(): TrailsData
+    suspend fun getTrailsData(): TrailsData
 }

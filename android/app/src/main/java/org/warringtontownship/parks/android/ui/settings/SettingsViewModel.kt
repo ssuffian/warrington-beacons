@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import javax.inject.Inject
@@ -34,8 +35,7 @@ class SettingsViewModel @Inject constructor(
     private val _beaconList = MutableStateFlow<List<BeaconDisplayItem>>(emptyList())
     val beaconList: StateFlow<List<BeaconDisplayItem>> = _beaconList.asStateFlow()
 
-    private var beaconUuid: String? = null
-    private var beaconMajorCode: Int? = null
+    private var beaconRegions: List<BeaconRegion> = emptyList()
     private var screenActive = false
 
     init {
@@ -51,8 +51,7 @@ class SettingsViewModel @Inject constructor(
                 Log.e("SettingsVM", "Unable to load beacon config", e)
                 return@launch
             }
-            beaconUuid = trailRepository.getBeaconUUID()
-            beaconMajorCode = trailRepository.getBeaconMajorCode()
+            beaconRegions = trailRepository.getBeaconRegions()
             if (screenActive) {
                 startScanningIfReady()
             }
@@ -70,9 +69,8 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun startScanningIfReady() {
-        val uuid = beaconUuid ?: return
-        val majorCode = beaconMajorCode ?: return
-        beaconScanner.startScanning(SCAN_CONSUMER, uuid, majorCode)
+        val region = beaconRegions.firstOrNull() ?: return
+        beaconScanner.startScanning(SCAN_CONSUMER, region.uuid, region.majorCode)
     }
 
     override fun onCleared() {
