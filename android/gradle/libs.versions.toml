@@ -16,6 +16,7 @@ coreSplashscreen = "1.0.1"
 coreKtx = "1.15.0"
 coil = "2.7.0"
 altbeacon = "2.20.6"
+junit = "4.13.2"
 
 [libraries]
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
@@ -41,6 +42,7 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 altbeacon = { group = "org.altbeacon", name = "android-beacon-library", version.ref = "altbeacon" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

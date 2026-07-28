@@ -1,9 +1,9 @@
 package org.warringtontownship.parks.android.data.repository
 
-import org.warringtontownship.parks.android.data.model.ConnectorData
 import org.warringtontownship.parks.android.data.model.Coordinates
 import org.warringtontownship.parks.android.data.model.Landmark
 import org.warringtontownship.parks.android.data.model.Trail
+import org.warringtontownship.parks.android.data.model.TrailsData
 import org.warringtontownship.parks.android.data.network.ConnectorApiService
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class TrailRepository @Inject constructor(
     private val apiService: ConnectorApiService,
 ) {
-    private var data: ConnectorData? = null
+    private var data: TrailsData? = null
     private val loadMutex = Mutex()
 
     // Loads once per process; every ViewModel calls this in its init, so without the
@@ -31,9 +31,9 @@ class TrailRepository @Inject constructor(
 
     fun getFirstTrail(): Trail? = data?.trails?.firstOrNull()
 
-    fun getBeaconUUID(): String? = data?.site?.beaconUUID
+    fun getBeaconUUID(): String? = data?.beaconUUID
 
-    fun getBeaconMajorCode(): Int? = data?.site?.beaconMajorCode
+    fun getBeaconMajorCode(): Int? = data?.locations?.firstOrNull()?.beaconMajorCode
 
     fun getTrails(): List<Trail> = data?.trails ?: emptyList()
 
@@ -43,5 +43,5 @@ class TrailRepository @Inject constructor(
 
     fun getLandmarkById(id: Int): Landmark? = data?.landmarks?.find { it.id == id }
 
-    fun getBoundary(): List<Coordinates> = data?.site?.boundaryCoordinates ?: emptyList()
+    fun getBoundary(): List<Coordinates> = emptyList()
 }

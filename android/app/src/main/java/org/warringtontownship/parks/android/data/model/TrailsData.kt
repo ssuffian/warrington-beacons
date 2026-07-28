@@ -1,14 +1,16 @@
 package org.warringtontownship.parks.android.data.model
 
-data class ConnectorData(
-    val site: Site,
+data class TrailsData(
+    val beaconUUID: String,
+    val locations: List<Location>,
     val landmarks: List<Landmark>,
     val trails: List<Trail>,
 )
 
-data class Site(
-    val boundaryCoordinates: List<Coordinates>,
-    val beaconUUID: String,
+data class Location(
+    val id: String,
+    val name: String,
+    val address: String,
     val beaconMajorCode: Int,
 )
 
@@ -18,21 +20,23 @@ data class Coordinates(
 )
 
 data class Landmark(
-    val coordinates: Coordinates,
     val id: Int,
+    val location: String,
+    val imagePath: String,
+    val coordinates: Coordinates,
     val name: String,
     val category: String,
     val description: String,
     val longDescription: String,
-    val imageName: String,
     val imageAlt: String,
     val isOpen: Boolean? = null,
     val trailDistanceDescription: String? = null,
 )
 
 data class Trail(
-    val name: String,
     val id: Int,
+    val location: String,
+    val name: String,
     val isOpen: Boolean,
     val trailDistanceDescription: String,
     val boundaryCoordinates: List<TrailCoordinate>,

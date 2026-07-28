@@ -73,4 +73,6 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.altbeacon)
+
+    testImplementation(libs.junit)
 }
