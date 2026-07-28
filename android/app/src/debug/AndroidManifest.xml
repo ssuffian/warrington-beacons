@@ -8,8 +8,8 @@
             android:name=".beacon.FakeBeaconReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="org.warringtontownship.us202.FAKE_BEACON" />
-                <action android:name="org.warringtontownship.us202.FAKE_BEACON_CLEAR" />
+                <action android:name="org.warringtontownship.parks.FAKE_BEACON" />
+                <action android:name="org.warringtontownship.parks.FAKE_BEACON_CLEAR" />
             </intent-filter>
         </receiver>
     </application>

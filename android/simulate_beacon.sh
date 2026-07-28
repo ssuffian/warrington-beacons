@@ -12,10 +12,10 @@
 # Landmark ids in the current data file: 1-16 (trail stops) and 4001 (trailhead).
 set -euo pipefail
 
-PKG="org.warringtontownship.us202.android"
+PKG="org.warringtontownship.parks.android"
 RECEIVER="$PKG/.beacon.FakeBeaconReceiver"
-ACTION_SET="org.warringtontownship.us202.FAKE_BEACON"
-ACTION_CLEAR="org.warringtontownship.us202.FAKE_BEACON_CLEAR"
+ACTION_SET="org.warringtontownship.parks.FAKE_BEACON"
+ACTION_CLEAR="org.warringtontownship.parks.FAKE_BEACON_CLEAR"
 
 ADB="${ADB:-$(command -v adb || echo "$HOME/Library/Android/sdk/platform-tools/adb")}"
 if ! "$ADB" get-state >/dev/null 2>&1; then

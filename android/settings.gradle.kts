@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "US202"
+rootProject.name = "WarringtonParksAndTrails"
 include(":app")

@@ -7,15 +7,15 @@ plugins {
 }
 
 android {
-    namespace = "org.warringtontownship.us202.android"
+    namespace = "org.warringtontownship.parks.android"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.warringtontownship.us202.android"
+        applicationId = "org.warringtontownship.parks.android"
         minSdk = 31
         targetSdk = 36
         versionCode = 1
-        versionName = "2026.2.8"
+        versionName = "2026.7.27"
     }
 
     buildTypes {
