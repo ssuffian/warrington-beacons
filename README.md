@@ -1,7 +1,8 @@
 # warrington-beacons
 
-Monorepo for the Warrington Township beacon-guided trail apps
-(US202 to Bradford Dam trail, originally built for Lions Pride Park).
+Monorepo for the Warrington Township beacon-guided trail apps,
+covering both Lions Pride Park and the US202 to Bradford Dam trail
+(the Android app was originally built for Lions Pride Park alone).
 
 ## Layout
 
@@ -50,10 +51,14 @@ S3 bucket.) Contents, organized by app:
   * `legacy/202ConnectorData.json` — earlier US202 data file, not used
     by current code (note: not strictly valid JSON — it has trailing
     commas that lenient parsers tolerate)
-* `server/lions-pride-park/` — the original Lions Pride Park app,
-  not used by current code. Preserved because its host, AWS bucket
-  `lions-pride-park-configuration`, is in an inaccessible account
-  (owner email domain abandoned, so 2FA login is impossible):
+* `server/lions-pride-park/` — the original Lions Pride Park app.
+  `lionsPrideData.json` itself is no longer used by current code, but
+  the Android app fetches the 23 photos in `images/` live, per the
+  `imagePath` field on each Lions Pride Park landmark in
+  `warrington-trails.json`. The directory is preserved because its
+  original host, AWS bucket `lions-pride-park-configuration`, is in an
+  inaccessible account (owner email domain abandoned, so 2FA login is
+  impossible):
   * `lionsPrideData.json` — Lions Pride Park data
   * `images/*.jpg` — 23 park photos
 
@@ -76,6 +81,8 @@ from the base URL. The hardcoded URLs to update are:
 
 Physical beacons on the trail are Radius Networks RadBeacon E4 units
 broadcasting iBeacon (iOS) and AltBeacon (Android). The UUID/Major/Minor
-codes and programming steps are documented in `android/README.md`;
-the Minor code for each beacon matches a landmark `id` in
-`us202trail-v2.json`.
+codes and programming steps are documented in `android/README.md`.
+Both locations have live beacons in the Android app: Major 17 for
+Lions Pride Park and Major 20 for the US202 to Bradford Dam trail. The
+Minor code for each beacon matches a landmark `id` in
+`warrington-trails.json`.
