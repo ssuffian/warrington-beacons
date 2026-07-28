@@ -21,6 +21,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import org.osmdroid.config.Configuration
+import org.osmdroid.events.MapListener
+import org.osmdroid.events.ScrollEvent
+import org.osmdroid.events.ZoomEvent
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.BoundingBox
 import org.osmdroid.util.GeoPoint
@@ -43,6 +46,35 @@ data class TrailMapMarker(
     val longitude: Double,
 )
 
+/**
+ * How much ground the map has to be showing before every landmark is drawn.
+ *
+ * The two locations together span ~5.7 km, and at that scale Lions Pride Park's 23
+ * landmarks land inside ~58x93 px — one unreadable, untappable pile. Below this span
+ * the markers have separated enough to be individually usable.
+ */
+internal const val DETAIL_SPAN_METERS = 700.0
+
+private const val METERS_PER_DEGREE_LATITUDE = 111_320.0
+
+/**
+ * Which markers to draw for the currently visible span. Zoomed out past
+ * [DETAIL_SPAN_METERS], only trailheads are drawn, so each location reads as a
+ * single tappable pin instead of a blob. Callers showing a single trail's stops pass
+ * `collapseWhenZoomedOut = false`, since those stops are mostly points of interest
+ * and collapsing them would empty the map.
+ */
+internal fun visibleMarkersFor(
+    markers: List<TrailMapMarker>,
+    visibleSpanMeters: Double,
+    collapseWhenZoomedOut: Boolean,
+): List<TrailMapMarker> =
+    if (collapseWhenZoomedOut && visibleSpanMeters > DETAIL_SPAN_METERS) {
+        markers.filter { it.category == "Trail" }
+    } else {
+        markers
+    }
+
 private fun initOsmdroid(context: Context) {
     Configuration.getInstance().apply {
         // OSM tile policy requires an identifying user agent.
@@ -64,6 +96,7 @@ fun TrailMap(
     centerZoomPosition: Coordinates? = null,
     centerZoomLevel: Float = 18f,
     highlightedMarkerId: Int? = null,
+    collapseMarkersWhenZoomedOut: Boolean = false,
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -100,6 +133,28 @@ fun TrailMap(
         MyLocationNewOverlay(GpsMyLocationProvider(context), mapView)
     }
 
+    // Drives marker collapsing. Starts unknown (= collapsed) so the very first frame is
+    // readable; every zoom or scroll refreshes it.
+    var visibleSpanMeters by remember { mutableStateOf(Double.MAX_VALUE) }
+    val refreshVisibleSpan = {
+        visibleSpanMeters = mapView.boundingBox.latitudeSpan * METERS_PER_DEGREE_LATITUDE
+    }
+    DisposableEffect(mapView) {
+        val listener = object : MapListener {
+            override fun onScroll(event: ScrollEvent?): Boolean {
+                refreshVisibleSpan()
+                return false
+            }
+
+            override fun onZoom(event: ZoomEvent?): Boolean {
+                refreshVisibleSpan()
+                return false
+            }
+        }
+        mapView.addMapListener(listener)
+        onDispose { mapView.removeMapListener(listener) }
+    }
+
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
@@ -127,7 +182,10 @@ fun TrailMap(
             val bounds = BoundingBox.fromGeoPoints(
                 boundsCoordinates.map { GeoPoint(it.latitude, it.longitude) }
             )
-            val fit = { mapView.zoomToBoundingBox(bounds.increaseByScale(1.2f), false) }
+            val fit = {
+                mapView.zoomToBoundingBox(bounds.increaseByScale(1.2f), false)
+                refreshVisibleSpan()
+            }
             if (mapView.width > 0) fit() else mapView.addOnFirstLayoutListener { _, _, _, _, _ -> fit() }
         }
     }
@@ -173,7 +231,7 @@ fun TrailMap(
                 })
             }
 
-            markers.forEach { marker ->
+            visibleMarkersFor(markers, visibleSpanMeters, collapseMarkersWhenZoomedOut).forEach { marker ->
                 val iconRes = when {
                     marker.id == highlightedMarkerId -> R.drawable.current_marker
                     marker.category == "Trail" -> R.drawable.trailhead_marker

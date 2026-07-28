@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,9 +31,14 @@ fun WelcomeScreen(
     viewModel: LocationsViewModel = hiltViewModel(),
 ) {
     val locations by viewModel.locations.collectAsStateWithLifecycle()
+    // Scrollable, and the photo takes a fixed height rather than weight(1f): with two
+    // locations' addresses the content exceeds a small screen at font scale 1.5 and up,
+    // and a weighted image collapses to nothing before the Continue button gives way —
+    // leaving no way past this screen at all.
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(24.dp),
         horizontalAlignment = Alignment.Start,
     ) {
@@ -48,7 +55,7 @@ fun WelcomeScreen(
             contentDescription = "Park field",
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
+                .height(220.dp),
             contentScale = ContentScale.Crop,
         )
         Spacer(modifier = Modifier.height(16.dp))

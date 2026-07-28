@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -41,10 +43,13 @@ fun AboutScreen(viewModel: LocationsViewModel = hiltViewModel()) {
             )
         }
     ) { padding ->
+        // Scrollable with a fixed-height photo, for the same reason as WelcomeScreen:
+        // two locations' addresses overflow a small screen at large font scales.
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .verticalScroll(rememberScrollState())
                 .padding(24.dp),
             horizontalAlignment = Alignment.Start,
         ) {
@@ -61,7 +66,7 @@ fun AboutScreen(viewModel: LocationsViewModel = hiltViewModel()) {
                 contentDescription = "Park field",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
+                    .height(220.dp),
                 contentScale = ContentScale.Crop,
             )
             Spacer(modifier = Modifier.height(16.dp))

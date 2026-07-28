@@ -58,6 +58,9 @@ fun ParkMapScreen(
         boundsCoordinates = uiState.boundary,
         modifier = Modifier.fillMaxSize(),
         onMarkerClick = { selectedMarkerId = it },
+        // This map covers both locations at once, so zoomed out it shows one pin per
+        // trailhead instead of 40 overlapping landmarks.
+        collapseMarkersWhenZoomedOut = true,
     )
 
     if (selectedMarkerId != null) {
