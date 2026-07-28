@@ -1,2 +1,4 @@
 .DS_Store
 *.r12
+.claude/worktrees/
+.superpowers/
