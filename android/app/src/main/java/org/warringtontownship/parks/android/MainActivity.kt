@@ -1,6 +1,5 @@
 package org.warringtontownship.parks.android
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,31 +21,33 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import org.warringtontownship.parks.android.data.prefs.AppPreferences
 import org.warringtontownship.parks.android.navigation.AppNavHost
 import org.warringtontownship.parks.android.navigation.BottomNavItem
 import org.warringtontownship.parks.android.ui.theme.WarringtonParksTheme
 import org.warringtontownship.parks.android.ui.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var appPreferences: AppPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val prefs = remember {
-                getSharedPreferences("warrington_prefs", Context.MODE_PRIVATE)
-            }
             var showWelcome by remember {
-                mutableStateOf(!prefs.getBoolean("welcome_seen", false))
+                mutableStateOf(!appPreferences.isWelcomeSeen())
             }
 
             WarringtonParksTheme {
                 if (showWelcome) {
                     WelcomeScreen(
                         onContinue = {
-                            prefs.edit().putBoolean("welcome_seen", true).apply()
+                            appPreferences.setWelcomeSeen()
                             showWelcome = false
                         }
                     )

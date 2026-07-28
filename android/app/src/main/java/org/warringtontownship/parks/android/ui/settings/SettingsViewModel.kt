@@ -1,7 +1,5 @@
 package org.warringtontownship.parks.android.ui.settings
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
+import org.warringtontownship.parks.android.data.prefs.AppPreferences
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import javax.inject.Inject
 
@@ -22,15 +21,12 @@ data class BeaconDisplayItem(
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    application: Application,
+    private val appPreferences: AppPreferences,
     private val beaconScanner: BeaconScanner,
     private val trailRepository: TrailRepository,
 ) : ViewModel() {
 
-    private val prefs = application.getSharedPreferences("warrington_prefs", Context.MODE_PRIVATE)
-
-    private val _simplifiedText = MutableStateFlow(prefs.getBoolean("simplified_text", false))
-    val simplifiedText: StateFlow<Boolean> = _simplifiedText.asStateFlow()
+    val simplifiedText: StateFlow<Boolean> = appPreferences.simplifiedText
 
     private val _beaconList = MutableStateFlow<List<BeaconDisplayItem>>(emptyList())
     val beaconList: StateFlow<List<BeaconDisplayItem>> = _beaconList.asStateFlow()
@@ -96,8 +92,5 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun setSimplifiedText(enabled: Boolean) {
-        prefs.edit().putBoolean("simplified_text", enabled).apply()
-        _simplifiedText.value = enabled
-    }
+    fun setSimplifiedText(enabled: Boolean) = appPreferences.setSimplifiedText(enabled)
 }
