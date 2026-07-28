@@ -1,4 +1,4 @@
-# Android Trail App
+# Warrington Parks & Trails (Android)
 
 ## TODOs
 
@@ -9,12 +9,14 @@
 ## Overview
 
 This app uses data files and images currently hosted at
-https://trails.warringtoneac.org/us-202/
+https://trails.warringtoneac.org/
 (GitHub Pages, deployed from the `server/` folder at the root of
 this repo — see the top-level README for details)
 
-The main data file is `us202trail-v2.json` which includes
-the trail geometry and landmarks
+The main data file is `warrington-trails.json`, at the root of the
+hosted files, which includes the trail geometry, landmarks, and
+locations for both Lions Pride Park and the US202 to Bradford Dam
+trail.
 
 There are physical beacons installed along the trail.
 They are Radius Network E4 models, that take 4 AA batteries,
@@ -100,5 +102,8 @@ beacon to indicate the trail and landmark and save.
 
 Current values:
 * UUID: 035a0617-0875-4cc7-a29c-be0caa8f557c
-* Major code: 17 (Lions Pride) 20 (US202 to Bradford Dam)
+* Major code: 17 (Lions Pride) 20 (US202 to Bradford Dam) — both major
+  codes are live in this one app at the same time (it ranges a
+  beacon region per location and merges the results), rather than
+  one major code per separate app as before
 * Minor code: see IDs in `landmark` array in the corresponding data file

@@ -7,10 +7,13 @@ verified on the emulator is labeled.*
 
 ## TL;DR
 
-- **What it is:** a small, clean Jetpack Compose app (~2,100 LOC) that guides hikers
-  along the US-202→Bradford Dam trail with a Google Map, guided "tours," and Bluetooth
-  beacons that auto-advance the tour as you walk. Content comes from one JSON file on
-  S3/CloudFront; there is no backend to run.
+- **What it is:** a small, clean Jetpack Compose app (~2,100 LOC at the time of this
+  review) that guides hikers along the US-202→Bradford Dam trail with a Google Map,
+  guided "tours," and Bluetooth beacons that auto-advance the tour as you walk. Content
+  comes from one JSON file on S3/CloudFront; there is no backend to run. *(Since this
+  review: the app was renamed to "Warrington Parks & Trails" and merged with Lions
+  Pride Park into one app, the map moved to osmdroid, and hosting moved to GitHub
+  Pages — see `HOW_IT_WORKS.md` for the current architecture.)*
 - **State:** genuinely close to done. Code quality is good for its size. The README's
   own TODO list is accurate: the remaining work is *operational* (accounts, keys, field
   test, Play Store), not engineering.
@@ -36,7 +39,7 @@ cd ~/projects/warrington/us202-android
 
 # 3. Install + launch
 ~/Library/Android/sdk/platform-tools/adb install -r app/build/outputs/apk/debug/app-debug.apk
-~/Library/Android/sdk/platform-tools/adb shell am start -n org.warringtontownship.us202.android/.MainActivity
+~/Library/Android/sdk/platform-tools/adb shell am start -n org.warringtontownship.parks.android/.MainActivity
 ```
 
 I created `local.properties` for you (git-ignored) with `sdk.dir` set. **No API keys
@@ -55,7 +58,8 @@ Park Map auto-popup, the Settings "Nearby Landmarks" list (multi-beacon, sorted 
 distance), and clear all work; the release APK contains no trace of the receiver. For
 radio-level testing before the field test, broadcast AltBeacon from a second Android
 phone (e.g. the "Beacon Scope" app) with UUID `035a0617-0875-4cc7-a29c-be0caa8f557c`,
-major 20, minor = a landmark id (1–16, 4001 = trailhead).
+major 20 for US202 (minor = a landmark id, 1–16, 4001 = trailhead) or major 17 for
+Lions Pride Park (minor = a landmark id, 1002–3008).
 
 ## Things you need to figure out (can't be solved from the code)
 

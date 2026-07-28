@@ -5,9 +5,10 @@ Monorepo for the Warrington Township beacon-guided trail apps
 
 ## Layout
 
-* `android/` — Android app for the US202 to Bradford Dam trail
-  (Kotlin / Jetpack Compose). See `android/README.md` for beacon
-  programming instructions, cloud/account details, and TODOs.
+* `android/` — Android app covering both Lions Pride Park and the
+  US202 to Bradford Dam trail (Kotlin / Jetpack Compose). See
+  `android/README.md` for beacon programming instructions,
+  cloud/account details, and TODOs.
 * `ios/` — iOS app (the original Lions Pride codebase, since pointed
   at the US202 to Bradford Dam trail as "202 Connector").
   See `ios/README.md` for design links and history.
@@ -33,9 +34,17 @@ were previously hosted at
 `https://lionspride.chariotsolutions.cloud/us202/`, a Chariot sandbox
 S3 bucket.) Contents, organized by app:
 
+* `warrington-trails.json` — the source of truth for the Android app.
+  It covers both locations (Lions Pride Park and the US202 to
+  Bradford Dam trail) in a single file: landmarks, trails, locations,
+  and beacon codes for both.
 * `server/us-202/` — the US202 to Bradford Dam trail. Everything the
   apps need is here:
-  * `us202trail-v2.json` — trail geometry, landmarks, and beacon codes
+  * `us202trail-v2.json` — trail geometry, landmarks, and beacon
+    codes. Kept unchanged (not folded into `warrington-trails.json`)
+    because the shipped iOS app still reads this file directly. Until
+    iOS migrates to `warrington-trails.json`, a data edit affecting
+    the US202 trail must be made in both files.
   * `images/*.jpg` — 13 landmark photos, fetched as
     `images/<imageName>.jpg` per the `imageName` fields in the JSON
   * `legacy/202ConnectorData.json` — earlier US202 data file, not used
@@ -51,14 +60,15 @@ S3 bucket.) Contents, organized by app:
 ### Moving to a new host
 
 Any new host must serve the contents of `server/` with
-`us-202/us202trail-v2.json` and the photos under `us-202/images/`
-reachable from the base URL. The hardcoded URLs to update are:
+`warrington-trails.json`, `us-202/us202trail-v2.json`, and the photos
+under `us-202/images/` and `lions-pride-park/images/` all reachable
+from the base URL. The hardcoded URLs to update are:
 
 * Android:
-  * `android/app/src/main/java/org/warringtontownship/us202/android/di/AppModule.kt`
+  * `android/app/src/main/java/org/warringtontownship/parks/android/di/AppModule.kt`
     — Retrofit base URL
-  * `android/app/src/main/java/org/warringtontownship/us202/android/ui/common/LandmarkBottomSheet.kt`
-    — image URL prefix
+  * `android/app/src/main/java/org/warringtontownship/parks/android/data/repository/TrailRepository.kt`
+    — `IMAGE_BASE_URL`
 * iOS:
   * `ios/LionsPride/Info.plist` — `base_url_string`
 
