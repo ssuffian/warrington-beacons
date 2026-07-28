@@ -36,4 +36,18 @@ class BeaconMergeTest {
             mergeDetections(mapOf("region-17" to emptyList(), "region-20" to emptyList())),
         )
     }
+
+    @Test
+    fun `accumulation across successive callbacks keeps a live detection when another region goes empty`() {
+        val byRegion = mutableMapOf<String, List<DetectedBeacon>>()
+
+        val afterRegion20Reports = accumulateAndMerge(byRegion, "region-20", listOf(beacon(4, 2.0)))
+        assertEquals(listOf(beacon(4, 2.0)), afterRegion20Reports)
+
+        val afterRegion17Empty = accumulateAndMerge(byRegion, "region-17", emptyList())
+        assertEquals(listOf(beacon(4, 2.0)), afterRegion17Empty)
+
+        val afterRegion20Empty = accumulateAndMerge(byRegion, "region-20", emptyList())
+        assertEquals(emptyList<DetectedBeacon>(), afterRegion20Empty)
+    }
 }

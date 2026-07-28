@@ -28,6 +28,22 @@ data class DetectedBeacon(
 internal fun mergeDetections(byRegion: Map<String, List<DetectedBeacon>>): List<DetectedBeacon> =
     byRegion.values.flatten().sortedBy { it.distance }
 
+/**
+ * Stores the freshly ranged [detected] list for [regionId] into the accumulating
+ * [byRegion] map, then returns the merge across all regions. This is the actual
+ * hazard the multi-region change guards against: [byRegion] persists across calls,
+ * so an empty cycle for one region only overwrites that region's entry — a live
+ * detection recorded for another region on an earlier call survives.
+ */
+internal fun accumulateAndMerge(
+    byRegion: MutableMap<String, List<DetectedBeacon>>,
+    regionId: String,
+    detected: List<DetectedBeacon>,
+): List<DetectedBeacon> {
+    byRegion[regionId] = detected
+    return mergeDetections(byRegion)
+}
+
 @Singleton
 class BeaconScanner @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -35,6 +51,10 @@ class BeaconScanner @Inject constructor(
     private val beaconManager: BeaconManager = BeaconManager.getInstanceForApplication(context)
     private var regions: List<Region> = emptyList()
     private val detectionsByRegion = mutableMapOf<String, List<DetectedBeacon>>()
+    // Guarded by the same lock as detectionsByRegion. Lets the notifier tell whether
+    // stopScanning() has already run so it never publishes a stale value after the
+    // flows have been cleared and the notifier detached.
+    private var scanning = false
     // Keyed by consumer so an unbalanced stop (e.g. a screen that never managed to
     // start, or onCleared firing after onScreenInactive) can't stop another screen's scan.
     private val activeConsumers = mutableSetOf<String>()
@@ -54,14 +74,17 @@ class BeaconScanner @Inject constructor(
             val minor = beacon.id3?.toInt() ?: return@mapNotNull null
             DetectedBeacon(minorCode = minor, distance = beacon.distance)
         }
-        val merged = synchronized(detectionsByRegion) {
-            detectionsByRegion[region.uniqueId] = detected
-            mergeDetections(detectionsByRegion)
+        synchronized(detectionsByRegion) {
+            // If stopScanning() already ran, it cleared the flows under this same
+            // lock; publishing here would resurrect a stale value with no further
+            // callback ever arriving to correct it (the notifier is detached).
+            if (!scanning) return@RangeNotifier
+            val merged = accumulateAndMerge(detectionsByRegion, region.uniqueId, detected)
+            Log.d("BeaconScanner", "Region ${region.uniqueId}: ${beacons.size} ranged, " +
+                "merged closest ${merged.firstOrNull()?.minorCode}")
+            _detectedBeacons.value = merged
+            _closestBeaconMinorCode.value = merged.firstOrNull()?.minorCode
         }
-        Log.d("BeaconScanner", "Region ${region.uniqueId}: ${beacons.size} ranged, " +
-            "merged closest ${merged.firstOrNull()?.minorCode}")
-        _detectedBeacons.value = merged
-        _closestBeaconMinorCode.value = merged.firstOrNull()?.minorCode
     }
 
     init {
@@ -84,6 +107,10 @@ class BeaconScanner @Inject constructor(
                 )
             }
             this.regions = started
+            synchronized(detectionsByRegion) {
+                scanning = true
+                detectionsByRegion.clear()
+            }
             BeaconManager.setRssiFilterImplClass(ArmaRssiFilter::class.java)
             beaconManager.addRangeNotifier(rangeNotifier)
             started.forEach { beaconManager.startRangingBeacons(it) }
@@ -109,9 +136,12 @@ class BeaconScanner @Inject constructor(
         if (activeConsumers.isEmpty()) {
             regions.forEach { beaconManager.stopRangingBeacons(it) }
             beaconManager.removeRangeNotifier(rangeNotifier)
-            synchronized(detectionsByRegion) { detectionsByRegion.clear() }
-            _closestBeaconMinorCode.value = null
-            _detectedBeacons.value = emptyList()
+            synchronized(detectionsByRegion) {
+                scanning = false
+                detectionsByRegion.clear()
+                _closestBeaconMinorCode.value = null
+                _detectedBeacons.value = emptyList()
+            }
             regions = emptyList()
             Log.d("BeaconScanner", "Stopped scanning")
         }
