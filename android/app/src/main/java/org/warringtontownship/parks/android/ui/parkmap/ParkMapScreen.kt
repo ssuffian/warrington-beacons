@@ -51,7 +51,7 @@ fun ParkMapScreen(
     }
 
     TrailMap(
-        routeCoordinates = uiState.coordinates,
+        routes = uiState.routes,
         markers = uiState.markers.map {
             TrailMapMarker(it.id, it.title, it.category, it.latitude, it.longitude)
         },

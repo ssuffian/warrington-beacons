@@ -55,7 +55,7 @@ private fun initOsmdroid(context: Context) {
 
 @Composable
 fun TrailMap(
-    routeCoordinates: List<Coordinates>,
+    routes: List<List<Coordinates>>,
     markers: List<TrailMapMarker>,
     boundsCoordinates: List<Coordinates>,
     modifier: Modifier = Modifier,
@@ -164,9 +164,9 @@ fun TrailMap(
             view.overlays.clear()
             view.overlays.add(CopyrightOverlay(context))
 
-            if (routeCoordinates.isNotEmpty()) {
+            routes.filter { it.isNotEmpty() }.forEach { route ->
                 view.overlays.add(Polyline(view).apply {
-                    setPoints(routeCoordinates.map { GeoPoint(it.latitude, it.longitude) })
+                    setPoints(route.map { GeoPoint(it.latitude, it.longitude) })
                     outlinePaint.color = Color.BLUE
                     outlinePaint.strokeWidth = 8f
                     infoWindow = null

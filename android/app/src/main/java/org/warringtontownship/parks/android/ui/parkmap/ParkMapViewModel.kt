@@ -30,7 +30,7 @@ data class MapMarker(
 
 data class ParkMapUiState(
     val markers: List<MapMarker> = emptyList(),
-    val coordinates: List<Coordinates> = emptyList(),
+    val routes: List<List<Coordinates>> = emptyList(),
     val boundary: List<Coordinates> = emptyList(),
     val selectedMarker: MapMarker? = null,
 )
@@ -70,9 +70,11 @@ class ParkMapViewModel @Inject constructor(
                         longitude = mark.coordinates.longitude,
                     )
                 }
-                val coordinates = emptyList<Coordinates>()
+                val routes = trailRepository.getTrails().map { trail ->
+                    trail.boundaryCoordinates.map { Coordinates(it.latitude, it.longitude) }
+                }
                 val boundary = trailRepository.getCombinedBounds()
-                _uiState.value = ParkMapUiState(markers = markers, coordinates = coordinates, boundary = boundary)
+                _uiState.value = ParkMapUiState(markers = markers, routes = routes, boundary = boundary)
 
                 beaconRegions = trailRepository.getBeaconRegions()
                 if (screenActive) {

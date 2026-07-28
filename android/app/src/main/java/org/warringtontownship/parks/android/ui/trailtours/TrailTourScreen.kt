@@ -194,7 +194,7 @@ fun TrailTourScreen(
             }
 
             TrailMap(
-                routeCoordinates = coords,
+                routes = listOf(coords),
                 markers = markerList,
                 boundsCoordinates = bounds,
                 modifier = Modifier
