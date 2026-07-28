@@ -20,12 +20,21 @@ data class DetectedBeacon(
     val distance: Double,
 )
 
+/**
+ * Altbeacon delivers range results per region, so state has to be accumulated per
+ * region and merged. Overwriting state from a single callback would let an empty
+ * cycle for one location clear a live detection from the other.
+ */
+internal fun mergeDetections(byRegion: Map<String, List<DetectedBeacon>>): List<DetectedBeacon> =
+    byRegion.values.flatten().sortedBy { it.distance }
+
 @Singleton
 class BeaconScanner @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
     private val beaconManager: BeaconManager = BeaconManager.getInstanceForApplication(context)
-    private var region: Region? = null
+    private var regions: List<Region> = emptyList()
+    private val detectionsByRegion = mutableMapOf<String, List<DetectedBeacon>>()
     // Keyed by consumer so an unbalanced stop (e.g. a screen that never managed to
     // start, or onCleared firing after onScreenInactive) can't stop another screen's scan.
     private val activeConsumers = mutableSetOf<String>()
@@ -39,18 +48,20 @@ class BeaconScanner @Inject constructor(
     @Volatile
     private var simulationActive = false
 
-    private val rangeNotifier = RangeNotifier { beacons, _ ->
+    private val rangeNotifier = RangeNotifier { beacons, region ->
         if (simulationActive) return@RangeNotifier
-        val closest = beacons.minByOrNull { it.distance }
-        val minorCode = closest?.id3?.toInt()
-        Log.d("BeaconScanner", "Ranged ${beacons.size} beacons, closest minor: $minorCode")
-        _closestBeaconMinorCode.value = minorCode
-        _detectedBeacons.value = beacons
-            .mapNotNull { beacon ->
-                val minor = beacon.id3?.toInt() ?: return@mapNotNull null
-                DetectedBeacon(minorCode = minor, distance = beacon.distance)
-            }
-            .sortedBy { it.distance }
+        val detected = beacons.mapNotNull { beacon ->
+            val minor = beacon.id3?.toInt() ?: return@mapNotNull null
+            DetectedBeacon(minorCode = minor, distance = beacon.distance)
+        }
+        val merged = synchronized(detectionsByRegion) {
+            detectionsByRegion[region.uniqueId] = detected
+            mergeDetections(detectionsByRegion)
+        }
+        Log.d("BeaconScanner", "Region ${region.uniqueId}: ${beacons.size} ranged, " +
+            "merged closest ${merged.firstOrNull()?.minorCode}")
+        _detectedBeacons.value = merged
+        _closestBeaconMinorCode.value = merged.firstOrNull()?.minorCode
     }
 
     init {
@@ -59,21 +70,24 @@ class BeaconScanner @Inject constructor(
         )
     }
 
-    fun startScanning(consumer: String, uuid: String, majorCode: Int) {
+    fun startScanning(consumer: String, regions: List<BeaconRegion>) {
+        if (regions.isEmpty()) return
         if (!activeConsumers.add(consumer)) return
         Log.d("BeaconScanner", "Consumer $consumer added, active=$activeConsumers")
         if (activeConsumers.size == 1) {
-            val region = Region(
-                "park-beacons",
-                Identifier.parse(uuid),
-                Identifier.fromInt(majorCode),
-                null,
-            )
-            this.region = region
+            val started = regions.map { spec ->
+                Region(
+                    "park-beacons-${spec.majorCode}",
+                    Identifier.parse(spec.uuid),
+                    Identifier.fromInt(spec.majorCode),
+                    null,
+                )
+            }
+            this.regions = started
             BeaconManager.setRssiFilterImplClass(ArmaRssiFilter::class.java)
             beaconManager.addRangeNotifier(rangeNotifier)
-            beaconManager.startRangingBeacons(region)
-            Log.d("BeaconScanner", "Started scanning for uuid=$uuid major=$majorCode")
+            started.forEach { beaconManager.startRangingBeacons(it) }
+            Log.d("BeaconScanner", "Started scanning ${started.map { it.uniqueId }}")
         }
     }
 
@@ -93,11 +107,12 @@ class BeaconScanner @Inject constructor(
         if (!activeConsumers.remove(consumer)) return
         Log.d("BeaconScanner", "Consumer $consumer removed, active=$activeConsumers")
         if (activeConsumers.isEmpty()) {
-            region?.let { beaconManager.stopRangingBeacons(it) }
+            regions.forEach { beaconManager.stopRangingBeacons(it) }
             beaconManager.removeRangeNotifier(rangeNotifier)
+            synchronized(detectionsByRegion) { detectionsByRegion.clear() }
             _closestBeaconMinorCode.value = null
             _detectedBeacons.value = emptyList()
-            region = null
+            regions = emptyList()
             Log.d("BeaconScanner", "Stopped scanning")
         }
     }

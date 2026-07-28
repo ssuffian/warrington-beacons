@@ -85,8 +85,8 @@ class TrailToursViewModel @Inject constructor(
     }
 
     private fun startScanningIfReady() {
-        val region = beaconRegions.firstOrNull() ?: return
-        beaconScanner.startScanning(SCAN_CONSUMER, region.uuid, region.majorCode)
+        if (beaconRegions.isEmpty()) return
+        beaconScanner.startScanning(SCAN_CONSUMER, beaconRegions)
     }
 
     override fun onCleared() {
