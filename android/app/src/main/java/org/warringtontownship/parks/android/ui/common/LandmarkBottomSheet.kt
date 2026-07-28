@@ -23,6 +23,7 @@ import org.warringtontownship.parks.android.data.model.Landmark
 @Composable
 fun LandmarkBottomSheet(
     landmark: Landmark?,
+    imageUrl: String?,
     onDismiss: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -39,7 +40,7 @@ fun LandmarkBottomSheet(
         Column(modifier = Modifier.padding(bottom = 24.dp)) {
             if (landmark != null) {
                 AsyncImage(
-                    model = "https://trails.warringtoneac.org/${landmark.imagePath}",
+                    model = imageUrl,
                     contentDescription = landmark.name,
                     modifier = Modifier
                         .fillMaxWidth()

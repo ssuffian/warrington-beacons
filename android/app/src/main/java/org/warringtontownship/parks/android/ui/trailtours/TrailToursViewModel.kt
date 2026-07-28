@@ -105,4 +105,5 @@ class TrailToursViewModel @Inject constructor(
     fun getTrailById(id: Int): Trail? = trailRepository.getTrailById(id)
     fun getLandmarkById(id: Int): Landmark? = trailRepository.getLandmarkById(id)
     fun getBoundsForTrail(trailId: Int): List<Coordinates> = trailRepository.getBoundsForTrail(trailId)
+    fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
 }

@@ -64,6 +64,7 @@ fun ParkMapScreen(
         val landmark = viewModel.getLandmarkForMarker(selectedMarkerId!!)
         LandmarkBottomSheet(
             landmark = landmark,
+            imageUrl = landmark?.let { viewModel.imageUrlFor(it) },
             onDismiss = { selectedMarkerId = null },
         )
     }

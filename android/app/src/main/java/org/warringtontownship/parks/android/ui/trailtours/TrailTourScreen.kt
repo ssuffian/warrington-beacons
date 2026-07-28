@@ -212,6 +212,7 @@ fun TrailTourScreen(
         val landmark = viewModel.getLandmarkById(sheetLandmarkId!!)
         LandmarkBottomSheet(
             landmark = landmark,
+            imageUrl = landmark?.let { viewModel.imageUrlFor(it) },
             onDismiss = { sheetLandmarkId = null },
         )
     }

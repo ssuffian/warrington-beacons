@@ -124,4 +124,6 @@ class ParkMapViewModel @Inject constructor(
     fun getMarkerById(id: Int): MapMarker? = _uiState.value.markers.find { it.id == id }
 
     fun getLandmarkForMarker(markerId: Int): Landmark? = trailRepository.getLandmarkById(markerId)
+
+    fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
 }
