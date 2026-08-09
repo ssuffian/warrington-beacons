@@ -47,6 +47,7 @@ internal fun accumulateAndMerge(
 @Singleton
 class BeaconScanner @Inject constructor(
     @ApplicationContext private val context: Context,
+    private val notifier: AnnouncementNotifier,
 ) {
     private val beaconManager: BeaconManager = BeaconManager.getInstanceForApplication(context)
     private var regions: List<Region> = emptyList()
@@ -64,6 +65,9 @@ class BeaconScanner @Inject constructor(
 
     private val _detectedBeacons = MutableStateFlow<List<DetectedBeacon>>(emptyList())
     val detectedBeacons: StateFlow<List<DetectedBeacon>> = _detectedBeacons.asStateFlow()
+
+    private val _foregroundServiceFailed = MutableStateFlow(false)
+    val foregroundServiceFailed: StateFlow<Boolean> = _foregroundServiceFailed.asStateFlow()
 
     @Volatile
     private var simulationActive = false
@@ -112,6 +116,22 @@ class BeaconScanner @Inject constructor(
                 detectionsByRegion.clear()
             }
             BeaconManager.setRssiFilterImplClass(ArmaRssiFilter::class.java)
+            // Scheduled scan jobs and foreground-service scanning are mutually
+            // exclusive in altbeacon; the service is what keeps ranging alive with
+            // the screen off and the phone in a pocket.
+            beaconManager.setEnableScheduledScanJobs(false)
+            try {
+                beaconManager.enableForegroundServiceScanning(
+                    notifier.scanningNotification(),
+                    AnnouncementNotifier.SCANNING_NOTIFICATION_ID,
+                )
+                _foregroundServiceFailed.value = beaconManager.foregroundServiceStartFailed()
+            } catch (e: IllegalStateException) {
+                // Already enabled, or not permitted. Ranging still works while the
+                // app is in front, so degrade rather than fail.
+                Log.w("BeaconScanner", "Foreground service scanning unavailable", e)
+                _foregroundServiceFailed.value = true
+            }
             beaconManager.addRangeNotifier(rangeNotifier)
             started.forEach { beaconManager.startRangingBeacons(it) }
             Log.d("BeaconScanner", "Started scanning ${started.map { it.uniqueId }}")
@@ -136,6 +156,12 @@ class BeaconScanner @Inject constructor(
         if (activeConsumers.isEmpty()) {
             regions.forEach { beaconManager.stopRangingBeacons(it) }
             beaconManager.removeRangeNotifier(rangeNotifier)
+            try {
+                beaconManager.disableForegroundServiceScanning()
+            } catch (e: IllegalStateException) {
+                Log.w("BeaconScanner", "Foreground service already disabled", e)
+            }
+            _foregroundServiceFailed.value = false
             synchronized(detectionsByRegion) {
                 scanning = false
                 detectionsByRegion.clear()
