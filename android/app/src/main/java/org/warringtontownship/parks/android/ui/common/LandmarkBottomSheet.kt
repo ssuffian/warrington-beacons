@@ -17,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.warringtontownship.parks.android.data.model.Landmark
@@ -53,13 +55,17 @@ fun LandmarkBottomSheet(
             if (landmark != null) {
                 AsyncImage(
                     model = imageUrl,
-                    contentDescription = landmark.name,
+                    contentDescription = landmark.imageAlt,
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(16f / 9f),
                 )
 
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+                        .semantics(mergeDescendants = true) { heading() },
+                ) {
                     Text(
                         text = landmark.name,
                         style = MaterialTheme.typography.headlineMedium,
@@ -70,12 +76,12 @@ fun LandmarkBottomSheet(
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.primary,
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Text(
-                        text = if (simplifiedText) landmark.description else landmark.longDescription,
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
                 }
+                Text(
+                    text = if (simplifiedText) landmark.description else landmark.longDescription,
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 16.dp),
+                )
             } else {
                 Text(
                     text = "Location not found.",

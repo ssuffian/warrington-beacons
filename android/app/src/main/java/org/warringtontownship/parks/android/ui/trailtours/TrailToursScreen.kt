@@ -18,6 +18,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -64,7 +66,9 @@ fun TrailToursScreen(
                         text = location.name,
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.padding(top = 16.dp, bottom = 4.dp),
+                        modifier = Modifier
+                            .padding(top = 16.dp, bottom = 4.dp)
+                            .semantics { heading() },
                     )
                 }
                 items(trails, key = { it.id }) { trail ->
