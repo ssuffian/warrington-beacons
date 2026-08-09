@@ -83,6 +83,11 @@ fun WelcomeScreen(
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
+            text = "If you'd prefer shorter, plainer descriptions, turn on Simplified Text in Settings.",
+            style = MaterialTheme.typography.bodyLarge,
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
             text = "We will ask your permission to display your location on the map as well as to detect nearby devices in order to sense trail beacons to identify landmarks you are close to.",
             style = MaterialTheme.typography.bodyLarge,
         )

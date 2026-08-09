@@ -106,7 +106,7 @@ fun SettingsScreen(
                             modifier = Modifier.weight(1f),
                         )
                         Text(
-                            text = "%.1f m".format(item.distance),
+                            text = "%.0f ft".format(item.distance * 3.28084),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )

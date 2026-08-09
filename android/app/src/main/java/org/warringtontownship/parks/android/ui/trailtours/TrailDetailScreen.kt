@@ -123,6 +123,24 @@ fun TrailDetailScreen(
                             Text("Reverse")
                         }
                     }
+                    val startIndex = markers.indexOfFirst { it.id == startMarker?.id }
+                    val headingToward = if (startIndex >= 0 && markers.size > 1) {
+                        val nextIndex = if (reverse) {
+                            if (startIndex > 0) startIndex - 1 else markers.size - 1
+                        } else {
+                            (startIndex + 1) % markers.size
+                        }
+                        markers[nextIndex].title
+                    } else {
+                        null
+                    }
+                    if (headingToward != null) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "You'll head toward $headingToward first.",
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
                     if (startMarker != null) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
