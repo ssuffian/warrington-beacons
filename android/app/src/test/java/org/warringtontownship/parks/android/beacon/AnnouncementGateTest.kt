@@ -79,4 +79,19 @@ class AnnouncementGateTest {
         gate.shouldAnnounce(7, 80.0)
         assertFalse(gate.shouldAnnounce(7, 5.0))
     }
+
+    @Test
+    fun `clearSightings preserves cooldown unlike reset`() {
+        val gate = gate()
+        assertTrue(sight(gate, 7, times = 3))
+
+        gate.clearSightings()
+        now += 1_000 // well under the 60s cooldown
+        assertFalse(sight(gate, 7, times = 3))
+
+        // Contrast: reset() in the same position would let it announce again,
+        // proving clearSightings is not just an alias for reset.
+        gate.reset()
+        assertTrue(sight(gate, 7, times = 3))
+    }
 }

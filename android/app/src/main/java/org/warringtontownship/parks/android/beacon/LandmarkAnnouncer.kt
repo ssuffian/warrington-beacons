@@ -2,6 +2,8 @@ package org.warringtontownship.parks.android.beacon
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -33,24 +35,23 @@ class LandmarkAnnouncer @Inject constructor(
 ) {
     private val gate = AnnouncementGate(clock = { System.currentTimeMillis() })
 
-    private val _currentLandmark = MutableSharedFlow<Landmark>()
+    // Owned by the singleton rather than borrowed from a caller: a ViewModel's
+    // viewModelScope dies with that screen, but this collector must outlive any
+    // single screen for as long as the process is alive.
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    private val _currentLandmark = MutableSharedFlow<Landmark>(replay = 1)
     val currentLandmark: SharedFlow<Landmark> = _currentLandmark.asSharedFlow()
 
-    private var started = false
-
-    /**
-     * Begins observing detections. Called once from the first ViewModel that needs
-     * announcements; the guard keeps repeat calls from stacking collectors, and the
-     * scope outlives any single screen because this is a singleton.
-     */
-    fun start(scope: CoroutineScope) {
-        if (started) return
-        started = true
+    init {
         scope.launch {
             beaconScanner.detectedBeacons.collect { detections ->
                 val closest = detections.minByOrNull { it.distance }
                 if (closest == null) {
-                    gate.reset()
+                    // A momentary empty ranging cycle is routine BLE flicker, not a
+                    // reason to forget the cooldown and last-announced landmark —
+                    // only clear the in-progress sighting counts.
+                    gate.clearSightings()
                     return@collect
                 }
                 if (!gate.shouldAnnounce(closest.minorCode, closest.distance)) return@collect

@@ -52,4 +52,14 @@ internal class AnnouncementGate(private val clock: () -> Long) {
         lastAnnouncedAt.clear()
         lastAnnouncedMinor = null
     }
+
+    /**
+     * Clears only the in-progress sighting counts, leaving cooldowns and the last
+     * announced landmark intact. Use this for a routine empty ranging cycle (BLE
+     * flicker) so a momentary dropout can't erase the cooldown that stops repeat
+     * announcements; [reset] is for when scanning itself stops.
+     */
+    fun clearSightings() {
+        seenCount.clear()
+    }
 }

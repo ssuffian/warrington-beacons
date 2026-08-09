@@ -88,7 +88,6 @@ class ParkMapViewModel @Inject constructor(
     }
 
     private fun observeBeacons() {
-        announcer.start(viewModelScope)
         viewModelScope.launch {
             announcer.currentLandmark.collect { landmark ->
                 _navigationEvent.emit(landmark.id)
