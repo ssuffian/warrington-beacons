@@ -116,11 +116,15 @@ class BeaconScanner @Inject constructor(
                 detectionsByRegion.clear()
             }
             BeaconManager.setRssiFilterImplClass(ArmaRssiFilter::class.java)
-            // Scheduled scan jobs and foreground-service scanning are mutually
-            // exclusive in altbeacon; the service is what keeps ranging alive with
-            // the screen off and the phone in a pocket.
-            beaconManager.setEnableScheduledScanJobs(false)
             try {
+                // Scheduled scan jobs and foreground-service scanning are mutually
+                // exclusive in altbeacon; the service is what keeps ranging alive with
+                // the screen off and the phone in a pocket. This can throw if a
+                // consumer is still bound from an unclean previous stop, so it stays
+                // inside the try — the catch below still lets ranging start in the
+                // (unprotected) foreground-only path rather than leaving the scanner
+                // believing it's live while nothing was ever wired up.
+                beaconManager.setEnableScheduledScanJobs(false)
                 beaconManager.enableForegroundServiceScanning(
                     notifier.scanningNotification(),
                     AnnouncementNotifier.SCANNING_NOTIFICATION_ID,
@@ -134,6 +138,12 @@ class BeaconScanner @Inject constructor(
             }
             beaconManager.addRangeNotifier(rangeNotifier)
             started.forEach { beaconManager.startRangingBeacons(it) }
+            // foregroundServiceStartFailed() only reflects reality once the service
+            // has actually attempted to bind, which happens inside
+            // startRangingBeacons() above — re-read and OR in, so a true recorded by
+            // the catch above is never clobbered by a stale pre-bind false here.
+            _foregroundServiceFailed.value =
+                _foregroundServiceFailed.value || beaconManager.foregroundServiceStartFailed()
             Log.d("BeaconScanner", "Started scanning ${started.map { it.uniqueId }}")
         }
     }
@@ -158,10 +168,12 @@ class BeaconScanner @Inject constructor(
             beaconManager.removeRangeNotifier(rangeNotifier)
             try {
                 beaconManager.disableForegroundServiceScanning()
+                _foregroundServiceFailed.value = false
             } catch (e: IllegalStateException) {
+                // Still running despite the attempt to stop it; leave the flag as-is
+                // rather than reporting a live service as fine.
                 Log.w("BeaconScanner", "Foreground service already disabled", e)
             }
-            _foregroundServiceFailed.value = false
             synchronized(detectionsByRegion) {
                 scanning = false
                 detectionsByRegion.clear()
