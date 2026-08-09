@@ -12,9 +12,14 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.warringtontownship.parks.android.data.model.Landmark
@@ -24,14 +29,24 @@ import org.warringtontownship.parks.android.data.model.Landmark
 fun LandmarkBottomSheet(
     landmark: Landmark?,
     imageUrl: String?,
+    announceOnOpen: String? = null,
     onDismiss: () -> Unit,
 ) {
     val context = LocalContext.current
+    val view = LocalView.current
     val simplifiedText = remember {
         context.getSharedPreferences("warrington_prefs", android.content.Context.MODE_PRIVATE)
             .getBoolean("simplified_text", false)
     }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+    // A beacon opened this sheet, so nothing the user did will make TalkBack read
+    // it. Announce explicitly; a tapped sheet is already narrated by the tap.
+    LaunchedEffect(announceOnOpen) {
+        if (announceOnOpen != null) {
+            view.announceForAccessibility(announceOnOpen)
+        }
+    }
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -62,6 +77,7 @@ fun LandmarkBottomSheet(
                     Text(
                         text = if (simplifiedText) landmark.description else landmark.longDescription,
                         style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.semantics { liveRegion = LiveRegionMode.Assertive },
                     )
                 }
             } else {

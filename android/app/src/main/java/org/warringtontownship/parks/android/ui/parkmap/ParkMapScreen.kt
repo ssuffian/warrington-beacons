@@ -27,6 +27,7 @@ fun ParkMapScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var selectedMarkerId by remember { mutableStateOf<Int?>(null) }
+    var openedByBeacon by remember { mutableStateOf(false) }
 
     DisposableEffect(viewModel) {
         viewModel.onScreenActive()
@@ -46,6 +47,7 @@ fun ParkMapScreen(
 
     LaunchedEffect(Unit) {
         viewModel.navigationEvent.collect { markerId ->
+            openedByBeacon = true
             selectedMarkerId = markerId
         }
     }
@@ -57,7 +59,7 @@ fun ParkMapScreen(
         },
         boundsCoordinates = uiState.boundary,
         modifier = Modifier.fillMaxSize(),
-        onMarkerClick = { selectedMarkerId = it },
+        onMarkerClick = { openedByBeacon = false; selectedMarkerId = it },
         // This map covers both locations at once, so zoomed out it shows one pin per
         // trailhead instead of 40 overlapping landmarks.
         collapseMarkersWhenZoomedOut = true,
@@ -65,9 +67,15 @@ fun ParkMapScreen(
 
     if (selectedMarkerId != null) {
         val landmark = viewModel.getLandmarkForMarker(selectedMarkerId!!)
+        val announcement = if (openedByBeacon) {
+            viewModel.announcementTextFor(selectedMarkerId!!)?.let { "${it.title}. ${it.body}" }
+        } else {
+            null
+        }
         LandmarkBottomSheet(
             landmark = landmark,
             imageUrl = landmark?.let { viewModel.imageUrlFor(it) },
+            announceOnOpen = announcement,
             onDismiss = { selectedMarkerId = null },
         )
     }
