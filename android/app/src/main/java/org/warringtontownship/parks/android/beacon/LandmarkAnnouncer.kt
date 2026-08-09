@@ -48,10 +48,10 @@ class LandmarkAnnouncer @Inject constructor(
             beaconScanner.detectedBeacons.collect { detections ->
                 val closest = detections.minByOrNull { it.distance }
                 if (closest == null) {
-                    // A momentary empty ranging cycle is routine BLE flicker, not a
-                    // reason to forget the cooldown and last-announced landmark —
-                    // only clear the in-progress sighting counts.
-                    gate.clearSightings()
+                    // No beacon in range — whether a momentary BLE dropout or
+                    // scanning stopping outright. Forgets which landmark we were
+                    // just at, but keeps every landmark's cooldown running.
+                    gate.onNoBeaconsInRange()
                     return@collect
                 }
                 if (!gate.shouldAnnounce(closest.minorCode, closest.distance)) return@collect

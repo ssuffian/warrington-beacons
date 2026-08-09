@@ -47,19 +47,17 @@ internal class AnnouncementGate(private val clock: () -> Long) {
         return true
     }
 
-    fun reset() {
-        seenCount.clear()
-        lastAnnouncedAt.clear()
-        lastAnnouncedMinor = null
-    }
-
     /**
-     * Clears only the in-progress sighting counts, leaving cooldowns and the last
-     * announced landmark intact. Use this for a routine empty ranging cycle (BLE
-     * flicker) so a momentary dropout can't erase the cooldown that stops repeat
-     * announcements; [reset] is for when scanning itself stops.
+     * Call when a ranging cycle sees no beacons at all — whether that's a momentary
+     * BLE dropout or scanning stopping outright. Matches iOS's BeaconScanner, which
+     * clears `lastNearbyBeaconId` but not `lastNotificationCache` on an empty cycle:
+     * forgets which landmark you were just at (so leaving and coming back to the
+     * same one within its cooldown doesn't get blocked forever by the "never twice
+     * in a row" rule), but keeps every landmark's cooldown timer running (so a brief
+     * dropout can't be used to hear the same landmark again before 60 seconds are up).
      */
-    fun clearSightings() {
+    fun onNoBeaconsInRange() {
         seenCount.clear()
+        lastAnnouncedMinor = null
     }
 }

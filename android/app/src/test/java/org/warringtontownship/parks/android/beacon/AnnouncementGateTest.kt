@@ -65,14 +65,6 @@ class AnnouncementGateTest {
     }
 
     @Test
-    fun `reset clears counts, cooldowns and the last announced landmark`() {
-        val gate = gate()
-        assertTrue(sight(gate, 7, times = 3))
-        gate.reset()
-        assertTrue(sight(gate, 7, times = 3))
-    }
-
-    @Test
     fun `sightings that fail the distance gate do not count toward confirmation`() {
         val gate = gate()
         gate.shouldAnnounce(7, 80.0)
@@ -81,17 +73,25 @@ class AnnouncementGateTest {
     }
 
     @Test
-    fun `clearSightings preserves cooldown unlike reset`() {
+    fun `lingering with BLE flicker does not re-announce within the cooldown`() {
         val gate = gate()
         assertTrue(sight(gate, 7, times = 3))
 
-        gate.clearSightings()
-        now += 1_000 // well under the 60s cooldown
+        // A momentary empty ranging cycle: forgets we were just at 7, but must not
+        // forget when 7 was last announced. If it cleared the cooldown map too,
+        // this would wrongly announce again a few seconds later.
+        gate.onNoBeaconsInRange()
+        now += 5_000 // well under the 60s cooldown
         assertFalse(sight(gate, 7, times = 3))
+    }
 
-        // Contrast: reset() in the same position would let it announce again,
-        // proving clearSightings is not just an alias for reset.
-        gate.reset()
+    @Test
+    fun `lingering past the cooldown announces again after losing sight`() {
+        val gate = gate()
+        assertTrue(sight(gate, 7, times = 3))
+
+        gate.onNoBeaconsInRange()
+        now += 60_000 // cooldown has now fully elapsed
         assertTrue(sight(gate, 7, times = 3))
     }
 }
