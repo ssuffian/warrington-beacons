@@ -6,14 +6,18 @@ import org.warringtontownship.parks.android.beacon.AnnouncementText
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
 import org.warringtontownship.parks.android.beacon.LandmarkAnnouncer
+import org.warringtontownship.parks.android.data.prefs.AppPreferences
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import android.util.Log
@@ -40,6 +44,7 @@ class ParkMapViewModel @Inject constructor(
     private val trailRepository: TrailRepository,
     private val beaconScanner: BeaconScanner,
     private val announcer: LandmarkAnnouncer,
+    private val appPreferences: AppPreferences,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ParkMapUiState())
@@ -47,6 +52,19 @@ class ParkMapViewModel @Inject constructor(
 
     private val _navigationEvent = MutableSharedFlow<Int>()
     val navigationEvent: SharedFlow<Int> = _navigationEvent.asSharedFlow()
+
+    val announcementsEnabled: StateFlow<Boolean> = appPreferences.announcementsEnabled
+
+    val statusMessage: StateFlow<String> = combine(
+        appPreferences.announcementsEnabled,
+        beaconScanner.foregroundServiceFailed,
+    ) { enabled, serviceFailed ->
+        when {
+            !enabled -> "Announcements off."
+            serviceFailed -> "Announcements on, but only while this screen is open."
+            else -> "Announcements on. Listening for nearby landmarks."
+        }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, "Announcements on. Listening for nearby landmarks.")
 
     private var beaconRegions: List<BeaconRegion> = emptyList()
     private var screenActive = false
@@ -106,8 +124,14 @@ class ParkMapViewModel @Inject constructor(
     }
 
     private fun startScanningIfReady() {
+        if (!appPreferences.announcementsEnabled.value) return
         if (beaconRegions.isEmpty()) return
         beaconScanner.startScanning(SCAN_CONSUMER, beaconRegions)
+    }
+
+    fun setAnnouncementsEnabled(enabled: Boolean) {
+        appPreferences.setAnnouncementsEnabled(enabled)
+        if (enabled) startScanningIfReady() else beaconScanner.stopScanning(SCAN_CONSUMER)
     }
 
     override fun onCleared() {
