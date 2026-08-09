@@ -51,6 +51,11 @@ class TrailRepository @Inject constructor(
             location to getTrails().filter { it.location == location.id }
         }
 
+    fun getLandmarksByLocation(): List<Pair<Location, List<Landmark>>> =
+        getLocations().map { location ->
+            location to getLandmarks().filter { it.location == location.id }
+        }
+
     fun imageUrlFor(landmark: Landmark): String = IMAGE_BASE_URL + landmark.imagePath
 
     fun getCombinedBounds(): List<Coordinates> =

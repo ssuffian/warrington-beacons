@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import org.warringtontownship.parks.android.ui.about.AboutScreen
+import org.warringtontownship.parks.android.ui.landmarks.LandmarksScreen
 import org.warringtontownship.parks.android.ui.parkmap.ParkMapScreen
 import org.warringtontownship.parks.android.ui.parkmap.ParkMapViewModel
 import org.warringtontownship.parks.android.ui.settings.SettingsScreen
@@ -42,6 +43,16 @@ fun AppNavHost(
                 ParkMapScreen(
                     viewModel = viewModel,
                 )
+            }
+        }
+
+        // Landmarks tab
+        navigation(
+            startDestination = NavRoutes.LANDMARKS,
+            route = NavRoutes.LANDMARKS_GRAPH,
+        ) {
+            composable(NavRoutes.LANDMARKS) {
+                LandmarksScreen()
             }
         }
 

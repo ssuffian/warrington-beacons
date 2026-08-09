@@ -78,6 +78,15 @@ class TrailRepositoryTest {
     }
 
     @Test
+    fun `groups landmarks by location in locations order`() {
+        val grouped = repository.getLandmarksByLocation()
+        assertEquals(listOf("Lions Pride Park", "US202 to Bradford Dam"), grouped.map { it.first.name })
+        assertEquals(23, grouped[0].second.size)
+        assertEquals(17, grouped[1].second.size)
+        assertEquals(40, grouped.sumOf { it.second.size })
+    }
+
+    @Test
     fun `yields one beacon region per location`() {
         assertEquals(
             listOf(
