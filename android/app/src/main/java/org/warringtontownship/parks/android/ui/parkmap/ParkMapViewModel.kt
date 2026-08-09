@@ -55,16 +55,24 @@ class ParkMapViewModel @Inject constructor(
 
     val announcementsEnabled: StateFlow<Boolean> = appPreferences.announcementsEnabled
 
+    private fun statusFor(enabled: Boolean, serviceFailed: Boolean): String = when {
+        !enabled -> "Announcements off."
+        serviceFailed -> "Announcements on, but only while this screen is open."
+        else -> "Announcements on. Listening for nearby landmarks."
+    }
+
     val statusMessage: StateFlow<String> = combine(
         appPreferences.announcementsEnabled,
         beaconScanner.foregroundServiceFailed,
-    ) { enabled, serviceFailed ->
-        when {
-            !enabled -> "Announcements off."
-            serviceFailed -> "Announcements on, but only while this screen is open."
-            else -> "Announcements on. Listening for nearby landmarks."
-        }
-    }.stateIn(viewModelScope, SharingStarted.Eagerly, "Announcements on. Listening for nearby landmarks.")
+    ) { enabled, serviceFailed -> statusFor(enabled, serviceFailed) }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            statusFor(
+                appPreferences.announcementsEnabled.value,
+                beaconScanner.foregroundServiceFailed.value,
+            ),
+        )
 
     private var beaconRegions: List<BeaconRegion> = emptyList()
     private var screenActive = false
