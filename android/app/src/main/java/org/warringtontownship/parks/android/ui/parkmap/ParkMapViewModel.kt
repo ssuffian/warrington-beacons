@@ -2,8 +2,10 @@ package org.warringtontownship.parks.android.ui.parkmap
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import org.warringtontownship.parks.android.beacon.AnnouncementText
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
+import org.warringtontownship.parks.android.beacon.LandmarkAnnouncer
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -12,8 +14,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import android.util.Log
@@ -39,6 +39,7 @@ data class ParkMapUiState(
 class ParkMapViewModel @Inject constructor(
     private val trailRepository: TrailRepository,
     private val beaconScanner: BeaconScanner,
+    private val announcer: LandmarkAnnouncer,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ParkMapUiState())
@@ -87,13 +88,11 @@ class ParkMapViewModel @Inject constructor(
     }
 
     private fun observeBeacons() {
+        announcer.start(viewModelScope)
         viewModelScope.launch {
-            beaconScanner.closestBeaconMinorCode
-                .filterNotNull()
-                .distinctUntilChanged()
-                .collect { minorCode ->
-                    _navigationEvent.emit(minorCode)
-                }
+            announcer.currentLandmark.collect { landmark ->
+                _navigationEvent.emit(landmark.id)
+            }
         }
     }
 
@@ -126,4 +125,7 @@ class ParkMapViewModel @Inject constructor(
     fun getLandmarkForMarker(markerId: Int): Landmark? = trailRepository.getLandmarkById(markerId)
 
     fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
+
+    fun announcementTextFor(landmarkId: Int): AnnouncementText? =
+        trailRepository.getLandmarkById(landmarkId)?.let { announcer.textFor(it) }
 }

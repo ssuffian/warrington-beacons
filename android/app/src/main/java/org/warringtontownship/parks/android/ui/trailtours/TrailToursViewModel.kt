@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
+import org.warringtontownship.parks.android.beacon.LandmarkAnnouncer
 import org.warringtontownship.parks.android.data.model.Trail
 import org.warringtontownship.parks.android.data.model.Location
 import org.warringtontownship.parks.android.data.repository.TrailRepository
@@ -14,7 +15,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import org.warringtontownship.parks.android.data.model.Coordinates
 import org.warringtontownship.parks.android.data.model.Landmark
@@ -30,6 +30,7 @@ data class TrailToursUiState(
 class TrailToursViewModel @Inject constructor(
     private val trailRepository: TrailRepository,
     private val beaconScanner: BeaconScanner,
+    private val announcer: LandmarkAnnouncer,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TrailToursUiState())
@@ -68,12 +69,11 @@ class TrailToursViewModel @Inject constructor(
     }
 
     private fun observeBeacons() {
+        announcer.start(viewModelScope)
         viewModelScope.launch {
-            beaconScanner.closestBeaconMinorCode
-                .filterNotNull()
-                .collect { minorCode ->
-                    _beaconEvent.emit(minorCode)
-                }
+            announcer.currentLandmark.collect { landmark ->
+                _beaconEvent.emit(landmark.id)
+            }
         }
     }
 
