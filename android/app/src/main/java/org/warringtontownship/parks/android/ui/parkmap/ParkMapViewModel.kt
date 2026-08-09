@@ -125,6 +125,8 @@ class ParkMapViewModel @Inject constructor(
 
     fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
 
-    fun announcementTextFor(landmarkId: Int): AnnouncementText? =
-        trailRepository.getLandmarkById(landmarkId)?.let { announcer.textFor(it) }
+    fun announcementTextFor(landmarkId: Int): AnnouncementText? {
+        if (!announcer.isAnnouncingEnabled()) return null
+        return trailRepository.getLandmarkById(landmarkId)?.let { announcer.textFor(it) }
+    }
 }

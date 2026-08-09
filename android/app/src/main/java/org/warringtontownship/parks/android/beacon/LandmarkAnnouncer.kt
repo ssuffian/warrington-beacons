@@ -70,4 +70,6 @@ class LandmarkAnnouncer @Inject constructor(
 
     fun textFor(landmark: Landmark): AnnouncementText =
         announcementText(landmark, appPreferences.simplifiedText.value)
+
+    fun isAnnouncingEnabled(): Boolean = appPreferences.announcementsEnabled.value
 }

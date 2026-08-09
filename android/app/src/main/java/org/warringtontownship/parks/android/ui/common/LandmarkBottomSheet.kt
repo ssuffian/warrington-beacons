@@ -17,9 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.warringtontownship.parks.android.data.model.Landmark
@@ -77,7 +74,6 @@ fun LandmarkBottomSheet(
                     Text(
                         text = if (simplifiedText) landmark.description else landmark.longDescription,
                         style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.semantics { liveRegion = LiveRegionMode.Assertive },
                     )
                 }
             } else {
