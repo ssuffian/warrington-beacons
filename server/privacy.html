@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Warrington Parks &amp; Trails</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1c19;
+    --muted: #52605a;
+    --rule: #d9e0da;
+    --accent: #2e6b3e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --fg: #e6e9e5;
+      --muted: #a3ada6;
+      --rule: #2c3430;
+      --accent: #8fd39d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  h1 { font-size: 1.65rem; line-height: 1.25; margin: 0 0 .35rem; }
+  h2 {
+    font-size: 1.15rem;
+    margin: 2.25rem 0 .6rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+  .updated { color: var(--muted); font-size: .9rem; margin: 0 0 2rem; }
+  .lede {
+    font-size: 1.05rem;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-left: 3px solid var(--accent);
+    padding: .9rem 1rem;
+    border-radius: 0 6px 6px 0;
+    margin: 0 0 2rem;
+  }
+  ul { padding-left: 1.25rem; }
+  li { margin: .45rem 0; }
+  dt { font-weight: 600; margin-top: 1rem; }
+  dd { margin: .2rem 0 0; color: var(--fg); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .875em;
+    background: color-mix(in srgb, var(--fg) 8%, transparent);
+    padding: .1em .35em;
+    border-radius: 4px;
+  }
+  a { color: var(--accent); }
+  footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Privacy Policy</h1>
+<p class="updated">Warrington Parks &amp; Trails (Android) — last updated 10 August 2026</p>
+
+<p class="lede">
+  Short version: this app has no accounts, no analytics, no advertising and no tracking.
+  It does not collect or transmit your location. Nothing you do in the app is sent to us,
+  because there is no server of ours to send it to.
+</p>
+
+<h2>What the app does</h2>
+<p>
+  Warrington Parks &amp; Trails shows the trails and points of interest at Lions Pride Park
+  and along the US202 to Bradford Dam trail. Small Bluetooth beacons are installed at
+  points of interest; when the app detects that you are near one, it shows and announces
+  information about that landmark.
+</p>
+
+<h2>Permissions, and why each is needed</h2>
+<dl>
+  <dt>Location (precise or approximate)</dt>
+  <dd>
+    Used to draw your position on the map, and required by Android itself in order to
+    scan for Bluetooth beacons and to keep scanning while the screen is off. Your
+    location is used on your device only. It is never transmitted, never stored beyond
+    the moment it is displayed, and never shared with anyone.
+  </dd>
+
+  <dt>Nearby devices (Bluetooth scanning)</dt>
+  <dd>
+    Used to detect the trail beacons, which broadcast nothing but a fixed identifier.
+    The app reads those identifiers to work out which landmark you have reached. It does
+    not connect to any device, and does not scan for or identify phones, wearables or
+    other equipment around you.
+  </dd>
+
+  <dt>Notifications</dt>
+  <dd>
+    Used to tell you about a landmark you have reached — including when your phone is in
+    a pocket or the screen is off, which is how the app remains usable with a screen
+    reader. Notifications are created on your device. Nothing is sent through a
+    messaging service.
+  </dd>
+
+  <dt>Run a foreground service</dt>
+  <dd>
+    Lets beacon detection keep working while the screen is off, so you are not required
+    to hold the phone in front of you for a whole walk. While this is active you will see
+    an ongoing notification saying the app is listening; that notification is how you can
+    tell it is running.
+  </dd>
+
+  <dt>Internet</dt>
+  <dd>
+    Used to download the trail information, landmark photos and map images described
+    below.
+  </dd>
+</dl>
+
+<h2>What is stored, and where</h2>
+<p>Everything the app saves stays on your device:</p>
+<ul>
+  <li>Your settings — whether you have seen the welcome screen, whether Simplified Text is on, and whether landmark announcements are on.</li>
+  <li>A cache of the downloaded trail information and landmark photos, so the app still works where there is no mobile signal.</li>
+  <li>A cache of map images you have already viewed, for the same reason.</li>
+</ul>
+<p>
+  Uninstalling the app removes all of it. You can also clear it at any time through
+  Android's Settings, under this app's storage.
+</p>
+
+<h2>Information sent to other services</h2>
+<p>
+  The app has no server of its own and no account system, so there is nothing to sign in
+  to and no profile of you anywhere. It does request files over the internet, and as with
+  any web request the service on the other end can see the IP address making it:
+</p>
+<ul>
+  <li>
+    <strong>GitHub Pages</strong> — hosts the trail information and landmark photos at
+    <code>trails.warringtoneac.org</code>. Governed by
+    <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.
+  </li>
+  <li>
+    <strong>OpenStreetMap</strong> — supplies the map images. Governed by the
+    <a href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap Foundation privacy policy</a>.
+  </li>
+</ul>
+<p>
+  Neither request includes your location, your beacon detections, or any identifier the
+  app has created for you. The app contains no analytics, advertising, crash-reporting or
+  social-media components of any kind.
+</p>
+
+<h2>Children</h2>
+<p>
+  These are public parks and the app is suitable for all ages, but it is not directed at
+  children specifically, and it collects no personal information from anyone regardless
+  of age.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  If the app's handling of information changes, this page will be updated and the date at
+  the top will change with it.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions about this policy or the app can go to
+  <a href="mailto:stephen.suffian@gmail.com">stephen.suffian@gmail.com</a>.
+</p>
+
+<footer>
+  Trail information and photographs are provided by Warrington Township. Map data
+  © OpenStreetMap contributors.
+</footer>
+
+</main>
+</body>
+</html>
