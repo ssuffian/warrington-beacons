@@ -94,7 +94,13 @@ fun ParkMapScreen(
                 TrailMapMarker(it.id, it.title, it.category, it.latitude, it.longitude)
             },
             boundsCoordinates = uiState.boundary,
-            modifier = Modifier.fillMaxSize(),
+            // weight(1f) is the right idiom for a Column child that should take the
+            // leftover height; fillMaxSize() asks for the whole parent height. This is
+            // not what fixed the map covering the row above — clipToBounds inside
+            // TrailMap is — but it is the correct expression of the intent.
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
             onMarkerClick = { openedByBeacon = false; selectedMarkerId = it },
             // This map covers both locations at once, so zoomed out it shows one pin per
             // trailhead instead of 40 overlapping landmarks.

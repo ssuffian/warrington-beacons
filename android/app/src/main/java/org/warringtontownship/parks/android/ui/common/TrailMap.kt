@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
@@ -224,7 +225,10 @@ fun TrailMap(
     }
 
     AndroidView(
-        modifier = modifier,
+        // osmdroid's MapView paints outside the bounds Compose allots it, which let it
+        // cover a sibling laid out above the map — the announcements row on the Park Map,
+        // and the current/next stop text on a tour. Clipping here fixes every caller.
+        modifier = modifier.clipToBounds(),
         factory = { mapView },
         update = { view ->
             view.overlays.clear()
