@@ -10,6 +10,14 @@
 #   ./simulate_beacon.sh walk [seconds-per-stop]     # auto-walk US202 landmarks 1..16 (Ctrl-C stops)
 #
 # Landmark ids: US202 1-16 (trail stops) and 4001 (trailhead); Lions Pride Park 1002-3008.
+#
+# The app only announces a landmark once it's been seen 3 times within 30 meters
+# (see AnnouncementGate), so a single call does nothing by design — send the same
+# minor 3 times, a second or so apart, to trigger an announcement. Distances of 30m
+# or more are ignored entirely. Note: three calls with the *exact* same distance
+# collapse into one update (the underlying beacon state is a StateFlow, which drops
+# consecutive equal values), so the gate never reaches 3 sightings — vary the
+# distance slightly on each call (e.g. 2.0, 2.01, 2.02) to be sure each one lands.
 set -euo pipefail
 
 PKG="org.warringtontownship.parks.android"

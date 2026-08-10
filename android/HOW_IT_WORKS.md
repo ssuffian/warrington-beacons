@@ -17,17 +17,28 @@ gets:
 
 1. **Park Map** — a map with every landmark/point of interest from *both* locations
    plotted, and every trail (four polylines total, across the two locations) drawn as a
-   route. Tapping a marker opens a bottom sheet with a photo and description.
-2. **Trail Tours** — a guided walk, with trails grouped under a header for their
+   route. Tapping a marker opens a bottom sheet with a photo and description. An
+   accessible "Announce nearby landmarks" switch here reports and controls whether
+   beacon scanning/announcements are on at all (see Beacon detection below).
+2. **Landmarks** — every point of interest from both locations in one browsable list,
+   grouped under a location header (an accessibility heading), for reading about
+   landmarks without needing to be near a beacon or open the map. Tapping an item opens
+   the same bottom sheet as a beacon hit, but silently — the tap itself is what a screen
+   reader narrates, so there's no separate spoken announcement.
+3. **Trail Tours** — a guided walk, with trails grouped under a header for their
    location. Pick a trail, a direction (Forward/Reverse), and a starting landmark; the
    tour screen then shows your current stop, the next stop, and walking-distance
-   directions between them ("Continue 0.2 miles to...").
-3. **Beacon detection** — physical Bluetooth beacons (RadBeacon E4) are mounted at both
-   locations. When the phone gets close to one, the app automatically advances the tour
-   to that landmark, zooms the map to it, and pops up its detail sheet. No GPS
-   precision or user action needed, and it doesn't matter which location's beacon it is
-   — detections from both locations are merged into one "closest" result.
-4. **About / Settings** — static info page listing both locations' addresses; a
+   directions between them ("Continue 0.2 miles to..."), plus which landmark you'll
+   reach first.
+4. **Beacon detection** — physical Bluetooth beacons (RadBeacon E4) are mounted at both
+   locations. When the phone has been within 30m of one for 3 consecutive sightings,
+   the app advances the tour to that landmark, zooms the map to it, pops up its detail
+   sheet (speaking it aloud via `announceForAccessibility` when the sheet wasn't already
+   opened by a tap), and posts a `landmark_alerts` notification with the full
+   description. It doesn't matter which location's beacon it is — detections from both
+   locations are merged into one "closest" result. See "How beacon detection works"
+   below for the full debounce rules and how this keeps working with the screen off.
+5. **About / Settings** — static info page listing both locations' addresses; a
    "Simplified Text" toggle (easier-reading landmark descriptions, an accessibility
    feature), plus a live list of beacons currently in range across both locations
    (useful for field-testing the hardware).
@@ -98,14 +109,77 @@ in both files until iOS migrates to `warrington-trails.json`.
 - Reference counting (`activeConsumers`) lets multiple screens share one scan: scanning
   starts when the first screen appears and stops when the last disappears. Screens
   signal this via `onScreenActive()`/`onScreenInactive()` in `DisposableEffect`s.
-- Scanning is **foreground-only** — there is no background scanning, no foreground
-  service, and the phone must be on the relevant screen (Park Map, Tour, or Settings)
-  for beacons to do anything.
+- Scanning runs as a **foreground service** (AltBeacon's
+  `enableForegroundServiceScanning()`), backed by an ongoing "Listening for trail
+  landmarks" notification (channel `trail_scanning`) shown while the Park Map or a
+  Trail Tour is open. This is what keeps ranging alive with the screen locked or the
+  phone in a pocket — there is still no scanning when *no* relevant screen is open, but
+  it's no longer tied to the activity being in the foreground the way it was before this
+  feature.
 - Distance is estimated from RSSI; "closest" flips can still happen at boundaries, now
   including flips between the two locations' beacons if someone is (implausibly) in
   range of both at once. Lions Pride Park had densely packed beacons (a design driver
   for the distance sorting); on the US202 trail they're far apart, so usually 0–1
   beacons are in range there.
+
+## From "closest beacon" to "you've arrived": the announcement pipeline
+
+Raw ranging data is noisy (a beacon can appear for one cycle and vanish), so a second
+layer sits between `BeaconScanner` and the screens:
+
+```
+BeaconScanner.detectedBeacons ──▶ LandmarkAnnouncer ──▶ AnnouncementGate (debounce)
+                                        │                        │
+                                        │              (allowed?)▼
+                                        ├── SharedFlow<Landmark> "currentLandmark" (replay=1)
+                                        │     consumed by ParkMapViewModel and
+                                        │     TrailToursViewModel to open the sheet /
+                                        │     auto-advance the tour, regardless of
+                                        │     location
+                                        └── AnnouncementNotifier.notifyLandmark()
+                                              (only if the announcements setting is on)
+```
+
+- **`beacon/AnnouncementGate.kt`** holds the debounce rules (ported from the iOS app's
+  `BeaconScanner.swift` — don't retune without walking a trail): a beacon only counts if
+  it's within **30 meters**; it must be seen **3 consecutive times** before it announces
+  (a single stray reading can't fire it); it never re-announces the landmark that was
+  just announced immediately before; and each landmark has a **60-second cooldown**
+  (which also means lingering near a landmark you already dismissed lets you hear it
+  again after a minute). An empty ranging cycle (no beacons at all) forgets which
+  landmark you were just at — so leaving and coming back to the same one shortly after
+  isn't blocked by the "never twice in a row" rule — but does *not* reset any cooldowns.
+- **`beacon/LandmarkAnnouncer.kt`** is a Hilt `@Singleton` (not scoped to a ViewModel —
+  it owns its own `CoroutineScope` so the debounce state and the collector outlive any
+  one screen) that runs beacon detections through the gate, looks up the landmark, and
+  on a pass both emits it on `currentLandmark` (a `SharedFlow` with `replay=1`, so a
+  screen that starts observing after the fact immediately sees the last arrival) and —
+  only if the user's "Announce nearby landmarks" setting is on — posts the notification.
+  Note that `currentLandmark` itself emits regardless of that setting: turning
+  announcements off silences the notification and any spoken announcement, but a Trail
+  Tour still auto-advances silently, because that's navigation the user asked for, not
+  the app talking to them.
+- **`beacon/AnnouncementNotifier.kt`** owns two notification channels: `landmark_alerts`
+  (importance HIGH, `BigTextStyle` with the landmark's full long description, one
+  notification id reused per arrival) and `trail_scanning` (importance LOW, the ongoing
+  "Listening for trail landmarks" notification described above). Denying
+  `POST_NOTIFICATIONS` degrades gracefully — no notifications post, but the in-app sheet
+  and any spoken announcement still work.
+- On the Park Map, a beacon-driven sheet calls `view.announceForAccessibility(...)`
+  explicitly (in `LandmarkBottomSheet`'s `announceOnOpen` parameter) because nothing the
+  user did will make a screen reader read it otherwise; a sheet opened by tapping a
+  marker or a Landmarks-tab row does not, because the tap itself is already narrated.
+- The "Announce nearby landmarks" switch on the Park Map (`ParkMapViewModel`, backed by
+  `AppPreferences.announcementsEnabled`) both reports state (for a screen reader) and
+  controls it: turning it off stops the Park Map's scanning outright (and removes the
+  ongoing notification), while a Trail Tour that's open at the same time keeps scanning
+  — silently, per the auto-advance-is-navigation reasoning above.
+- **Gotcha when faking beacons for manual testing:** the scanner's beacon state is a
+  `StateFlow`, which drops a `.value` assignment that's structurally equal to the
+  current value. Faking the *exact* same minor+distance three times in a row (e.g. via
+  `simulate_beacon.sh`) therefore only reaches `AnnouncementGate` once, not three times —
+  vary the distance slightly on each call (`2.0`, `2.01`, `2.02`) to be sure each fake
+  reading actually lands.
 
 ## Architecture
 
@@ -116,8 +190,11 @@ Standard modern single-module Android app, ~2,100 lines of Kotlin:
   (`navigation/AppNavHost.kt`). Portrait-locked. A first-run `WelcomeScreen`
   (gated by a `welcome_seen` SharedPreference) explains the permission prompts before
   the main UI appears.
-- **DI:** Hilt. `di/AppModule.kt` provides Retrofit; `BeaconScanner` and
-  `TrailRepository` are constructor-injected `@Singleton`s.
+- **DI:** Hilt. `di/AppModule.kt` provides Retrofit; `BeaconScanner`, `TrailRepository`,
+  `LandmarkAnnouncer`, and `AnnouncementNotifier` are constructor-injected `@Singleton`s.
+  `data/prefs/AppPreferences.kt` centralizes the app's `SharedPreferences`-backed
+  settings (Simplified Text, the announcements toggle, and whether Welcome has been
+  seen) behind `StateFlow`s so every screen reads/writes the same source of truth.
 - **Data:** Retrofit + Gson fetch the JSON (`TrailsApiService`); `TrailRepository`
   holds it **in memory only** and offers simple lookup getters
   (`getLandmarks()`/`getLandmarkById()`, `getTrails()`/`getTrailById()`,
@@ -145,13 +222,19 @@ Standard modern single-module Android app, ~2,100 lines of Kotlin:
   done yet.
 - **Per-tab ViewModels** (Hilt, scoped to the tab's nav graph so they survive
   navigation within a tab):
-  - `ParkMapViewModel` — loads markers (all 40, both locations), listens to the
-    scanner, and emits a navigation event when a new closest beacon appears so the
-    screen opens that landmark's sheet, regardless of which location it belongs to.
+  - `ParkMapViewModel` — loads markers (all 40, both locations), starts/stops scanning
+    via the announcements toggle, listens to `LandmarkAnnouncer.currentLandmark`, and
+    emits a navigation event when a new arrival appears so the screen opens that
+    landmark's sheet (regardless of which location it belongs to) and exposes the
+    accessible status text ("Announcements on. Listening for nearby landmarks.").
   - `TrailToursViewModel` — shared by the list, detail, and tour screens in that tab;
-    same load + scan pattern, re-emits beacon hits to the tour screen. The list screen
-    groups trails under a header per location (via
-    `TrailRepository.getTrailsByLocation()`) instead of one flat list.
+    same load + scan pattern, re-emits arrivals to the tour screen for auto-advance
+    (scanning here isn't gated by the announcements toggle, since auto-advance still
+    runs silently when announcements are off). The list screen groups trails under a
+    header per location (via `TrailRepository.getTrailsByLocation()`) instead of one
+    flat list.
+  - `LandmarksViewModel` — loads all 40 landmarks grouped by location for the Landmarks
+    tab; no beacon involvement, since it's a browse-only list.
   - `SettingsViewModel` — the Simplified Text preference and the live beacon list.
 
 ### Screen flow
@@ -159,10 +242,12 @@ Standard modern single-module Android app, ~2,100 lines of Kotlin:
 ```
 WelcomeScreen (first run only)
 └─▶ Bottom nav
-    ├─ Park Map ──── tap marker or beacon hit ──▶ LandmarkBottomSheet
+    ├─ Park Map ──── tap marker or beacon arrival ──▶ LandmarkBottomSheet
+    │                 (+ "Announce nearby landmarks" status/toggle)
+    ├─ Landmarks ──── tap a row (grouped by location) ──▶ LandmarkBottomSheet (silent)
     ├─ Trail Tours ─▶ TrailDetailScreen (direction + start pick)
     │                 └─▶ TrailTourScreen (Prev/Next buttons; beacon auto-advance)
-    │                      └─ tap marker or beacon hit ──▶ LandmarkBottomSheet
+    │                      └─ tap marker or beacon arrival ──▶ LandmarkBottomSheet
     ├─ About (static)
     └─ Settings (Simplified Text toggle, nearby-beacon diagnostics, version)
 ```
@@ -182,14 +267,20 @@ the trail ends").
 
 Declared in the manifest and requested at runtime the first time the Park Map shows:
 
-- `ACCESS_FINE_LOCATION` — only to show the blue "my location" dot on the map (maps
-  SDK requirement). Beacon scanning explicitly does **not** use location
-  (`BLUETOOTH_SCAN` is declared with `neverForLocation`).
+- `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` — only to show the blue "my
+  location" dot on the map (maps SDK requirement). Beacon scanning explicitly does
+  **not** use location (`BLUETOOTH_SCAN` is declared with `neverForLocation`).
 - `BLUETOOTH_SCAN` (Android 12+) — beacon ranging.
 - `INTERNET` — data file + images.
+- `POST_NOTIFICATIONS` (Android 13+) — the ongoing "Listening for trail landmarks"
+  notification and `landmark_alerts` arrivals. Requested at runtime the first time the
+  Park Map shows, alongside the others above.
+- `FOREGROUND_SERVICE` — declared so AltBeacon's foreground-service scanning is allowed
+  to run (no runtime prompt); this is what lets ranging continue with the screen off.
 
-Denying either permission degrades gracefully: no location dot / no beacon
-auto-advance, but the map, content, and manual tour navigation all still work.
+Denying any of these degrades gracefully: no location dot / no beacon auto-advance / no
+notifications, but the map, content, manual tour navigation, and in-app arrival sheets
+(with any spoken announcement) all still work.
 
 ## Build & configuration
 
@@ -199,8 +290,9 @@ auto-advance, but the map, content, and manual tour navigation all still work.
 - No API keys required (the Google Maps key requirement went away with the osmdroid
   swap); `local.properties` only needs `sdk.dir`.
 - Debug build: `./gradlew assembleDebug` → `app/build/outputs/apk/debug/app-debug.apk`.
-- No tests, no CI, no release signing config in-repo (release deploys go through the
-  Play Store account saga described in the README).
+- Unit tests (`./gradlew test`) cover the debounce/gate logic (`AnnouncementGateTest`)
+  and the notification content, but there's no CI and no release signing config in-repo
+  (release deploys go through the Play Store account saga described in the README).
 
 ## Simulating beacons in development
 
@@ -220,19 +312,32 @@ location's landmark ids. The `simulate_beacon.sh` script in `android/` wraps it:
 Landmark ids: US202 uses 1–16 (trail stops) and 4001 (trailhead); Lions Pride Park uses
 1002–3008. While a simulation is active, real scan results are ignored (otherwise each
 empty scan cycle would overwrite the fakes within a second); `clear` hands control back
-to the radio. Two things to know: the closest-beacon flow dedupes, so re-sending the
-*same* minor won't re-trigger the popup (send a different one in between, like real
-walking); and leaving a beacon-consuming screen clears the injected state (same as real
-detections), so re-send after navigating. For radio-level testing on a real phone, use
-a transmitter app such as Beacon Scope (by the AltBeacon library's author) with an
-AltBeacon layout, UUID `035a0617-0875-4cc7-a29c-be0caa8f557c`, major `17` (Lions Pride)
-or `20` (US202), minor = landmark id.
+to the radio. Three things to know:
+
+- The app only announces/opens a sheet for a beacon once `AnnouncementGate` has seen it
+  3 consecutive times within 30m (see "From 'closest beacon' to 'you've arrived'"
+  above) — a single `simulate_beacon.sh <minor>` call does nothing by design. Send the
+  same minor 3 times, a second or so apart, to see the arrival.
+- The underlying beacon state is a `StateFlow`, which drops an assignment that's
+  structurally equal to the current value. Faking the *exact* same minor+distance three
+  times in a row therefore only reaches the gate once, not three times — vary the
+  distance slightly on each call (`2.0`, `2.01`, `2.02`) to be sure each one lands.
+  Distances of 30m or more are ignored entirely, by the same gate rule.
+- Leaving a beacon-consuming screen clears the injected state (same as real
+  detections), so re-send after navigating.
+
+For radio-level testing on a real phone, use a transmitter app such as Beacon Scope (by
+the AltBeacon library's author) with an AltBeacon layout, UUID
+`035a0617-0875-4cc7-a29c-be0caa8f557c`, major `17` (Lions Pride) or `20` (US202),
+minor = landmark id.
 
 ## Things that are intentionally simple (don't be surprised)
 
 - No backend, no auth, no analytics, no crash reporting.
 - No offline persistence of the JSON (in-memory only, refetched per ViewModel).
-- Beacon scanning only in the foreground on specific screens.
+- Beacon scanning only while a relevant screen (Park Map, a Trail Tour, or Settings) is
+  open — it now survives a locked screen via the foreground service, but there's still
+  no scanning with none of those screens active.
 - Four trails today, across two locations; the code supports any number of trails or
   locations in the JSON (`trails[]` and `locations[]` are both lists, and the Trail
   Tours screen renders a card per trail, grouped under a header per location).

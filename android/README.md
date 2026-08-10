@@ -31,6 +31,21 @@ close together and it was common to read multiple ones and
 need to distinguish which one you're actually close to.
 On the US202 to Bradford Dam trail the beacons are farther apart.
 
+## Landmark announcements
+
+The app announces a landmark (in-app speech via `announceForAccessibility`, plus a
+`landmark_alerts` notification) once you've been within 30m of its beacon for 3
+consecutive sightings — see `HOW_IT_WORKS.md` for the full debounce rules. Beacon
+scanning now runs as a **foreground service** (via AltBeacon's
+`enableForegroundServiceScanning`) so it keeps working with the screen off or the
+phone in a pocket, backed by an ongoing "Listening for trail landmarks" notification
+shown while the Park Map or a Trail Tour is open. This adds two permissions beyond
+what's listed in `HOW_IT_WORKS.md`'s Permissions section: `POST_NOTIFICATIONS`
+(Android 13+, for both the ongoing scanning notification and landmark alerts — denying
+it just means the app stops posting notifications, arrivals still work in-app) and
+`FOREGROUND_SERVICE` (declared automatically by AltBeacon's foreground-service
+scanning; no runtime prompt).
+
 ## Cloud Resources
 
 Data files and images are served by GitHub Pages from the `server/`
