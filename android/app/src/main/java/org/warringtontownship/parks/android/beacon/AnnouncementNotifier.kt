@@ -91,6 +91,11 @@ class AnnouncementNotifier @Inject constructor(
             .setContentIntent(contentIntent())
             .setOngoing(true)
             .setSilent(true)
+            // Android 12+ defers a foreground-service notification by up to 10 seconds
+            // unless it asks to be shown immediately. Deferred, it never appeared at all
+            // in testing, which leaves the user with no sign that the app is scanning and
+            // no obvious way to stop it — the whole point of an ongoing notification.
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             .build()
 
     private fun contentIntent(): PendingIntent =

@@ -207,6 +207,12 @@ class ParkMapViewModel @Inject constructor(
     fun onPermissionResult() {
         refreshSystemState()
         if (!screenActive || !scanStarted) return
+        // Only rebuild when the service is actually degraded. Retrying unconditionally
+        // tears the foreground service down and back up within a few hundred
+        // milliseconds, and the system drops the notification that was mid-flight —
+        // measured on API 35: enqueued once, posted never. Nothing to retry when the
+        // service already started cleanly.
+        if (!beaconScanner.foregroundServiceFailed.value) return
         stopScanning()
         startScanningIfReady()
     }

@@ -97,6 +97,7 @@ fun TrailMap(
     centerZoomLevel: Float = 18f,
     highlightedMarkerId: Int? = null,
     collapseMarkersWhenZoomedOut: Boolean = false,
+    onLocationPermissionResult: (() -> Unit)? = null,
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -109,7 +110,14 @@ fun TrailMap(
     }
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
-        onResult = { granted -> locationPermissionGranted = granted },
+        onResult = { granted ->
+            locationPermissionGranted = granted
+            // The beacon foreground service needs this same location grant on Android
+            // 14+. Without telling anyone the answer arrived, a screen that started
+            // scanning before the user answered would stay degraded until they left and
+            // came back.
+            onLocationPermissionResult?.invoke()
+        },
     )
     LaunchedEffect(Unit) {
         if (!locationPermissionGranted) {
