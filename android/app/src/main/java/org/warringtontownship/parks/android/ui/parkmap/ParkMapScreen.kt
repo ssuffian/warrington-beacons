@@ -49,7 +49,10 @@ fun ParkMapScreen(
 
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
-        onResult = { },
+        // Whatever the user chose, the answer is now known. Give the foreground
+        // service another chance: on first launch the scan started before the grant
+        // landed, and nothing else would ever retry it.
+        onResult = { viewModel.onPermissionResult() },
     )
 
     LaunchedEffect(Unit) {

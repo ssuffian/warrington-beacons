@@ -1,7 +1,10 @@
 package org.warringtontownship.parks.android.beacon
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.util.Log
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -97,6 +100,16 @@ class BeaconScanner @Inject constructor(
         )
     }
 
+    /**
+     * Either location permission satisfies the API 34+ foregroundServiceType="location"
+     * rule, so coarse-only (the map's blue dot downgraded) still gets the service.
+     */
+    private fun hasLocationPermission(): Boolean =
+        ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
+
     fun startScanning(consumer: String, regions: List<BeaconRegion>) {
         if (regions.isEmpty()) return
         if (!activeConsumers.add(consumer)) return
@@ -116,25 +129,41 @@ class BeaconScanner @Inject constructor(
                 detectionsByRegion.clear()
             }
             BeaconManager.setRssiFilterImplClass(ArmaRssiFilter::class.java)
-            try {
-                // Scheduled scan jobs and foreground-service scanning are mutually
-                // exclusive in altbeacon; the service is what keeps ranging alive with
-                // the screen off and the phone in a pocket. This can throw if a
-                // consumer is still bound from an unclean previous stop, so it stays
-                // inside the try — the catch below still lets ranging start in the
-                // (unprotected) foreground-only path rather than leaving the scanner
-                // believing it's live while nothing was ever wired up.
-                beaconManager.setEnableScheduledScanJobs(false)
-                beaconManager.enableForegroundServiceScanning(
-                    notifier.scanningNotification(),
-                    AnnouncementNotifier.SCANNING_NOTIFICATION_ID,
+            if (!hasLocationPermission()) {
+                // Altbeacon's BeaconService declares foregroundServiceType="location",
+                // and from API 34 starting such a service without a granted
+                // fine/coarse location permission throws SecurityException. Altbeacon
+                // catches that internally and never sets the flag
+                // foregroundServiceStartFailed() reads, so asking it would report
+                // success while scanning silently dies at screen-off. Decide here
+                // instead: skip the service, report the degraded state honestly, and
+                // still range while the app is in front.
+                Log.w(
+                    "BeaconScanner",
+                    "Location permission not granted; skipping foreground service scanning",
                 )
-                _foregroundServiceFailed.value = beaconManager.foregroundServiceStartFailed()
-            } catch (e: IllegalStateException) {
-                // Already enabled, or not permitted. Ranging still works while the
-                // app is in front, so degrade rather than fail.
-                Log.w("BeaconScanner", "Foreground service scanning unavailable", e)
                 _foregroundServiceFailed.value = true
+            } else {
+                try {
+                    // Scheduled scan jobs and foreground-service scanning are mutually
+                    // exclusive in altbeacon; the service is what keeps ranging alive with
+                    // the screen off and the phone in a pocket. This can throw if a
+                    // consumer is still bound from an unclean previous stop, so it stays
+                    // inside the try — the catch below still lets ranging start in the
+                    // (unprotected) foreground-only path rather than leaving the scanner
+                    // believing it's live while nothing was ever wired up.
+                    beaconManager.setEnableScheduledScanJobs(false)
+                    beaconManager.enableForegroundServiceScanning(
+                        notifier.scanningNotification(),
+                        AnnouncementNotifier.SCANNING_NOTIFICATION_ID,
+                    )
+                    _foregroundServiceFailed.value = beaconManager.foregroundServiceStartFailed()
+                } catch (e: IllegalStateException) {
+                    // Already enabled, or not permitted. Ranging still works while the
+                    // app is in front, so degrade rather than fail.
+                    Log.w("BeaconScanner", "Foreground service scanning unavailable", e)
+                    _foregroundServiceFailed.value = true
+                }
             }
             beaconManager.addRangeNotifier(rangeNotifier)
             started.forEach { beaconManager.startRangingBeacons(it) }

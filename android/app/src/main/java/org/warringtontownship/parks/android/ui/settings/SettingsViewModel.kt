@@ -65,6 +65,12 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun startScanningIfReady() {
+        // Same guard the Park Map uses. With announcements off, scanning here would
+        // start the foreground service and its ongoing notification for a nearby-
+        // beacons readout the user never asked for — battery and trust cost against
+        // a preference they explicitly set. A Trail Tour is deliberately exempt from
+        // this rule; a diagnostic list is not.
+        if (!appPreferences.announcementsEnabled.value) return
         if (beaconRegions.isEmpty()) return
         beaconScanner.startScanning(SCAN_CONSUMER, beaconRegions)
     }

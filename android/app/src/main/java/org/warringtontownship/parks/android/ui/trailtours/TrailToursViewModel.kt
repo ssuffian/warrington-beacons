@@ -2,6 +2,7 @@ package org.warringtontownship.parks.android.ui.trailtours
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import org.warringtontownship.parks.android.beacon.AnnouncementText
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.beacon.BeaconScanner
 import org.warringtontownship.parks.android.beacon.LandmarkAnnouncer
@@ -105,4 +106,14 @@ class TrailToursViewModel @Inject constructor(
     fun getLandmarkById(id: Int): Landmark? = trailRepository.getLandmarkById(id)
     fun getBoundsForTrail(trailId: Int): List<Coordinates> = trailRepository.getBoundsForTrail(trailId)
     fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
+
+    /**
+     * The text to speak when a beacon opens the tour's sheet, or null when the user
+     * has announcements off — a tour still auto-advances silently in that case,
+     * because advancing is navigation the user asked for while speaking is not.
+     */
+    fun announcementTextFor(landmarkId: Int): AnnouncementText? {
+        if (!announcer.isAnnouncingEnabled()) return null
+        return trailRepository.getLandmarkById(landmarkId)?.let { announcer.textFor(it) }
+    }
 }

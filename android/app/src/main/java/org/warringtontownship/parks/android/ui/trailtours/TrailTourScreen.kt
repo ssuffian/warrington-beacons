@@ -65,6 +65,10 @@ fun TrailTourScreen(
         mutableIntStateOf(if (startIndex >= 0) startIndex else 0)
     }
     var sheetLandmarkId by remember { mutableStateOf<Int?>(null) }
+    // Only a beacon-opened sheet is announced. A Previous/Next or marker tap is
+    // already narrated by TalkBack as the user's own action; speaking it again
+    // would double up.
+    var sheetOpenedByBeacon by remember { mutableStateOf(false) }
     var beaconZoomPosition by remember { mutableStateOf<Coordinates?>(null) }
 
     DisposableEffect(viewModel) {
@@ -79,6 +83,7 @@ fun TrailTourScreen(
             val stopIndex = stops.indexOfFirst { it.landmarkId == initialBeacon }
             if (stopIndex >= 0) {
                 currentIndex = stopIndex
+                sheetOpenedByBeacon = true
                 sheetLandmarkId = initialBeacon
                 val stop = stops[stopIndex]
                 beaconZoomPosition = Coordinates(stop.latitude, stop.longitude)
@@ -89,6 +94,7 @@ fun TrailTourScreen(
             val stopIndex = stops.indexOfFirst { it.landmarkId == minorCode }
             if (stopIndex >= 0) {
                 currentIndex = stopIndex
+                sheetOpenedByBeacon = true
                 sheetLandmarkId = minorCode
                 val stop = stops[stopIndex]
                 beaconZoomPosition = Coordinates(stop.latitude, stop.longitude)
@@ -175,6 +181,7 @@ fun TrailTourScreen(
                         onClick = {
                             val newIndex = if (reverse) currentIndex + 1 else currentIndex - 1
                             currentIndex = newIndex
+                            sheetOpenedByBeacon = false
                             sheetLandmarkId = stops[newIndex].landmarkId
                         },
                     ) {
@@ -185,6 +192,7 @@ fun TrailTourScreen(
                         onClick = {
                             val newIndex = if (reverse) currentIndex - 1 else currentIndex + 1
                             currentIndex = newIndex
+                            sheetOpenedByBeacon = false
                             sheetLandmarkId = stops[newIndex].landmarkId
                         },
                     ) {
@@ -203,16 +211,25 @@ fun TrailTourScreen(
                 focusPosition = Coordinates(currentStop.latitude, currentStop.longitude),
                 centerZoomPosition = beaconZoomPosition,
                 highlightedMarkerId = currentStop.landmarkId,
-                onMarkerClick = { landmarkId -> sheetLandmarkId = landmarkId },
+                onMarkerClick = { landmarkId ->
+                    sheetOpenedByBeacon = false
+                    sheetLandmarkId = landmarkId
+                },
             )
         }
     }
 
     if (sheetLandmarkId != null) {
         val landmark = viewModel.getLandmarkById(sheetLandmarkId!!)
+        val announcement = if (sheetOpenedByBeacon) {
+            viewModel.announcementTextFor(sheetLandmarkId!!)?.let { "${it.title}. ${it.body}" }
+        } else {
+            null
+        }
         LandmarkBottomSheet(
             landmark = landmark,
             imageUrl = landmark?.let { viewModel.imageUrlFor(it) },
+            announceOnOpen = announcement,
             onDismiss = { sheetLandmarkId = null },
         )
     }
