@@ -47,6 +47,18 @@ internal fun accumulateAndMerge(
     return mergeDetections(byRegion)
 }
 
+/**
+ * Advertisement layouts the scanner parses. The beacons dual-advertise iBeacon
+ * and AltBeacon frames, and the two frames don't always carry the same UUID
+ * (Lions Pride hardware uses 00112233-… on its AltBeacon frame), so both layouts
+ * are registered and both UUIDs are ranged — registering only one layout, or
+ * ranging only one UUID, silently blinds the scanner to one of the frames.
+ */
+internal const val IBEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"
+
+internal fun scannedBeaconLayouts(): List<String> =
+    listOf(BeaconParser.ALTBEACON_LAYOUT, IBEACON_LAYOUT)
+
 @Singleton
 class BeaconScanner @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -95,9 +107,9 @@ class BeaconScanner @Inject constructor(
     }
 
     init {
-        beaconManager.beaconParsers.add(
-            BeaconParser().setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT)
-        )
+        scannedBeaconLayouts().forEach { layout ->
+            beaconManager.beaconParsers.add(BeaconParser().setBeaconLayout(layout))
+        }
     }
 
     /**
@@ -116,8 +128,11 @@ class BeaconScanner @Inject constructor(
         Log.d("BeaconScanner", "Consumer $consumer added, active=$activeConsumers")
         if (activeConsumers.size == 1) {
             val started = regions.map { spec ->
+                // uniqueId doubles as the accumulation key in detectionsByRegion,
+                // so it must distinguish regions that share a major but range a
+                // different advertisement UUID (iBeacon vs AltBeacon frame).
                 Region(
-                    "park-beacons-${spec.majorCode}",
+                    "park-beacons-${spec.uuid}-${spec.majorCode}",
                     Identifier.parse(spec.uuid),
                     Identifier.fromInt(spec.majorCode),
                     null,

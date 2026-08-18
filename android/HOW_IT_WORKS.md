@@ -56,7 +56,9 @@ served from GitHub Pages (see README for the hosting/DNS setup and the messy
 account-ownership history). The file contains four top-level sections (mapped in
 `data/model/TrailsData.kt`):
 
-- **`beaconUUID`** — the single beacon UUID shared by every beacon at both locations.
+- **`iBeaconUUID` / `altBeaconUUID`** — per-location UUIDs carried by the beacons'
+  iBeacon and AltBeacon advertisement frames. They differ on Lions Pride hardware,
+  so both are ranged (see `TrailRepository.getBeaconRegions()`).
 - **`locations[]`** (2 today: Lions Pride Park and US202 to Bradford Dam) — each with an
   `id`, name, address, and its own **beacon major code** (17 for Lions Pride, 20 for
   US202). This is the one place the data (and `TrailRepository`) distinguish the two

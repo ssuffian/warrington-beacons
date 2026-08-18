@@ -26,7 +26,7 @@ struct NextPointOfInterestDetailsView: View {
             GeometryReader { geo in
                 ZStack {
                     VStack(alignment: .leading) {
-                        AsyncImage(url: getUrl("\(BASE_URL_STRING)/images/\(self.landmark.imageName).jpg")) { image in
+                        AsyncImage(url: self.landmark.imageUrl) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)

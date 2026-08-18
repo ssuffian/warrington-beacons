@@ -11,6 +11,16 @@ import SwiftUI
 
 let BASE_URL_STRING = getBaseUrlString()
 
+// The configured base URL points at the US-202 directory
+// (e.g. https://trails.warringtoneac.org/us-202); Lions Pride lives alongside
+// it. Both parks' data files are fetched so either park's beacons resolve to
+// landmarks.
+let LIONS_PRIDE_BASE_URL_STRING =
+    URL(string: BASE_URL_STRING)!
+        .deletingLastPathComponent()
+        .appendingPathComponent("lions-pride-park")
+        .absoluteString
+
 func getBaseUrlString() -> String {
     guard let configurationUrlString = Bundle.main.object(forInfoDictionaryKey: "base_url_string") as? String else {
         fatalError("base_url_string configuration value missing")

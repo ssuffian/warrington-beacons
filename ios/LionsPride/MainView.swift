@@ -158,39 +158,70 @@ struct MainView: View {
     }
         
     func loadData() {
-        guard let url = URL(string: "\(BASE_URL_STRING)/us202trail-v2.json") else {
+        // Each park ships its own data file; both are loaded so beacons from
+        // either park resolve to landmarks. The app is ready once at least one
+        // park loads (the other may still arrive, or fall back to cache).
+        let group = DispatchGroup()
+        var loadedCount = 0
+        let counterQueue = DispatchQueue(label: "loadData.counter")
+
+        for source in [
+            (url: "\(BASE_URL_STRING)/us202trail-v2.json", imageBase: BASE_URL_STRING),
+            (url: "\(LIONS_PRIDE_BASE_URL_STRING)/lionsPrideData.json", imageBase: LIONS_PRIDE_BASE_URL_STRING),
+        ] {
+            group.enter()
+            fetchParkData(urlString: source.url, imageBase: source.imageBase) { loaded in
+                if loaded {
+                    counterQueue.sync { loadedCount += 1 }
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            if loadedCount > 0 {
+                self.userData.initialized = true
+            } else {
+                print("No trail data available from network or cache")
+            }
+        }
+    }
+
+    // Revalidate with the server when online (a cheap ETag 304 unless the file
+    // changed) so content updates are noticed promptly; if the network is
+    // unreachable (poor signal on the trail), fall back to the last cached copy.
+    private func fetchParkData(urlString: String, imageBase: String, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: urlString) else {
             print("Invalid URL")
+            completion(false)
             return
         }
 
-        // Revalidate with the server when online (a cheap ETag 304 unless the file
-        // changed) so content updates are noticed promptly; if the network is
-        // unreachable (poor signal on the trail), fall back to the last cached copy.
         var request = URLRequest(url: url)
         request.cachePolicy = .reloadRevalidatingCacheData
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data, self.decodeAndApply(data) {
+            if let data = data, self.decodeAndApply(data, imageBase: imageBase) {
+                completion(true)
                 return
             }
             print("Error loading trail data (\(error?.localizedDescription ?? "unknown error")), trying cache")
             var cachedRequest = URLRequest(url: url)
             cachedRequest.cachePolicy = .returnCacheDataDontLoad
             URLSession.shared.dataTask(with: cachedRequest) { data, _, cacheError in
-                if let data = data, self.decodeAndApply(data) {
+                if let data = data, self.decodeAndApply(data, imageBase: imageBase) {
+                    completion(true)
                     return
                 }
                 print("No cached trail data available: \(cacheError?.localizedDescription ?? "unknown error")")
+                completion(false)
             }.resume()
         }.resume()
     }
 
-    private func decodeAndApply(_ data: Data) -> Bool {
+    private func decodeAndApply(_ data: Data, imageBase: String) -> Bool {
         do {
             let decodedResponse = try JSONDecoder().decode(LionsPrideData.self, from: data)
-            landmarkService.processData(decodedResponse)
-            DispatchQueue.main.async {
-                self.userData.initialized = true
-            }
+            landmarkService.processData(decodedResponse, imageBase: imageBase)
             return true
         } catch {
             print(error)

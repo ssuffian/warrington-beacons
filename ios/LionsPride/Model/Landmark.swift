@@ -25,6 +25,14 @@ struct Landmark: Hashable, Codable, Identifiable {
     var isOpen: Bool?
     var trailDistanceDescription: String?
 
+    // Not present in the JSON — set by LandmarkService to the URL of the park
+    // directory this landmark was loaded from, so photos resolve per park.
+    var imageBase: String?
+
+    var imageUrl: URL {
+        getUrl("\(imageBase ?? BASE_URL_STRING)/images/\(imageName).jpg")
+    }
+
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
             latitude: coordinates.latitude,

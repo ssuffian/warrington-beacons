@@ -12,7 +12,7 @@ struct LandmarkRowView: View {
 
     var body: some View {
         HStack {
-            AsyncImage(url: getUrl("\(BASE_URL_STRING)/images/\(landmark.imageName).jpg")) { image in
+            AsyncImage(url: landmark.imageUrl) { image in
                 image
                     .resizable().scaledToFit()
             } placeholder: {

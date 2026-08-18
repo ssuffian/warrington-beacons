@@ -1,7 +1,6 @@
 package org.warringtontownship.parks.android.data.model
 
 data class TrailsData(
-    val beaconUUID: String,
     val locations: List<Location>,
     val landmarks: List<Landmark>,
     val trails: List<Trail>,
@@ -12,6 +11,11 @@ data class Location(
     val name: String,
     val address: String,
     val beaconMajorCode: Int,
+    // UUIDs carried by this location's beacons' iBeacon and AltBeacon frames
+    // (the hardware dual-advertises both). They may match (US-202) or differ
+    // (Lions Pride AltBeacon frames use 00112233-…).
+    val iBeaconUUID: String,
+    val altBeaconUUID: String,
 )
 
 data class Coordinates(

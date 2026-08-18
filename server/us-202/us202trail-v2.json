@@ -22,7 +22,8 @@
         "longitude": -75.158745
       }
     ],
-    "beaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+    "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+    "altBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
     "beaconMajorCode": 20
   },
   "landmarks": [

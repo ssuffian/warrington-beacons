@@ -15,7 +15,15 @@ class TrailsDataParsingTest {
 
     @Test
     fun `parses both locations with their beacon major codes`() {
-        assertEquals("035a0617-0875-4cc7-a29c-be0caa8f557c", data.beaconUUID)
+        // The beacons dual-advertise iBeacon and AltBeacon frames, each with its
+        // own per-location UUID (they differ on Lions Pride hardware).
+        assertEquals(
+            mapOf(
+                "lions-pride-park" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "00112233-4455-6677-8899-aabbccddeeff"),
+                "us-202" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+            ),
+            data.locations.associate { it.id to (it.iBeaconUUID to it.altBeaconUUID) },
+        )
         assertEquals(
             mapOf("lions-pride-park" to 17, "us-202" to 20),
             data.locations.associate { it.id to it.beaconMajorCode },

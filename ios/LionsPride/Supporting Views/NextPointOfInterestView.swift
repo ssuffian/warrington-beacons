@@ -18,7 +18,7 @@ struct NextPointOfInterestView: View {
         ZStack {
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
-                    AsyncImage(url: getUrl("\(BASE_URL_STRING)/images/\(selectedLandmark.imageName).jpg")) { image in
+                    AsyncImage(url: selectedLandmark.imageUrl) { image in
                         image
                             .resizable()
                     } placeholder: {

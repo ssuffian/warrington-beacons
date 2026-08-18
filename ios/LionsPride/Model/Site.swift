@@ -10,6 +10,11 @@ import Foundation
 
 struct Site: Codable {
     var boundaryCoordinates: [Coordinates]
-    var beaconUUID: String
+    // The beacons dual-advertise iBeacon and AltBeacon frames, and the frames can
+    // carry different UUIDs (Lions Pride AltBeacon frames use 00112233-…).
+    // CoreLocation only ever sees the iBeacon frame, so iBeaconUUID is the one
+    // BeaconScanner cares about; altBeaconUUID is documented for Android.
+    var iBeaconUUID: String
+    var altBeaconUUID: String
     var beaconMajorCode: Int
 }

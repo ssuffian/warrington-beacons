@@ -87,10 +87,15 @@ class TrailRepositoryTest {
     }
 
     @Test
-    fun `yields one beacon region per location`() {
+    fun `ranges every location major under both advertisement UUIDs`() {
+        // Each beacon dual-advertises, and the frames can carry different UUIDs
+        // (Lions Pride AltBeacon frames use 00112233-…), so every major must be
+        // ranged under both of its location's UUIDs or one frame is invisible to
+        // the scanner. US-202's two UUIDs match, so it collapses to one region.
         assertEquals(
             listOf(
                 BeaconRegion("035a0617-0875-4cc7-a29c-be0caa8f557c", 17),
+                BeaconRegion("00112233-4455-6677-8899-aabbccddeeff", 17),
                 BeaconRegion("035a0617-0875-4cc7-a29c-be0caa8f557c", 20),
             ),
             repository.getBeaconRegions(),

@@ -1,17 +1,20 @@
 {
-  "beaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
   "locations": [
     {
       "id": "lions-pride-park",
       "name": "Lions Pride Park",
       "address": "3129 Bradley Rd, Warrington, PA 18976",
-      "beaconMajorCode": 17
+      "beaconMajorCode": 17,
+      "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "altBeaconUUID": "00112233-4455-6677-8899-aabbccddeeff"
     },
     {
       "id": "us-202",
       "name": "US202 to Bradford Dam",
       "address": "Stump Road across from 785, Chalfont, PA 18914",
-      "beaconMajorCode": 20
+      "beaconMajorCode": 20,
+      "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "altBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c"
     }
   ],
   "landmarks": [

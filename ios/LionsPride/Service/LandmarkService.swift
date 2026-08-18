@@ -21,23 +21,68 @@ class LandmarkService {
     private var trails = [Trail]()
     private var spans: [Int: MKCoordinateSpan]
 
-    public func processData(_ lionsPrideData: LionsPrideData) {
-        self.landmarks = lionsPrideData.landmarks
-        self.trails = lionsPrideData.trails
+    // Both parks' files are fetched concurrently and each calls processData;
+    // keep the merge single-threaded.
+    private let queue = DispatchQueue(label: "landmarkService.processData")
 
-        Landmark.Category.allCases.forEach{c in
-            landmarksByCategory[c] = [Landmark]()
-        }
+    // Site sections by beacon major, merged across parks the same way landmarks
+    // are; they carry the beacon UUIDs BeaconScanner ranges.
+    private var sitesByMajor = [Int: Site]()
 
-        landmarks.forEach{landmark in
-            landmarksById[landmark.id] = landmark
-            landmarksByName[landmark.name] = landmark
-            landmarksByCategory[landmark.category]?.append(landmark)
-        }
+    // Merges a park's data into what is already loaded (a re-fetch of the same
+    // park replaces its entries by id). imageBase is the URL directory whose
+    // images/ folder holds this park's landmark photos.
+    public func processData(_ data: LionsPrideData, imageBase: String = BASE_URL_STRING) {
+        queue.sync {
+            sitesByMajor[data.site.beaconMajorCode] = data.site
+            // Ranging is driven by the site sections rather than a hardcoded
+            // list, so a new park needs no app update. CoreLocation only sees
+            // iBeacon frames — altBeaconUUID stays Android-only.
+            BeaconScanner.shared.updateBeaconRegions(
+                sitesByMajor.values.map {
+                    (uuid: $0.iBeaconUUID, major: CLBeaconMajorValue($0.beaconMajorCode))
+                }
+            )
 
-        for index in 0..<trails.count {
-            self.setUpTrail(trail: &trails[index]) // Must set midpoint before putting trail into hash
-            trailsById[trails[index].id] = trails[index]
+            var newLandmarks = data.landmarks
+            for index in newLandmarks.indices {
+                newLandmarks[index].imageBase = imageBase
+            }
+            for landmark in newLandmarks {
+                if let existing = landmarks.firstIndex(where: { $0.id == landmark.id }) {
+                    landmarks[existing] = landmark
+                } else {
+                    landmarks.append(landmark)
+                }
+            }
+
+            var newTrails = data.trails
+            for index in newTrails.indices {
+                if let existing = trails.firstIndex(where: { $0.id == newTrails[index].id }) {
+                    newTrails[index].midCoordinates = newTrails[index].midCoordinates ?? trails[existing].midCoordinates
+                    trails[existing] = newTrails[index]
+                } else {
+                    trails.append(newTrails[index])
+                }
+            }
+
+            landmarksById.removeAll()
+            landmarksByName.removeAll()
+            Landmark.Category.allCases.forEach{c in
+                landmarksByCategory[c] = [Landmark]()
+            }
+
+            landmarks.forEach{landmark in
+                landmarksById[landmark.id] = landmark
+                landmarksByName[landmark.name] = landmark
+                landmarksByCategory[landmark.category]?.append(landmark)
+            }
+
+            trailsById.removeAll()
+            for index in 0..<trails.count {
+                self.setUpTrail(trail: &trails[index]) // Must set midpoint before putting trail into hash
+                trailsById[trails[index].id] = trails[index]
+            }
         }
     }
     

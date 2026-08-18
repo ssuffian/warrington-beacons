@@ -46,12 +46,26 @@ class BeaconScanner: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var beacons: [RangedBeacon] = []   // publish for the debug view
     var locationPermissionDenied = false      // mainview checks on startup
 
-    // All beacons in a park have the same UUID and major value
-    // TODO get this from the site section of the JSON file
-    let UUID_STRING = "035a0617-0875-4cc7-a29c-be0caa8f557c"
-    let MAJOR_VALUE = CLBeaconMajorValue(20)
+    // Scan regions are server-driven: each park file's site section declares the
+    // UUIDs its beacons advertise, and LandmarkService forwards them here via
+    // updateBeaconRegions as the files load. CoreLocation only understands
+    // iBeacon frames, so only each site's iBeaconUUID feeds these constraints
+    // (Android ranges the per-site altBeaconUUID too).
+    private var constraints: [CLBeaconIdentityConstraint] = []
 
-    private let constraint: CLBeaconIdentityConstraint
+    // Ranging reports arrive per constraint, so detections are accumulated per
+    // constraint and merged; an empty cycle for one park must not clear a live
+    // detection from the other.
+    private var detectionsByConstraint: [String: [RangedBeacon]] = [:]
+
+    // Tracks whether scanning is on so regions arriving mid-scan (park data
+    // loads after a screen has already started scanning) can start ranging
+    // without waiting for the next stop/start cycle.
+    private var scanning = false
+
+    private static func key(for constraint: CLBeaconIdentityConstraint) -> String {
+        "\(constraint.uuid.uuidString)-\(constraint.major.map(String.init) ?? "any")"
+    }
 
     private var lastNearbyBeaconId: Int?
 
@@ -75,23 +89,48 @@ class BeaconScanner: NSObject, CLLocationManagerDelegate, ObservableObject {
     static let shared = BeaconScanner()
 
     private override init () {
-        let uuid = UUID(uuidString: UUID_STRING)!
-        self.constraint = CLBeaconIdentityConstraint(uuid: uuid, major: MAJOR_VALUE)
         super.init()
 
         locationManager.delegate = self
+    }
+
+    // Replaces the ranged regions with the server-provided set. May be called
+    // from any thread (park data decodes on a URLSession queue); the swap is
+    // applied on the main thread like every other locationManager touch.
+    func updateBeaconRegions(_ regions: [(uuid: String, major: CLBeaconMajorValue)]) {
+        DispatchQueue.main.async {
+            let newConstraints = regions.compactMap { region -> CLBeaconIdentityConstraint? in
+                guard let uuid = UUID(uuidString: region.uuid) else {
+                    print("BeaconScanner: ignoring unparseable uuid \(region.uuid)")
+                    return nil
+                }
+                return CLBeaconIdentityConstraint(uuid: uuid, major: region.major)
+            }
+            if self.scanning {
+                self.constraints.forEach { self.locationManager.stopRangingBeacons(satisfying: $0) }
+                newConstraints.forEach { self.locationManager.startRangingBeacons(satisfying: $0) }
+            }
+            self.constraints = newConstraints
+            // Keys derive from the constraints, so stale entries would linger.
+            self.detectionsByConstraint.removeAll()
+        }
     }
 
     func startScanning() {
         print("\(type(of:self)): \(#function)")
         logAuthorizationStatus()
 
+        scanning = true
         lastNearbyBeaconId = nil
+        detectionsByConstraint.removeAll()
         // possibly reset lastNotificationCache and/or beaconSeenCount too, need to test
 
+        // Constraints may still be empty here — the park files (and their site
+        // sections) load asynchronously, and updateBeaconRegions starts ranging
+        // the moment they land.
         if CLLocationManager.isRangingAvailable() {
             locationManager.requestWhenInUseAuthorization()
-            locationManager.startRangingBeacons(satisfying: constraint)
+            constraints.forEach { locationManager.startRangingBeacons(satisfying: $0) }
             locationManager.startUpdatingLocation()
         } else {
             print("Beacon ranging is not available on this device")
@@ -100,8 +139,10 @@ class BeaconScanner: NSObject, CLLocationManagerDelegate, ObservableObject {
 
     func stopScanning() {
         print("\(type(of:self)): \(#function)")
+        scanning = false
         locationManager.stopUpdatingLocation()
-        locationManager.stopRangingBeacons(satisfying: constraint)
+        constraints.forEach { locationManager.stopRangingBeacons(satisfying: $0) }
+        detectionsByConstraint.removeAll()
     }
 
     private func getClosestBeacon(beacons: [RangedBeacon]) -> RangedBeacon? {
@@ -187,7 +228,11 @@ class BeaconScanner: NSObject, CLLocationManagerDelegate, ObservableObject {
 
         if simulationActive { return }
 
-        let ranged = beacons.map { RangedBeacon(from: $0) }
+        // Store this constraint's cycle, then merge across all constraints —
+        // the closest beacon overall decides, and an empty cycle for one park
+        // leaves the other park's live detection intact.
+        detectionsByConstraint[BeaconScanner.key(for: beaconConstraint)] = beacons.map { RangedBeacon(from: $0) }
+        let ranged = detectionsByConstraint.values.flatMap { $0 }
 
         if let beacon = getClosestBeacon(beacons: ranged) {
             print("Closest: \(beacon.minor) \(beacon.proximityDescription) \(String(format:"%.2f", beacon.accuracy))")

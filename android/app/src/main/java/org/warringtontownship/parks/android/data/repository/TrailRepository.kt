@@ -70,8 +70,17 @@ class TrailRepository @Inject constructor(
             ?: emptyList()
 
     fun getBeaconRegions(): List<BeaconRegion> {
-        val uuid = data?.beaconUUID ?: return emptyList()
-        return getLocations().map { BeaconRegion(uuid, it.beaconMajorCode) }.distinct()
+        if (data == null) return emptyList()
+        // Range each location's major under both of its advertisement UUIDs — a
+        // beacon's iBeacon and AltBeacon frames may carry different UUIDs (see
+        // Location), and the parser layout that decodes a frame decides which one
+        // shows up. distinct() collapses the duplicate when the two UUIDs match.
+        return getLocations().flatMap { location ->
+            listOf(
+                BeaconRegion(location.iBeaconUUID, location.beaconMajorCode),
+                BeaconRegion(location.altBeaconUUID, location.beaconMajorCode),
+            )
+        }.distinct()
     }
 
     private companion object {

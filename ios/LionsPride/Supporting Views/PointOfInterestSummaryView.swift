@@ -26,7 +26,7 @@ struct PointOfInterestSummaryView: View {
             if self.userData.mainMapSelectedLandmark != nil {
             HStack(alignment: .top) {
                 VStack {
-                    AsyncImage(url: getUrl("\(BASE_URL_STRING)/images/\(self.userData.mainMapSelectedLandmark!.imageName).jpg")) { image in
+                    AsyncImage(url: self.userData.mainMapSelectedLandmark!.imageUrl) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit).accessibility(label: Text(self.userData.mainMapSelectedLandmark!.imageAlt))
