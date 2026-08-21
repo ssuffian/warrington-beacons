@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches the launcher icon artwork's field colour so the adaptive icon
+         reads as one shape under any launcher mask (circle, squircle, etc). -->
+    <color name="ic_launcher_background">#22682B</color>
+</resources>

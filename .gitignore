@@ -5,3 +5,4 @@
 
 # Play Console demo recordings (large binaries, not source)
 *.mp4
+play-listing/
