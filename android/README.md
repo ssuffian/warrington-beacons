@@ -94,58 +94,48 @@ app's declared permissions and Data safety answers.
 ### Short description (80 char max)
 
 ```
-Trail guide for Warrington's parks that speaks up as you reach each landmark.
+Self-guided tour of Warrington's parks, announced as you reach each landmark.
 ```
 
 ### Full description
 
 ```
-Warrington Parks & Trails is a walking companion for Lions Pride Park and the
-US202 to Bradford Dam trail. Small Bluetooth beacons are installed at the
-points of interest along both trails, and the app recognizes them as you
-arrive — so the story of each spot reaches you at the spot itself, without
-hunting through a menu or holding up your phone.
+A self-guided tour of Lions Pride Park and the US202 to Bradford Dam trail.
+Bluetooth beacons are installed at the points of interest along both trails.
+As you reach one, the app shows and announces information about it, so you
+don't have to look anything up while you walk.
 
-WHAT YOU CAN DO
+FEATURES
 
-• Park Map — see the trails and every point of interest, with your own
-  position as you walk
-• Landmarks — browse everything in both parks, with photos and descriptions
-• Trail Tours — follow a trail stop by stop, with the distance to the next
-  point of interest in either direction
-• Announcements — the app tells you about a landmark as you reach it, and
-  keeps working with the screen off and the phone in your pocket
-• Simplified Text — shorter, plainer descriptions for younger readers or
-  anyone who wants the short version
+• Trail map showing every point of interest, and where you are
+• 40 landmarks across the two parks, with photos and descriptions
+• Trail tours listing the distance to the next stop in either direction
+• Announcements as you arrive, which keep working with the screen off and
+  the phone in your pocket
+• Simplified Text setting for shorter, plainer descriptions
+• Trail information and photos are cached on your device, so the app still
+  works where there is no signal
 
-BUILT TO BE HEARD, NOT JUST READ
+ACCESSIBILITY
 
 Landmark announcements are spoken through your screen reader and posted as
-notifications, so the trail narrates itself whether or not you are looking at
-the screen. That makes the parks browsable for blind and low-vision visitors,
-and it means everyone else can keep their eyes on the trail.
+notifications, so the trail works for blind and low-vision visitors, and
+everyone else can watch the path instead of the screen.
 
-WORKS WHERE THE SIGNAL DOESN'T
+PRIVACY
 
-Trail information and photos are cached on your device the first time they
-load, so the app keeps working in the parts of the park where cellular
-coverage gives up.
+No accounts, no ads, no analytics, no tracking. Your location is used on your
+device to place you on the map and to detect nearby beacons; it is never
+transmitted or shared.
 
-NO ACCOUNTS, NO TRACKING
+REQUIREMENTS
 
-There is no sign-up and no profile. The app has no analytics, no advertising
-and no server of its own. Your location is used on your device to place you on
-the map and to detect nearby beacons — it is never transmitted, stored or
-shared.
+Bluetooth turned on, and location permission granted — Android requires
+location access in order to detect Bluetooth beacons. The beacons broadcast a
+fixed identifier and nothing else. The app does not connect to them, and does
+not scan for phones or other devices around you.
 
-WHAT YOU NEED
-
-An Android phone with Bluetooth turned on, and location permission granted
-(Android requires it for Bluetooth beacon detection). The beacons broadcast a
-fixed identifier and nothing else; the app never connects to them, and never
-scans for phones or other devices around you.
-
-Trail information and photographs are provided by Warrington Township.
+Trail information and photographs provided by Warrington Township.
 Map data © OpenStreetMap contributors.
 ```
 
