@@ -2,3 +2,6 @@
 *.r12
 .claude/worktrees/
 .superpowers/
+
+# Play Console demo recordings (large binaries, not source)
+*.mp4

@@ -83,6 +83,72 @@ Settings → Shut down), which removes the billing exposure on Russ's
 card.  GCP keeps a 30-day recovery window after shutdown in case
 anything unexpected breaks.
 
+## Play Store listing copy
+
+Category: **Travel & Local**. Paste these into Play Console → Main store
+listing. The short description is capped at 80 characters and the full
+description at 4000; both are within limits as written. Keep them in sync
+with what the app actually does — Play compares the listing against the
+app's declared permissions and Data safety answers.
+
+### Short description (80 char max)
+
+```
+Trail guide for Warrington's parks that speaks up as you reach each landmark.
+```
+
+### Full description
+
+```
+Warrington Parks & Trails is a walking companion for Lions Pride Park and the
+US202 to Bradford Dam trail. Small Bluetooth beacons are installed at the
+points of interest along both trails, and the app recognizes them as you
+arrive — so the story of each spot reaches you at the spot itself, without
+hunting through a menu or holding up your phone.
+
+WHAT YOU CAN DO
+
+• Park Map — see the trails and every point of interest, with your own
+  position as you walk
+• Landmarks — browse everything in both parks, with photos and descriptions
+• Trail Tours — follow a trail stop by stop, with the distance to the next
+  point of interest in either direction
+• Announcements — the app tells you about a landmark as you reach it, and
+  keeps working with the screen off and the phone in your pocket
+• Simplified Text — shorter, plainer descriptions for younger readers or
+  anyone who wants the short version
+
+BUILT TO BE HEARD, NOT JUST READ
+
+Landmark announcements are spoken through your screen reader and posted as
+notifications, so the trail narrates itself whether or not you are looking at
+the screen. That makes the parks browsable for blind and low-vision visitors,
+and it means everyone else can keep their eyes on the trail.
+
+WORKS WHERE THE SIGNAL DOESN'T
+
+Trail information and photos are cached on your device the first time they
+load, so the app keeps working in the parts of the park where cellular
+coverage gives up.
+
+NO ACCOUNTS, NO TRACKING
+
+There is no sign-up and no profile. The app has no analytics, no advertising
+and no server of its own. Your location is used on your device to place you on
+the map and to detect nearby beacons — it is never transmitted, stored or
+shared.
+
+WHAT YOU NEED
+
+An Android phone with Bluetooth turned on, and location permission granted
+(Android requires it for Bluetooth beacon detection). The beacons broadcast a
+fixed identifier and nothing else; the app never connects to them, and never
+scans for phones or other devices around you.
+
+Trail information and photographs are provided by Warrington Township.
+Map data © OpenStreetMap contributors.
+```
+
 ## App Store Accounts
 
 The iOS App Store account is "Warrington Township" and I'm not sure
