@@ -92,6 +92,18 @@ fun AboutScreen(viewModel: LocationsViewModel = hiltViewModel()) {
                 text = "Trail Tours indicate the distances to the next point of interest on the trail.",
                 style = MaterialTheme.typography.bodyLarge,
             )
+            Spacer(modifier = Modifier.height(20.dp))
+            // Google Play flagged an earlier release under its Impersonation
+            // policy for using the township seal as the app icon. Stating the
+            // relationship plainly is the remedy Play asks for ("clearly
+            // distance the app from the entity"), and it's true regardless.
+            Text(
+                text = "This is an independent app for visitors to Warrington Township's " +
+                    "parks. Trail information and photographs are provided by Warrington " +
+                    "Township. It is not an official Warrington Township application.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             Spacer(modifier = Modifier.height(26.dp))
         }
     }

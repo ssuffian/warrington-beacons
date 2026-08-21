@@ -100,6 +100,9 @@ Self-guided tour of Warrington's parks, announced as you reach each landmark.
 ### Full description
 
 ```
+An independent app for visitors to Warrington Township's parks. Not an
+official Warrington Township application.
+
 A self-guided tour of Lions Pride Park and the US202 to Bradford Dam trail.
 Bluetooth beacons are installed at the points of interest along both trails.
 As you reach one, the app shows and announces information about it, so you
@@ -135,9 +138,20 @@ location access in order to detect Bluetooth beacons. The beacons broadcast a
 fixed identifier and nothing else. The app does not connect to them, and does
 not scan for phones or other devices around you.
 
-Trail information and photographs provided by Warrington Township.
+Trail information and photographs provided by Warrington Township. This app is
+not affiliated with or endorsed by Warrington Township.
 Map data © OpenStreetMap contributors.
 ```
+
+### Why the disclaimer is there
+
+Google Play rejected an earlier release under its Impersonation policy
+("Misleading Icon") because the app icon was the official Warrington Township
+seal. The seal is gone (see `design/README.md`), and the disclaimer is the
+second half of the remedy Play describes — "clearly distance the app from the
+entity." Leave both lines in place unless the app is genuinely published from
+a township-owned developer account with permission on file, in which case the
+honest wording changes.
 
 ## App Store Accounts
 
