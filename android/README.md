@@ -1,4 +1,4 @@
-# Warrington Parks & Trails (Android)
+# Warrington Talking Trails (Android)
 
 ## TODOs
 
@@ -103,7 +103,8 @@ Self-guided tour of Warrington's parks, announced as you reach each landmark.
 An independent app for visitors to Warrington Township's parks. Not an
 official Warrington Township application.
 
-A self-guided tour of Lions Pride Park and the US202 to Bradford Dam trail.
+Warrington Talking Trails is a self-guided tour of Lions Pride Park and the
+US202 to Bradford Dam trail.
 Bluetooth beacons are installed at the points of interest along both trails.
 As you reach one, the app shows and announces information about it, so you
 don't have to look anything up while you walk.

@@ -1,4 +1,4 @@
-# How the Warrington Parks & Trails App Works
+# How the Warrington Talking Trails App Works
 
 *Written 2026-07-16 as part of a codebase handoff review. Companion docs: `README.md`
 (operational caveats, beacon programming, cloud accounts) and `REPORT.md` (handoff
