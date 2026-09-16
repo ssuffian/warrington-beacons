@@ -67,12 +67,17 @@
 <main>
 
 <h1>Privacy Policy</h1>
-<p class="updated">Warrington Talking Trails (Android) — last updated 21 August 2026</p>
+<p class="updated">Warrington Talking Trails for iOS and Android — last updated 15 September 2026</p>
 
 <p class="lede">
   Short version: this app has no accounts, no analytics, no advertising and no tracking.
-  It does not collect or transmit your location. Nothing you do in the app is sent to us,
-  because there is no server of ours to send it to.
+  The developer does not collect or receive your location. Nothing you do in the app is
+  sent to us, because there is no server of ours to send it to.
+</p>
+
+<p>
+  Warrington Talking Trails is an independent application for park visitors. It is
+  not an official Warrington Township application.
 </p>
 
 <h2>What the app does</h2>
@@ -87,10 +92,10 @@
 <dl>
   <dt>Location (precise or approximate)</dt>
   <dd>
-    Used to draw your position on the map, and required by Android itself in order to
-    scan for Bluetooth beacons and to keep scanning while the screen is off. Your
-    location is used on your device only. It is never transmitted, never stored beyond
-    the moment it is displayed, and never shared with anyone.
+    Used to draw your position on the map and to detect nearby Bluetooth trail beacons.
+    The operating system requires location permission for beacon detection. Your
+    location is used by the app on your device only. The app never transmits it, stores
+    it beyond the moment it is displayed, or shares it with the developer.
   </dd>
 
   <dt>Nearby devices (Bluetooth scanning)</dt>
@@ -103,13 +108,13 @@
 
   <dt>Notifications</dt>
   <dd>
-    Used to tell you about a landmark you have reached — including when your phone is in
-    a pocket or the screen is off, which is how the app remains usable with a screen
-    reader. Notifications are created on your device. Nothing is sent through a
+    Used to tell you about a landmark you have reached. On Android, an ongoing
+    notification also allows beacon listening to continue while the screen is off.
+    Notifications are created on your device. Nothing is sent through a remote
     messaging service.
   </dd>
 
-  <dt>Run a foreground service</dt>
+  <dt>Run a foreground service (Android only)</dt>
   <dd>
     Lets beacon detection keep working while the screen is off, so you are not required
     to hold the phone in front of you for a whole walk. While this is active you will see
@@ -127,13 +132,13 @@
 <h2>What is stored, and where</h2>
 <p>Everything the app saves stays on your device:</p>
 <ul>
-  <li>Your settings — whether you have seen the welcome screen, whether Simplified Text is on, and whether landmark announcements are on.</li>
+  <li>Your settings — whether you have seen the welcome screen, whether Simplified Text is on, and, where available, whether landmark announcements are on.</li>
   <li>A cache of the downloaded trail information and landmark photos, so the app still works where there is no mobile signal.</li>
   <li>A cache of map images you have already viewed, for the same reason.</li>
 </ul>
 <p>
   Uninstalling the app removes all of it. You can also clear it at any time through
-  Android's Settings, under this app's storage.
+  the operating system's app-storage controls.
 </p>
 
 <h2>Information sent to other services</h2>
@@ -151,12 +156,20 @@
   <li>
     <strong>OpenStreetMap</strong> — supplies the map images. Governed by the
     <a href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap Foundation privacy policy</a>.
+    This service is used by the Android app.
+  </li>
+  <li>
+    <strong>Apple Maps</strong> — supplies maps in the iOS app through Apple's MapKit
+    framework. Governed by
+    <a href="https://www.apple.com/legal/privacy/data/en/apple-maps/">Apple's Maps privacy information</a>.
   </li>
 </ul>
 <p>
-  Neither request includes your location, your beacon detections, or any identifier the
-  app has created for you. The app contains no analytics, advertising, crash-reporting or
-  social-media components of any kind.
+  Requests for trail information and photographs do not include your location, beacon
+  detections, or an identifier created by the app. Map providers may process device,
+  network, or location information under their own privacy policies in order to deliver
+  maps. The developer does not receive that information. The app contains no analytics,
+  advertising, crash-reporting, or social-media components.
 </p>
 
 <h2>Children</h2>
@@ -179,8 +192,7 @@
 </p>
 
 <footer>
-  Trail information and photographs are provided by Warrington Township. Map data
-  © OpenStreetMap contributors.
+  Android map data © OpenStreetMap contributors; iOS maps are provided by Apple.
 </footer>
 
 </main>
