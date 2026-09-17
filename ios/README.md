@@ -1,4 +1,10 @@
-Lion's Pride Park
+# Warrington Talking Trails (iOS)
+
+This target is the independent iOS app covering Lions Pride Park and the US-202
+to Bradford Dam Trail. It is configured as a new App Store app with bundle ID
+`org.warringtoneac.talkingtrails`; select the submitting developer team in
+Xcode before archiving. See [APP_STORE_RELEASE.md](APP_STORE_RELEASE.md) for the
+listing copy and submission checklist.
 
 [Design board](https://miro.com/app/board/o9J_kwUBUpw=/)
 
@@ -15,7 +21,7 @@ Lion's Pride Park
 local copy is preserved in `server/lions-pride-park/` at the repo
 root. The app now loads US202 data from
 `https://trails.warringtoneac.org/us-202/`, set via `base_url_string`
-in `LionsPride/Info.plist`.)
+in `WarringtonTalkingTrails/Info.plist`.)
 
 [Google Sheet for updating data](https://docs.google.com/spreadsheets/d/1zaS5Gm6D1ukShIyJ1eN_7_A6c8kUTmqMx9ZZDJn6EvY)
 

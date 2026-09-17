@@ -1,25 +1,13 @@
-# How the iOS Trail Apps Work
+# How Warrington Talking Trails for iOS Works
 
-*Written 2026-07-18 during a codebase handoff review (branch `202Trail`). Companion:
-`REPORT.md` (findings, fixes, setup). The Android sibling lives in
-`../us202-android`, which has its own HOW_IT_WORKS.md — read both if you're comparing
-platforms.*
+*Originally written during the 2026 handoff and updated for the combined,
+independently distributed app. `REPORT.md` preserves the earlier review history.*
 
-## One repo, two apps, two branches
+## Current app
 
-This repo holds **two iOS apps that share ~95% of their code, separated by git
-branch**, per the README:
-
-- `master` — **Lions Pride Park** (the original park app, project "Lions Pride")
-- `202Trail` — **US202-to-Bradford-Dam connector** ("Bradford Trail" on the home
-  screen, project renamed to `202Connector`, bundle id
-  `org.warringtontownship.202connector`)
-
-The `202Trail` branch is just two commits on top of master's modernization work: the
-rename/re-point plus a beacon sensitivity tweak. There is no code-level fork — a
-branch switch changes which park you're building. (Workable for now; awkward the
-moment both apps need diverging features. Long-term the trail-specific config should
-be data, not branches.)
+The `main` branch contains one independent app covering Lions Pride Park and the
+US-202 to Bradford Dam Trail. Its user-visible name is **Warrington Talking Trails**
+and its proposed new-app bundle ID is `org.warringtoneac.talkingtrails`.
 
 ## What the app does
 
@@ -32,17 +20,15 @@ builds add a fifth **Beacons** tab listing every beacon in range with distances
 
 ## The data
 
-Everything comes from one JSON file + an images folder on S3/CloudFront — the same
-`us202trail-v2.json` the Android app uses (as of the 2026-07-18 fix; see REPORT.md —
-it previously pointed at a frozen bucket in a lost AWS account):
+Each location has a JSON file and images folder on the project's GitHub Pages site:
 
 ```
-https://lionspride.chariotsolutions.cloud/us202/us202trail-v2.json
-https://lionspride.chariotsolutions.cloud/us202/images/<imageName>.jpg
+https://trails.warringtoneac.org/us-202/us202trail-v2.json
+https://trails.warringtoneac.org/lions-pride-park/lionsPrideData.json
 ```
 
 The base URL lives in `Info.plist` under `base_url_string` (read by
-`Service/Utils.swift`). The JSON decodes into `Model/` structs (`LionsPrideData` =
+`Service/Utils.swift`). The JSON decodes into `Model/` structs (`WarringtonTalkingTrailsData` =
 `site` + `landmarks[]` + `trails[]`), mirroring the Android models. Landmark `id`
 doubles as the beacon **minor** value. Fetching happens once at startup in
 `MainView.loadData()` — revalidating with the server when online (ETag 304s), falling
@@ -51,8 +37,9 @@ back to the cached copy offline.
 ## Architecture (originally 2020 SwiftUI, modernized 2026-07-18, deployment target iOS 17)
 
 Originally built for iOS 13 in early SwiftUI; fully modernized on 2026-07-18:
-- **App entry** is the SwiftUI `App` lifecycle — `@main struct BradfordTrailApp: App`
-  in `BradfordTrailApp.swift` (the UIKit `AppDelegate`/`SceneDelegate` were removed).
+- **App entry** is the SwiftUI `App` lifecycle —
+  `@main struct WarringtonTalkingTrailsApp: App` in
+  `WarringtonTalkingTrailsApp.swift` (the UIKit `AppDelegate`/`SceneDelegate` were removed).
   `UserData.shared` is injected into the environment here.
 - **State** uses the Observation framework: `UserData` is `@Observable` (not the old
   `ObservableObject`/`@Published`), read via `@Environment(UserData.self)` and, where
@@ -67,7 +54,7 @@ Originally built for iOS 13 in early SwiftUI; fully modernized on 2026-07-18:
 The maps remain `UIViewRepresentable`-wrapped MapKit (the correct approach — SwiftUI's
 `Map` still doesn't cover the custom annotation/overlay/camera control this app needs).
 
-- **Entry:** `BradfordTrailApp` (SwiftUI `App`) hosting `MainView`, a `TabView` with
+- **Entry:** `WarringtonTalkingTrailsApp` (SwiftUI `App`) hosting `MainView`, a `TabView` with
   the four (five in debug) tabs. Splash is a SwiftUI view on a 2s timer, then the
   welcome screen (first launch only), then the tabs.
 - **State:** `UserData.shared` — a single `@Observable` class injected via
@@ -96,9 +83,9 @@ The maps remain `UIViewRepresentable`-wrapped MapKit (the correct approach — S
 iOS ranges **iBeacon** natively through CoreLocation (the RadBeacon E4 units on the
 trail broadcast both iBeacon for iOS and AltBeacon for Android):
 
-- Constraint: UUID `035a0617-0875-4cc7-a29c-be0caa8f557c`, major `20` — **hardcoded**
-  (a code TODO says it should come from the JSON's `site` section, which is where the
-  Android app reads it).
+- Constraints come from each downloaded JSON file's `site` section. Both locations
+  use iBeacon UUID `035a0617-0875-4cc7-a29c-be0caa8f557c`; Lions Pride uses major
+  `17` and US-202 uses major `20`.
 - Ranging runs only while the Park Map, an active tour, or the debug Beacons tab is
   showing (start/stop in `onAppear`/`onDisappear`). Requires when-in-use location
   permission; a denial shows an alert pointing to Settings.
@@ -119,30 +106,31 @@ usage strings, and notification authorization (requested at first
 
 ## Build & run
 
-- Xcode: open `202Connector.xcodeproj`, scheme `202Connector`, run on any iOS 16+
+- Xcode: open `WarringtonTalkingTrails.xcodeproj`, scheme `WarringtonTalkingTrails`, run on any iOS 17+
   simulator. No keys, no config files, no signing needed for the simulator. CLI:
 
   ```bash
-  xcodebuild -project 202Connector.xcodeproj -scheme 202Connector \
+  xcodebuild -project WarringtonTalkingTrails.xcodeproj -scheme WarringtonTalkingTrails \
     -destination 'platform=iOS Simulator,name=iPhone 16' build
-  xcodebuild test -project 202Connector.xcodeproj -scheme 202Connector \
+  xcodebuild test -project WarringtonTalkingTrails.xcodeproj -scheme WarringtonTalkingTrails \
     -destination 'platform=iOS Simulator,name=iPhone 16'
   ```
 
-- Tests: `202ConnectorTests` (unit — `MapServiceTest` covers trail-walking logic) and
-  `202ConnectorUITests` (a full walkthrough smoke test added 2026-07-18: welcome →
+- Tests: `WarringtonTalkingTrailsTests` (unit — `MapServiceTest` covers trail-walking logic) and
+  `WarringtonTalkingTrailsUITests` (a full walkthrough smoke test added 2026-07-18: welcome →
   park map pins → trail list → detail → tour; it doubles as proof the remote JSON
   loads and decodes).
-- Device builds need a signing team; store deploys go through the "Warrington
-  Township" App Store account (Aaron Mulder can deploy, per the Android README).
+- Device builds need a signing team. Select the independent developer's team in
+  Signing & Capabilities before archiving this new app.
 
 ## Simulating beacons in development
 
 Debug builds can fake beacon detections on the simulator (added 2026-07-18), the iOS
 counterpart to the Android fake-beacon injector. The seam: `BeaconScanner` now works
 in terms of a plain `RangedBeacon` value type instead of the un-constructible
-`CLBeacon`, so detections can be injected directly. A debug-only `bradfordtrail://`
-URL handler (registered in `Info.plist`, dispatched from `SceneDelegate`, handled by
+`CLBeacon`, so detections can be injected directly. A debug-only
+`warringtontalkingtrails://` URL handler (registered in `Info.plist`, dispatched from
+the SwiftUI app's `.onOpenURL`, and handled by
 `FakeBeacon` in `BeaconScanner.swift`) drives it. Use the `simulate_beacon.sh` script
 at the repo root:
 
@@ -155,8 +143,8 @@ at the repo root:
 
 Behavior notes:
 - Works only on a **booted simulator** running a **debug** build. It resolves to
-  `xcrun simctl openurl booted bradfordtrail://fakebeacon?minor=<id>&distance=<m>`.
-- **First send may show an "Open in Bradford Trail?" prompt** — that's iOS's
+  `xcrun simctl openurl booted warringtontalkingtrails://fakebeacon?minor=<id>&distance=<m>`.
+- **First send may show an "Open in Warrington Talking Trails?" prompt** — that's iOS's
   confirmation when a URL targets the already-frontmost app; tap Open. Sending while
   the app is backgrounded delivers cleanly and foregrounds it.
 - Injection is one beacon at a time (matching how iOS ranges a nearest beacon) and
@@ -165,7 +153,7 @@ Behavior notes:
 - Landmark ids: 1–16 (stops), 4001 (trailhead).
 - **Release safety:** the `FakeBeacon` handler and injection methods are wrapped in
   `#if DEBUG` — verified absent from the release binary (0 symbols). The
-  `bradfordtrail` URL-scheme *declaration* in `Info.plist` is static and remains in
+  `warringtontalkingtrails` URL-scheme *declaration* in `Info.plist` is static and remains in
   all configs, but it's inert in release with no handler compiled in. (To strip the
   declaration too, enable `INFOPLIST_PREPROCESS` and gate it with `#if DEBUG` — a
   follow-up, not done.)

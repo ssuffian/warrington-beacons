@@ -1,0 +1,9 @@
+Explore Lions Pride Park and the US-202 to Bradford Dam Trail with maps, self-guided tours, and information about points of interest along the way.
+
+Warrington Talking Trails includes trail maps, photographs, and descriptions for landmarks at both locations. Trail Tours show the distance to the next stop. With location and Bluetooth permission, the app can detect installed trail beacons and show information as you approach a landmark.
+
+All landmarks remain available from the map, search, and Trail Tours screens, so you can explore even when you are away from the trail.
+
+The app has no accounts, advertising, analytics, or tracking. Location and beacon detections are processed on your device and are not sent to the developer.
+
+This is an independent application for park visitors. It is not an official Warrington Township application.

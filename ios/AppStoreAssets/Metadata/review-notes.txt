@@ -1,0 +1,5 @@
+Warrington Talking Trails can be fully reviewed without visiting the trails or detecting a physical beacon. Open Trail Tours, select a trail, and tap Start Tour to review the guided-tour experience. Landmarks can also be opened from Park Map search.
+
+Location is used to show the user's position and to detect nearby iBeacon landmarks. Bluetooth/iBeacon and location observations are processed on the device and are not sent to the developer. If permissions are declined, maps, search, landmark information, and tours remain available.
+
+The app has no login, purchases, advertising, analytics, or tracking. It is an independent application and not an official Warrington Township application.

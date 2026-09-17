@@ -1,4 +1,7 @@
-# Handoff Review — Bradford Trail (iOS, branch `202Trail`)
+# Archived Handoff Review — Former Bradford Trail App
+
+> Historical reference only. Project, target, module, and test names described below
+> predate the complete rename to Warrington Talking Trails.
 
 *Prepared 2026-07-18, mirroring the review in `../us202-android/REPORT.md`. Read
 `HOW_IT_WORKS.md` first for architecture. Everything below was verified on the

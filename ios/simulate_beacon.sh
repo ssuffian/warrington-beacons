@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Fake a trail beacon on a booted iOS simulator running a DEBUG build of the app.
-# (Backed by the bradfordtrail:// URL handler, which only exists in debug builds.)
+# (Backed by the warringtontalkingtrails:// URL handler, which only acts in debug builds.)
 #
 # Usage:
 #   ./simulate_beacon.sh <minor> [distance-meters]   # one beacon (minor = landmark id)
@@ -15,14 +15,14 @@ set -euo pipefail
 usage() { sed -n '3,10p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
 
 send_one() { # minor [distance]
-    xcrun simctl openurl booted "bradfordtrail://fakebeacon?minor=$1&distance=${2:-1.0}"
+    xcrun simctl openurl booted "warringtontalkingtrails://fakebeacon?minor=$1&distance=${2:-1.0}"
     echo "faked beacon: landmark $1 at ${2:-1.0} m"
 }
 
 case "${1:-}" in
     "" ) usage ;;
     clear )
-        xcrun simctl openurl booted "bradfordtrail://fakebeacon/clear"
+        xcrun simctl openurl booted "warringtontalkingtrails://fakebeacon/clear"
         echo "cleared all fake beacons"
         ;;
     walk )
@@ -30,7 +30,7 @@ case "${1:-}" in
             send_one "$minor" 2.0
             sleep "${2:-8}"
         done
-        xcrun simctl openurl booted "bradfordtrail://fakebeacon/clear"
+        xcrun simctl openurl booted "warringtontalkingtrails://fakebeacon/clear"
         echo "walk finished, beacons cleared"
         ;;
     * )
