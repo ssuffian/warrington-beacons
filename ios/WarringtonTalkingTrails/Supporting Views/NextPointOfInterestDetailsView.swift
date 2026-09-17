@@ -34,6 +34,7 @@ struct NextPointOfInterestDetailsView: View {
                             ProgressView()
                         }
                         .frame(width: geo.size.width)
+                        .accessibilityLabel(self.landmark.imageAlt)
                         Text(self.landmark.category.friendlyValue()).modifier(GrayUpperStyle()).padding([.top, .leading])
                         Text(self.landmark.name).modifier(SubHeaderStyle())
                             .foregroundColor(Color.black).padding()
@@ -46,9 +47,11 @@ struct NextPointOfInterestDetailsView: View {
                         }
                         Spacer()
                     }
-                    CloseButtonView().offset(x: geo.size.width / 2 - 35, y: -(geo.size.height / 2 - 35)).onTapGesture {
-                        self.close()
+                    Button(action: self.close) {
+                        CloseButtonView()
                     }
+                    .offset(x: geo.size.width / 2 - 35, y: -(geo.size.height / 2 - 35))
+                    .accessibilityLabel("Close landmark details")
                 }
             }
         }

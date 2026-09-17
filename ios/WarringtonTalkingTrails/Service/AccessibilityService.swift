@@ -9,21 +9,23 @@
 import Foundation
 import SwiftUI
 
-// NOTE: These functions work but we're using Notifications instead because VoiceOver reads them automatically
 class AccessibilityService {
-    
-    static func nextLandmarkAccessibility(_ landmarkDescription: Landmark, nextLandmarkDescription: String) -> Void {
-        
-        if UIAccessibility.isVoiceOverRunning {
-            let notification = UIAccessibility.Notification.announcement
-            UIAccessibility.post(notification: notification, argument: "Next point of interest \(landmarkDescription) \(nextLandmarkDescription)")
+
+    /// Speak immediately while the app is open. This does not depend on the user
+    /// granting notification permission, which is important for the core tour flow.
+    static func announce(_ message: String) {
+        DispatchQueue.main.async {
+            guard UIAccessibility.isVoiceOverRunning,
+                  UIApplication.shared.applicationState == .active else { return }
+            UIAccessibility.post(notification: .announcement, argument: message)
         }
     }
-    
+
+    static func nextLandmarkAccessibility(_ landmarkDescription: String, nextLandmarkDescription: String) {
+        announce("Next point of interest. \(landmarkDescription). \(nextLandmarkDescription)")
+    }
+
     static func landmarkAccessibility(_ landmark: Landmark) -> Void {
-        if UIAccessibility.isVoiceOverRunning {
-            let notification = UIAccessibility.Notification.announcement
-            UIAccessibility.post(notification: notification, argument: "Nearby point of interest: \(landmark.name)")
-        }
+        announce("Nearby point of interest: \(landmark.name)")
     }
 }

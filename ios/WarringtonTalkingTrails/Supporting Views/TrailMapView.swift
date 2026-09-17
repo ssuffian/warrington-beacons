@@ -57,9 +57,9 @@ struct TrailMapView: UIViewRepresentable {
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
                 guard let annotation = annotation as? LandmarkAnnotation else { return nil }
                 let identifier = "MapAnnotation\(annotation.id)"
-                var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? AccessibleLandmarkAnnotationView
                 if annotationView == nil {
-                    annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                    annotationView = AccessibleLandmarkAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                     annotationView?.glyphImage = annotation.glyphImage
                     annotationView?.markerTintColor = annotation.glyphTintColor
                     annotationView?.displayPriority = .required
@@ -74,6 +74,10 @@ struct TrailMapView: UIViewRepresentable {
                     annotationView?.markerTintColor = annotation.glyphTintColor
                     annotationView?.displayPriority = .required
                     annotationView?.isEnabled = true
+                }
+                if let annotationView {
+                    configureAccessibility(for: annotationView, annotation: annotation, mapView: mapView)
+                    annotationView.accessibilityHint = "Selects this landmark as the tour starting point"
                 }
                 return annotationView
             }
@@ -150,4 +154,3 @@ struct TrailMapView_Previews: PreviewProvider {
         TrailMapView(trailLandmark: landmarkService.getLandmarkById(id: 1002)!).environment(UserData.shared)
     }
 }
-

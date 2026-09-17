@@ -26,7 +26,7 @@ struct TrailListView: View {
                     List {
                         ForEach(landmarkService.getLandmarks().filter{$0.category.rawValue == "Trail"}) { landmark in
 
-                            TrailRowView(landmark: landmark).onTapGesture {
+                            Button(action: {
                                 self.userData.trailLandmark = landmark
                                 let trail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
                                 if self.userData.nearbyLandmark != nil {
@@ -43,7 +43,13 @@ struct TrailListView: View {
                                 // TODO: if self.control.userData.nearbyLandmark is set and is on this trail, use that instead
                                 self.userData.trailTourTrail = trail
                                 self.trailDetailsView = true
+                            }) {
+                                TrailRowView(landmark: landmark)
                             }
+                            .buttonStyle(.plain)
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(trailAccessibilityLabel(for: landmark))
+                            .accessibilityHint("Opens trail details")
                         }
                     }.navigationBarTitle(Text("Trail Tours"), displayMode: .inline)
                 }
@@ -58,6 +64,14 @@ struct TrailListView: View {
                 }
             }
         }
+    }
+
+    private func trailAccessibilityLabel(for landmark: Landmark) -> String {
+        guard let trail = landmarkService.getTrailById(id: landmark.id) else {
+            return landmark.name
+        }
+        let count = MapService.getLandmarksOnTrail(trail: trail).count
+        return "\(landmark.name), \(trail.trailDistanceDescription), \(count) points of interest"
     }
 }
 

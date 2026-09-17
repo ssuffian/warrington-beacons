@@ -19,6 +19,7 @@ struct LandmarkRowView: View {
                 ProgressView()
             }
             .frame(width: 75, height: 75)
+            .accessibilityHidden(true)
             
             VStack(alignment: .leading) {
                 Text(landmark.name).modifier(LabelStyle())
@@ -26,6 +27,8 @@ struct LandmarkRowView: View {
             }
             Spacer()
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(landmark.name), \(landmark.category.friendlyValue()). \(landmark.description)")
     }
 }
 

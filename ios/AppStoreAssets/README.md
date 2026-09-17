@@ -4,9 +4,9 @@ This folder contains the assets and copy for the first iOS App Store release.
 
 ## Ready now
 
-- App Store build `1.0 (2)` was uploaded successfully after aligning iOS with
-  Android's maintained combined trail dataset.
-- Signed IPA: `Build/WarringtonTalkingTrails-1.0-2.ipa`
+- App Store build `1.0 (4)` includes the maintained combined trail dataset and
+  the complete VoiceOver interaction and automatic-announcement pass.
+- Signed IPA: `Build/WarringtonTalkingTrails-1.0-4.ipa`
 - Three reviewed 6.9-inch iPhone screenshots: `Screenshots-6.9-inch-FINAL/`
 - 1024×1024 RGB app icon: `AppIcon-1024.png`
 - Copy-and-paste listing text: `Metadata/`
@@ -23,7 +23,7 @@ on September 16, 2026:
 
 ## Final actions in App Store Connect
 
-1. Wait for build `1.0 (2)` to finish processing, then select it for version `1.0`.
+1. Wait for build `1.0 (4)` to finish processing, then select it for version `1.0`.
 2. Paste the files in `Metadata/` into the matching fields.
 3. Upload the three screenshots in filename order to the 6.9-inch iPhone slot.
 4. Complete App Privacy, age rating, content rights, pricing/availability,

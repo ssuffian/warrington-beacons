@@ -12,8 +12,8 @@
 ## App Store Connect setup
 
 - [x] New app record and bundle ID created under the personal developer team.
-- [x] Version `1.0`, build `2` signed and uploaded.
-- [ ] Select processed build `1.0 (2)` for the version.
+- [x] Version `1.0`, build `4` signed and uploaded.
+- [ ] Select processed build `1.0 (4)` for the version.
 - [ ] Enter categories: Travel (primary), Navigation (secondary).
 - [ ] Enter price (Free), tax category, and country/region availability.
 - [ ] Complete the age-rating questionnaire using `app-information.md`.
@@ -29,6 +29,7 @@
 - [x] Release archive completed successfully.
 - [x] Unit and UI test builds completed successfully.
 - [x] Automated screenshot walkthrough passed.
+- [x] Automated VoiceOver element, description, and trait audits passed on the common app flow.
 - [ ] **OWNER ACTION:** install the TestFlight build on a physical iPhone and test location/Bluetooth permissions, both trail datasets, map search, and at least one guided tour.
 - [x] Rechecked the deployed support and privacy pages and matched them byte-for-byte to the release files.
 - [ ] Add version to the review submission and click Submit for Review.

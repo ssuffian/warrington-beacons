@@ -71,7 +71,7 @@ struct TrailTourMapView: UIViewRepresentable {
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
                 guard let annotation = annotation as? LandmarkAnnotation else { return nil }
                 let identifier = "MainMapAnnotation\(annotation.id)"
-                var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? AccessibleLandmarkAnnotationView
 
                 // This block would update the map position to the latest beacon position when
                 // the tour starts.  However, you just had the opportunity to pick a different
@@ -94,7 +94,7 @@ struct TrailTourMapView: UIViewRepresentable {
 //                }
                 
                 if annotationView == nil {
-                    annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                    annotationView = AccessibleLandmarkAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                     annotationView?.canShowCallout = true
                     annotationView?.glyphImage = annotation.glyphImage
                     annotationView?.markerTintColor = annotation.glyphTintColor
@@ -106,6 +106,10 @@ struct TrailTourMapView: UIViewRepresentable {
                     annotationView?.markerTintColor = annotation.glyphTintColor
                     annotationView?.displayPriority = .required
                     annotationView?.isEnabled = true
+                }
+                if let annotationView {
+                    configureAccessibility(for: annotationView, annotation: annotation, mapView: mapView)
+                    annotationView.accessibilityHint = "Opens landmark details"
                 }
                 return annotationView
             }

@@ -1,6 +1,6 @@
 # Artifact manifest
 
-Prepared September 16, 2026 for Warrington Talking Trails `1.0 (2)`.
+Prepared September 16, 2026 for Warrington Talking Trails `1.0 (4)`.
 
 ## Store assets
 
@@ -24,8 +24,8 @@ in `Screenshots-6.9-inch-FINAL/`.
 
 ## Signed build
 
-- File: `Build/WarringtonTalkingTrails-1.0-2.ipa`
-- SHA-256: `467331c3ab688a60bc3e85553086c4018b0e58397d2beb8cfaf3ee69663881e9`
+- File: `Build/WarringtonTalkingTrails-1.0-4.ipa`
+- SHA-256: `6aa6554a3726cd66ce2bd0a5c09b942e212b1a64f9861cf5c4d819a5eb008a09`
 - Bundle ID: `org.warringtoneac.talkingtrails`
 - Team ID: `SZSAWL856Z`
 - Status: uploaded successfully to App Store Connect; Apple processing may

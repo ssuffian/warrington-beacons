@@ -34,6 +34,7 @@ struct PointOfInterestSummaryView: View {
                         ProgressView()
                     }
                     .frame(width: 75, height: 75).padding(.trailing)
+                    .accessibilityHidden(true)
                 }
                 VStack(alignment: .leading) {
                     // iPhone 7: 320x568
@@ -51,8 +52,7 @@ struct PointOfInterestSummaryView: View {
                         Text(self.userData.mainMapSelectedLandmark!.category.friendlyValue()).modifier(GrayUpperStyle()).padding(.bottom)
                     }
                     if self.userData.mainMapSelectedLandmark!.category == .Trail {
-                        Text(self.userData.mainMapSelectedLandmark!.trailModifiedName).modifier(LinkStyle())
-                            .foregroundColor(Color.blue).onTapGesture {
+                        Button(action: {
                                 self.userData.trailLandmark = self.userData.mainMapSelectedLandmark!
                                 self.userData.trailTourTrail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
                                 self.userData.trailTourCurrentLandmark = self.userData.trailLandmark
@@ -70,7 +70,12 @@ struct PointOfInterestSummaryView: View {
                                         self.userData.forceStartTour = true
                                     }
                                 }
+                        }) {
+                            Text(self.userData.mainMapSelectedLandmark!.trailModifiedName).modifier(LinkStyle())
+                                .foregroundColor(Color.blue)
                         }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Opens this trail in Trail Tours")
                     } else {
                         Button(action: {
                             self.showDetails = true
@@ -84,8 +89,9 @@ struct PointOfInterestSummaryView: View {
                 }
                 Spacer()
                 Button(action: self.close) {
-                    Image(systemName: "xmark.circle.fill").resizable().frame(width: 35, height: 35).accessibility(label: Text("Close point of interest summary")).foregroundColor(.black).opacity(0.6).accessibility(label: Text(self.userData.mainMapSelectedLandmark!.imageAlt))
+                    Image(systemName: "xmark.circle.fill").resizable().frame(width: 35, height: 35).foregroundColor(.black).opacity(0.6)
                 }
+                .accessibilityLabel("Close point of interest summary")
                 }.padding()
             }
             EmptyView()

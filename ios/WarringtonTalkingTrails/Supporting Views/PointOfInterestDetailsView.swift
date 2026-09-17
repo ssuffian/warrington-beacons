@@ -37,8 +37,9 @@ struct PointOfInterestDetailsView: View {
                     HStack{
                         Spacer()
                         Button(action: self.close) {
-                        Image(systemName: "xmark.circle.fill").resizable().frame(width: 35, height: 35).accessibility(label: Text("Close point of interest summary")).foregroundColor(.black).opacity(0.6)
+                        Image(systemName: "xmark.circle.fill").resizable().frame(width: 35, height: 35).foregroundColor(.black).opacity(0.6)
                         }.padding()
+                        .accessibilityLabel("Close landmark details")
                     }
                     
                     AsyncImage(url: self.landmark.imageUrl) { image in

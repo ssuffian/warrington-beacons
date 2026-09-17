@@ -18,7 +18,7 @@ struct CloseButtonView: View {
     
     var body: some View {
         ZStack {
-            Image(systemName: "xmark.circle.fill").resizable().frame(width: 40, height: 40).accessibility(label: Text("Close point of interest summary")).foregroundColor(.black).opacity(backgroundOpacity)
+            Image(systemName: "xmark.circle.fill").resizable().frame(width: 40, height: 40).foregroundColor(.black).opacity(backgroundOpacity)
         }
     }
 }

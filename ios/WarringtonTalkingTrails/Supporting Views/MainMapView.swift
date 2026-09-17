@@ -49,6 +49,36 @@ final class LandmarkAnnotation: NSObject, MKAnnotation {
     
 }
 
+/// MapKit's marker is visible to accessibility, but its default activation does
+/// not consistently select the annotation when VoiceOver is driving the map.
+final class AccessibleLandmarkAnnotationView: MKMarkerAnnotationView {
+    weak var owningMapView: MKMapView?
+
+    override func accessibilityActivate() -> Bool {
+        guard let annotation, let owningMapView else { return false }
+        owningMapView.selectAnnotation(annotation, animated: true)
+        return true
+    }
+}
+
+func configureAccessibility(
+    for view: AccessibleLandmarkAnnotationView,
+    annotation: LandmarkAnnotation,
+    mapView: MKMapView
+) {
+    view.owningMapView = mapView
+    view.isAccessibilityElement = true
+    view.accessibilityIdentifier = "landmark-map-pin-\(annotation.id)"
+    view.accessibilityLabel = annotation.landmark?.trailModifiedName ?? annotation.title
+    if let category = annotation.landmark?.category.friendlyValue() {
+        view.accessibilityValue = category
+    } else {
+        view.accessibilityValue = nil
+    }
+    view.accessibilityHint = "Opens landmark information"
+    view.accessibilityTraits = .button
+}
+
 struct MainMapView: UIViewRepresentable {
     let LATITUDE_DELTA = 0.04
     let LONGITUDE_DELTA = 0.04
@@ -119,9 +149,9 @@ struct MainMapView: UIViewRepresentable {
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
                 guard let annotation = annotation as? LandmarkAnnotation else { return nil }
                 let identifier = "MainMapAnnotation\(annotation.id)"
-                var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? AccessibleLandmarkAnnotationView
                 if annotationView == nil {
-                    annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                    annotationView = AccessibleLandmarkAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                     annotationView?.canShowCallout = true
                     annotationView?.glyphImage = annotation.glyphImage
                     annotationView?.markerTintColor = annotation.glyphTintColor
@@ -137,6 +167,9 @@ struct MainMapView: UIViewRepresentable {
                         annotationView?.setSelected(true, animated: true)
                     }
                     annotationView?.displayPriority = .required
+                }
+                if let annotationView {
+                    configureAccessibility(for: annotationView, annotation: annotation, mapView: mapView)
                 }
                 return annotationView
             }

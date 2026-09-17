@@ -16,18 +16,26 @@ struct DirectionButtonView: View {
             
             HStack(spacing: 0) {
                 Text("Direction:  ").modifier(GrayUpperStyle())
-                Text("Forward").modifier(SmallButtonTextStyle())
-                    .foregroundColor(getDirectionForeground(direction: .Clockwise))
-                    .background(RoundedRectangle(cornerRadius: 5).fill(getDirectionBackground(direction: .Clockwise)))
-                    .onTapGesture {
+                Button(action: {
                         self.userData.trailDirection = .Clockwise
-                    }
-                Text("Reverse").modifier(SmallButtonTextStyle())
-                    .foregroundColor(getDirectionForeground(direction: .CounterClockwise))
-                    .background(RoundedRectangle(cornerRadius: 5).fill(getDirectionBackground(direction: .CounterClockwise)))
-                    .onTapGesture {
-                        self.userData.trailDirection = .CounterClockwise
-                    }
+                }) {
+                    Text("Forward").modifier(SmallButtonTextStyle())
+                        .foregroundColor(getDirectionForeground(direction: .Clockwise))
+                        .background(RoundedRectangle(cornerRadius: 5).fill(getDirectionBackground(direction: .Clockwise)))
+                }
+                .accessibilityLabel("Forward direction")
+                .accessibilityValue(userData.trailDirection == .Clockwise ? "Selected" : "Not selected")
+                .accessibilityAddTraits(userData.trailDirection == .Clockwise ? .isSelected : [])
+                Button(action: {
+                    self.userData.trailDirection = .CounterClockwise
+                }) {
+                    Text("Reverse").modifier(SmallButtonTextStyle())
+                        .foregroundColor(getDirectionForeground(direction: .CounterClockwise))
+                        .background(RoundedRectangle(cornerRadius: 5).fill(getDirectionBackground(direction: .CounterClockwise)))
+                }
+                .accessibilityLabel("Reverse direction")
+                .accessibilityValue(userData.trailDirection == .CounterClockwise ? "Selected" : "Not selected")
+                .accessibilityAddTraits(userData.trailDirection == .CounterClockwise ? .isSelected : [])
                 Spacer()
             }
         }

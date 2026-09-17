@@ -50,12 +50,13 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
 
         // Trail Tours tab: the row only exists if the JSON loaded + decoded
         app.tabBars.buttons["Trail Tours"].tap()
-        let trailRow = app.staticTexts["202 Connector Trail"]
+        let trailRow = app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH '202 Connector Trail,'")).firstMatch
         XCTAssertTrue(trailRow.waitForExistence(timeout: 20), "Trail list should show the 202 Connector Trail (JSON loaded and decoded)")
         attach(app, name: "3-trail-list")
 
         trailRow.tap()
-        let startTour = app.staticTexts["Start Tour"]
+        let startTour = app.buttons["Start Tour"]
         XCTAssertTrue(startTour.waitForExistence(timeout: 10), "Trail details should show Start Tour")
         attach(app, name: "4-trail-detail")
 
@@ -91,22 +92,72 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
         XCTAssertTrue(search.waitForExistence(timeout: 25), "Search button should appear on the park map")
         search.tap()
 
-        let trailRow = app.staticTexts["202 Connector Trail"]
+        let trailRow = app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH '202 Connector Trail,'")).firstMatch
         XCTAssertTrue(trailRow.waitForExistence(timeout: 10), "Trailhead should be listed in Search (data loaded)")
         trailRow.tap()
 
         // Back on the map, the summary shows the trailhead name ("202 Connector
         // Trailhead") as a tappable link; tapping it is the cross-tab launch into the
         // Trail Tours tab's detail screen.
-        let trailheadLink = app.staticTexts["202 Connector Trailhead"]
+        let trailheadLink = app.buttons.matching(NSPredicate(
+            format: "label == '202 Connector Trailhead' AND NOT identifier BEGINSWITH 'landmark-map-pin-'"
+        )).firstMatch
         XCTAssertTrue(trailheadLink.waitForExistence(timeout: 10), "Trailhead summary link should appear")
         trailheadLink.tap()
 
         // We should now be on the trail detail screen in the Trail Tours tab
-        let startTour = app.staticTexts["Start Tour"]
+        let startTour = app.buttons["Start Tour"]
         XCTAssertTrue(startTour.waitForExistence(timeout: 10),
                       "Cross-tab launch should push the trail detail (Start Tour) via forceStartTour")
         attach(app, name: "crosstab-detail")
+    }
+
+    /// Audits the screens needed to find a trail, choose its direction, and start
+    /// navigation. These categories catch missing VoiceOver elements, labels,
+    /// traits, and actions without mixing in visual-only contrast checks.
+    func testVoiceOverCommonTasks() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        addUIInterruptionMonitor(withDescription: "System permission dialogs") { alert in
+            for label in ["Allow While Using App", "Allow Once", "Allow", "OK"] {
+                if alert.buttons[label].exists { alert.buttons[label].tap(); return true }
+            }
+            return false
+        }
+
+        let continueButton = app.buttons["Continue"]
+        if continueButton.waitForExistence(timeout: 15) { continueButton.tap() }
+
+        let search = app.buttons["Search"]
+        XCTAssertTrue(search.waitForExistence(timeout: 25))
+        try auditVoiceOver(in: app)
+
+        app.tabBars.buttons["Trail Tours"].tap()
+        let trailRow = app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH '202 Connector Trail,'")).firstMatch
+        XCTAssertTrue(trailRow.waitForExistence(timeout: 20))
+        try auditVoiceOver(in: app)
+        trailRow.tap()
+
+        let startTour = app.buttons["Start Tour"]
+        XCTAssertTrue(startTour.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["Forward direction"].exists)
+        XCTAssertTrue(app.buttons["Reverse direction"].exists)
+        try auditVoiceOver(in: app)
+
+        startTour.tap()
+        XCTAssertTrue(app.buttons["Reverse"].waitForExistence(timeout: 10))
+        try auditVoiceOver(in: app)
+    }
+
+    private func auditVoiceOver(in app: XCUIApplication) throws {
+        try app.performAccessibilityAudit(for: [
+            .elementDetection,
+            .sufficientElementDescription,
+            .trait
+        ])
     }
 
     private func attach(_ app: XCUIApplication, name: String) {

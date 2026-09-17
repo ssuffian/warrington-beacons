@@ -33,9 +33,8 @@ struct BottomSheetView<Content: View>: View {
             .frame(
                 width: Constants.indicatorWidth,
                 height: Constants.indicatorHeight
-        ).onTapGesture {
-            self.close()
-        }
+        )
+        .accessibilityHidden(true)
     }
 
     init(maxHeight: CGFloat, close: @escaping () -> Void, @ViewBuilder content: () -> Content) {

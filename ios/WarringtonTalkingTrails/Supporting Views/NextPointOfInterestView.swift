@@ -25,13 +25,17 @@ struct NextPointOfInterestView: View {
                         ProgressView()
                     }
                     .frame(width: 100, height: 75)
+                    .accessibilityLabel(selectedLandmark.imageAlt)
                     VStack(alignment: .leading) {
                         Text("Next").modifier(GrayUpperStyle())
-                        Text(selectedLandmark.trailModifiedName).modifier(LinkStyle())
-                            .onTapGesture {
+                        Button(action: {
                                 self.userData.trailTourSelectedLandmark = selectedLandmark
                                 self.showLandmarkDetails = true
+                        }) {
+                            Text(selectedLandmark.trailModifiedName).modifier(LinkStyle())
                         }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Opens details for the next point of interest")
                     }
                 }
                 
@@ -44,10 +48,14 @@ struct NextPointOfInterestView: View {
                     Text("From:").modifier(LabelStyle())
                     let widget = Text(self.userData.trailTourEnded ? "Go to the other end of the trail to continue in this direction" : self.userData.trailTourCurrentLandmark!.trailModifiedName)
                     if(!self.userData.trailTourEnded) {
-                        widget.modifier(SmallLinkStyle()).onTapGesture {
+                        Button(action: {
                             self.userData.trailTourSelectedLandmark = self.userData.trailTourCurrentLandmark!
                             self.showLandmarkDetails = true
+                        }) {
+                            widget.modifier(SmallLinkStyle())
                         }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Opens details for the current point of interest")
                     } else {
                         widget.modifier(ParagraphStyle())
                     }

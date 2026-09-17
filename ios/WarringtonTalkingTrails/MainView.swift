@@ -54,9 +54,7 @@ struct MainView: View {
                         }.statusBar(hidden: true)
                         .tabItem {
                             VStack {
-                                Image(systemName: "map").onTapGesture {
-                                    self.showMap = true
-                                }
+                                Image(systemName: "map")
                                 Text("Park Map").modifier(TabLabelStyle())
                             }
                         }

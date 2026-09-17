@@ -25,8 +25,7 @@ struct TrailDetailsView: View {
                     }.padding()
                     TrailMapView(trailLandmark: userData.trailLandmark!).environment(userData)
                     Spacer()
-                    Text("Start Tour").modifier(BlueButtonTextStyle())
-                        .foregroundColor(Color.blue).onTapGesture {
+                    Button(action: {
                             // this sets up the context for the TrailTourView
                             self.userData.trailTourCurrentLandmark = self.userData.trailTourCurrentLandmark ?? self.userData.trailLandmark
                             let trail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
@@ -37,7 +36,12 @@ struct TrailDetailsView: View {
 
                             // this triggers the navigationDestination push
                             self.startTrailTour = true
-                        }.padding(.bottom)
+                    }) {
+                        Text("Start Tour").modifier(BlueButtonTextStyle())
+                            .foregroundColor(Color.blue)
+                    }
+                    .accessibilityHint("Starts spoken trail navigation")
+                    .padding(.bottom)
                 }
             }
             .navigationDestination(isPresented: self.$startTrailTour) {
@@ -71,4 +75,3 @@ struct TrailDetailsView_Previews: PreviewProvider {
             .environment(userData)
     }
 }
-

@@ -49,11 +49,11 @@ class NotificationService : NSObject, UNUserNotificationCenterDelegate{
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
-         if UIAccessibility.isVoiceOverRunning {
-            // show alerts because VoiceOver will read the text for the user
-            completionHandler([.banner, .sound])
+        if UIAccessibility.isVoiceOverRunning {
+            // AccessibilityService speaks the text directly in the foreground.
+            // Do not interrupt that speech with the notification sound or banner.
+            completionHandler([])
         } else {
-            // just play the sound
             completionHandler([.sound])
         }
         
@@ -68,6 +68,7 @@ class NotificationService : NSObject, UNUserNotificationCenterDelegate{
     
     //
     func sendNearbyLandmarkNotification(landmark: Landmark) {
+        AccessibilityService.landmarkAccessibility(landmark)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         let uuidString = UUID().uuidString
         let content = UNMutableNotificationContent()
@@ -101,6 +102,7 @@ class NotificationService : NSObject, UNUserNotificationCenterDelegate{
                 direction: trailDirection),
                   let distanceDescription = distanceTuple.distanceToNextDescription else { return }
             content.body = "\(currentLandmark.name) has been reached. \(distanceDescription) to \(nextLandmark.trailModifiedName)"
+            AccessibilityService.announce(content.body)
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             let notificationCenter = UNUserNotificationCenter.current()
             notificationCenter.add(request) { (error) in

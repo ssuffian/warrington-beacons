@@ -21,23 +21,32 @@ struct TrailRowView: View {
             AsyncImage(url: landmark.imageUrl) { image in
                 image
                     .resizable()
-                    .scaledToFit().accessibility(label: Text(self.landmark.imageAlt))
+                    .scaledToFit()
             } placeholder: {
                 ProgressView()
             }
             .frame(width: 75)
+            .accessibilityHidden(true)
             VStack(alignment: .leading) {
                 Text(landmark.name).modifier(LabelStyle())
                 if self.trail != nil {
                     HStack {
                         Text(self.trail!.trailDistanceDescription).modifier(SmallGrayStyle())
-                        Text("|").modifier(SmallGrayStyle())
+                        Text("|").modifier(SmallGrayStyle()).accessibilityHidden(true)
                         Text("\(MapService.getLandmarksOnTrail(trail: self.trail!).count) points of interest").modifier(SmallGrayStyle())
                     }
                 }
             }
             Spacer()
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
+    }
+
+    private var accessibilityLabel: String {
+        guard let trail else { return landmark.name }
+        let count = MapService.getLandmarksOnTrail(trail: trail).count
+        return "\(landmark.name), \(trail.trailDistanceDescription), \(count) points of interest"
     }
 }
 

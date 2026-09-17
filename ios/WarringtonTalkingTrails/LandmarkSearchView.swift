@@ -39,6 +39,9 @@ struct LandmarkSearchView: View {
                         }) {
                             Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
                         }
+                        .disabled(searchText.isEmpty)
+                        .accessibilityLabel("Clear search")
+                        .accessibilityHidden(searchText.isEmpty)
                     }
                     .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
                     .foregroundColor(.secondary)
@@ -81,11 +84,17 @@ struct LandmarkListRowView: View {
     
     var body: some View{
         ForEach(landmarkArray.filter{$0.category == category && ($0.name.uppercased().contains(searchText.uppercased()) || searchText == "")}, id:\.self.id) { landmark in
-                LandmarkRowView(landmark: landmark).onTapGesture {
+            Button(action: {
                     self.showMap = true
                     self.userData.mainMapSelectedLandmark = landmark
                     UIApplication.shared.endEditing(true)
-                }
+            }) {
+                LandmarkRowView(landmark: landmark)
+            }
+            .buttonStyle(.plain)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("\(landmark.name), \(landmark.category.friendlyValue()). \(landmark.description)")
+            .accessibilityHint("Shows this location on the park map")
         }
     }
 }
@@ -123,4 +132,3 @@ extension View {
         return modifier(ResignKeyboardOnDragGesture())
     }
 }
-
