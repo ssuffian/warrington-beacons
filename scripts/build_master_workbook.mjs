@@ -12,7 +12,7 @@ try {
 const { Workbook, SpreadsheetFile } = artifactTool;
 
 const excludedColumns = {
-  'Beacons': new Set(['sourceId','sourceMajor','sourceLocationCode','sourceImageName','sourceRow','decisionNotes','hardwareNotes']),
+  'Beacons': new Set(['sourceId','sourceMajor','sourceLocationCode','sourceImageName','sourceRow','decisionNotes','hardwareNotes','macAddress']),
   'Locations': new Set(['sourceCodes']),
 };
 

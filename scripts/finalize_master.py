@@ -20,8 +20,7 @@ TRAIL_GROUPS = {
 BEACON_COLUMNS = (
     "recordKey", "name", "id", "location", "Status", "purchaseCount",
     "appStatus", "reviewStatus", "category", "description", "longDescription", "imagePath",
-    "imageAlt", "isOpen", "trailDistanceDescription", "macAddress",
-    "beaconPlacement",
+    "imageAlt", "isOpen", "trailDistanceDescription", "beaconPlacement",
 )
 
 LOCATION_COLUMNS = (

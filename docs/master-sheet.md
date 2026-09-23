@@ -22,10 +22,11 @@ enter app data.
 The Guide tab stays first and includes direct links to the served KML and image
 library. The external-editor workbook excludes old-source reconciliation fields
 (`sourceId`, `sourceMajor`, `sourceLocationCode`, `sourceImageName`, `sourceRow`,
-`decisionNotes`, `hardwareNotes` and location `sourceCodes`). The completed
-Decisions tab is also omitted. None of these are consumed by the app-data
-generator. Join keys, KML route-group IDs, beacon maintenance fields and review
-controls remain visible because outside editors may need them.
+`decisionNotes`, `hardwareNotes`, `macAddress` and location `sourceCodes`). The
+completed Decisions tab is also omitted. None of these are consumed by the
+app-data generator. Join keys, KML route-group IDs, beacon placement/status and
+review controls remain visible because outside editors may need them. Beacon
+matching uses UUID, major and minor; the apps do not use hardware MAC addresses.
 
 ## Generation and deployment
 

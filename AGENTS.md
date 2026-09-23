@@ -46,8 +46,9 @@ installed builds. Generate the browsable `/images/` catalog with
 Keep the served KML link on the first Guide tab of any master workbook intended
 for outside editors. Exclude old-source reconciliation columns and the completed
 Decisions tab from that editor workbook, but retain `recordKey`,
-`kmlTrailGroupId`, beacon maintenance fields and review controls because they
-support the KML join and field maintenance.
+`kmlTrailGroupId`, beacon placement/status fields and review controls because
+they support the KML join and field maintenance. Exclude `macAddress`; neither
+mobile app nor the JSON generator uses it.
 
 Use the command-line workflows documented in `docs/master-sheet.md`. Do not open
 Xcode or Google Earth merely to inspect or build files; use them only when the
