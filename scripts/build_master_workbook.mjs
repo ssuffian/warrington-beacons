@@ -28,7 +28,8 @@ for (const [name, rows] of Object.entries(tables)) {
   };
   const numeric=new Set(['id','sourceId','sourceMajor','trailId','landmarkId','pointIndex','stopOrder','beaconMajorCode','latitude','longitude','purchaseCount','sourceNewBeaconCount']);
   const values = [headers.map(k=>labels[name]?.[k]??k), ...rows.map(r => headers.map(k => {
-    const v=r[k]??'';
+    let v=r[k]??'';
+    if(k==='imagePath' && v && !/^https?:\/\//i.test(String(v))) v=`https://trails.warringtoneac.org/${String(v).replace(/^\/+/, '')}`;
     if(v!=='' && numeric.has(k) && Number.isFinite(Number(v))) return Number(v);
     return v;
   }))];

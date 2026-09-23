@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talking Trails image library</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17342d; background: #f5f7f3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #24475a; color: white; padding: 2.5rem max(1rem, calc((100vw - 1200px) / 2)); }
+    header h1 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    header p { margin: .35rem 0; max-width: 52rem; line-height: 1.5; }
+    header a { color: #d9f2e6; }
+    main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+    .controls { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: .75rem; margin-bottom: 1.25rem; }
+    input, select, button { font: inherit; }
+    #search, #location { width: 100%; border: 1px solid #aab8b2; border-radius: .5rem; background: white; padding: .75rem; }
+    #count { margin: 0 0 1rem; color: #52645e; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .card { overflow: hidden; border: 1px solid #d2dcd7; border-radius: .75rem; background: white; box-shadow: 0 2px 8px rgb(25 55 45 / 8%); }
+    .preview { display: block; height: 190px; background: #e8eeeb; }
+    .preview img { width: 100%; height: 100%; object-fit: cover; }
+    .details { padding: 1rem; }
+    h2 { margin: 0; font-size: 1.05rem; overflow-wrap: anywhere; }
+    .location { margin: .35rem 0; color: #386852; font-weight: 650; }
+    .used { min-height: 2.6em; margin: .5rem 0 .85rem; color: #52645e; line-height: 1.3; }
+    label { display: block; color: #52645e; font-size: .82rem; }
+    label input { width: 100%; margin-top: .25rem; padding: .55rem; border: 1px solid #cad4cf; border-radius: .35rem; color: #314940; background: #f8faf9; }
+    button { width: 100%; margin-top: .65rem; border: 0; border-radius: .4rem; padding: .65rem; color: white; background: #2f6b52; cursor: pointer; font-weight: 650; }
+    button:hover { background: #24543f; }
+    .empty { padding: 2rem; text-align: center; color: #52645e; }
+    @media (max-width: 560px) { .controls { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Talking Trails image library</h1>
+    <p>Browse the images available to the trail apps. Copy an image URL and paste it into the master spreadsheet’s <strong>imagePath</strong> cell. The spreadsheet link opens the full image; deployment converts it to the app-compatible path.</p>
+    <p>To add an image, send the original JPG, PNG or WebP file with a descriptive filename. <a href="/talking-trails.kml">Download the KML</a>.</p>
+  </header>
+  <main>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search filename or landmark" aria-label="Search images">
+      <select id="location" aria-label="Filter by location">
+        <option value="">All locations</option>
+        <option value="lions-pride-park">Lions Pride Park</option>
+        <option value="us-202">US-202 Trail</option>
+      </select>
+    </div>
+    <p id="count">36 images</p>
+    <section class="grid" id="grid">
+        <article class="card" data-search="green_trail_connection.jpg lions pride park green trail turnoff" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_Connection.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_Connection.jpg" alt="Green Trail Turnoff" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>Green_Trail_Connection.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Green Trail Turnoff</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_Connection.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_Connection.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="green_trail_mid.jpg lions pride park green trail midpoint" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_mid.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_mid.jpg" alt="Green Trail Midpoint" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>Green_Trail_mid.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Green Trail Midpoint</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_mid.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/Green_Trail_mid.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="mountain_trail.jpg lions pride park kids mountain trail" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/Mountain_trail.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/Mountain_trail.jpg" alt="Kids Mountain Trail" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>Mountain_trail.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Kids Mountain Trail</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/Mountain_trail.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/Mountain_trail.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="recycling.jpg lions pride park trash and recycling" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/Recycling.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/Recycling.jpg" alt="Trash and Recycling" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>Recycling.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Trash and Recycling</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/Recycling.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/Recycling.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="small_mountain.jpg lions pride park available for use" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/Small_mountain.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/Small_mountain.jpg" alt="Available for use" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>Small_mountain.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Available for use</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/Small_mountain.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/Small_mountain.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="yellow_trail.jpg lions pride park yellow trail" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/Yellow_trail.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/Yellow_trail.jpg" alt="Yellow Trail" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>Yellow_trail.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Yellow Trail</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/Yellow_trail.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/Yellow_trail.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="bees.jpg lions pride park bees" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/bees.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/bees.jpg" alt="Bees" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>bees.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Bees</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/bees.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/bees.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="butterfly.jpg lions pride park butterflies" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/butterfly.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/butterfly.jpg" alt="Butterflies" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>butterfly.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Butterflies</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/butterfly.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/butterfly.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="insects.jpg lions pride park insects" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/insects.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/insects.jpg" alt="Insects" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>insects.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Insects</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/insects.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/insects.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="invasive_species.jpg lions pride park invasive species" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/invasive_species.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/invasive_species.jpg" alt="Invasive Species" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>invasive_species.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Invasive Species</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/invasive_species.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/invasive_species.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="kids_mountain.jpg lions pride park kids mountain" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/kids_mountain.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/kids_mountain.jpg" alt="Kids Mountain" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>kids_mountain.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Kids Mountain</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/kids_mountain.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/kids_mountain.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="music_grove.jpg lions pride park music grove" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/music_grove.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/music_grove.jpg" alt="Music Grove" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>music_grove.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Music Grove</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/music_grove.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/music_grove.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="park_entrance.jpg lions pride park park entrance" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/park_entrance.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/park_entrance.jpg" alt="Park Entrance" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>park_entrance.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Park Entrance</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/park_entrance.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/park_entrance.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="pavilion.jpg lions pride park pavilion" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/pavilion.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/pavilion.jpg" alt="Pavilion" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>pavilion.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Pavilion</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/pavilion.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/pavilion.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="pollinators.jpg lions pride park pollinator plants" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/pollinators.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/pollinators.jpg" alt="Pollinator Plants" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>pollinators.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Pollinator Plants</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/pollinators.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/pollinators.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="rain_garden.jpg lions pride park rain garden" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/rain_garden.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/rain_garden.jpg" alt="Rain Garden" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>rain_garden.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Rain Garden</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/rain_garden.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/rain_garden.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="recycled_furn.jpg lions pride park recycled plastic furniture" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/recycled_furn.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/recycled_furn.jpg" alt="Recycled Plastic Furniture" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>recycled_furn.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Recycled Plastic Furniture</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/recycled_furn.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/recycled_furn.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="restrooms.jpg lions pride park restrooms" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/restrooms.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/restrooms.jpg" alt="Restrooms" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>restrooms.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Restrooms</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/restrooms.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/restrooms.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="slope.jpg lions pride park natural slope" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/slope.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/slope.jpg" alt="Natural Slope" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>slope.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Natural Slope</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/slope.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/slope.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="small_slides.jpg lions pride park small slides" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/small_slides.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/small_slides.jpg" alt="Small Slides" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>small_slides.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Small Slides</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/small_slides.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/small_slides.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="tennis_pickleball.jpg lions pride park available for use" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/tennis_pickleball.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/tennis_pickleball.jpg" alt="Available for use" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>tennis_pickleball.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Available for use</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/tennis_pickleball.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/tennis_pickleball.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="the_grove.jpg lions pride park the grove" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/the_grove.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/the_grove.jpg" alt="The Grove" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>the_grove.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">The Grove</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/the_grove.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/the_grove.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="trail.jpg lions pride park green trail" data-location="lions-pride-park">
+          <a class="preview" href="https://trails.warringtoneac.org/lions-pride-park/images/trail.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/lions-pride-park/images/trail.jpg" alt="Green Trail" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>trail.jpg</h2>
+            <p class="location">Lions Pride Park</p>
+            <p class="used">Green Trail</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/lions-pride-park/images/trail.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/lions-pride-park/images/trail.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202basin.jpg us-202 trail naturalized basin" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Basin.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Basin.jpg" alt="Naturalized Basin" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Basin.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Naturalized Basin</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Basin.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Basin.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202fish.jpg us-202 trail fish" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Fish.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Fish.jpg" alt="Fish" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Fish.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Fish</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Fish.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Fish.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202littleneshaminy.jpg us-202 trail 202 connector trail, end of trail" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202LittleNeshaminy.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202LittleNeshaminy.jpg" alt="202 Connector Trail, End of Trail" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202LittleNeshaminy.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">202 Connector Trail, End of Trail</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202LittleNeshaminy.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202LittleNeshaminy.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202meadows.jpg us-202 trail meadows" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Meadows.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Meadows.jpg" alt="Meadows" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Meadows.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Meadows</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Meadows.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Meadows.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202nativeplantmgt.jpg us-202 trail native plant management area" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202NativePlantMgt.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202NativePlantMgt.jpg" alt="Native Plant Management Area" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202NativePlantMgt.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Native Plant Management Area</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202NativePlantMgt.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202NativePlantMgt.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202nativeplantsvsinvasive.jpg us-202 trail native plants vs. invasive plants" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202NativePlantsVsInvasive.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202NativePlantsVsInvasive.jpg" alt="Native Plants vs. Invasive Plants" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202NativePlantsVsInvasive.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Native Plants vs. Invasive Plants</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202NativePlantsVsInvasive.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202NativePlantsVsInvasive.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202nesting.jpg us-202 trail bluebird and cavity-nesting bird program" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Nesting.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Nesting.jpg" alt="Bluebird and Cavity-Nesting Bird Program" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Nesting.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Bluebird and Cavity-Nesting Bird Program</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Nesting.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Nesting.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202petwaste.jpg us-202 trail pet waste" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202PetWaste.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202PetWaste.jpg" alt="Pet Waste" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202PetWaste.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Pet Waste</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202PetWaste.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202PetWaste.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202pollinator2021.jpg us-202 trail pollinator habitat" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Pollinator2021.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Pollinator2021.jpg" alt="Pollinator Habitat" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Pollinator2021.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Pollinator Habitat</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Pollinator2021.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Pollinator2021.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202rainbarrel.jpg us-202 trail rain barrels" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202RainBarrel.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202RainBarrel.jpg" alt="Rain Barrels" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202RainBarrel.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Rain Barrels</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202RainBarrel.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202RainBarrel.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202trees.jpg us-202 trail trees" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Trees.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Trees.jpg" alt="Trees" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Trees.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Trees</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Trees.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Trees.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202waterfowl.jpg us-202 trail waterfowl" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Waterfowl.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Waterfowl.jpg" alt="Waterfowl" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Waterfowl.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Waterfowl</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Waterfowl.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Waterfowl.jpg">Copy image URL</button>
+          </div>
+        </article>
+        <article class="card" data-search="202wetlands.jpg us-202 trail wetlands" data-location="us-202">
+          <a class="preview" href="https://trails.warringtoneac.org/us-202/images/202Wetlands.jpg" target="_blank" rel="noopener">
+            <img src="https://trails.warringtoneac.org/us-202/images/202Wetlands.jpg" alt="Wetlands" loading="lazy">
+          </a>
+          <div class="details">
+            <h2>202Wetlands.jpg</h2>
+            <p class="location">US-202 Trail</p>
+            <p class="used">Wetlands</p>
+            <label>Image URL<input value="https://trails.warringtoneac.org/us-202/images/202Wetlands.jpg" readonly></label>
+            <button type="button" data-copy="https://trails.warringtoneac.org/us-202/images/202Wetlands.jpg">Copy image URL</button>
+          </div>
+        </article></section>
+    <p class="empty" id="empty" hidden>No images match that search.</p>
+  </main>
+  <script>
+    const search = document.querySelector('#search');
+    const locationFilter = document.querySelector('#location');
+    const cards = [...document.querySelectorAll('.card')];
+    const count = document.querySelector('#count');
+    const empty = document.querySelector('#empty');
+    function filter() {
+      const term = search.value.trim().toLowerCase();
+      const location = locationFilter.value;
+      let visible = 0;
+      for (const card of cards) {
+        const show = (!term || card.dataset.search.includes(term)) && (!location || card.dataset.location === location);
+        card.hidden = !show;
+        if (show) visible++;
+      }
+      count.textContent = `${visible} image${visible === 1 ? '' : 's'}`;
+      empty.hidden = visible !== 0;
+    }
+    search.addEventListener('input', filter);
+    locationFilter.addEventListener('change', filter);
+    document.addEventListener('click', async event => {
+      const button = event.target.closest('[data-copy]');
+      if (!button) return;
+      await navigator.clipboard.writeText(button.dataset.copy);
+      const previous = button.textContent;
+      button.textContent = 'Copied';
+      setTimeout(() => button.textContent = previous, 1200);
+    });
+  </script>
+</body>
+</html>

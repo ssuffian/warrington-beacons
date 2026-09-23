@@ -2,6 +2,19 @@
 
 Static JSON served via GitHub Pages at `https://trails.warringtoneac.org/`.
 
+## Image library
+
+`https://trails.warringtoneac.org/images/` is a searchable library of every
+JPG, PNG, WebP and GIF under each location's `images` directory. Its cards open
+the full image and copy the absolute URL used in the master Sheet. Rebuild it
+with `python3 scripts/build_image_library.py`; the Pages workflow runs that
+command after generating JSON so landmark usage stays current.
+
+The master Sheet may store either an existing relative image path or the full
+`https://trails.warringtoneac.org/...` URL. Full URLs are preferred because
+Google Sheets makes them clickable. The JSON generator validates the hosted
+file and emits a relative path so already-installed app builds remain compatible.
+
 ## Read-only admin preview
 
 `admin/index.html` adds `/admin/` to this same static server. It shows KML shapes

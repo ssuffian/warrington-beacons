@@ -62,6 +62,13 @@ Active Beacons require complete app content, a valid unique Minor, a known
 location, an existing image file and a matching KML Point. Every KML tour stop
 requires one matching Stop Content row.
 
+Use the public image library at `https://trails.warringtoneac.org/images/` to
+browse available images and copy an image URL. Paste the full URL into the
+Beacons tab's `imagePath` cell so it remains clickable in Google Sheets. The
+validator accepts only HTTPS image URLs on `trails.warringtoneac.org`, confirms
+that the file exists, and converts the URL back to the relative path expected by
+existing app builds. Relative paths remain accepted during the transition.
+
 Run the regression checks with:
 
 ```sh

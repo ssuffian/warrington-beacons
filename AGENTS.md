@@ -37,6 +37,12 @@ and validate the single atomic `server/warrington-trails.json` with
 `scripts/master_sheet.py`; both apps already consume that file. A validation
 failure must stop deployment and preserve the last successful app data.
 
+Use full `https://trails.warringtoneac.org/...` URLs in the Sheet's `imagePath`
+cells so editors can open them directly. `scripts/master_sheet.py` must normalize
+those URLs to server-relative paths in app JSON to preserve compatibility with
+installed builds. Generate the browsable `/images/` catalog with
+`scripts/build_image_library.py`; do not hand-maintain its cards.
+
 Use the command-line workflows documented in `docs/master-sheet.md`. Do not open
 Xcode or Google Earth merely to inspect or build files; use them only when the
 user explicitly wants interactive editing in those apps.

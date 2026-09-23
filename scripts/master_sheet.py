@@ -1,11 +1,26 @@
 """Validate the master workbook with KML and generate the app's atomic JSON."""
 import argparse, csv, difflib, json, math, re, uuid, zipfile
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 XNS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
 KNS = {'k': 'http://www.opengis.net/kml/2.2'}
+IMAGE_ORIGIN = 'https://trails.warringtoneac.org'
+
+
+def normalize_image_path(value):
+    """Return a server-relative path while accepting clickable hosted URLs."""
+    value = str(value or '').strip()
+    parsed = urlparse(value)
+    if parsed.scheme or parsed.netloc:
+        if parsed.scheme != 'https' or parsed.netloc.lower() != urlparse(IMAGE_ORIGIN).netloc:
+            raise ValueError('Image URL must be hosted at '+IMAGE_ORIGIN)
+        if parsed.query or parsed.fragment:
+            raise ValueError('Image URL cannot contain a query or fragment')
+        value = unquote(parsed.path).lstrip('/')
+    return value
 
 
 def read_xlsx(path, allow_cached_formulas=False):
@@ -204,6 +219,8 @@ def validate(t, kml_path):
         if lm['category'] not in ('Trail', 'Building', 'PointOfInterest'): fail(where, 'Invalid category')
         lm['id'] = integer(r.get('id'), where); lm['location'] = r.get('location', '')
         if lm['location'] not in location_ids: fail(where, 'Unknown location')
+        try: lm['imagePath'] = normalize_image_path(lm['imagePath'])
+        except ValueError as exc: fail(where, str(exc))
         asset = (ROOT/'server'/lm['imagePath']).resolve()
         if not asset.is_relative_to((ROOT/'server').resolve()) or not asset.is_file(): fail(where, 'Image file missing: '+lm['imagePath'])
         if where in points:

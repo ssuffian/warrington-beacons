@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from master_sheet import ROOT, read_kml, tables, validate
+from master_sheet import ROOT, normalize_image_path, read_kml, tables, validate
 
 
 WORKBOOK = ROOT/'outputs/master-kml-source-of-truth-2026-09-23/warrington-master-review.xlsx'
@@ -38,6 +38,20 @@ class MasterValidationTest(unittest.TestCase):
         candidate = copy.deepcopy(self.tables)
         candidate['Beacons'][0]['reviewStatus'] = 'Needs Review'
         self.assertTrue(any(e['record'] == candidate['Beacons'][0]['recordKey'] for e in validate(candidate, KML)[1]))
+
+    def test_clickable_hosted_image_url_is_normalized_for_existing_apps(self):
+        candidate = copy.deepcopy(self.tables)
+        row = next(r for r in candidate['Beacons'] if r['appStatus'] == 'Active')
+        relative = row['imagePath']
+        row['imagePath'] = 'https://trails.warringtoneac.org/' + relative
+        result, errors = validate(candidate, KML)
+        self.assertEqual(errors, [])
+        landmark = next(x for x in result['landmarks'] if x['id'] == int(row['id']))
+        self.assertEqual(landmark['imagePath'], relative)
+
+    def test_external_image_url_is_rejected(self):
+        with self.assertRaises(ValueError):
+            normalize_image_path('https://example.com/photo.jpg')
 
 
 if __name__ == '__main__': unittest.main()
