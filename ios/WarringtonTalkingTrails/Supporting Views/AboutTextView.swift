@@ -26,7 +26,7 @@ struct AboutTextView: View {
                 Text("As you walk, the app can use your on-device location and Bluetooth to identify trail beacons and show information about nearby points of interest. Trail Tours show the distance to the next stop.")
                     .padding(.bottom, 4)
 
-                Text("This is an independent application for park visitors. It is not an official Warrington Township application.")
+                Text("Warrington Talking Trails is provided by Warrington Township to help visitors explore local parks and trails.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }

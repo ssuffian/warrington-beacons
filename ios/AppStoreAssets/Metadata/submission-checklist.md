@@ -11,9 +11,10 @@
 
 ## App Store Connect setup
 
-- [x] New app record and bundle ID created under the personal developer team.
-- [x] Version `1.0`, build `4` signed and uploaded.
-- [ ] Select processed build `1.0 (4)` for the version.
+- [x] Existing Lions Pride Park record identified: App Store ID `1532727572`.
+- [x] Project configured for bundle ID `org.warringtontownship.lionspride` and team `ZA7MADZY65`.
+- [x] Version `2.0`, build `20260923.1` signed and uploaded.
+- [ ] Select processed build `2.0 (20260923.1)` for the version.
 - [ ] Enter categories: Travel (primary), Navigation (secondary).
 - [ ] Enter price (Free), tax category, and country/region availability.
 - [ ] Complete the age-rating questionnaire using `app-information.md`.
@@ -22,14 +23,20 @@
 - [ ] Complete Digital Services Act trader-status requirements if shown.
 - [ ] Complete any regulated-medical-device declaration shown (this app is not a medical device).
 - [ ] Enter the App Review phone number and paste `review-notes.txt`.
+- [x] Additional limited-review-history response prepared in `review-notes.txt`.
+- [x] Physical-device recording instructions prepared in `physical-device-recording-checklist.md`.
 - [ ] Choose release timing; manual release is recommended for the first version.
 
 ## Quality and submission
 
 - [x] Release archive completed successfully.
-- [x] Unit and UI test builds completed successfully.
-- [x] Automated screenshot walkthrough passed.
-- [x] Automated VoiceOver element, description, and trait audits passed on the common app flow.
+- [x] All three unit tests passed and the release archive completed without
+  compiler errors.
+- [x] Cross-tab launch UI test passed under the Township bundle ID.
+- [ ] Re-run the full UI suite before submission. The September 23 run had two
+  simulator harness failures: an invalid accessibility-audit target process and
+  a live trail-list timeout.
 - [ ] **OWNER ACTION:** install the TestFlight build on a physical iPhone and test location/Bluetooth permissions, both trail datasets, map search, and at least one guided tour.
+- [ ] **OWNER ACTION:** record build `2.0 (20260923.1)` on a physical iPhone, attach the video to the App Review reply, and replace the three placeholders in `review-notes.txt`.
 - [x] Rechecked the deployed support and privacy pages and matched them byte-for-byte to the release files.
 - [ ] Add version to the review submission and click Submit for Review.

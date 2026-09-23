@@ -6,4 +6,4 @@ All landmarks remain available from the map, search, and Trail Tours screens, so
 
 The app has no accounts, advertising, analytics, or tracking. Location and beacon detections are processed on your device and are not sent to the developer.
 
-This is an independent application for park visitors. It is not an official Warrington Township application.
+Warrington Talking Trails is provided by Warrington Township for visitors to Township parks and trails.

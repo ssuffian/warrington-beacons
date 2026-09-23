@@ -10,24 +10,24 @@
 				<string>arm64</string>
 			</array>
 			<key>buildNumber</key>
-			<string>4</string>
+			<string>20260923.1</string>
 			<key>certificate</key>
 			<dict>
 				<key>SHA1</key>
-				<string>BB4347F383C166E854B34FAAAA42C3573D3934E7</string>
+				<string>2B1564FA8C0ACA3FA1295D89739E023D14C94DCC</string>
 				<key>dateExpires</key>
-				<string>9/16/27</string>
+				<string>9/23/27</string>
 				<key>type</key>
 				<string>Cloud Managed Apple Distribution</string>
 			</dict>
 			<key>entitlements</key>
 			<dict>
 				<key>application-identifier</key>
-				<string>SZSAWL856Z.org.warringtoneac.talkingtrails</string>
+				<string>ZA7MADZY65.org.warringtontownship.lionspride</string>
 				<key>beta-reports-active</key>
 				<true/>
 				<key>com.apple.developer.team-identifier</key>
-				<string>SZSAWL856Z</string>
+				<string>ZA7MADZY65</string>
 				<key>get-task-allow</key>
 				<false/>
 			</dict>
@@ -36,23 +36,23 @@
 			<key>profile</key>
 			<dict>
 				<key>UUID</key>
-				<string>1ca75224-5d50-4335-a6d1-571816dbf9a7</string>
+				<string>1c8aabdb-0a45-4492-a9ee-97c23ef71446</string>
 				<key>dateExpires</key>
-				<string>9/16/27</string>
+				<string>9/23/27</string>
 				<key>name</key>
-				<string>iOS Team Store Provisioning Profile: org.warringtoneac.talkingtrails</string>
+				<string>iOS Team Store Provisioning Profile: org.warringtontownship.lionspride</string>
 			</dict>
 			<key>symbols</key>
 			<true/>
 			<key>team</key>
 			<dict>
 				<key>id</key>
-				<string>SZSAWL856Z</string>
+				<string>ZA7MADZY65</string>
 				<key>name</key>
 				<string></string>
 			</dict>
 			<key>versionNumber</key>
-			<string>1.0</string>
+			<string>2.0</string>
 		</dict>
 	</array>
 </dict>

@@ -1,23 +1,24 @@
 # Warrington Talking Trails — App Store release
 
-This is a **new app** for an independent Apple Developer account. It does not
-update either existing Warrington Township App Store listing.
+This release updates the existing **Lions Pride Park** App Store listing under
+the Warrington Township organization. It expands that app to include both Lions
+Pride Park and the US-202 to Bradford Dam Trail and renames the installed app to
+Warrington Talking Trails.
 
 ## App identity
 
 - App Store name: `Warrington Talking Trails`
-- Bundle ID: `org.warringtoneac.talkingtrails`
-- SKU suggestion: `warrington-talking-trails-ios`
-- Version: `1.0`
-- Build: `2`
+- Existing App Store ID: `1532727572`
+- Bundle ID: `org.warringtontownship.lionspride`
+- Apple Developer Team ID: `ZA7MADZY65`
+- Version: `2.0`
+- Build: `20260923.1`; increment for every subsequent upload
 - Primary category: Travel
 - Platform: iPhone
 - Minimum OS: iOS 17.0
 
-The bundle ID is a proposed unique identifier. Confirm it is available in the
-developer account before creating the App Store Connect record. In Xcode,
-select the app target, open Signing & Capabilities, select the personal team,
-and leave Automatically manage signing enabled.
+The bundle ID must remain exactly as shown because App Store updates are matched
+by bundle ID. Signing uses the Warrington Township team and automatic signing.
 
 ## Product-page copy
 
@@ -47,8 +48,8 @@ Description:
 > The app has no accounts, advertising, analytics or tracking. Location and
 > beacon detections are used on your device and are not sent to the developer.
 >
-> This is an independent application for park visitors. It is not an official
-> Warrington Township application.
+> Warrington Talking Trails is provided by Warrington Township for visitors to
+> Township parks and trails.
 
 Keywords:
 
@@ -87,10 +88,54 @@ URLs:
 ## Submission checklist
 
 - Privacy and support pages deployed and verified on September 16, 2026.
-- Add a new iOS app in App Store Connect with the bundle ID above.
-- Select the developer's team in Xcode Signing & Capabilities.
+- Open the existing Lions Pride Park app in App Store Connect and add version `2.0`.
+- Confirm the build is signed by team `ZA7MADZY65` with the Lions Pride bundle ID.
 - Run unit/UI tests and a Release archive on a healthy Xcode installation.
 - Test a TestFlight build on physical hardware at both locations.
 - Upload at least one current 6.9-inch iPhone screenshot without transparency.
 - Complete App Privacy, age rating, content rights, pricing/availability, review contact, and release settings.
 - Validate and upload the archive, attach the processed build, then submit it for review.
+
+## Verified command-line TestFlight workflow
+
+This is deliberately two-stage: the archive is unsigned, and Xcode applies
+Apple's automatically managed App Store signing during export/upload.
+
+From the repository root, replace `N` with the new build number after updating
+both `CURRENT_PROJECT_VERSION` entries in
+`WarringtonTalkingTrails.xcodeproj/project.pbxproj`:
+
+```bash
+xcodebuild archive \
+  -project ios/WarringtonTalkingTrails.xcodeproj \
+  -scheme WarringtonTalkingTrails \
+  -configuration Release \
+  -destination 'generic/platform=iOS' \
+  -archivePath /tmp/WarringtonTalkingTrails-N-unsigned.xcarchive \
+  -derivedDataPath /tmp/warrington-talking-trails-archive-N \
+  CODE_SIGNING_ALLOWED=NO
+
+xcodebuild -exportArchive \
+  -archivePath /tmp/WarringtonTalkingTrails-N-unsigned.xcarchive \
+  -exportPath /tmp/WarringtonTalkingTrails-N-export \
+  -exportOptionsPlist ios/ExportOptions-AppStore.plist \
+  -allowProvisioningUpdates
+
+xcodebuild -exportArchive \
+  -archivePath /tmp/WarringtonTalkingTrails-N-unsigned.xcarchive \
+  -exportPath /tmp/WarringtonTalkingTrails-N-upload \
+  -exportOptionsPlist ios/ExportOptions-AppStore-Upload.plist \
+  -allowProvisioningUpdates
+```
+
+The middle command creates a signed IPA for inspection without uploading. The
+last command uploads to App Store Connect. Check the archive and exported IPA's
+`CFBundleVersion` before the upload.
+
+Do not diagnose a missing local `Apple Distribution` identity as a lost or
+expired certificate for this project. A normally signed command-line archive
+selects development signing and may fail with “Your team has no devices.” That
+is the wrong workflow here; use the unsigned archive plus automatic export
+shown above. Xcode's `XcodeDistPipeline` temporary directories are also created
+by this command-line export and do not imply that Organizer or the Xcode GUI was
+used.

@@ -23,13 +23,13 @@ struct PointOfInterestSummaryView: View {
     
     var body: some View {
         GeometryReader { geo in
-            if self.userData.mainMapSelectedLandmark != nil {
+            if let landmark = self.userData.mainMapSelectedLandmark {
             HStack(alignment: .top) {
                 VStack {
-                    AsyncImage(url: self.userData.mainMapSelectedLandmark!.imageUrl) { image in
+                    AsyncImage(url: landmark.imageUrl) { image in
                         image
                             .resizable()
-                            .aspectRatio(contentMode: .fit).accessibility(label: Text(self.userData.mainMapSelectedLandmark!.imageAlt))
+                            .aspectRatio(contentMode: .fit).accessibility(label: Text(landmark.imageAlt))
                     } placeholder: {
                         ProgressView()
                     }
@@ -40,20 +40,20 @@ struct PointOfInterestSummaryView: View {
                     // iPhone 7: 320x568
                     // iPhone X: 375x812
                     let small = self.userData.screenSize.width < 360
-                    if self.userData.nearbyLandmark == self.userData.mainMapSelectedLandmark {
+                    if self.userData.nearbyLandmark == landmark {
                         ZStack(alignment: .center) {
                             Rectangle().fill(Color(GREEN)).frame(width: small ? 150 : 200, height: 26)
                             HStack {
                                 Image(systemName: "info.circle").foregroundColor(.white)
-                                Text((small ? "" : "Nearby ") + self.userData.mainMapSelectedLandmark!.category.friendlyValue()).modifier(WhiteUpperStyle())
+                                Text((small ? "" : "Nearby ") + landmark.category.friendlyValue()).modifier(WhiteUpperStyle())
                             }
                         }
                     } else {
-                        Text(self.userData.mainMapSelectedLandmark!.category.friendlyValue()).modifier(GrayUpperStyle()).padding(.bottom)
+                        Text(landmark.category.friendlyValue()).modifier(GrayUpperStyle()).padding(.bottom)
                     }
-                    if self.userData.mainMapSelectedLandmark!.category == .Trail {
+                    if landmark.category == .Trail {
                         Button(action: {
-                                self.userData.trailLandmark = self.userData.mainMapSelectedLandmark!
+                                self.userData.trailLandmark = landmark
                                 self.userData.trailTourTrail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
                                 self.userData.trailTourCurrentLandmark = self.userData.trailLandmark
                                 self.userData.trailTourNextLandmark =  MapService.findNextLandmark(trail: self.userData.trailTourTrail!, landmark: self.userData.trailTourCurrentLandmark!, direction: self.userData.trailDirection)
@@ -71,7 +71,7 @@ struct PointOfInterestSummaryView: View {
                                     }
                                 }
                         }) {
-                            Text(self.userData.mainMapSelectedLandmark!.trailModifiedName).modifier(LinkStyle())
+                            Text(landmark.trailModifiedName).modifier(LinkStyle())
                                 .foregroundColor(Color.blue)
                         }
                         .buttonStyle(.plain)
@@ -81,7 +81,7 @@ struct PointOfInterestSummaryView: View {
                             self.showDetails = true
                             self.showPointOfInterestDetails = true
                         }) {
-                            Text(self.userData.mainMapSelectedLandmark!.name).modifier(LinkStyle())
+                            Text(landmark.name).modifier(LinkStyle())
                                                 .foregroundColor(Color.blue)
                         }
                     }

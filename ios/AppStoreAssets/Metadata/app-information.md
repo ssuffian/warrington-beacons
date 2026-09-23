@@ -1,10 +1,12 @@
 # App information
 
 - Name: `Warrington Talking Trails`
-- Bundle ID: `org.warringtoneac.talkingtrails`
+- Existing app: `Lions Pride Park` (App Store ID `1532727572`)
+- Bundle ID: `org.warringtontownship.lionspride`
+- Apple Developer Team ID: `ZA7MADZY65`
 - SKU: `warrington-talking-trails-ios`
 - Primary language: English (U.S.)
-- Version: `1.0`
+- Version: `2.0`
 - Build: `2`
 - Platform: iPhone
 - Minimum OS: iOS 17.0

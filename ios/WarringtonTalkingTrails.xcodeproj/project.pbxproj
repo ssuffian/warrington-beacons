@@ -674,8 +674,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = SZSAWL856Z;
+				CURRENT_PROJECT_VERSION = 20260923.1;
+				DEVELOPMENT_TEAM = ZA7MADZY65;
 				DEVELOPMENT_ASSET_PATHS = "\"WarringtonTalkingTrails/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WarringtonTalkingTrails/Info.plist;
@@ -686,8 +686,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.warringtoneac.talkingtrails;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.lionspride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -699,8 +699,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = SZSAWL856Z;
+				CURRENT_PROJECT_VERSION = 20260923.1;
+				DEVELOPMENT_TEAM = ZA7MADZY65;
 				DEVELOPMENT_ASSET_PATHS = "\"WarringtonTalkingTrails/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WarringtonTalkingTrails/Info.plist;
@@ -711,8 +711,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.warringtoneac.talkingtrails;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.lionspride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -725,7 +725,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SZSAWL856Z;
+				DEVELOPMENT_TEAM = ZA7MADZY65;
 				INFOPLIST_FILE = WarringtonTalkingTrailsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -733,7 +733,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.warringtoneac.talkingtrails.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.lionspride.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -747,7 +747,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SZSAWL856Z;
+				DEVELOPMENT_TEAM = ZA7MADZY65;
 				INFOPLIST_FILE = WarringtonTalkingTrailsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -755,7 +755,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.warringtoneac.talkingtrails.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.lionspride.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -768,7 +768,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SZSAWL856Z;
+				DEVELOPMENT_TEAM = ZA7MADZY65;
 				INFOPLIST_FILE = WarringtonTalkingTrailsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -776,7 +776,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.warringtoneac.talkingtrails.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.lionspride.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -789,7 +789,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SZSAWL856Z;
+				DEVELOPMENT_TEAM = ZA7MADZY65;
 				INFOPLIST_FILE = WarringtonTalkingTrailsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -797,7 +797,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.warringtoneac.talkingtrails.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.warringtontownship.lionspride.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

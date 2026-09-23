@@ -1,5 +1,43 @@
-Warrington Talking Trails can be fully reviewed without visiting the trails or detecting a physical beacon. Open Trail Tours, select a trail, and tap Start Tour to review the guided-tour experience. Landmarks can also be opened from Park Map search.
+ADDITIONAL APP REVIEW INFORMATION — VERSION 2.0, BUILD 20260923.1
 
-Location is used to show the user's position and to detect nearby iBeacon landmarks. Bluetooth/iBeacon and location observations are processed on the device and are not sent to the developer. If permissions are declined, maps, search, landmark information, and tours remain available.
+1. PHYSICAL-DEVICE RECORDING
 
-The app has no login, purchases, advertising, analytics, or tracking. It is an independent application and not an official Warrington Township application.
+Attached separately in the App Review conversation: [RECORDING FILENAME]. It was captured on [IPHONE MODEL] running [IOS VERSION]. The recording begins at the Home Screen, shows the app launching, and demonstrates the typical Park Map, landmark search, landmark details, Trail Tours, direction selection, Start Tour, Reverse, settings, and physical-beacon response flows.
+
+2. PURPOSE AND TARGET AUDIENCE
+
+Warrington Talking Trails is an accessible, self-guided trail and landmark app for visitors to parks and trails in Warrington, Pennsylvania. It is intended for walkers, families, visitors, and especially blind or low-vision users. It provides an accessible map, searchable landmark descriptions, guided trail tours, and automatic spoken announcements when a VoiceOver user approaches a supported Bluetooth beacon.
+
+3. SETUP AND ACCESS
+
+No account, registration, login credentials, sample files, user-generated content, paid content, subscriptions, or in-app purchases are required.
+
+To use the main features:
+
+1) Launch the app with an internet connection so trail information and photographs can be downloaded and cached.
+2) Allow location access while using the app and enable Bluetooth. Notification permission supports alerts when appropriate, but foreground VoiceOver announcements do not depend on notification permission.
+3) Use Park Map or Search to browse landmarks and open descriptions.
+4) Open Trail Tours, select a trail and direction, and tap Start Tour.
+5) At supported trail locations, compatible Bluetooth beacons automatically update the current landmark. With VoiceOver enabled, the app speaks the landmark and directions to the next point.
+
+Reviewers do not need to visit the trails or detect a beacon to review the map, search, landmark-description, accessibility, and guided-tour interfaces. Automatic proximity detection requires the physical beacons installed at the supported trails.
+
+4. EXTERNAL SERVICES, TOOLS, AND PLATFORMS
+
+- Apple MapKit for maps
+- Apple Core Location for location and beacon ranging
+- Apple Core Bluetooth for Bluetooth availability
+- Apple VoiceOver accessibility APIs for spoken announcements
+- Apple local notifications
+- Static trail data, KML route geometry, and images hosted at https://trails.warringtoneac.org/ through GitHub Pages
+- Compatible Bluetooth beacon hardware installed at supported trails
+
+The app does not use authentication providers, payment processors, advertising networks, analytics services, or artificial-intelligence services.
+
+5. REGIONAL DIFFERENCES
+
+The app functions consistently in all App Store regions. Its informational content describes specific trails in Warrington, Pennsylvania, and automatic proximity announcements operate only near the physical beacon locations. All manually browsable functionality remains available outside that area.
+
+6. REGULATED SERVICES AND THIRD-PARTY MATERIAL
+
+The app does not operate in a highly regulated industry and does not provide paid, DRM-protected, or otherwise protected third-party content. It is provided by Warrington Township for visitors to Township parks and trails.

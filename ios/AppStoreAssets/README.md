@@ -1,12 +1,15 @@
 # Warrington Talking Trails — App Store submission package
 
-This folder contains the assets and copy for the first iOS App Store release.
+This folder contains the assets and copy for version 2.0 of the existing Lions
+Pride Park App Store listing.
 
 ## Ready now
 
-- App Store build `1.0 (4)` includes the maintained combined trail dataset and
-  the complete VoiceOver interaction and automatic-announcement pass.
-- Signed IPA: `Build/WarringtonTalkingTrails-1.0-4.ipa`
+- App Store build `2.0 (20260923.1)` includes the maintained combined trail
+  dataset and the complete VoiceOver interaction and automatic-announcement
+  pass. It was uploaded successfully on September 23, 2026 and is processing.
+- The release target uses bundle ID `org.warringtontownship.lionspride` and
+  Warrington Township team `ZA7MADZY65`.
 - Three reviewed 6.9-inch iPhone screenshots: `Screenshots-6.9-inch-FINAL/`
 - 1024×1024 RGB app icon: `AppIcon-1024.png`
 - Copy-and-paste listing text: `Metadata/`
@@ -23,7 +26,7 @@ on September 16, 2026:
 
 ## Final actions in App Store Connect
 
-1. Wait for build `1.0 (4)` to finish processing, then select it for version `1.0`.
+1. Wait for build `2.0 (20260923.1)` to finish processing, then select it for version `2.0` of Lions Pride Park.
 2. Paste the files in `Metadata/` into the matching fields.
 3. Upload the three screenshots in filename order to the 6.9-inch iPhone slot.
 4. Complete App Privacy, age rating, content rights, pricing/availability,

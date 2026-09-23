@@ -2,10 +2,19 @@
 
 ## iOS TestFlight releases
 
+The iOS app updates the existing Lions Pride Park App Store record, not a new
+listing. Keep bundle ID `org.warringtontownship.lionspride`, Apple team
+`ZA7MADZY65`, and App Store ID `1532727572`. Do not upload the combined app under
+the earlier personal-team identifier `org.warringtoneac.talkingtrails`.
+
 Use the documented command-line release workflow in `ios/APP_STORE_RELEASE.md`.
 This Apple team uses Xcode's automatic App Store signing during
 `xcodebuild -exportArchive`; a local `Apple Distribution` keychain identity is
 not required.
+
+Use command-line tools and local signing data for build, signing, upload, and
+verification work. Do not open Xcode or a web browser unless the user explicitly
+asks for interactive work in one of those applications.
 
 Create an unsigned Release archive with `CODE_SIGNING_ALLOWED=NO`, then export
 or upload it with `-allowProvisioningUpdates` and the appropriate plist in

@@ -1,13 +1,14 @@
 # How Warrington Talking Trails for iOS Works
 
-*Originally written during the 2026 handoff and updated for the combined,
-independently distributed app. `REPORT.md` preserves the earlier review history.*
+*Originally written during the 2026 handoff and updated for the combined app.
+`REPORT.md` preserves the earlier review history.*
 
 ## Current app
 
-The `main` branch contains one independent app covering Lions Pride Park and the
-US-202 to Bradford Dam Trail. Its user-visible name is **Warrington Talking Trails**
-and its proposed new-app bundle ID is `org.warringtoneac.talkingtrails`.
+The `main` branch contains one app covering Lions Pride Park and the US-202 to
+Bradford Dam Trail. Its user-visible name is **Warrington Talking Trails** and it
+updates the existing Lions Pride Park listing with bundle ID
+`org.warringtontownship.lionspride`.
 
 ## What the app does
 
@@ -120,8 +121,8 @@ usage strings, and notification authorization (requested at first
   `WarringtonTalkingTrailsUITests` (a full walkthrough smoke test added 2026-07-18: welcome →
   park map pins → trail list → detail → tour; it doubles as proof the remote JSON
   loads and decodes).
-- Device builds need a signing team. Select the independent developer's team in
-  Signing & Capabilities before archiving this new app.
+- Device and App Store builds use the Warrington Township team (`ZA7MADZY65`)
+  and update the existing Lions Pride Park app record.
 
 ## Simulating beacons in development
 
