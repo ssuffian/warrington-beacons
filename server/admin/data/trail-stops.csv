@@ -1,0 +1,31 @@
+Trail ID,Stop Order,Beacon Minor,Forward Distance,Forward Instructions,Reverse Distance,Reverse Instructions
+1002.0,1,1002.0,160 feet,"From the entrance, proceed on the trail to the left approximately 160 feet to the restrooms or 200 feet straight ahead to the Grove",500 feet,"In 500 feet, you will reach one of the entrances to the Green Trail"
+1002.0,2,1011.0,75 feet,"Continue on the trail 75 feet and the pavilion is on the right, 50 feet from the trail",160 feet,"From the restrooms, continue 160 feet to the park entrance"
+1002.0,3,3003.0,150 feet,125 feet to sign  on left for The Woods and Invasive Species and 25 feet more to the Green Trail,350 feet,350 feet to the Pavilion on the left
+3001.0,1,3001.0,350 feet,This will take you along the woods and back to the Yellow Trail,,This is the beginning of the Green Trail
+3001.0,2,2004.0,350 feet,Returning to the Yellow Trail allows you to turn right and walk 350 feet to the pavilion or turn left to return to the park entrance in about 700 feet.,600 feet,The link from the Yellow Trail enters the Green Trail at its mid-point. The trail to the left will take you 350 feet along the treeline to the area which ends at the Green trailhead near the pond. To the right takes you 600 feet to the Rain Garden
+3001.0,3,3005.0,50 feet,Another 50 feet along the trail takes you to an information sign  about bees.,650 feet,Walk back 275 feet toward Kids Mountain to rejoin the Yellow Trail or continue to the right 650 feet back toward the Green trail connection and the beginning of the Green Trail
+3001.0,4,2005.0,50 feet,Another 50 feet along the trail takes you to an information sign  about insects.,50 feet,Another 50 feet along the trail takes you to an information sign  about the Rain Garden
+3001.0,5,3008.0,50 feet,Another 50 feet along the trail takes you to an information sign  about butterflies.,50 feet,Another 50 feet along the trail takes you to an information sign  about bees.
+3001.0,6,2006.0,,This is the end of the Green Trail.,50 feet,Another 50 feet along the trail takes you to an information sign  about insects.
+3002.0,1,3002.0,75 feet,Along the left side of the trail is a sign  with information about pollinator plants. There is a rope handrail on the right side,,This is the beginning of the Kids Mountain Trail. The park entrance is 30 feet further downhill on your left
+3002.0,2,3007.0,300 feet,"300 feet up the pleasantly inclined trail takes you to the gentle slope, open in winter for sledding.",75 feet,Takes you back to the beginning of Kids Mountain Trail
+3002.0,3,2007.0,55 feet,Another 55 feet takes you to the summit of Kids Mountain.  Let the good times roll!!,300 feet,Along the right side of the trail is a sign  with information about pollinator plants
+3002.0,4,1003.0,,This is the top of Kids Mountain and end of the trail.,55 feet,"Downhill on the trail takes you to the gentle slope, open in winter for sledding. There is a rope handrail along the left side of the trail."
+4001.0,1,4001.0,319 yards;,319 yards to Bluebird and cavity nesting bird program,,This is the start of the trail
+4001.0,2,1.0,365 yards;,365 yards to Pollinator Habitat,319 yards,319 yards to Trailhead
+4001.0,3,2.0,64 yards;,64 yards to Pet Waste,365 yards,365 yards to Bluebird and cavity nesting bird program
+4001.0,4,3.0,3983 yards;,3983 yards to Naturalized Basin,64 yards,64 yards to Pollinator Habitat
+4001.0,5,4.0,54 yards;,54 yards to Native Plant Management Area,3983 yards,3983 yards to Pet Waste
+4001.0,6,5.0,420 yards;,420 yards to Rain Barrels,54 yards,54 yards to Naturalized Basin
+4001.0,7,6.0,1131 yards;,1131 yards to Bluebird and cavity nesting bird program,420 yards,420 yards to Native Plant Management Area
+4001.0,8,7.0,112 yards;,112 yards to Native Plant vs Invasive Plants,1131 yards,1131 yards to Rain Barrels
+4001.0,9,8.0,163 yards;,163 yards to Native Plant Management Area,112 yards,112 yards to Bluebird and cavity nesting bird program
+4001.0,10,9.0,81 yards;,81 yards to Pet Waste,163 yards,163 yards to Native Plant vs Invasive Plants
+4001.0,11,10.0,269 yards;,269 yards to Trees,81 yards,81 yards to Native Plant Management Area
+4001.0,12,11.0,141 yards;,141 yards to Wetlands,269 yards,269 yards to Pet Waste
+4001.0,13,12.0,92 yards;,92 yards to Fish,141 yards,141 yards to Trees
+4001.0,14,13.0,532 yards;,532 yards to Meadows,92 yards,92 yards to Wetlands
+4001.0,15,14.0,138 yards;,138 yards to Waterfowl,532 yards,532 yards to Fish
+4001.0,16,15.0,858 yards;,858 yards to End of trail,138 yards,138 yards to Meadows
+4001.0,17,16.0,,This is the end of the trail,858 yards,858 yards to Waterfowl

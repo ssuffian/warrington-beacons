@@ -33,9 +33,9 @@ class TrailsDataParsingTest {
 
     @Test
     fun `parses every landmark and trail from both locations`() {
-        assertEquals(40, data.landmarks.size)
+        assertEquals(38, data.landmarks.size)
         assertEquals(4, data.trails.size)
-        assertEquals(23, data.landmarks.count { it.location == "lions-pride-park" })
+        assertEquals(21, data.landmarks.count { it.location == "lions-pride-park" })
         assertEquals(17, data.landmarks.count { it.location == "us-202" })
     }
 

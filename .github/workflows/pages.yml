@@ -5,7 +5,11 @@ on:
     branches: [main]
     paths:
       - server/**
+      - scripts/fetch_master_sheet.py
+      - scripts/master_sheet.py
       - .github/workflows/pages.yml
+  schedule:
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -25,6 +29,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Build app data from the master Sheet and KML
+        run: |
+          python3 scripts/fetch_master_sheet.py 1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P /tmp/warrington-master-csv
+          python3 scripts/master_sheet.py /tmp/warrington-master-csv --kml server/talking-trails.kml --output-dir /tmp/warrington-master-validation
+          cp /tmp/warrington-master-validation/candidate.json server/warrington-trails.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: server

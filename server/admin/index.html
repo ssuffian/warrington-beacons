@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only Warrington Talking Trails map and master data review.">
+  <meta name="robots" content="noindex">
+  <title>Talking Trails · Data review</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/leaflet.js" defer></script>
+  <script src="app.mjs" type="module"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to review</a>
+  <header class="masthead">
+    <div><span class="eyebrow">WARRINGTON TOWNSHIP</span><h1>Talking Trails <span>Data review</span></h1></div>
+    <div class="header-actions"><span class="read-only">Public · read-only</span><a id="edit-sheet" class="button primary" target="_blank" rel="noopener noreferrer">Edit master sheet ↗</a></div>
+  </header>
+  <main id="main">
+    <section class="sourcebar" aria-label="Data sources">
+      <div><span class="source-dot" id="source-dot"></span><strong id="source-mode">Loading sources…</strong><span id="source-time"></span></div>
+      <div class="refresh-controls"><label><input id="auto-refresh" type="checkbox" checked> Refresh every minute</label><button id="refresh" type="button">Refresh now</button></div>
+    </section>
+    <div id="notices" role="status" aria-live="polite"></div>
+    <section class="metrics" aria-label="Data counts" id="metrics"></section>
+    <nav class="tabs" aria-label="Review views">
+      <button data-view="map-view" aria-pressed="true">Map &amp; points</button>
+      <button data-view="diff-view" aria-pressed="false">Master vs app</button>
+      <button data-view="review-view" aria-pressed="false">Review issues</button>
+      <button data-view="tables-view" aria-pressed="false">Sheet tables</button>
+      <button data-view="sources-view" aria-pressed="false">Sources &amp; linking</button>
+    </nav>
+    <section id="map-view" class="view">
+      <div class="filters">
+        <label class="search">Find a point<input id="search" type="search" placeholder="Name, Minor, record ID or KML ID"></label>
+        <label>Location<select id="location"><option value="">All locations</option></select></label>
+        <label>Hardware<select id="hardware"><option value="">All statuses</option></select></label>
+        <label>Show<select id="scope"><option value="">All points</option><option value="placement">Position differences &gt;75 m</option><option value="unlinked">Only in sheet or KML</option><option value="candidate">Possible matches (not saved)</option><option value="confirmed">ID-confirmed matches</option><option value="retired">Retired</option><option value="no-position">No coordinates</option><option value="standalone">No listed trail stops</option></select></label>
+      </div>
+      <details class="match-help"><summary>What do the match labels mean?</summary><div><p><strong>Possible match</strong> means the KML point and sheet row probably describe the same place based on name and distance, but no permanent link has been saved.</p><p><strong>Sheet row only</strong> or <strong>KML point only</strong> means that item has no credible partner in the other source. That can be intentional for a planned, standalone, or geography-only point.</p><p><strong>ID confirmed</strong> means the sources share a permanent ID. Confirm a possible match by putting its KML ID in the row’s <code>kmlPlacemarkId</code> cell.</p></div></details>
+      <div id="review-filter" class="review-filter" hidden><div><strong id="review-filter-title"></strong><span id="review-filter-count"></span></div><button id="clear-review-filter" type="button">Leave review queue</button></div>
+      <div class="workspace">
+        <aside class="point-list"><div class="list-heading"><strong id="list-count">Points</strong><button id="clear-filters">Clear filters</button></div><div id="points"></div></aside>
+        <div class="map-wrap"><div id="map" aria-label="Read-only trail and beacon map"></div><div id="map-error" class="map-error" hidden></div><div id="filter-map-note" class="filter-map-note" hidden>Trail lines are hidden while point filters are active.</div><div class="map-tools"><button id="fit-map">Fit visible points</button><label><input type="checkbox" id="show-app"> Current app points</label></div><div class="legend"><span><i class="dot green"></i> Working</span><span><i class="dot amber"></i> Needs attention</span><span><i class="dot gray"></i> Planned / retired / unknown</span><span><i class="dot hollow"></i> Sheet-only position</span></div></div>
+        <aside id="detail" class="detail" aria-label="Selected point"><div class="empty"><h2>Select a point</h2><p>Choose a pin or a row to read its app text and compare the sources.</p><p>KML pins show KML positions. Hollow pins use sheet coordinates until a KML link is confirmed.</p></div></aside>
+      </div>
+    </section>
+    <section id="diff-view" class="view" hidden>
+      <div class="diff-heading">
+        <div><span class="eyebrow">PROPOSED DATA CHANGE</span><h2>Current app <span>→</span> Master sheet</h2><p>The left side is live in the app now. The right side is what the master proposes. Expand a record to see its full red/green text changes. Draft rows are not part of the next release.</p></div>
+        <div class="diff-branch"><span>base</span> current app JSON <b>→</b> <span>proposed</span> master sheet</div>
+      </div>
+      <div id="diff-summary" class="diff-summary" aria-label="App comparison counts"></div>
+      <div class="diff-controls">
+        <label class="search">Find a point<input id="diff-search" type="search" placeholder="Name, Minor, record ID or location"></label>
+        <p>Choose a count above to filter the list. The four change types add up to <strong>Changed</strong>.</p>
+      </div>
+      <div class="diff-key"><span class="diff-minus">− Current app</span><span class="diff-plus">+ Master sheet</span><span class="diff-info">Rounding-only coordinates are notes, not substantive moves.</span></div>
+      <div id="app-diff" class="app-diff"></div>
+    </section>
+    <section id="review-view" class="view" hidden>
+      <div class="section-heading"><div><h2>Review work</h2><p>Make changes in the master sheet. This page helps you find the affected points and check the result.</p></div><button id="print">Print review</button></div>
+      <div class="review-block-heading"><span class="eyebrow">DECIDE ONCE, APPLY CONSISTENTLY</span><h2>Bulk decisions</h2><p>These are shared policy questions from the sheet, not individual map errors. Choose a decision to open its affected points as a map review queue.</p></div>
+      <div id="review-groups" class="review-groups"></div>
+      <div class="review-block-heading points-to-edit"><span class="eyebrow">CHECK ONE POINT AT A TIME</span><h2>Points to edit</h2><p>Expand a category and click a point name to open that point on the map with its sheet row, KML comparison and app text.</p></div>
+      <div id="review-checks"></div>
+    </section>
+    <section id="tables-view" class="view" hidden>
+      <div class="section-heading"><div><h2>Master sheet tables</h2><p>Read-only values from the source shown above. Edit the shared file, then refresh.</p></div><label>Table<select id="table-select"></select></label></div>
+      <p id="table-note" class="muted"></p><div id="source-table" class="table-scroll" tabindex="0" role="region" aria-label="Source table"></div>
+    </section>
+    <section id="sources-view" class="view sources" hidden>
+      <article><span class="eyebrow">01 / GEOGRAPHY</span><h2>KML owns the map</h2><p>Trail shapes and point positions come from the served Google Earth file. Route placemarks carry their location and stable trail group ID in KML metadata. Repeated segments remain separate but share one group ID. This page cannot move, add or delete geometry.</p><p><a id="download-kml" class="button" download>Download served KML</a> <a id="edit-earth" class="button" target="_blank" rel="noopener noreferrer">Open Google Earth ↗</a></p><p id="earth-note" class="muted">No shared Earth project link is configured. Download the KML and import it into Google Earth to edit. An updated export must replace the served file; Earth edits do not sync automatically.</p><div id="route-inventory"></div></article>
+      <article><span class="eyebrow">02 / CONTENT &amp; INVENTORY</span><h2>The sheet owns the details</h2><p>Names, app text, location, beacon programming numbers, hardware status and purchase counts come from the master. Stop Content stores directional wording; KML stores each stop's trail membership and order. Individual points do not need a trail.</p><p><a id="source-file" class="button" target="_blank" rel="noopener noreferrer">Open shared workbook ↗</a></p><p id="snapshot-description"></p><div id="csv-downloads"></div><h3>Preview a local file</h3><p>Open a Beacons CSV or a complete XLSX/XLSM workbook. It stays in this browser tab, does not upload, and pauses live refresh.</p><label class="file-label">Choose CSV / workbook<input id="local-file" type="file" accept=".csv,.xlsx,.xlsm"></label><button id="restore-live">Return to linked source</button><p id="local-error" role="alert"></p></article>
+      <article><span class="eyebrow">03 / PERMANENT LINKS</span><h2>Link by ID, not by name</h2><p>Add a <code>kmlPlacemarkId</code> column to Beacons and copy the point’s KML ID from its detail panel. Keep <code>recordKey</code> unique and unchanged when rows move. Alternatively, add <code>recordKey</code> to the KML point’s ExtendedData.</p><p>Until that link exists, matching names and nearby coordinates are only suggestions. Duplicate or conflicting IDs are flagged, not silently merged. Confirm the three large position differences before choosing which placemark belongs to each row.</p><p>Hardware Minor and Major can change when a beacon is reprogrammed. They are not permanent map identities.</p><h3>Relink later</h3><p>The existing site’s admin configuration accepts a public workbook download or a Google Sheets CSV export. A CSV connection refreshes Beacons only; supporting tables stay explicitly labeled snapshots.</p></article>
+      <article><span class="eyebrow">04 / RELEASE CHECK</span><h2>Preview does not deploy</h2><p>This page never writes to the sheet, KML or app JSON. Hardware condition is separate from App Inclusion: a missing beacon can still have useful app text.</p><p>Current-app comparisons use the JSON served by this same site. New KML routes are not automatically selectable app tours. Mapping route segments to tour IDs is still a separate review step.</p><p><a id="app-json">View current app JSON</a></p></article>
+    </section>
+    <footer>No edits or deployments happen here. Source values are shown as text; workbook macros and formulas are never executed.</footer>
+  </main>
+  <noscript>This preview needs JavaScript. You can still open the shared workbook or download the served KML directly.</noscript>
+</body>
+</html>

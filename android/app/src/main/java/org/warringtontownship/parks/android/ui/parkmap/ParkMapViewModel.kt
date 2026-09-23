@@ -149,9 +149,7 @@ class ParkMapViewModel @Inject constructor(
                         longitude = mark.coordinates.longitude,
                     )
                 }
-                val routes = trailRepository.getTrails().map { trail ->
-                    trail.boundaryCoordinates.map { Coordinates(it.latitude, it.longitude) }
-                }
+                val routes = trailRepository.getMapRoutes()
                 val boundary = trailRepository.getCombinedBounds()
                 _uiState.value = ParkMapUiState(markers = markers, routes = routes, boundary = boundary)
 

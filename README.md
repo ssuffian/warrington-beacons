@@ -75,7 +75,7 @@ from the base URL. The hardcoded URLs to update are:
   * `android/app/src/main/java/org/warringtontownship/parks/android/data/repository/TrailRepository.kt`
     — `IMAGE_BASE_URL`
 * iOS:
-  * `ios/LionsPride/Info.plist` — `base_url_string`
+  * `ios/WarringtonTalkingTrails/Info.plist` — `base_url_string`
 
 ## Beacons
 

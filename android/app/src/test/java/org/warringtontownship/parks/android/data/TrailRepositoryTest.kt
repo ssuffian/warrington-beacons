@@ -11,10 +11,12 @@ import org.warringtontownship.parks.android.data.model.TrailsData
 import org.warringtontownship.parks.android.data.network.TrailsApiService
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import java.io.File
+import okhttp3.ResponseBody.Companion.toResponseBody
 
 class TrailRepositoryTest {
 
     private class FakeApiService : TrailsApiService {
+        override suspend fun getTrailKml(): okhttp3.ResponseBody = throw java.io.IOException("Offline KML")
         override suspend fun getTrailsData(): TrailsData =
             Gson().fromJson(
                 File(TrailsDataParsingTest.DATA_FILE).readText(),
@@ -32,10 +34,25 @@ class TrailRepositoryTest {
 
     @Test
     fun `exposes every landmark and trail as one flat set`() {
-        assertEquals(40, repository.getLandmarks().size)
+        assertEquals(38, repository.getLandmarks().size)
         assertEquals(4, repository.getTrails().size)
         assertEquals("Yellow Trail", repository.getTrailById(1002)?.name)
         assertEquals("202 Connector Trail", repository.getTrailById(4001)?.name)
+    }
+
+    @Test
+    fun `KML replaces overview geometry without importing its point markers`() = runBlocking {
+        val api = object : TrailsApiService {
+            override suspend fun getTrailsData(): TrailsData = FakeApiService().getTrailsData()
+            override suspend fun getTrailKml(): okhttp3.ResponseBody =
+                File("../../server/talking-trails.kml").readText().toResponseBody()
+        }
+        val repo = TrailRepository(api)
+        repo.loadData()
+        assertEquals(15, repo.getMapRoutes().size)
+        assertEquals(38, repo.getLandmarks().size)
+        assertEquals(4, repo.getTrails().size)
+        assertEquals(38 + repo.getMapRoutes().sumOf { it.size }, repo.getCombinedBounds().size)
     }
 
     @Test
@@ -59,12 +76,12 @@ class TrailRepositoryTest {
     @Test
     fun `combined bounds span both locations`() {
         val bounds = repository.getCombinedBounds()
-        // 40 landmark coordinates plus 887 trail polyline points.
-        assertEquals(927, bounds.size)
+        // KML-derived landmark coordinates plus generated tour route points.
+        assertEquals(270, bounds.size)
         val latitudes = bounds.map { it.latitude }
         val longitudes = bounds.map { it.longitude }
         assertTrue(latitudes.min() < 40.228 && latitudes.max() > 40.269)
-        assertTrue(longitudes.min() < -75.191 && longitudes.max() > -75.157)
+        assertTrue(longitudes.min() < -75.191 && longitudes.max() > -75.159)
         // Both clusters are represented, not just the wider US202 corridor.
         assertTrue(bounds.any { it.latitude > 40.245 && it.latitude < 40.249 })
     }
@@ -72,7 +89,7 @@ class TrailRepositoryTest {
     @Test
     fun `per-trail bounds cover only that trail`() {
         val bounds = repository.getBoundsForTrail(1002)
-        assertEquals(54, bounds.size)
+        assertEquals(42, bounds.size)
         assertTrue(bounds.all { it.latitude > 40.246 && it.latitude < 40.248 })
         assertTrue(repository.getBoundsForTrail(999999).isEmpty())
     }
@@ -81,9 +98,9 @@ class TrailRepositoryTest {
     fun `groups landmarks by location in locations order`() {
         val grouped = repository.getLandmarksByLocation()
         assertEquals(listOf("Lions Pride Park", "US202 to Bradford Dam"), grouped.map { it.first.name })
-        assertEquals(23, grouped[0].second.size)
+        assertEquals(21, grouped[0].second.size)
         assertEquals(17, grouped[1].second.size)
-        assertEquals(40, grouped.sumOf { it.second.size })
+        assertEquals(38, grouped.sumOf { it.second.size })
     }
 
     @Test

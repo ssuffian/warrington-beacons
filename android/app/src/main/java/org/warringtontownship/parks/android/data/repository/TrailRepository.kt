@@ -1,6 +1,10 @@
 package org.warringtontownship.parks.android.data.repository
 
 import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.warringtontownship.parks.android.data.model.KmlRoutes
 import kotlinx.coroutines.sync.withLock
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.data.model.Coordinates
@@ -22,6 +26,7 @@ class TrailRepository @Inject constructor(
     private val apiService: TrailsApiService,
 ) {
     private var data: TrailsData? = null
+    private var mapRoutes: List<List<Coordinates>>? = null
     private val loadMutex = Mutex()
 
     // Loads once per process; every ViewModel calls this in its init, so without the
@@ -31,12 +36,27 @@ class TrailRepository @Inject constructor(
         if (data != null) return
         loadMutex.withLock {
             if (data == null) {
-                data = apiService.getTrailsData()
+                val loaded = apiService.getTrailsData()
+                mapRoutes = try {
+                    val xml = apiService.getTrailKml().use { it.string() }
+                    withContext(Dispatchers.Default) { KmlRoutes.parse(xml) }
+                } catch (cancelled: CancellationException) {
+                    throw cancelled
+                } catch (_: Exception) {
+                    // Before the KML is deployed, or offline without a cache, keep
+                    // the existing JSON routes available. Never lose landmark text.
+                    null
+                }
+                data = loaded
             }
         }
     }
 
     fun getLandmarks(): List<Landmark> = data?.landmarks ?: emptyList()
+
+    fun getMapRoutes(): List<List<Coordinates>> = mapRoutes ?: getTrails().map { trail ->
+        trail.boundaryCoordinates.map { Coordinates(it.latitude, it.longitude) }
+    }
 
     fun getLandmarkById(id: Int): Landmark? = data?.landmarks?.find { it.id == id }
 
@@ -60,9 +80,7 @@ class TrailRepository @Inject constructor(
 
     fun getCombinedBounds(): List<Coordinates> =
         getLandmarks().map { it.coordinates } +
-            getTrails().flatMap { trail ->
-                trail.boundaryCoordinates.map { Coordinates(it.latitude, it.longitude) }
-            }
+            getMapRoutes().flatten()
 
     fun getBoundsForTrail(trailId: Int): List<Coordinates> =
         getTrailById(trailId)?.boundaryCoordinates

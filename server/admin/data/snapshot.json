@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-09-11T02:47:12.775442+00:00",
+  "sourceUrl": "https://drive.google.com/file/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/view",
+  "sourceSha256": "0e0323d9a219590a3eb81d1365d7973fe659b657c1f4fd2880e906482c461d87",
+  "files": {
+    "Beacons": "beacons.csv",
+    "Locations": "locations.csv",
+    "Trails": "trails.csv",
+    "Trail Stops": "trail-stops.csv",
+    "Needs Review": "needs-review.csv",
+    "Review Details": "review-details.csv"
+  },
+  "note": "Fallback snapshot, not live. Cached formula values only; macros never executed."
+}

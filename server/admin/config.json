@@ -1,0 +1,18 @@
+{
+  "sheetEditUrl": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/edit?usp=sharing",
+  "sheetEditLabel": "Open master spreadsheet ↗",
+  "sheetPublicUrl": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/edit?usp=sharing",
+  "sheetDataUrls": {
+    "Guide": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/gviz/tq?tqx=out:csv&sheet=Guide",
+    "Beacons": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/gviz/tq?tqx=out:csv&sheet=Beacons",
+    "Locations": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/gviz/tq?tqx=out:csv&sheet=Locations",
+    "Trails": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/gviz/tq?tqx=out:csv&sheet=Trails",
+    "Stop Content": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/gviz/tq?tqx=out:csv&sheet=Stop%20Content",
+    "Decisions": "https://docs.google.com/spreadsheets/d/1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P/gviz/tq?tqx=out:csv&sheet=Decisions"
+  },
+  "kmlUrl": "../talking-trails.kml",
+  "earthEditUrl": "https://earth.google.com/web/",
+  "appJsonUrl": "../warrington-trails.json",
+  "refreshSeconds": 60,
+  "fallbackManifest": "data/snapshot.json"
+}

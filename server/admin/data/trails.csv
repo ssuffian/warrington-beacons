@@ -1,0 +1,5 @@
+id,location,name,isOpen,trailDistanceDescription,reviewStatus
+1002.0,lions-pride-park,Yellow Trail,false,"This is a paved 0.4 mile trail around Kids Mountain and the Grove.  Just to the right of the main entrance is a link to the IPW Park around the soccer fields. About half-way around, is a connector to the Green Trail.",Needs Review
+3001.0,lions-pride-park,Green Trail,true,"This is a crushed stone U-shaped trail about .25 miles around the back of the park leading to the Rain Garden nature area. The link from the Yellow trail allows you to walk left toward the Rain Garden, or right around the lacrosse field to the rain garden and some informative nature signs. the two ends do not currently connect to one another. This will change when the pond to wetland project is completed.",Needs Review
+3002.0,lions-pride-park,Kids Mountain Trail,true,This is a 400 foot trail leading to the top of Kids Mountain. The slope is ADA compliant and friendly for those with mobility issues.,Needs Review
+4001.0,us-202,202 Connector Trail,true,This is a paved trail (with one short gravel segment) connecting the US-202 Parkway Trail to the Bradford Dam trail,Needs Review

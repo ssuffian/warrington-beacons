@@ -2,6 +2,54 @@
 
 Static JSON served via GitHub Pages at `https://trails.warringtoneac.org/`.
 
+## Read-only admin preview
+
+`admin/index.html` adds `/admin/` to this same static server. It shows KML shapes
+and points alongside the public Drive workbook, with clickable point text,
+hardware status, optional trail stops, current-app comparisons and grouped
+review issues. No login or write access is required. Remote edits are made via
+the external sheet/Earth links; refresh never deploys changes to the app.
+
+The page supports live XLSX/XLSM reads, CSV fallback and browser-only local-file
+preview. Source freshness and suggested-versus-confirmed links are explicit.
+See [admin preview setup and tests](../docs/admin-preview.md). No hosting
+configuration was changed; deploy this `server/` directory through the existing
+hosting setup when ready.
+
+## Google Earth route geometry
+
+`talking-trails.kml` is the served route source from the September 10, 2026
+Talking Trails Google Earth export, with the northern Pollinator Garden renamed
+Pollinator Habitat after coordinate reconciliation. After deployment it is
+available at `https://trails.warringtoneac.org/talking-trails.kml`.
+
+Both apps' overview maps fetch this file and draw its LineStrings and Polygon
+boundaries. KML now owns all route geometry and Point coordinates. It also owns
+tour membership and order through `trailId` and `stopOrder` on Point
+placemarks. Multiple geometries with the same route group remain separate in
+KML; the generator combines them for the selected tour's JSON route.
+
+Route placemarks are grouped into Lions Pride Park, US-202 and Trails Needing
+Location Review folders. Each route has `location` and `trailGroupId`
+ExtendedData. Repeated Mill Creek and Kids Mt. geometries share their respective
+group ID but remain separate shapes. Native apps currently ignore this metadata;
+the admin location filter uses it.
+
+Point placemarks store the master workbook's stable `recordKey` in
+ExtendedData. Use Google Earth/KML to edit point locations, route geometry,
+tour membership and stop order. Use the workbook for text, hardware status,
+app inclusion, beacon configuration and directional wording.
+
+`scripts/master_sheet.py` validates the workbook and KML together and generates
+the atomic `warrington-trails.json` consumed by both apps. The Pages workflow
+does the same from the public Sheet tabs before deployment, so invalid or
+partially edited source data cannot replace the last successful app data.
+
+Update the served copy here for future deployments. `data/trails/Talking Trails.kml`
+is the original import snapshot, not the active served source. Neither copying
+the file nor changing app source publishes a deployment or updates installed
+apps; Pages deployment and new app builds are required.
+
 - `warrington-trails.json` — combined file used by the Android app (one UUID,
   per-location major codes, all landmarks and trails)
 - `us-202/us202trail-v2.json` — US-202 park file, used by the iOS app
