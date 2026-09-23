@@ -43,6 +43,12 @@ those URLs to server-relative paths in app JSON to preserve compatibility with
 installed builds. Generate the browsable `/images/` catalog with
 `scripts/build_image_library.py`; do not hand-maintain its cards.
 
+Keep the served KML link on the first Guide tab of any master workbook intended
+for outside editors. Exclude old-source reconciliation columns and the completed
+Decisions tab from that editor workbook, but retain `recordKey`,
+`kmlTrailGroupId`, beacon maintenance fields and review controls because they
+support the KML join and field maintenance.
+
 Use the command-line workflows documented in `docs/master-sheet.md`. Do not open
 Xcode or Google Earth merely to inspect or build files; use them only when the
 user explicitly wants interactive editing in those apps.

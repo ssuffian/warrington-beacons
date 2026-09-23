@@ -15,9 +15,17 @@ The final local workbook is:
 
 `outputs/master-kml-source-of-truth-2026-09-23/warrington-master-review.xlsx`
 
-It contains Guide, Beacons, Locations, Trails, Stop Content and Decisions tabs.
-All reconciliation decisions have been applied. Draft and Retired rows remain in
-the master for planning and history but do not enter app data.
+It contains Guide, Beacons, Locations, Trails and Stop Content tabs. Draft and
+Retired rows remain in the master for ongoing planning and history but do not
+enter app data.
+
+The Guide tab stays first and includes direct links to the served KML and image
+library. The external-editor workbook excludes old-source reconciliation fields
+(`sourceId`, `sourceMajor`, `sourceLocationCode`, `sourceImageName`, `sourceRow`,
+`decisionNotes`, `hardwareNotes` and location `sourceCodes`). The completed
+Decisions tab is also omitted. None of these are consumed by the app-data
+generator. Join keys, KML route-group IDs, beacon maintenance fields and review
+controls remain visible because outside editors may need them.
 
 ## Generation and deployment
 

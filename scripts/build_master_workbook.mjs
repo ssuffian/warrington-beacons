@@ -11,6 +11,11 @@ try {
 }
 const { Workbook, SpreadsheetFile } = artifactTool;
 
+const excludedColumns = {
+  'Beacons': new Set(['sourceId','sourceMajor','sourceLocationCode','sourceImageName','sourceRow','decisionNotes','hardwareNotes']),
+  'Locations': new Set(['sourceCodes']),
+};
+
 const [input, output] = process.argv.slice(2);
 const tables = JSON.parse(await fs.readFile(input, 'utf8'));
 const wb = Workbook.create();
@@ -18,7 +23,8 @@ for (const [name, rows] of Object.entries(tables)) {
   const sheet = wb.worksheets.add(name);
   const hasNewStatus = name==='Beacons' && rows.some(r=>'Status' in r);
   const priority=name==='Beacons'?['recordKey','name','id','location',hasNewStatus?'Status':'beaconStatus',...(hasNewStatus?['purchaseCount']:[]),'appStatus','reviewStatus','category']:[];
-  const headers = [...new Set([...priority,...rows.flatMap(r => Object.keys(r))])];
+  const headers = [...new Set([...priority,...rows.flatMap(r => Object.keys(r))])]
+    .filter(k => !excludedColumns[name]?.has(k));
   const labels={
     'Beacons':{id:'Minor',sourceId:'Source Minor',sourceMajor:'Source Major',appStatus:'App Inclusion'},
     'Locations':{beaconMajorCode:'Major',iBeaconUUID:'iBeacon UUID',altBeaconUUID:'AltBeacon UUID'},
@@ -58,10 +64,18 @@ for (const [name, rows] of Object.entries(tables)) {
       }
     }
     if (['name','sourceRow','imagePath','sourceCoordinates','decision','coordinateReview'].includes(k)) col.format.columnWidth=44;
+    if (k==='imagePath') col.format.font = {name:'Arial',size:10,color:'#0563C1',underline:true};
     if (k==='reviewStatus') {col.dataValidation={rule:{type:'list',values:['Needs Review','Approved']}};col.conditionalFormats.add('containsText',{text:'Needs Review',format:{fill:'#FFF0C2'}});}
     if (k==='appStatus') col.dataValidation={rule:{type:'list',values:['Active','Draft','Retired']}};
     if (k==='Status') col.dataValidation={rule:{type:'list',values:['Working','Needs reprogrammed','Missing','Broken','To be purchased']}};
     if (k==='purchaseCount') col.dataValidation={rule:{type:'whole',operator:'greaterThanOrEqual',formula1:0}};
+  }
+  if (name==='Guide') {
+    for (let row=0; row<rows.length; row++) {
+      if (/^https:\/\//.test(String(rows[row].guidance??''))) {
+        sheet.getRangeByIndexes(row+1,1,1,1).format.font = {name:'Arial',size:10,color:'#0563C1',underline:true};
+      }
+    }
   }
 }
 wb.recalculate();

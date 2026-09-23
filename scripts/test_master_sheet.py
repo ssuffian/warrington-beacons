@@ -42,7 +42,7 @@ class MasterValidationTest(unittest.TestCase):
     def test_clickable_hosted_image_url_is_normalized_for_existing_apps(self):
         candidate = copy.deepcopy(self.tables)
         row = next(r for r in candidate['Beacons'] if r['appStatus'] == 'Active')
-        relative = row['imagePath']
+        relative = normalize_image_path(row['imagePath'])
         row['imagePath'] = 'https://trails.warringtoneac.org/' + relative
         result, errors = validate(candidate, KML)
         self.assertEqual(errors, [])
