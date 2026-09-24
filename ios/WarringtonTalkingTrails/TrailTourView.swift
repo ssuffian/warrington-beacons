@@ -23,11 +23,16 @@ struct TrailTourView: View {
         ZStack {
             if let current = userData.trailTourNextLandmark,
                let trailLandmark = userData.trailLandmark {
-                VStack (alignment: .leading, spacing: 0){
+                VStack(alignment: .leading, spacing: 0) {
                     let nextDistance = getNextLandmarkDistanceDescription()
-                    NextPointOfInterestView(selectedLandmark: current, nextLandmarkDistanceDescription: nextDistance, showLandmarkDetails: $showPointOfInterestDetails).environment(userData).padding()
+                    ScrollView(.vertical, showsIndicators: true) {
+                        NextPointOfInterestView(selectedLandmark: current, nextLandmarkDistanceDescription: nextDistance, showLandmarkDetails: $showPointOfInterestDetails)
+                            .environment(userData)
+                            .padding(16)
+                    }
+                    .frame(maxHeight: 300)
+                    Divider()
                     TrailTourMapView(landmarks: getLandmarksForMap(landmark: trailLandmark), showPointOfInterestDetails: $showPointOfInterestDetails).environment(userData)
-                    Spacer()
                 }.navigationBarItems(trailing:
                     TrailTourButtonBarView(landmark: trailLandmark).environment(self.userData)
                     ).navigationBarTitle("\(trailLandmark.name) Tour", displayMode: .inline)

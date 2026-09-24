@@ -38,7 +38,9 @@ struct MainView: View {
                                 VStack {
                                     Spacer()
                                 
-                                    PointOfInterestSummaryView(showDetails: self.showPointOfInterestDetails, showPointOfInterestSummary: self.$showPointOfInterestSummary, showPointOfInterestDetails: self.$showPointOfInterestDetails, selectedTab: self.$selection).environment(self.userData).background(Color(.secondarySystemBackground)).frame(height: self.userData.screenSize.height > 700 ? 150: 120)
+                                    PointOfInterestSummaryView(showDetails: self.showPointOfInterestDetails, showPointOfInterestSummary: self.$showPointOfInterestSummary, showPointOfInterestDetails: self.$showPointOfInterestDetails, selectedTab: self.$selection)
+                                        .environment(self.userData)
+                                        .fixedSize(horizontal: false, vertical: true)
                                 }
                             }
 

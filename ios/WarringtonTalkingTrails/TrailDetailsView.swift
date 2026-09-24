@@ -17,8 +17,8 @@ struct TrailDetailsView: View {
         ScrollView(.vertical, showsIndicators: true) {
             if let trailLandmark = userData.trailLandmark,
                let currentLandmark = userData.trailTourCurrentLandmark {
-                VStack(spacing: 0) {
-                    VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text(trailLandmark.longDescription)
                             .fixedSize(horizontal: false, vertical: true)
                         DirectionButtonView().environment(userData)
@@ -29,7 +29,9 @@ struct TrailDetailsView: View {
 
                     TrailMapView(trailLandmark: trailLandmark)
                         .environment(userData)
-                        .frame(height: 360)
+                        .frame(minHeight: 280, idealHeight: 340, maxHeight: 380)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal)
 
                     Button(action: {
                             guard let trail = landmarkService.getTrailById(id: trailLandmark.id) else {
@@ -48,11 +50,15 @@ struct TrailDetailsView: View {
                             // this triggers the navigationDestination push
                             self.startTrailTour = self.userData.trailTourNextLandmark != nil
                     }) {
-                        Text("Start Tour").modifier(BlueButtonTextStyle())
-                            .foregroundColor(Color.blue)
+                        Text("Start Tour")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, minHeight: 28)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
                     .accessibilityHint("Starts spoken trail navigation")
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.bottom, 20)
                 }
             }
         }

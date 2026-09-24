@@ -31,17 +31,9 @@ struct PointOfInterestDetailsView: View {
     
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: .topTrailing) {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(alignment: .leading, spacing: 0) {
-                    HStack{
-                        Spacer()
-                        Button(action: self.close) {
-                        Image(systemName: "xmark.circle.fill").resizable().frame(width: 35, height: 35).foregroundColor(.black).opacity(0.6)
-                        }.padding()
-                        .accessibilityLabel("Close landmark details")
-                    }
-                    
                     AsyncImage(url: self.landmark.imageUrl) { image in
                         image
                             .resizable()
@@ -52,32 +44,47 @@ struct PointOfInterestDetailsView: View {
                     }
 
                     if self.userData.isTrailTour && self.landmark == self.userData.trailTourNextLandmark {
-                        ZStack(alignment: .leading) {
-                            Rectangle().fill(Color(GREEN)).frame(height: 26)
-                            HStack {
-                                Image(systemName: "info.circle").foregroundColor(.white)
-                                Text("Next Point of Interest").modifier(WhiteUpperStyle())
-                            }.padding([.leading])
+                        HStack(spacing: 8) {
+                            Image(systemName: "info.circle.fill")
+                            Text("Next Point of Interest")
+                                .font(.headline)
+                        }
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color(GREEN))
+                    }
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(self.landmark.category.friendlyValue())
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.secondary)
+                        Text(self.landmark.trailModifiedName)
+                            .font(.title2.weight(.bold))
+                        Text(self.userData.showSimplifiedView ? self.landmark.description : self.landmark.longDescription)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineSpacing(2)
+                        if self.landmark.category.rawValue != "Trail" {
+                            Text("Trails: \(self.trailNamesSeparated(trails: landmarkService.getTrailsByLandmarkId(id: self.landmark.id)))")
+                                .fixedSize(horizontal: false, vertical: true)
+                        } else {
+                            Text("Points of Interest: \(self.landmarkNamesForTrailSeparated(landmark: self.landmark))")
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
-                    Text(self.landmark.category.friendlyValue()).modifier(GrayUpperStyle()).padding([.top, .leading])
-                    Text(self.landmark.trailModifiedName).modifier(SubHeaderStyle())
-                        .foregroundColor(Color.black).padding()
-                    Text(self.userData.showSimplifiedView ? self.landmark.description : self.landmark.longDescription)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding([.leading, .trailing])
-                    if self.landmark.category.rawValue != "Trail" {
-                        Text("Trails:  \(self.trailNamesSeparated(trails: landmarkService.getTrailsByLandmarkId(id: self.landmark.id)))")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding([.top, .leading, .trailing])
-                    } else {
-                        Text("Points of Interest:  \(self.landmarkNamesForTrailSeparated(landmark: self.landmark))")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding([.top, .leading, .trailing])
-                    }
-                    Spacer(minLength: 32)
+                    .padding(20)
+                    Spacer(minLength: 40)
                 }
             }
+            Button(action: self.close) {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 34))
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.white, Color.black.opacity(0.68))
+                    .frame(width: 44, height: 44)
+            }
+            .padding(10)
+            .accessibilityLabel("Close landmark details")
         }
     }
 }

@@ -12,32 +12,20 @@ struct DirectionButtonView: View {
     @Environment(UserData.self) var userData
     
     var body: some View {
-        ZStack {
-            
-            HStack(spacing: 0) {
-                Text("Direction:  ").modifier(GrayUpperStyle())
-                Button(action: {
-                        self.userData.trailDirection = .Clockwise
-                }) {
-                    Text("Forward").modifier(SmallButtonTextStyle())
-                        .foregroundColor(getDirectionForeground(direction: .Clockwise))
-                        .background(RoundedRectangle(cornerRadius: 5).fill(getDirectionBackground(direction: .Clockwise)))
-                }
-                .accessibilityLabel("Forward direction")
-                .accessibilityValue(userData.trailDirection == .Clockwise ? "Selected" : "Not selected")
-                .accessibilityAddTraits(userData.trailDirection == .Clockwise ? .isSelected : [])
-                Button(action: {
-                    self.userData.trailDirection = .CounterClockwise
-                }) {
-                    Text("Reverse").modifier(SmallButtonTextStyle())
-                        .foregroundColor(getDirectionForeground(direction: .CounterClockwise))
-                        .background(RoundedRectangle(cornerRadius: 5).fill(getDirectionBackground(direction: .CounterClockwise)))
-                }
-                .accessibilityLabel("Reverse direction")
-                .accessibilityValue(userData.trailDirection == .CounterClockwise ? "Selected" : "Not selected")
-                .accessibilityAddTraits(userData.trailDirection == .CounterClockwise ? .isSelected : [])
-                Spacer()
+        @Bindable var userData = userData
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Direction")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+            Picker("Direction", selection: $userData.trailDirection) {
+                Text("Forward")
+                    .accessibilityLabel("Forward direction")
+                    .tag(Direction.Clockwise)
+                Text("Reverse")
+                    .accessibilityLabel("Reverse direction")
+                    .tag(Direction.CounterClockwise)
             }
+            .pickerStyle(.segmented)
         }
     }
     

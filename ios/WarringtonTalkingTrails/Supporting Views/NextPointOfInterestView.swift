@@ -15,55 +15,68 @@ struct NextPointOfInterestView: View {
     @Environment(UserData.self) var userData
     
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 14) {
                 HStack(alignment: .top) {
                     AsyncImage(url: selectedLandmark.imageUrl) { image in
                         image
                             .resizable()
+                            .scaledToFill()
                     } placeholder: {
                         ProgressView()
                     }
-                    .frame(width: 100, height: 75)
+                    .frame(width: 96, height: 76)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .accessibilityLabel(selectedLandmark.imageAlt)
-                    VStack(alignment: .leading) {
-                        Text("Next").modifier(GrayUpperStyle())
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Next stop")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.secondary)
                         Button(action: {
                                 self.userData.trailTourSelectedLandmark = selectedLandmark
                                 self.showLandmarkDetails = true
                         }) {
-                            Text(selectedLandmark.trailModifiedName).modifier(LinkStyle())
+                            Text(selectedLandmark.trailModifiedName)
+                                .font(.title3.weight(.semibold))
+                                .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         .buttonStyle(.plain)
+                        .foregroundStyle(.tint)
                         .accessibilityHint("Opens details for the next point of interest")
                     }
                 }
                 
-                HStack(alignment: .center) {
-                    Text("Directions:").modifier(LabelStyle()).padding([.top])
-                    Text(nextLandmarkDistanceDescription).modifier(ParagraphStyle()).padding([.top])
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Directions")
+                        .font(.headline)
+                    Text(nextLandmarkDistanceDescription)
+                        .font(.body)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             
-                HStack {
-                    Text("From:").modifier(LabelStyle())
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Starting from")
+                        .font(.headline)
                     let widget = Text(self.userData.trailTourEnded ? "Go to the other end of the trail to continue in this direction" : self.userData.trailTourCurrentLandmark!.trailModifiedName)
                     if(!self.userData.trailTourEnded) {
                         Button(action: {
                             self.userData.trailTourSelectedLandmark = self.userData.trailTourCurrentLandmark!
                             self.showLandmarkDetails = true
                         }) {
-                            widget.modifier(SmallLinkStyle())
+                            widget
+                                .font(.body.weight(.semibold))
+                                .multilineTextAlignment(.leading)
                         }
                         .buttonStyle(.plain)
+                        .foregroundStyle(.tint)
                         .accessibilityHint("Opens details for the current point of interest")
                     } else {
-                        widget.modifier(ParagraphStyle())
+                        widget
+                            .font(.body)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }
-        }
-        
-        
     }
 }
 

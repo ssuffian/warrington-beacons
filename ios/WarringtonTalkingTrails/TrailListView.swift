@@ -16,13 +16,18 @@ struct TrailListView: View {
     var body: some View {
         @Bindable var userData = userData   // enables $userData bindings from @Environment
         _ = userData.initialized            // re-render when trail data finishes loading (@Observable)
-        return GeometryReader { geo in
-            NavigationStack {
-                VStack {
-                    Text("Trail Tours guide you through a pathway while highlighting the points of interest along the way.  The guidance will direct which cardinal direction and distance to walk").padding(10)
+        return NavigationStack {
+                VStack(spacing: 0) {
+                    Text("Choose a trail for step-by-step directions and information about points of interest along the way.")
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 12)
                     Rectangle()
-                    .fill(Color.yellow)
-                        .frame(width: geo.size.width - 40, height: 5)
+                        .fill(Color(YELLOW))
+                        .frame(height: 4)
+                        .padding(.horizontal, 20)
                     List {
                         ForEach(landmarkService.getLandmarks().filter{$0.category.rawValue == "Trail"}) { landmark in
 
@@ -63,7 +68,6 @@ struct TrailListView: View {
                 .navigationDestination(isPresented: $userData.forceStartTour) {
                     TrailDetailsView().environment(self.userData)
                 }
-            }
         }
     }
 

@@ -13,23 +13,16 @@ struct SettingsView: View {
     
     var body: some View {
         @Bindable var userData = userData   // enables $userData bindings from @Environment
-        return VStack(alignment: .leading) {
-            Text("Settings").modifier(HeaderStyle()).padding()
-            Rectangle()
-                .fill(Color(YELLOW))
-                .frame(height: 5)
-            Divider()
-            VStack {
-                HStack{
-                    Toggle(isOn: $userData.showSimplifiedView) {
-                        Text("Simplified Text").modifier(ValueStyle()).padding()
-                    }.padding()
+        return NavigationStack {
+            Form {
+                Section {
+                    Toggle("Simplified Text", isOn: $userData.showSimplifiedView)
+                } footer: {
+                    Text("Uses shorter, easier-to-understand landmark descriptions throughout the app.")
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                Text("Simplified text enables easier to understand landmark descriptions.")
-                    .lineLimit(nil).padding()
-                Divider()
             }
-            Spacer()
+            .navigationTitle("Settings")
         }
     }
 }

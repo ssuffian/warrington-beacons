@@ -22,34 +22,31 @@ struct PointOfInterestSummaryView: View {
     }
     
     var body: some View {
-        GeometryReader { geo in
-            if let landmark = self.userData.mainMapSelectedLandmark {
-            HStack(alignment: .top) {
-                VStack {
-                    AsyncImage(url: landmark.imageUrl) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit).accessibility(label: Text(landmark.imageAlt))
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(width: 75, height: 75).padding(.trailing)
-                    .accessibilityHidden(true)
+        if let landmark = self.userData.mainMapSelectedLandmark {
+            HStack(alignment: .top, spacing: 12) {
+                AsyncImage(url: landmark.imageUrl) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
                 }
-                VStack(alignment: .leading) {
-                    // iPhone 7: 320x568
-                    // iPhone X: 375x812
-                    let small = self.userData.screenSize.width < 360
+                .frame(width: 72, height: 72)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 6) {
                     if self.userData.nearbyLandmark == landmark {
-                        ZStack(alignment: .center) {
-                            Rectangle().fill(Color(GREEN)).frame(width: small ? 150 : 200, height: 26)
-                            HStack {
-                                Image(systemName: "info.circle").foregroundColor(.white)
-                                Text((small ? "" : "Nearby ") + landmark.category.friendlyValue()).modifier(WhiteUpperStyle())
-                            }
-                        }
+                        Label("Nearby \(landmark.category.friendlyValue())", systemImage: "info.circle.fill")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 5)
+                            .background(Color(GREEN), in: Capsule())
                     } else {
-                        Text(landmark.category.friendlyValue()).modifier(GrayUpperStyle()).padding(.bottom)
+                        Text(landmark.category.friendlyValue())
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.secondary)
                     }
                     if landmark.category == .Trail {
                         Button(action: {
@@ -78,30 +75,44 @@ struct PointOfInterestSummaryView: View {
                                     }
                                 }
                         }) {
-                            Text(landmark.trailModifiedName).modifier(LinkStyle())
-                                .foregroundColor(Color.blue)
+                            Text(landmark.trailModifiedName)
+                                .font(.headline)
+                                .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         .buttonStyle(.plain)
+                        .foregroundStyle(.tint)
                         .accessibilityHint("Opens this trail in Trail Tours")
                     } else {
                         Button(action: {
                             self.showDetails = true
                             self.showPointOfInterestDetails = true
                         }) {
-                            Text(landmark.name).modifier(LinkStyle())
-                                                .foregroundColor(Color.blue)
+                            Text(landmark.name)
+                                .font(.headline)
+                                .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.tint)
                     }
-                    Text(self.userData.distanceToSelectedLandmark).modifier(ParagraphStyle())
+                    if !self.userData.distanceToSelectedLandmark.isEmpty {
+                        Text(self.userData.distanceToSelectedLandmark)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 Spacer()
                 Button(action: self.close) {
-                    Image(systemName: "xmark.circle.fill").resizable().frame(width: 35, height: 35).foregroundColor(.black).opacity(0.6)
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 28))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 44, height: 44)
                 }
                 .accessibilityLabel("Close point of interest summary")
-                }.padding()
             }
-            EmptyView()
+            .padding(12)
+            .background(Color(.secondarySystemBackground))
         }
     }
 }

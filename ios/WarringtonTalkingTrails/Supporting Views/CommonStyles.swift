@@ -88,57 +88,55 @@ let LINE_WIDTH = CGFloat(2.0)
 struct SmallGrayStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT", size: 12))
-            .foregroundColor(Color.gray)
+            .font(.caption)
+            .foregroundStyle(.secondary)
     }
 }
 
 struct ParagraphStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT", size: 14))
-            .foregroundColor(Color.black)
+            .font(.body)
+            .foregroundStyle(.primary)
     }
 }
 
 struct ParagraphStyleBold: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT Bold", size: 14))
-            .foregroundColor(Color.black)
+            .font(.body.weight(.semibold))
+            .foregroundStyle(.primary)
     }
 }
 
 struct HeaderStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT Bold", size: 36))
-            .foregroundColor(Color.black)
+            .font(.largeTitle.weight(.bold))
+            .foregroundStyle(.primary)
     }
 }
 
 struct SubHeaderStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT Bold", size: 24))
-            .foregroundColor(Color.black)
+            .font(.title2.weight(.bold))
+            .foregroundStyle(.primary)
     }
 }
 
 struct GrayUpperStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.body.smallCaps())
-            .font(Font.custom("Arial Rounded MT Bold", size: 24))
-            .foregroundColor(Color.gray)
+            .font(.headline.smallCaps())
+            .foregroundStyle(.secondary)
     }
 }
 
 struct WhiteUpperStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.body.smallCaps())
-            .font(Font.custom("Arial Rounded MT Bold", size: 24))
+            .font(.headline.smallCaps())
             .foregroundColor(Color.white)
     }
 }
@@ -146,51 +144,51 @@ struct WhiteUpperStyle: ViewModifier {
 struct LabelStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT", size: 18))
+            .font(.headline)
     }
 }
 
 struct ValueStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT", size: 22))
+            .font(.title2)
     }
 }
 
 struct LinkStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT Bold", size: 24))
-            .foregroundColor(Color.blue)
+            .font(.title2.weight(.semibold))
+            .foregroundStyle(.tint)
     }
 }
 
 struct SmallLinkStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT Bold", size: 18))
-            .foregroundColor(Color.blue)
+            .font(.headline)
+            .foregroundStyle(.tint)
     }
 }
 
 struct LinkParagraphStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT", size: 14))
-            .foregroundColor(Color.blue)
+            .font(.body)
+            .foregroundStyle(.tint)
     }
 }
 
 struct BlueButtonTextStyle: ViewModifier {
     func body(content: Content) -> some View {
-        content.foregroundColor(.white)
-        .padding(.leading, 65)
-        .padding(.trailing, 65)
-        .padding(.top, 10)
-        .padding(.bottom, 10)
+        content
+        .foregroundColor(.white)
+        .frame(maxWidth: .infinity, minHeight: 28)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
             .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
         .compositingGroup()
-        .font(.title)
+        .font(.headline)
     }
 }
 
@@ -215,15 +213,14 @@ struct BlueButtonStyle: ButtonStyle {
         
         configuration.label
             .foregroundColor(.white)
-            .padding(.leading, 65)
-            .padding(.trailing, 65)
-            .padding(.top, 10)
-            .padding(.bottom, 10)
+            .frame(maxWidth: .infinity, minHeight: 28)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
             .background(RoundedRectangle(cornerRadius: 5).fill(color))
             .compositingGroup()
             .opacity(configuration.isPressed ? 0.5 : 1.0)
             .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
-            .font(.title)
+            .font(.headline)
             
     }
 }
@@ -231,8 +228,6 @@ struct BlueButtonStyle: ButtonStyle {
 struct TabLabelStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Arial Rounded MT", size: 14))
-            .foregroundColor(Color.gray)
+            .font(.caption)
     }
 }
-

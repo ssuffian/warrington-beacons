@@ -11,7 +11,7 @@ import SwiftUI
 import Observation
 import CoreLocation
 
-enum Direction {
+enum Direction: Hashable {
     case Clockwise
     case CounterClockwise
 }

@@ -10,53 +10,72 @@ import SwiftUI
 
 struct WelcomeView: View {
     @Binding var showWelcome: Bool
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    private var heroHeight: CGFloat {
+        verticalSizeClass == .compact ? 150 : 240
+    }
     
     var body: some View {
         
-            VStack {
-                ZStack(alignment: .top) {
+            VStack(spacing: 0) {
+                ZStack {
                     ImageStore.shared.image(name:"field-photo")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .scaledToFill()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: heroHeight)
+                        .clipped()
                         .accessibilityLabel("A wooded Warrington trail")
                     LinearGradient(
                         gradient: Gradient(colors: [
-                            Color.black.opacity(0.72),
-                            Color.black.opacity(0.30),
-                            Color.clear
+                            Color.black.opacity(0.74),
+                            Color.black.opacity(0.42),
+                            Color.black.opacity(0.16)
                         ]),
                         startPoint: .top,
                         endPoint: .bottom
                     )
                     .allowsHitTesting(false)
-                    VStack(alignment: .center, spacing: 2) {
+                    VStack(alignment: .center, spacing: 6) {
                         Text("Welcome to")
-                            .modifier(HeaderStyle())
-                            .foregroundColor(.white)
+                            .font(.title2.weight(.semibold))
                         Text("Warrington Talking Trails")
-                            .modifier(HeaderStyle())
-                            .foregroundColor(.white)
+                            .font(.largeTitle.weight(.bold))
                             .multilineTextAlignment(.center)
-                            .minimumScaleFactor(0.75)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.70)
                     }
+                    .foregroundColor(.white)
                     .shadow(color: Color.black.opacity(0.85), radius: 2, x: 0, y: 1)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 12)
+                    .padding(.horizontal, 24)
                 }
+                .frame(height: heroHeight)
+                .clipped()
                 Rectangle()
                     .fill(Color(YELLOW))
-                    .frame(height: 5).padding(.bottom)
+                    .frame(height: 5)
                 AboutTextView()
-                Spacer()
-                VStack {
+                Divider()
+                VStack(spacing: 0) {
                     Button(action: {
                         UserDefaults.standard.set(true, forKey: "welcome_seen")
                         self.showWelcome = false
                     }) {
                         Text("Continue")
-                    }.buttonStyle(BlueButtonStyle(color: .blue))
-                }.padding(.bottom)
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, minHeight: 28)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .accessibilityHint("Opens the park map")
+                }
+                .frame(maxWidth: 520)
+                .padding(.horizontal, 20)
+                .padding(.top, 12)
+                .padding(.bottom, 8)
         }
+        .background(Color(.systemBackground))
         
     }
 }
