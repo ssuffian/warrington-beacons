@@ -21,12 +21,6 @@ struct BottomSheetView<Content: View>: View {
     let minHeight: CGFloat
     let content: Content
 
-    @GestureState private var translation: CGFloat = 0
-
-    private var offset: CGFloat {
-        0
-    }
-
     private var indicator: some View {
         RoundedRectangle(cornerRadius: Constants.radius)
             .fill(Color.secondary)
@@ -54,19 +48,6 @@ struct BottomSheetView<Content: View>: View {
             .background(Color(.secondarySystemBackground))
             .cornerRadius(Constants.radius)
             .frame(height: geometry.size.height, alignment: .bottom)
-            .offset(y: max(self.offset + self.translation, 0))
-            .animation(.interactiveSpring(), value: self.offset + self.translation)
-            .gesture(
-                DragGesture().updating(self.$translation) { value, state, _ in
-                    state = value.translation.height
-                }.onEnded { value in
-                    let snapDistance = self.maxHeight * Constants.snapRatio
-                    guard abs(value.translation.height) > snapDistance else {
-                        return
-                    }
-//                    self.isOpen = value.translation.height < 0
-                }
-            )
         }
     }
 }

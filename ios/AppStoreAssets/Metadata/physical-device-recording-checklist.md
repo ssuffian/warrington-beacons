@@ -1,12 +1,12 @@
 # Physical-device App Review recording
 
 Apple requested a recording made on a physical iPhone running the latest iOS.
-Use the latest TestFlight version of Warrington Talking Trails: `2.0 (20260923.1)`.
+Use the latest TestFlight version of Warrington Talking Trails: `2.0 (20260923.2)`.
 
 ## Prepare the iPhone
 
 1. Update the iPhone to the latest available iOS release.
-2. Install build `2.0 (20260923.1)` from TestFlight and launch it once to confirm it loads.
+2. Install build `2.0 (20260923.2)` from TestFlight and launch it once to confirm it loads.
 3. Turn on Focus or Do Not Disturb so private notifications do not appear.
 4. Confirm Screen Recording is in Control Center. If it is missing, open Control
    Center, enter edit mode, choose **Add a Control**, and add **Screen Recording**.
@@ -48,4 +48,4 @@ Use the latest TestFlight version of Warrington Talking Trails: `2.0 (20260923.1
 3. Paste the complete contents of `review-notes.txt` into both:
    - the reply to App Review; and
    - the **Notes** field under **App Review Information**.
-4. Confirm the version submission uses build `2.0 (20260923.1)` before replying.
+4. Confirm the version submission uses build `2.0 (20260923.2)` before replying.

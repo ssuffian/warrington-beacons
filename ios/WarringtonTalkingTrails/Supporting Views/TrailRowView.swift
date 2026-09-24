@@ -17,27 +17,33 @@ struct TrailRowView: View {
     }
     
     var body: some View {
-        HStack {
-            AsyncImage(url: landmark.imageUrl) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                ProgressView()
-            }
-            .frame(width: 75)
-            .accessibilityHidden(true)
-            VStack(alignment: .leading) {
-                Text(landmark.name).modifier(LabelStyle())
-                if self.trail != nil {
-                    HStack {
-                        Text(self.trail!.trailDistanceDescription).modifier(SmallGrayStyle())
-                        Text("|").modifier(SmallGrayStyle()).accessibilityHidden(true)
-                        Text("\(MapService.getLandmarksOnTrail(trail: self.trail!).count) points of interest").modifier(SmallGrayStyle())
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                AsyncImage(url: landmark.imageUrl) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 75, height: 75)
+                .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(landmark.name).modifier(LabelStyle())
+                    if let trail {
+                        Text("\(MapService.getLandmarksOnTrail(trail: trail).count) points of interest")
+                            .modifier(SmallGrayStyle())
                     }
                 }
+                Spacer()
             }
-            Spacer()
+
+            if let trail {
+                Text(trail.trailDistanceDescription)
+                    .modifier(SmallGrayStyle())
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityLabel)

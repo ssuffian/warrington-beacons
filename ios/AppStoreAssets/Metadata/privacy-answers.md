@@ -1,7 +1,7 @@
 # App Privacy answers
 
 Use these answers for the App Privacy questionnaire after confirming no new SDK
-or data collection was added after build `2.0 (20260923.1)`.
+or data collection was added after build `2.0 (20260923.2)`.
 
 - Does this app collect data? **No, we do not collect data from this app.**
 - Tracking: **No**

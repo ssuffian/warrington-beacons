@@ -14,40 +14,52 @@ struct TrailDetailsView: View {
     @State var startTrailTour = false
     
     var body: some View {
-            VStack (spacing: 0){
-                if userData.trailLandmark != nil {
+        ScrollView(.vertical, showsIndicators: true) {
+            if let trailLandmark = userData.trailLandmark,
+               let currentLandmark = userData.trailTourCurrentLandmark {
+                VStack(spacing: 0) {
                     VStack(alignment: .leading) {
-                        Text(userData.trailLandmark!.longDescription)
+                        Text(trailLandmark.longDescription)
+                            .fixedSize(horizontal: false, vertical: true)
                         DirectionButtonView().environment(userData)
-                        VStack(alignment: .leading) {
-                            Text("If you are not starting at the \(self.userData.trailTourCurrentLandmark!.trailModifiedName), select the closest landmark as your starting point.")
-                        }
-                    }.padding()
-                    TrailMapView(trailLandmark: userData.trailLandmark!).environment(userData)
-                    Spacer()
+                        Text("If you are not starting at the \(currentLandmark.trailModifiedName), select the closest landmark as your starting point.")
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding()
+
+                    TrailMapView(trailLandmark: trailLandmark)
+                        .environment(userData)
+                        .frame(height: 360)
+
                     Button(action: {
-                            // this sets up the context for the TrailTourView
-                            self.userData.trailTourCurrentLandmark = self.userData.trailTourCurrentLandmark ?? self.userData.trailLandmark
-                            let trail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
+                            guard let trail = landmarkService.getTrailById(id: trailLandmark.id) else {
+                                return
+                            }
+                            let currentLandmark = self.userData.trailTourCurrentLandmark ?? trailLandmark
+                            self.userData.trailTourCurrentLandmark = currentLandmark
                             self.userData.trailTourTrail = trail
-                            let nextLandmark = MapService.findNextLandmark(trail: self.userData.trailTourTrail!, landmark: self.userData.trailTourCurrentLandmark!, direction: self.userData.trailDirection)
-                            self.userData.trailTourNextLandmark = nextLandmark
+                            self.userData.trailTourNextLandmark = MapService.findNextLandmark(
+                                trail: trail,
+                                landmark: currentLandmark,
+                                direction: self.userData.trailDirection
+                            )
                             self.userData.checkForTrailTourEnd()
 
                             // this triggers the navigationDestination push
-                            self.startTrailTour = true
+                            self.startTrailTour = self.userData.trailTourNextLandmark != nil
                     }) {
                         Text("Start Tour").modifier(BlueButtonTextStyle())
                             .foregroundColor(Color.blue)
                     }
                     .accessibilityHint("Starts spoken trail navigation")
-                    .padding(.bottom)
+                    .padding()
                 }
             }
+        }
             .navigationDestination(isPresented: self.$startTrailTour) {
                 TrailTourView().environment(self.userData)
             }
-            .navigationBarTitle("\(userData.trailLandmark!.name)", displayMode: .inline)
+            .navigationBarTitle(userData.trailLandmark?.name ?? "Trail", displayMode: .inline)
             .onAppear {
                 print("Trail details showing")
             }.onDisappear {

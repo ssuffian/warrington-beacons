@@ -43,6 +43,9 @@ class MapService {
     }
     
     static func findNextLandmark(trail: Trail, landmark: Landmark, direction: Direction) -> Landmark? {
+        guard !trail.boundaryCoordinates.isEmpty else {
+            return nil
+        }
         var boundaryCoordinates = direction == .Clockwise ? trail.boundaryCoordinates :
             trail.boundaryCoordinates.reversed()
         if direction == .Clockwise {
@@ -93,6 +96,9 @@ class MapService {
     static func pointsToNextLandmark(trail: Trail, currentLandmark: Landmark, direction: Direction) -> [CLLocationCoordinate2D]{
         
         var coordinates = [CLLocationCoordinate2D]()
+        guard !trail.boundaryCoordinates.isEmpty else {
+            return coordinates
+        }
         
         var i = 0
         var boundaryCoordinates = direction == .Clockwise ? trail.boundaryCoordinates :

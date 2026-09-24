@@ -24,8 +24,9 @@ struct NextPointOfInterestDetailsView: View {
     var body: some View {
         BottomSheetView(maxHeight: 600, close: close) {
             GeometryReader { geo in
-                ZStack {
-                    VStack(alignment: .leading) {
+                ZStack(alignment: .topTrailing) {
+                    ScrollView(.vertical, showsIndicators: true) {
+                        VStack(alignment: .leading) {
                         AsyncImage(url: self.landmark.imageUrl) { image in
                             image
                                 .resizable()
@@ -38,19 +39,23 @@ struct NextPointOfInterestDetailsView: View {
                         Text(self.landmark.category.friendlyValue()).modifier(GrayUpperStyle()).padding([.top, .leading])
                         Text(self.landmark.name).modifier(SubHeaderStyle())
                             .foregroundColor(Color.black).padding()
-                        Text(self.userData.showSimplifiedView ? self.landmark.description : self.landmark.longDescription).padding(.leading)
+                        Text(self.userData.showSimplifiedView ? self.landmark.description : self.landmark.longDescription)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.leading, .trailing])
                         if self.landmark.category.rawValue != "Trail" {
-                            HStack {
+                            VStack(alignment: .leading) {
                                 Text("Trails").modifier(LabelStyle())
                                 Text("\(self.trailNamesSeparated(trails: landmarkService.getTrailsByLandmarkId(id: self.landmark.id)))")
+                                    .fixedSize(horizontal: false, vertical: true)
                             }.padding([.top, .leading, .trailing])
                         }
-                        Spacer()
+                            Spacer(minLength: 32)
+                        }
                     }
                     Button(action: self.close) {
                         CloseButtonView()
                     }
-                    .offset(x: geo.size.width / 2 - 35, y: -(geo.size.height / 2 - 35))
+                    .padding()
                     .accessibilityLabel("Close landmark details")
                 }
             }

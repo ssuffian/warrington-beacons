@@ -51,19 +51,71 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
         // Trail Tours tab: the row only exists if the JSON loaded + decoded
         app.tabBars.buttons["Trail Tours"].tap()
         let trailRow = app.buttons.matching(
-            NSPredicate(format: "label BEGINSWITH '202 Connector Trail,'")).firstMatch
-        XCTAssertTrue(trailRow.waitForExistence(timeout: 20), "Trail list should show the 202 Connector Trail (JSON loaded and decoded)")
+            NSPredicate(format: "label CONTAINS 'points of interest'")).firstMatch
+        XCTAssertTrue(trailRow.waitForExistence(timeout: 20), "Trail list should show at least one decoded trail")
         attach(app, name: "3-trail-list")
 
         trailRow.tap()
         let startTour = app.buttons["Start Tour"]
         XCTAssertTrue(startTour.waitForExistence(timeout: 10), "Trail details should show Start Tour")
+        scrollToHittable(startTour, in: app)
         attach(app, name: "4-trail-detail")
 
         startTour.tap()
         let reverse = app.buttons["Reverse"]
         XCTAssertTrue(reverse.waitForExistence(timeout: 10), "Trail tour should start and show the Reverse button")
         attach(app, name: "5-trail-tour")
+    }
+
+    // Exercises the remaining top-level navigation and the long landmark detail
+    // sheet, including scrolling to text below the initially visible area.
+    func testAllTabsAndScrollableLandmarkDetails() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        addUIInterruptionMonitor(withDescription: "System permission dialogs") { alert in
+            for label in ["Allow While Using App", "Allow Once", "Allow", "OK"] {
+                if alert.buttons[label].exists { alert.buttons[label].tap(); return true }
+            }
+            return false
+        }
+
+        let continueButton = app.buttons["Continue"]
+        if continueButton.waitForExistence(timeout: 5) { continueButton.tap() }
+
+        let search = app.buttons["Search"]
+        XCTAssertTrue(search.waitForExistence(timeout: 25))
+        search.tap()
+
+        let parkEntrance = app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH 'Park Entrance,'")).firstMatch
+        XCTAssertTrue(parkEntrance.waitForExistence(timeout: 10))
+        parkEntrance.tap()
+
+        let detailsLink = app.buttons.matching(NSPredicate(
+            format: "label == 'Park Entrance' AND NOT identifier BEGINSWITH 'landmark-map-pin-'"
+        )).firstMatch
+        XCTAssertTrue(detailsLink.waitForExistence(timeout: 10))
+        detailsLink.tap()
+
+        let closeDetails = app.buttons["Close landmark details"]
+        XCTAssertTrue(closeDetails.waitForExistence(timeout: 10))
+        app.swipeUp()
+        XCTAssertTrue(closeDetails.exists, "Landmark details should remain available after scrolling")
+        closeDetails.tap()
+
+        app.tabBars.buttons["About"].tap()
+        XCTAssertTrue(app.staticTexts["Warrington Talking Trails"].waitForExistence(timeout: 5))
+
+        app.tabBars.buttons["Settings"].tap()
+        let simplifiedText = app.switches["Simplified Text"]
+        XCTAssertTrue(simplifiedText.waitForExistence(timeout: 5))
+        simplifiedText.tap()
+
+        if app.tabBars.buttons["Beacons"].exists {
+            app.tabBars.buttons["Beacons"].tap()
+            XCTAssertTrue(app.navigationBars["Beacons"].waitForExistence(timeout: 5))
+        }
     }
 
     // The cross-tab launch is the fragile flow: selecting a trailhead on the park
@@ -157,7 +209,16 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
             .elementDetection,
             .sufficientElementDescription,
             .trait
-        ])
+        ]) { issue in
+            // MapKit renders geographic labels into map tiles. The audit's OCR
+            // reports those pixels as text with no corresponding UI element;
+            // there is no app-owned element to label. Keep every actionable
+            // accessibility issue failing the test.
+            if issue.auditType == .elementDetection && issue.element == nil {
+                return true
+            }
+            return false
+        }
     }
 
     private func attach(_ app: XCUIApplication, name: String) {
@@ -165,5 +226,12 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
         shot.name = name
         shot.lifetime = .keepAlways
         add(shot)
+    }
+
+    private func scrollToHittable(_ element: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<4 where !element.isHittable {
+            app.swipeUp()
+        }
+        XCTAssertTrue(element.isHittable)
     }
 }

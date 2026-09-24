@@ -1,6 +1,6 @@
 # Artifact manifest
 
-Updated September 23, 2026 for Warrington Talking Trails `2.0 (20260923.1)` as
+Updated September 23, 2026 for Warrington Talking Trails `2.0 (20260923.2)` as
 an update to the existing Lions Pride Park listing.
 
 ## Store assets
@@ -28,10 +28,10 @@ the actual app. Do not upload the older exploratory captures in
 - Bundle ID: `org.warringtontownship.lionspride`
 - Team ID: `ZA7MADZY65`
 - Existing App Store ID: `1532727572`
-- File: `Build/WarringtonTalkingTrails-2.0-20260923.1.ipa`
-- SHA-256: `175859f7e8ec08d2dd58cd1c9ec850e2f45d248350d86c488807a1950b21fdf1`
-- Status: upload succeeded September 23, 2026; App Store Connect reported the
-  package was processing.
+- File: `Build/WarringtonTalkingTrails-2.0-20260923.2.ipa`
+- SHA-256: `3bf7bfba1a90fc8a67a41ceab25061a4375ac45a96ea8563f61a4d70e33a9718`
+- Status: navigation and scrolling fixes verified; upload succeeded September
+  23, 2026 and App Store Connect reported the package was processing.
 
 The older `Build/WarringtonTalkingTrails-1.0-4.ipa` was signed by the personal
 developer team for a separate App Store record. It must not be submitted as the

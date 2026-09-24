@@ -12,7 +12,7 @@ Warrington Talking Trails.
 - Bundle ID: `org.warringtontownship.lionspride`
 - Apple Developer Team ID: `ZA7MADZY65`
 - Version: `2.0`
-- Build: `20260923.1`; increment for every subsequent upload
+- Build: `20260923.2`; increment for every subsequent upload
 - Primary category: Travel
 - Platform: iPhone
 - Minimum OS: iOS 17.0

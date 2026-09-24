@@ -5,9 +5,10 @@ Pride Park App Store listing.
 
 ## Ready now
 
-- App Store build `2.0 (20260923.1)` includes the maintained combined trail
+- App Store build `2.0 (20260923.2)` includes the maintained combined trail
   dataset and the complete VoiceOver interaction and automatic-announcement
-  pass. It was uploaded successfully on September 23, 2026 and is processing.
+  pass. Build `20260923.2`, including the scrolling and navigation fixes, was
+  uploaded successfully on September 23, 2026 and is processing.
 - The release target uses bundle ID `org.warringtontownship.lionspride` and
   Warrington Township team `ZA7MADZY65`.
 - Three reviewed 6.9-inch iPhone screenshots: `Screenshots-6.9-inch-FINAL/`
@@ -26,7 +27,7 @@ on September 16, 2026:
 
 ## Final actions in App Store Connect
 
-1. Wait for build `2.0 (20260923.1)` to finish processing, then select it for version `2.0` of Lions Pride Park.
+1. Wait for build `2.0 (20260923.2)` to finish processing, then select it for version `2.0` of Lions Pride Park.
 2. Paste the files in `Metadata/` into the matching fields.
 3. Upload the three screenshots in filename order to the 6.9-inch iPhone slot.
 4. Complete App Privacy, age rating, content rights, pricing/availability,

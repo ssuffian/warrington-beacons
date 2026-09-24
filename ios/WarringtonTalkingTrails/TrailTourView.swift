@@ -21,28 +21,42 @@ struct TrailTourView: View {
     
     var body: some View {
         ZStack {
-            
+            if let current = userData.trailTourNextLandmark,
+               let trailLandmark = userData.trailLandmark {
                 VStack (alignment: .leading, spacing: 0){
-                    let current = userData.trailTourNextLandmark!
-                    let nextDistance = getNextLandmarkDistanceDescription()!
+                    let nextDistance = getNextLandmarkDistanceDescription()
                     NextPointOfInterestView(selectedLandmark: current, nextLandmarkDistanceDescription: nextDistance, showLandmarkDetails: $showPointOfInterestDetails).environment(userData).padding()
-                    TrailTourMapView(landmarks: getLandmarksForMap(landmark: userData.trailLandmark!), showPointOfInterestDetails: $showPointOfInterestDetails).environment(userData)
+                    TrailTourMapView(landmarks: getLandmarksForMap(landmark: trailLandmark), showPointOfInterestDetails: $showPointOfInterestDetails).environment(userData)
                     Spacer()
                 }.navigationBarItems(trailing:
-                    TrailTourButtonBarView(landmark: userData.trailLandmark!).environment(self.userData)
-                    ).navigationBarTitle("\(userData.trailLandmark!.name) Tour", displayMode: .inline)
-                    .sheet(isPresented: self.$showPointOfInterestDetails) {
-                        PointOfInterestDetailsView(landmark: self.userData.trailTourSelectedLandmark!, close: self.close)
-                            .background(Color(.secondarySystemBackground)).environment(self.userData)
+                    TrailTourButtonBarView(landmark: trailLandmark).environment(self.userData)
+                    ).navigationBarTitle("\(trailLandmark.name) Tour", displayMode: .inline)
+            } else {
+                ContentUnavailableView(
+                    "Tour Unavailable",
+                    systemImage: "map",
+                    description: Text("Return to Trail Tours and select a trail to begin again.")
+                )
             }
-        }.onAppear {
-            print("Trail tour showing for \(userData.trailTourCurrentLandmark!.name)")
+        }
+        .sheet(isPresented: self.$showPointOfInterestDetails) {
+            if let selectedLandmark = self.userData.trailTourSelectedLandmark {
+                PointOfInterestDetailsView(landmark: selectedLandmark, close: self.close)
+                    .background(Color(.secondarySystemBackground)).environment(self.userData)
+            }
+        }
+        .onAppear {
+            guard let currentLandmark = userData.trailTourCurrentLandmark else {
+                return
+            }
+            print("Trail tour showing for \(currentLandmark.name)")
             self.userData.isTrailTour = true
             BeaconScanner.shared.startScanning()
             // TODO WTF is this doing?
             if UIAccessibility.isVoiceOverRunning {
-                if self.userData.trailTourCurrentLandmark != nil && self.userData.trailTourNextLandmark != nil && self.userData.trailLandmark != nil {
-                    self.notificationService.sendTrailTourNotification(currentLandmark: self.userData.trailTourCurrentLandmark!, nextLandmark: self.userData.trailTourNextLandmark!, trailLandmark: self.userData.trailLandmark!, trailDirection: self.userData.trailDirection)
+                if let nextLandmark = self.userData.trailTourNextLandmark,
+                   let trailLandmark = self.userData.trailLandmark {
+                    self.notificationService.sendTrailTourNotification(currentLandmark: currentLandmark, nextLandmark: nextLandmark, trailLandmark: trailLandmark, trailDirection: self.userData.trailDirection)
                 }
             }
         }.onDisappear {
@@ -79,15 +93,16 @@ struct TrailTourView: View {
         }
     }
     
-    func getNextLandmarkDistanceDescription() -> String? {
-        let trail = userData.trailTourTrail
-        
-        if trail != nil && userData.trailTourCurrentLandmark != nil {
-            let distanceTuple = MapService.distanceToNextLandmark(trail: trail!, currentLandmark: userData.trailTourCurrentLandmark!, direction: userData.trailDirection)
-            return distanceTuple?.distanceToNextDescription
+    func getNextLandmarkDistanceDescription() -> String {
+        guard let trail = userData.trailTourTrail,
+              let currentLandmark = userData.trailTourCurrentLandmark else {
+            return ""
         }
-        print("getNextLandmarkDistanceDescription not found")
-        return ""
+        return MapService.distanceToNextLandmark(
+            trail: trail,
+            currentLandmark: currentLandmark,
+            direction: userData.trailDirection
+        )?.distanceToNextDescription ?? ""
     }
 }
 
@@ -105,17 +120,22 @@ struct TrailTourButtonBarView: View {
                     self.userData.trailDirection = .Clockwise
                 }
                 
-                if self.userData.trailTourCurrentLandmark != nil && self.userData.trailTourCurrentLandmark != nil {
-                    // recalculate the next landmark
-                    self.userData.trailTourNextLandmark = MapService.findNextLandmark(trail: self.userData.trailTourTrail!, landmark: self.userData.trailTourCurrentLandmark!, direction: self.userData.trailDirection)
-                    if self.userData.trailTourNextLandmark != nil && self.userData.trailTourTrail != nil {
-                        self.userData.checkForTrailTourEnd()
-
-                        if UIAccessibility.isVoiceOverRunning {
-                            self.notificationService.sendTrailTourNotification(currentLandmark: self.userData.trailTourCurrentLandmark!, nextLandmark: self.userData.trailTourNextLandmark!, trailLandmark: self.userData.trailLandmark!, trailDirection: self.userData.trailDirection)
-                        }
-                    }
+                guard let currentLandmark = self.userData.trailTourCurrentLandmark,
+                      let trail = self.userData.trailTourTrail else {
+                    return
                 }
+                self.userData.trailTourNextLandmark = MapService.findNextLandmark(
+                    trail: trail,
+                    landmark: currentLandmark,
+                    direction: self.userData.trailDirection
+                )
+                self.userData.checkForTrailTourEnd()
+
+                if UIAccessibility.isVoiceOverRunning,
+                   let nextLandmark = self.userData.trailTourNextLandmark,
+                   let trailLandmark = self.userData.trailLandmark {
+                    self.notificationService.sendTrailTourNotification(currentLandmark: currentLandmark, nextLandmark: nextLandmark, trailLandmark: trailLandmark, trailDirection: self.userData.trailDirection)
+                    }
             }
         }
     }

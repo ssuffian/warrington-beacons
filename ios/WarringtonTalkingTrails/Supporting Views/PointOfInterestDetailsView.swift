@@ -32,7 +32,7 @@ struct PointOfInterestDetailsView: View {
     var body: some View {
         
         ZStack {
-            ScrollView(.vertical, showsIndicators: false) {
+            ScrollView(.vertical, showsIndicators: true) {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack{
                         Spacer()
@@ -63,13 +63,19 @@ struct PointOfInterestDetailsView: View {
                     Text(self.landmark.category.friendlyValue()).modifier(GrayUpperStyle()).padding([.top, .leading])
                     Text(self.landmark.trailModifiedName).modifier(SubHeaderStyle())
                         .foregroundColor(Color.black).padding()
-                    Text(self.userData.showSimplifiedView ? self.landmark.description : self.landmark.longDescription).padding([.leading, .trailing])
+                    Text(self.userData.showSimplifiedView ? self.landmark.description : self.landmark.longDescription)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding([.leading, .trailing])
                     if self.landmark.category.rawValue != "Trail" {
-                        Text("Trails:  \(self.trailNamesSeparated(trails: landmarkService.getTrailsByLandmarkId(id: self.landmark.id)))").padding([.top, .leading, .trailing])
+                        Text("Trails:  \(self.trailNamesSeparated(trails: landmarkService.getTrailsByLandmarkId(id: self.landmark.id)))")
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.top, .leading, .trailing])
                     } else {
-                        Text("Points of Interest:  \(self.landmarkNamesForTrailSeparated(landmark: self.landmark))").padding([.top, .leading, .trailing])
+                        Text("Points of Interest:  \(self.landmarkNamesForTrailSeparated(landmark: self.landmark))")
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.top, .leading, .trailing])
                     }
-                    Spacer()
+                    Spacer(minLength: 32)
                 }
             }
         }

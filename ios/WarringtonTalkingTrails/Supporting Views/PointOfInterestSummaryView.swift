@@ -53,10 +53,17 @@ struct PointOfInterestSummaryView: View {
                     }
                     if landmark.category == .Trail {
                         Button(action: {
+                                guard let trail = landmarkService.getTrailById(id: landmark.id) else {
+                                    return
+                                }
                                 self.userData.trailLandmark = landmark
-                                self.userData.trailTourTrail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
-                                self.userData.trailTourCurrentLandmark = self.userData.trailLandmark
-                                self.userData.trailTourNextLandmark =  MapService.findNextLandmark(trail: self.userData.trailTourTrail!, landmark: self.userData.trailTourCurrentLandmark!, direction: self.userData.trailDirection)
+                                self.userData.trailTourTrail = trail
+                                self.userData.trailTourCurrentLandmark = landmark
+                                self.userData.trailTourNextLandmark = MapService.findNextLandmark(
+                                    trail: trail,
+                                    landmark: landmark,
+                                    direction: self.userData.trailDirection
+                                )
                                 self.userData.checkForTrailTourEnd()
                                 self.selectedTab = 1
                                 // If this call is synchronous it corrupts the navigation stack

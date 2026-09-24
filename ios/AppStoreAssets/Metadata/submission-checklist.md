@@ -13,8 +13,8 @@
 
 - [x] Existing Lions Pride Park record identified: App Store ID `1532727572`.
 - [x] Project configured for bundle ID `org.warringtontownship.lionspride` and team `ZA7MADZY65`.
-- [x] Version `2.0`, build `20260923.1` signed and uploaded.
-- [ ] Select processed build `2.0 (20260923.1)` for the version.
+- [x] Version `2.0`, build `20260923.2` signed and uploaded.
+- [ ] Select processed build `2.0 (20260923.2)` for the version.
 - [ ] Enter categories: Travel (primary), Navigation (secondary).
 - [ ] Enter price (Free), tax category, and country/region availability.
 - [ ] Complete the age-rating questionnaire using `app-information.md`.
@@ -32,11 +32,11 @@
 - [x] Release archive completed successfully.
 - [x] All three unit tests passed and the release archive completed without
   compiler errors.
-- [x] Cross-tab launch UI test passed under the Township bundle ID.
-- [ ] Re-run the full UI suite before submission. The September 23 run had two
-  simulator harness failures: an invalid accessibility-audit target process and
-  a live trail-list timeout.
+- [x] Full navigation suite passed: map, search, scrollable landmark details,
+  all tabs, trail details, cross-tab routing, and guided-tour startup.
+- [x] VoiceOver element, description, and trait audits passed for the common
+  app flow. MapKit tile-label OCR without an app-owned UI element is excluded.
 - [ ] **OWNER ACTION:** install the TestFlight build on a physical iPhone and test location/Bluetooth permissions, both trail datasets, map search, and at least one guided tour.
-- [ ] **OWNER ACTION:** record build `2.0 (20260923.1)` on a physical iPhone, attach the video to the App Review reply, and replace the three placeholders in `review-notes.txt`.
+- [ ] **OWNER ACTION:** record build `2.0 (20260923.2)` on a physical iPhone, attach the video to the App Review reply, and replace the three placeholders in `review-notes.txt`.
 - [x] Rechecked the deployed support and privacy pages and matched them byte-for-byte to the release files.
 - [ ] Add version to the review submission and click Submit for Review.

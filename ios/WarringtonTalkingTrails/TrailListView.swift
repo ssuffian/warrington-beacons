@@ -27,12 +27,14 @@ struct TrailListView: View {
                         ForEach(landmarkService.getLandmarks().filter{$0.category.rawValue == "Trail"}) { landmark in
 
                             Button(action: {
+                                guard let trail = landmarkService.getTrailById(id: landmark.id) else {
+                                    return
+                                }
                                 self.userData.trailLandmark = landmark
-                                let trail = landmarkService.getTrailById(id: self.userData.trailLandmark!.id)
-                                if self.userData.nearbyLandmark != nil {
-                                    let trails = landmarkService.getTrailsByLandmarkId(id: self.userData.nearbyLandmark!.id)
-                                    if !trails.isEmpty && trails[0].id == trail!.id {
-                                        self.userData.trailTourCurrentLandmark = self.userData.nearbyLandmark!
+                                if let nearbyLandmark = self.userData.nearbyLandmark {
+                                    let trails = landmarkService.getTrailsByLandmarkId(id: nearbyLandmark.id)
+                                    if trails.first?.id == trail.id {
+                                        self.userData.trailTourCurrentLandmark = nearbyLandmark
                                     } else {
                                         self.userData.trailTourCurrentLandmark = landmark
                                     }
@@ -40,7 +42,6 @@ struct TrailListView: View {
                                 } else {
                                     self.userData.trailTourCurrentLandmark = landmark
                                 }
-                                // TODO: if self.control.userData.nearbyLandmark is set and is on this trail, use that instead
                                 self.userData.trailTourTrail = trail
                                 self.trailDetailsView = true
                             }) {
