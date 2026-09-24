@@ -14,16 +14,34 @@ struct WelcomeView: View {
     var body: some View {
         
             VStack {
-                ZStack (alignment: .top){
+                ZStack(alignment: .top) {
                     ImageStore.shared.image(name:"field-photo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .accessibilityLabel("A wooded Warrington trail")
-                    VStack (alignment: .center) {
-                        Text("Welcome to").modifier(HeaderStyle())
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color.black.opacity(0.72),
+                            Color.black.opacity(0.30),
+                            Color.clear
+                        ]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .allowsHitTesting(false)
+                    VStack(alignment: .center, spacing: 2) {
+                        Text("Welcome to")
+                            .modifier(HeaderStyle())
+                            .foregroundColor(.white)
                         Text("Warrington Talking Trails")
-                        .modifier(HeaderStyle())
+                            .modifier(HeaderStyle())
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.75)
                     }
+                    .shadow(color: Color.black.opacity(0.85), radius: 2, x: 0, y: 1)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 12)
                 }
                 Rectangle()
                     .fill(Color(YELLOW))
