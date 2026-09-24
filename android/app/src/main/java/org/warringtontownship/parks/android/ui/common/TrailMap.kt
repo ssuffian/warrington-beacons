@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -16,11 +18,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapListener
 import org.osmdroid.events.ScrollEvent
@@ -224,46 +230,75 @@ fun TrailMap(
         }
     }
 
-    AndroidView(
+    val accessibleMarkers = visibleMarkersFor(
+        markers = markers,
+        visibleSpanMeters = visibleSpanMeters,
+        collapseWhenZoomedOut = collapseMarkersWhenZoomedOut,
+    )
+
+    Box(
         // osmdroid's MapView paints outside the bounds Compose allots it, which let it
         // cover a sibling laid out above the map — the announcements row on the Park Map,
         // and the current/next stop text on a tour. Clipping here fixes every caller.
-        modifier = modifier.clipToBounds(),
-        factory = { mapView },
-        update = { view ->
-            view.overlays.clear()
-            view.overlays.add(CopyrightOverlay(context))
-
-            routes.filter { it.isNotEmpty() }.forEach { route ->
-                view.overlays.add(Polyline(view).apply {
-                    setPoints(route.map { GeoPoint(it.latitude, it.longitude) })
-                    outlinePaint.color = Color.BLUE
-                    outlinePaint.strokeWidth = 8f
-                    infoWindow = null
-                })
-            }
-
-            visibleMarkersFor(markers, visibleSpanMeters, collapseMarkersWhenZoomedOut).forEach { marker ->
-                val iconRes = when {
-                    marker.id == highlightedMarkerId -> R.drawable.current_marker
-                    marker.category == "Trail" -> R.drawable.trailhead_marker
-                    else -> R.drawable.poi_marker
+        modifier = modifier
+            .clipToBounds()
+            .semantics {
+                contentDescription = if (onMarkerClick == null) {
+                    "Trail map"
+                } else {
+                    "Trail map. Use accessibility actions to open a landmark."
                 }
-                view.overlays.add(Marker(view).apply {
-                    position = GeoPoint(marker.latitude, marker.longitude)
-                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                    icon = ContextCompat.getDrawable(context, iconRes)
-                    title = marker.title
-                    infoWindow = null
-                    setOnMarkerClickListener { _, _ ->
-                        onMarkerClick?.invoke(marker.id)
-                        onMarkerClick != null
+                if (onMarkerClick != null) {
+                    customActions = accessibleMarkers.map { marker ->
+                        CustomAccessibilityAction(
+                            label = "Open ${marker.title}, ${if (marker.category == "Trail") "Trailhead" else "Landmark"}",
+                            action = {
+                                onMarkerClick(marker.id)
+                                true
+                            },
+                        )
                     }
-                })
-            }
+                }
+            },
+    ) {
+        AndroidView(
+            modifier = Modifier.fillMaxSize(),
+            factory = { mapView },
+            update = { view ->
+                view.overlays.clear()
+                view.overlays.add(CopyrightOverlay(context))
 
-            view.overlays.add(locationOverlay)
-            view.invalidate()
-        },
-    )
+                routes.filter { it.isNotEmpty() }.forEach { route ->
+                    view.overlays.add(Polyline(view).apply {
+                        setPoints(route.map { GeoPoint(it.latitude, it.longitude) })
+                        outlinePaint.color = Color.BLUE
+                        outlinePaint.strokeWidth = 8f
+                        infoWindow = null
+                    })
+                }
+
+                accessibleMarkers.forEach { marker ->
+                    val iconRes = when {
+                        marker.id == highlightedMarkerId -> R.drawable.current_marker
+                        marker.category == "Trail" -> R.drawable.trailhead_marker
+                        else -> R.drawable.poi_marker
+                    }
+                    view.overlays.add(Marker(view).apply {
+                        position = GeoPoint(marker.latitude, marker.longitude)
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                        icon = ContextCompat.getDrawable(context, iconRes)
+                        title = marker.title
+                        infoWindow = null
+                        setOnMarkerClickListener { _, _ ->
+                            onMarkerClick?.invoke(marker.id)
+                            onMarkerClick != null
+                        }
+                    })
+                }
+
+                view.overlays.add(locationOverlay)
+                view.invalidate()
+            },
+        )
+    }
 }

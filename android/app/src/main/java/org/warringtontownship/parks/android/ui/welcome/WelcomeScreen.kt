@@ -96,8 +96,15 @@ fun WelcomeScreen(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Button(onClick = onContinue) {
-                Text("Continue")
+            Button(
+                onClick = onContinue,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    text = "Continue",
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
+                )
             }
         }
         Spacer(modifier = Modifier.height(24.dp))

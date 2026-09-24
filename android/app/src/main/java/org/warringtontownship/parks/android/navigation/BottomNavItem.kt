@@ -1,7 +1,7 @@
 package org.warringtontownship.parks.android.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FormatListBulleted
+import androidx.compose.material.icons.automirrored.filled.FormatListBulleted
 import androidx.compose.material.icons.filled.Hiking
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Map
@@ -14,19 +14,19 @@ sealed class BottomNavItem(
     val graphRoute: String,
 ) {
     data object ParkMap : BottomNavItem(
-        label = "Park Map",
+        label = "Map",
         icon = Icons.Default.Map,
         graphRoute = NavRoutes.PARK_MAP_GRAPH,
     )
 
     data object Landmarks : BottomNavItem(
-        label = "Landmarks",
-        icon = Icons.Default.FormatListBulleted,
+        label = "Places",
+        icon = Icons.AutoMirrored.Filled.FormatListBulleted,
         graphRoute = NavRoutes.LANDMARKS_GRAPH,
     )
 
     data object TrailTours : BottomNavItem(
-        label = "Trail Tours",
+        label = "Tours",
         icon = Icons.Default.Hiking,
         graphRoute = NavRoutes.TRAIL_TOURS_GRAPH,
     )
