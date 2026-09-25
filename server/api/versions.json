@@ -1,0 +1,12 @@
+{
+  "currentVersion": 1,
+  "versions": [
+    {
+      "version": 1,
+      "status": "legacy",
+      "schema": "numeric-trail-id",
+      "data": "https://trails.warringtoneac.org/api/v1/trails.json",
+      "kml": "https://trails.warringtoneac.org/api/v1/talking-trails.kml"
+    }
+  ]
+}

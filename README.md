@@ -39,6 +39,11 @@ S3 bucket.) Contents, organized by app:
   It covers both locations (Lions Pride Park and the US202 to
   Bradford Dam trail) in a single file: landmarks, trails, locations,
   and beacon codes for both.
+* `api/v1/` — versioned copy of the deployed numeric Trail ID schema. Existing
+  unversioned URLs remain available for installed apps.
+* `api/versions.json` — machine-readable list of published API versions. New app
+  releases pin a major version instead of following an unversioned or `latest`
+  URL.
 * `server/us-202/` — the US202 to Bradford Dam trail. Everything the
   apps need is here:
   * `us202trail-v2.json` — trail geometry, landmarks, and beacon
@@ -77,6 +82,25 @@ from the base URL. The hardcoded URLs to update are:
 * iOS:
   * `ios/WarringtonTalkingTrails/Info.plist` — `base_url_string`
 
+### API versions
+
+Breaking data-shape changes use a new major version in the URL:
+
+```text
+https://trails.warringtoneac.org/api/v1/trails.json
+https://trails.warringtoneac.org/api/v1/talking-trails.kml
+```
+
+Version 1 preserves the deployed numeric Trail ID schema. The unified string
+Trail ID schema will be published under `/api/v2/` after the generator and both
+apps support it. Content may change within a major version, but its field names,
+types and relationships must remain compatible. Mobile releases must pin a
+specific major version; they must not use a moving `latest` endpoint.
+
+The original `/warrington-trails.json` and `/talking-trails.kml` URLs remain for
+already-installed builds. Publishing a new API version must not replace or
+remove an older version that an installed app may still request.
+
 ## Beacons
 
 Physical beacons on the trail are Radius Networks RadBeacon E4 units
@@ -87,13 +111,39 @@ Lions Pride Park and Major 20 for the US202 to Bradford Dam trail. The
 Minor code for each beacon matches a landmark `id` in
 `warrington-trails.json`.
 
-## How to make a new trail
+## How to add a new location
 
 > **Migration status:** This guide describes the unified string Trail ID format
 > in `warrington-master-trail-id-format.xlsx`. The deployed generator and mobile
 > apps still use the legacy numeric trail ID plus `trailGroupId` format. Do not
 > publish a workbook that uses this new format until the generator and both apps
 > have been migrated.
+
+The KML file is the source of truth for coordinates and route geometry. The
+master spreadsheet is the source of truth for descriptions, images, beacon
+numbers and walking instructions.
+
+1. Choose a unique, permanent location ID made from lowercase words separated
+   by hyphens, such as `lions-pride-park`. Do not change it when the displayed
+   location name changes.
+2. Add a row to the Locations tab with the location ID, displayed name and
+   street address.
+3. Assign the location a beacon Major from `0` through `65535`. The combination
+   of UUID and Major must be unique so the apps can distinguish this location's
+   beacons from every other location.
+4. Enter the location's `iBeacon UUID` and `AltBeacon UUID`. iOS uses the
+   iBeacon value; Android reads both values. They may be the same if the
+   hardware broadcasts the same UUID in both formats.
+5. Download the current KML from
+   `https://trails.warringtoneac.org/talking-trails.kml` and edit it in Google
+   Earth. Put the exact location ID in the `location` field of every route and
+   Point placemark belonging to the new location.
+6. Add the location's trails using the next section. Beacon rows are optional;
+   a location and its trails can be published without physical beacons.
+7. Set `reviewStatus` to `Approved` only after the spreadsheet values and KML
+   location fields are complete.
+
+### How to make a new trail
 
 1. Download the current KML from
    `https://trails.warringtoneac.org/talking-trails.kml` and edit it in Google
@@ -108,10 +158,6 @@ Minor code for each beacon matches a landmark `id` in
 5. Leave the Beacons and Stop Content tabs unchanged if the trail has no beacon
    stops. The trail can still appear in the trail list and on the map.
 6. Mark the trail `Approved` after its spreadsheet row and KML route are ready.
-
-The KML file is the source of truth for coordinates and route geometry. The
-master spreadsheet is the source of truth for descriptions, images, beacon
-numbers and walking instructions.
 
 A trail does not need a beacon. A beacon does not need to be part of a trail.
 They become associated only when the beacon's KML Point contains that trail's
@@ -169,7 +215,9 @@ The unified format uses one readable Trail ID everywhere, such as
 
 | Field | Purpose |
 | --- | --- |
+| `location` | Permanent string that associates spreadsheet rows and KML placemarks with one park or trail area. |
 | `Trail ID` | Stable string that identifies a trail in the spreadsheet, KML, server JSON and apps. |
 | `recordKey` | Stable link between a Beacons row, a KML Point and an optional Stop Content row. |
+| `Major` | Numeric code that distinguishes one location's beacons under its UUID. |
 | `Minor` | Numeric identifier broadcast by an individual beacon. It does not identify a trail. |
 | `stopOrder` | Position of an optional beacon stop within a guided trail tour. |

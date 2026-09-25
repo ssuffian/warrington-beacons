@@ -2,6 +2,31 @@
 
 Static JSON served via GitHub Pages at `https://trails.warringtoneac.org/`.
 
+## Versioned API
+
+Mobile releases pin a major API version in the URL. A major version changes only
+when the JSON or KML contract has a breaking change.
+
+| Version | Status | JSON | KML | Trail identifier |
+| --- | --- | --- | --- | --- |
+| v1 | Legacy/current production | `/api/v1/trails.json` | `/api/v1/talking-trails.kml` | Numeric trail ID plus KML `trailGroupId` |
+| v2 | Planned | `/api/v2/trails.json` | `/api/v2/talking-trails.kml` | Unified string Trail ID |
+
+`/api/versions.json` lists only versions that have actually been published. Do
+not create a placeholder v2 response: the new apps should receive a missing-file
+error until the v2 generator, validation and fixtures are complete.
+
+Content and trail status may change within a major version. Field names, field
+types and relationships may not. Never point a released app at `latest`; pin it
+to `/api/vN/` so a future schema migration cannot silently break installed
+builds.
+
+The legacy `/warrington-trails.json` and `/talking-trails.kml` endpoints remain
+available for existing app builds. During the v1 period, a successful Sheet/KML
+validation updates both the legacy URLs and `/api/v1/`. A failed validation
+updates neither; static website changes may still deploy with the last validated
+data.
+
 ## Image library
 
 `https://trails.warringtoneac.org/images/` is a searchable library of every

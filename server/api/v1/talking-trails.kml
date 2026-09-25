@@ -1,0 +1,2034 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ns1="http://www.google.com/kml/ext/2.2">
+  <Document id="1KFn0kH6kE3DqzMbIz2Mdr-SK2ysgJ2AY">
+    <Placemark id="point-json-16">
+      <name>End of Trail</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>JSON-16</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>17</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.1586589,40.2272362,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-json-4001">
+      <name>202 Connector Trail</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>JSON-4001</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>1</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.1917515,40.2700344,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-lp-26">
+      <name>Trash and Recycling</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-26</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.1774,40.24601,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-lp-23">
+      <name>Recycled Plastic Furniture</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-23</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.1781,40.24646,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-lp-17">
+      <name>Natural Slope</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-17</value>
+        </Data>
+        <Data name="trailId">
+          <value>3002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>3</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.17748,40.24675,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-lp-11">
+      <name>Invasive Species</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-11</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.1786,40.2471,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-lp-5">
+      <name>Restrooms</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-5</value>
+        </Data>
+        <Data name="trailId">
+          <value>1002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>2</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.17828,40.24617,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="point-lp-3">
+      <name>Green Trail</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-3</value>
+        </Data>
+        <Data name="trailId">
+          <value>3001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>1</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-75.17829,40.24774,0</coordinates>
+      </Point>
+    </Placemark>
+    <name>Talking Trails</name>
+    <ns1:CascadingStyle id="__managed_style_041F9A4AF641C3B41104_highlight">
+      <Style>
+        <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+          </Icon>
+          <hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels" />
+        </IconStyle>
+        <LabelStyle>
+			</LabelStyle>
+        <LineStyle>
+          <color>ff58eeff</color>
+          <width>6</width>
+        </LineStyle>
+        <PolyStyle>
+          <color>40ffffff</color>
+        </PolyStyle>
+        <BalloonStyle>
+			</BalloonStyle>
+      </Style>
+    </ns1:CascadingStyle>
+    <ns1:CascadingStyle id="__managed_style_14930260C141C3B41104_highlight">
+      <Style>
+        <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+          </Icon>
+          <hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels" />
+        </IconStyle>
+        <LabelStyle>
+			</LabelStyle>
+        <LineStyle>
+          <color>ff2dc0fb</color>
+          <width>3</width>
+        </LineStyle>
+        <PolyStyle>
+          <color>40ffffff</color>
+        </PolyStyle>
+        <BalloonStyle>
+			</BalloonStyle>
+      </Style>
+    </ns1:CascadingStyle>
+    <StyleMap id="__managed_style_041F9A4AF641C3B41104">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104_normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104_highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <ns1:CascadingStyle id="__managed_style_02D38496F741C3B41103_highlight">
+      <Style>
+        <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+          </Icon>
+          <hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels" />
+        </IconStyle>
+        <LabelStyle>
+			</LabelStyle>
+        <LineStyle>
+          <color>ff2dc0fb</color>
+          <width>3</width>
+        </LineStyle>
+        <PolyStyle>
+          <color>40ffffff</color>
+        </PolyStyle>
+        <BalloonStyle>
+			</BalloonStyle>
+      </Style>
+    </ns1:CascadingStyle>
+    <ns1:CascadingStyle id="__managed_style_14930260C141C3B41104_normal">
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+          </Icon>
+          <hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels" />
+        </IconStyle>
+        <LabelStyle>
+			</LabelStyle>
+        <LineStyle>
+          <color>ff2dc0fb</color>
+          <width>2</width>
+        </LineStyle>
+        <PolyStyle>
+          <color>40ffffff</color>
+        </PolyStyle>
+        <BalloonStyle>
+			</BalloonStyle>
+      </Style>
+    </ns1:CascadingStyle>
+    <StyleMap id="__managed_style_14930260C141C3B41104">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#__managed_style_14930260C141C3B41104_normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#__managed_style_14930260C141C3B41104_highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <ns1:CascadingStyle id="__managed_style_02D38496F741C3B41103_normal">
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+          </Icon>
+          <hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels" />
+        </IconStyle>
+        <LabelStyle>
+			</LabelStyle>
+        <LineStyle>
+          <color>ff2dc0fb</color>
+          <width>2</width>
+        </LineStyle>
+        <PolyStyle>
+          <color>40ffffff</color>
+        </PolyStyle>
+        <BalloonStyle>
+			</BalloonStyle>
+      </Style>
+    </ns1:CascadingStyle>
+    <ns1:CascadingStyle id="__managed_style_041F9A4AF641C3B41104_normal">
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+          </Icon>
+          <hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels" />
+        </IconStyle>
+        <LabelStyle>
+			</LabelStyle>
+        <LineStyle>
+          <color>ff58eeff</color>
+          <width>4</width>
+        </LineStyle>
+        <PolyStyle>
+          <color>40ffffff</color>
+        </PolyStyle>
+        <BalloonStyle>
+			</BalloonStyle>
+      </Style>
+    </ns1:CascadingStyle>
+    <StyleMap id="__managed_style_02D38496F741C3B41103">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#__managed_style_02D38496F741C3B41103_normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#__managed_style_02D38496F741C3B41103_highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark id="061B11D4DE417EB2832F">
+      <name>The Grove</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-6</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17796</longitude>
+        <latitude>40.24667999999999</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5405808557877</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17796,40.24668,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0F981FCE73417EB4A587">
+      <name>Kids Mt.</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-7</value>
+        </Data>
+        <Data name="trailId">
+          <value>3002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>4</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17771999999999</longitude>
+        <latitude>40.24683</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5386809769763</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17771999999999,40.24683,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0A0AB305B9417EB5E356">
+      <name>Small Mt.</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-10</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17770999999999</longitude>
+        <latitude>40.24688</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5380476828941</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17770999999999,40.24688,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0D775F74CC417EB7D836">
+      <name>Rope Ladder</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-12</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17793999999999</longitude>
+        <latitude>40.24699</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5366544338993</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17793999999999,40.24699,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="077FD3B6FC417EB927EE">
+      <name>3 Small Green Slides</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-13</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17764</longitude>
+        <latitude>40.24669</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5404541973606</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17764,40.24669,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0C35A4972E417EC26188">
+      <name>2 Main Blue Slides</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-14</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17770999999999</longitude>
+        <latitude>40.24688</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5380476828941</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17770999999999,40.24688,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0B76AA2B27417EC829A0">
+      <name>Gently Sloping Trail</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-19</value>
+        </Data>
+        <Data name="trailId">
+          <value>3002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>1</value>
+        </Data>
+      </ExtendedData>
+      <visibility>0</visibility>
+      <LookAt>
+        <longitude>-75.17765</longitude>
+        <latitude>40.24625</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5460271464977</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17765,40.24625,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="097C637A47417EC9A35C">
+      <name>Music Grove</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-21</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17775</longitude>
+        <latitude>40.24706</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5357678194601</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17775,40.24706,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0BE6173729417ECAB59B">
+      <name>Butterflies</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-16</value>
+        </Data>
+        <Data name="trailId">
+          <value>3001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>6</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17740999999999</longitude>
+        <latitude>40.24847</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5179086325935</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17740999999999,40.24847,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0CBBF33A99417ECC0981">
+      <name>Yellow Trail</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-2</value>
+        </Data>
+        <Data name="trailId">
+          <value>1002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>1</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.1773</longitude>
+        <latitude>40.2472</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5339945872166</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.1773,40.2472,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0FAD3DBAC0417ECCB221">
+      <name>Green Trail Turn Off</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-27</value>
+        </Data>
+        <Data name="trailId">
+          <value>1002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>3</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17828999999999</longitude>
+        <latitude>40.24774</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5271549350995</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17828079874792,40.24791011460211,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0573FC32E1417ECD4667">
+      <name>Welcome To Park</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-4</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17748759999999</longitude>
+        <latitude>40.2460564</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5484792300759</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17748759999999,40.2460564,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0974204B21417ECE2789">
+      <name>Pavillion</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-8</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17831</longitude>
+        <latitude>40.24633</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.545013886315</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17831,40.24633,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0D7663753D417ECF0A91">
+      <name>Bees</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-15</value>
+        </Data>
+        <Data name="trailId">
+          <value>3001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>4</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17751</longitude>
+        <latitude>40.24848000000001</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5177819700682</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17688975009902,40.24828899717622,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="05D0E23D7D417ED0526B">
+      <name>Rain Garden</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-22</value>
+        </Data>
+        <Data name="trailId">
+          <value>3001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>3</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17745599999999</longitude>
+        <latitude>40.24845</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5181619575754</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17676387486681,40.24823104346003,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0FC6DCB85B417ED2F949">
+      <name>Pollinator Plants</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-24</value>
+        </Data>
+        <Data name="trailId">
+          <value>3002</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>2</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17757999999999</longitude>
+        <latitude>40.24651</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5427340455467</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17757999999999,40.24651,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0F45CA2CEC417ED44DD8">
+      <name>Insects</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-25</value>
+        </Data>
+        <Data name="trailId">
+          <value>3001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>5</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17710149999999</longitude>
+        <latitude>40.24839000000001</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5189219319709</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17698934309132,40.24832220977843,0</coordinates>
+      </Point>
+    </Placemark>
+    <GroundOverlay id="09C48B73814182A37F20">
+      <name>Administrative area level 2</name>
+      <visibility>0</visibility>
+      <LookAt>
+        <longitude>-105</longitude>
+        <latitude>44</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>30</ns1:fovy>
+        <range>10000000</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <drawOrder>1</drawOrder>
+      <Icon>
+        <href>data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==</href>
+      </Icon>
+      <LatLonBox>
+        <north>85</north>
+        <south>-85</south>
+        <east>180</east>
+        <west>-180</west>
+      </LatLonBox>
+      <ns1:MapTilePyramid>
+        <Link>
+          <href>earthdatalayer:0:CAESJDkyNTU4MzMwLTM4ZmQtNDQxNC1hNTI4LTk2M2Y1NzYwMmQ1Ng</href>
+        </Link>
+        <ns1:minLevel>0</ns1:minLevel>
+        <ns1:maxLevel>22</ns1:maxLevel>
+      </ns1:MapTilePyramid>
+    </GroundOverlay>
+    <Placemark id="0D3B64149A4182B04E41">
+      <name>Purple Martin</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-17</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17515941900417</longitude>
+        <latitude>40.2476262937837</latitude>
+        <altitude>90.25560817589566</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>30.00021529</ns1:fovy>
+        <range>168.64607687432</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.17505316252728,40.24756546773651,89.72601304104624</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0BDB4FDFFF4182B3494F">
+      <name>Bluebird and cavity nesting bird program</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-19</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17395862581958</longitude>
+        <latitude>40.25564059071701</latitude>
+        <altitude>89.55171468719836</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>30.00021529</ns1:fovy>
+        <range>2024.782842296991</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.17406680881581,40.25329265411624,90.87163296071272</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="00E17FDBF64182B43E79">
+      <name>Pet Waste</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-21</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17054090147552</longitude>
+        <latitude>40.25816866152434</latitude>
+        <altitude>84.20433899925638</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>30.00021529</ns1:fovy>
+        <range>789.3769309503841</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.16841179465013,40.25885206297637,79.84290021662126</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="052AE10B194182B52121">
+      <name>Pet Waste</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-4</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>4</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.18702787740617</longitude>
+        <latitude>40.26568126555391</latitude>
+        <altitude>102.9763536199284</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>30.00021529</ns1:fovy>
+        <range>572.6031020902883</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.18690524913067,40.26537276849958,102.206443039986</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="00F04859784182B6B0D8">
+      <name>Pollinator Habitat</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-3</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>3</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.187085</longitude>
+        <latitude>40.26582799999999</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.29801335693</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.187085,40.265828,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="05ABF1BA084182BE5514">
+      <name>Bluebird and cavity nesting bird program</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-2</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>2</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.18954099999999</longitude>
+        <latitude>40.26811599999999</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.2690232845898</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.18954099999999,40.268116,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="006F5EF3674182C26BB0">
+      <name>Rain Barrel</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-7</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>7</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17801940179088</longitude>
+        <latitude>40.24598505140885</latitude>
+        <altitude>99.93558545194821</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>458.6817709523166</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.17824829746803,40.24604744797347,96.50144738734454</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="00AC437C7E4182C31573">
+      <name>Tennis Courts</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-9</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17801940179088</longitude>
+        <latitude>40.24598505140885</latitude>
+        <altitude>99.93558545194821</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>458.6817709523166</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.17889877703345,40.24618058536691,96.43689036036997</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0AF2CC22C94182C42DEE">
+      <name>Green Trail Mid Point</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>LP-28</value>
+        </Data>
+        <Data name="trailId">
+          <value>3001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>2</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17841615329398</longitude>
+        <latitude>40.24712616665035</latitude>
+        <altitude>95.78038223857567</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>669.4484759655461</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.17849517626533,40.24721261887349,95.17669083947652</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="07E749517741845AB081">
+      <name>Bird Houses on Display</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-25</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17804691431061</longitude>
+        <latitude>40.24606848411825</latitude>
+        <altitude>96.50141613917606</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>396.442453484342</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.17761955495348,40.24618390544178,96.41970771555359</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0A0EC33E6041845F61DC">
+      <name>Chimney Swift</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-18</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16957384413871</longitude>
+        <latitude>40.23915781547815</latitude>
+        <altitude>79.18713930362313</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>106.3920300419522</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.16949350186448,40.23920732634095,79.12323544952173</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="046F698D4341846012FB">
+      <name>Monarch Way Station</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-27</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16955200873211</longitude>
+        <latitude>40.23894179906022</latitude>
+        <altitude>78.45183348923825</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>154.4848302078936</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.16934512235987,40.23875662529734,79.03776017653495</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0595697661418460D100">
+      <name>Bird Blind</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-26</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16890167838928</longitude>
+        <latitude>40.23779045488167</latitude>
+        <altitude>75.7998881941694</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>122.8808291800851</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.16857555903479,40.23778119290228,75.21596344796839</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="059C5B2F0241846901C3">
+      <name>Meadows</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-22</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17599330769761</longitude>
+        <latitude>40.26490295372842</latitude>
+        <altitude>90.23157094987545</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>1638.750097657904</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.17608431627772,40.26525511666723,92.05449093471013</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="061F16F314418469A2FC">
+      <name>Bird Blind</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-24</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17602034141956</longitude>
+        <latitude>40.26439951741462</latitude>
+        <altitude>69.53745854791923</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>791.9609551478061</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.17576599303338,40.26409891960611,72.6709950417758</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="08E50D2D6641846A3207">
+      <name>Meadows</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-20</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17612331099824</longitude>
+        <latitude>40.25615570567344</latitude>
+        <altitude>90.54330998804814</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99996960212498</ns1:fovy>
+        <range>1983.301429170824</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.1729871936293,40.25443501349952,89.6035409508906</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0F5EB9E3E041846B613C">
+      <name>Native Plant Mgt. Area</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-6</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>6</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17419199999999</longitude>
+        <latitude>40.248232</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5209231939375</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17419199999999,40.248232,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="08549A48CC41846C44C0">
+      <name>Naturalized Basin</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-5</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>5</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17392700000001</longitude>
+        <latitude>40.248622</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.5159833597394</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.17392699999999,40.248622,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="00321D8DDB41846E20FE">
+      <name>Bluebird and cavity nesting Birds</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-8</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>8</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.169</longitude>
+        <latitude>40.239</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.6378477666966</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.1689610811989,40.23859468262437,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0B77C19B6C4184705B11">
+      <name>Native vs Invasives Plants</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-9</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>9</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16799999999999</longitude>
+        <latitude>40.238</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.6505117352854</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.16848140454132,40.23773890249959,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0F89A704BF4184714FA6">
+      <name>Native Plant Management</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-10</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>10</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16799999999999</longitude>
+        <latitude>40.237</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.6631754748759</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.16802229648994,40.23738508784395,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="052530DF714184728B4E">
+      <name>Pet Waste</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-11</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>11</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.167368</longitude>
+        <latitude>40.236587</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.6684055325077</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.167368,40.236587,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0C83CE4DF5418472E4BC">
+      <name>Reptiles</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-23</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16736800000074</longitude>
+        <latitude>40.23658700000028</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>696.7193067564956</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.16616851488735,40.23665598238004,-1.414648398423424e-09</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0951AD8BC94184739284">
+      <name>Trees</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-12</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>12</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16499999999999</longitude>
+        <latitude>40.236</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.6758389854629</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.16509378821878,40.23603579844846,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="027410A6AD418474F903">
+      <name>Wetlands</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-13</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>13</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16400000000002</longitude>
+        <latitude>40.23399999999999</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.7011653196023</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.16252556527606,40.2346940383878,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="004140825A418476201B">
+      <name>Fish</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-14</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>14</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16676612151518</longitude>
+        <latitude>40.23467798072802</latitude>
+        <altitude>90.32168782289301</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>688.1813070960926</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.16433993138311,40.23477801495635,68.99403108995796</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="010BEADF154184773E4E">
+      <name>Meadows</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-15</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>15</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.161</longitude>
+        <latitude>40.23299999999999</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.7138281431426</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.16116185158916,40.23257475363144,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="06D6C522464184780704">
+      <name>Water Fowl</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-16</value>
+        </Data>
+        <Data name="trailId">
+          <value>4001</value>
+        </Data>
+        <Data name="stopOrder">
+          <value>16</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16</longitude>
+        <latitude>40.232</latitude>
+        <altitude>0</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>35</ns1:fovy>
+        <range>783.7264907376558</range>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <extrude>1</extrude>
+        <coordinates>-75.15977719445252,40.23153438710905,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0C1FC3A6F441858E50F3">
+      <name>Nike Missle</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-35</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17034456173108</longitude>
+        <latitude>40.23942665501058</latitude>
+        <altitude>78.05632567692969</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>30.00021529</ns1:fovy>
+        <range>508.3580878841167</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.16915995757253,40.2387876629565,79.19335048293026</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="01B458DB054185B45026">
+      <name>Pollinator Garden</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-29</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.16873673731951</longitude>
+        <latitude>40.23794764243338</latitude>
+        <altitude>76.45885927399665</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99997170463399</ns1:fovy>
+        <range>192.9429340959723</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+      <Point>
+        <coordinates>-75.16853682461479,40.2377991121468,75.2797892898692</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="054941166B4185B7A76B">
+      <name>History of Weisel</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-34</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.19171670285277</longitude>
+        <latitude>40.270068971044</latitude>
+        <altitude>105.7018761136274</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99997170463399</ns1:fovy>
+        <range>850.7125538193213</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.19005848411761,40.26869869107517,102.8183204788736</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="0C6DB22A054185B933C7">
+      <name>Migrating Birds</name>
+      <ExtendedData>
+        <Data name="recordKey">
+          <value>EAC-28</value>
+        </Data>
+      </ExtendedData>
+      <LookAt>
+        <longitude>-75.17656249716623</longitude>
+        <latitude>40.2483779906396</latitude>
+        <altitude>-7.073241992117119e-10</altitude>
+        <heading>0</heading>
+        <tilt>0</tilt>
+        <ns1:fovy>34.99997170463399</ns1:fovy>
+        <range>459.3228169955976</range>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+      <styleUrl>#__managed_style_02D38496F741C3B41103</styleUrl>
+      <Point>
+        <coordinates>-75.17656972015067,40.24859161669442,-1.414648398423424e-09</coordinates>
+      </Point>
+    </Placemark>
+    <Folder id="routes-lions-pride-park">
+      <name>Lions Pride Park Trails</name>
+      <ExtendedData>
+        <Data name="location">
+          <value>lions-pride-park</value>
+        </Data>
+        <Data name="content">
+          <value>routeGeometry</value>
+        </Data>
+      </ExtendedData>
+      <Placemark id="0DE3569FB44182A7A479">
+        <name>Outdoor Classroom Trail</name>
+        <LookAt>
+          <longitude>-75.17632088792641</longitude>
+          <latitude>40.24846102376021</latitude>
+          <altitude>111.0620459283681</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>30.00021529</ns1:fovy>
+          <range>749.8464690727269</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>lions-pride-park</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>outdoor-classroom-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17713501332227,40.24841658423806,0 -75.17706528653112,40.24849040911374,0 -75.17674195418265,40.24839635520541,0 -75.17616177041118,40.24913680698285,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="0589AB15E74183F3A90F">
+        <name>IPW Trail</name>
+        <LookAt>
+          <longitude>-75.17804430224678</longitude>
+          <latitude>40.24671784557116</latitude>
+          <altitude>-7.073241992117119e-10</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>1365.791278949144</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>lions-pride-park</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>ipw-trail</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+						-75.17547665285878,40.24670387590275,0 -75.17557907119523,40.24671268484385,0 -75.1756788487647,40.2466932199195,0 -75.17587676909501,40.2466496384582,0 -75.17627387776254,40.24656450820881,0 -75.176654083418,40.24648406442394,0 -75.17684431694778,40.24644915255138,0 -75.17694315654492,40.24642448387446,0 -75.17702883140632,40.24638679822667,0 -75.1770782158213,40.24635879411287,0 -75.1771187241724,40.24632353905097,0 -75.17713939468887,40.24627833105511,0 -75.17714471243963,40.24623194457384,0 -75.17714086513942,40.2461737744491,0 -75.17712112604889,40.24611801951164,0 -75.1770771050423,40.24601680571403,0 -75.17703645680892,40.24595628816818,0 -75.17698529671816,40.24589980284435,0 -75.17688038899004,40.24579099359661,0 -75.17645350292392,40.24552986811963,0 -75.17641212966515,40.24550139744515,0 -75.17637092369019,40.24546974762994,0 -75.17633743382639,40.2454329142127,0 -75.17631864483458,40.24539033797402,0 -75.17632127754564,40.24534676368151,0 -75.17633763550931,40.24530558536294,0 -75.17635670825183,40.24526368624926,0 -75.17638412407466,40.2452364995775,0 -75.17670894174739,40.24504900194336,0 -75.17685896293524,40.24489571808991,0 -75.17686127754935,40.2448626901149,0 -75.17684673540163,40.24484366298732,0 -75.17680430004893,40.24480705877566,0 -75.1767354294949,40.24478509618226,0 -75.17665296080752,40.24476661671038,0 -75.17663871474335,40.24475650891335,0 -75.17662595448071,40.24474469494862,0 -75.17660377306987,40.24471346805547,0 -75.17659039009268,40.24464687647055,0 -75.17659196823665,40.2446301928616,0 -75.17659604227163,40.24461041615425,0 -75.17660830574684,40.24458233958726,0 -75.17664548467437,40.2445277458525,0 -75.17663881650074,40.2444855465007,0 -75.17484707482619,40.24337301449264,0 -75.17469269152666,40.24329042690707,0 -75.17455749938259,40.24319649743162,0 -75.17427727515164,40.24300901596548,0 -75.17416030942157,40.24295718162968,0 -75.17409512256611,40.24298303916345,0 -75.17403712851309,40.24301505862262,0 -75.17392423923989,40.24311302103661,0 -75.17367652534089,40.24338296189907,0 -75.1735284264029,40.24351107252039,0 -75.17328652565664,40.24382381536771,0 -75.17337537928363,40.24394062632681,0 -75.17418002182227,40.24443801909852,0 -75.17450089488483,40.24456990354818,0 -75.17469341904538,40.24465280193078,0 -75.17481683199446,40.24471685948987,0 -75.17495505572222,40.24471309210825,0 -75.17520092785323,40.24511789645855,0 -75.17529528190477,40.24596784667477,0 -75.17524158532073,40.24608259433878,0 -75.17547665285878,40.24670387590275,0
+					</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark id="06CAD8157941843988C1">
+        <name>Green Trail</name>
+        <LookAt>
+          <longitude>-75.17739027610729</longitude>
+          <latitude>40.24748065485798</latitude>
+          <altitude>93.93469922416762</altitude>
+          <heading>-2.506701210775614</heading>
+          <tilt>14.82695859108756</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>187.6133957775892</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>lions-pride-park</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>green-trail</value>
+          </Data>
+          <Data name="trailId">
+            <value>3001</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17828884734304,40.24736277611961,0 -75.17823931000996,40.2474747446546,0 -75.17821881137387,40.24752654888025,0 -75.17820810821176,40.24758543054401,0 -75.17821061998168,40.24767364043139,0 -75.17827044553401,40.24781797096905,0 -75.17756956245012,40.24740322615002,0 -75.17827004160594,40.2478113283904,0 -75.17830281349869,40.24788098254336,0 -75.17830359280012,40.24796259764645,0 -75.17826019118422,40.24805980263666,0 -75.17819983066997,40.24816341128543,0 -75.17806274605624,40.24829243051597,0 -75.17795585584656,40.24835697595046,0 -75.17784363489156,40.24841561627897,0 -75.17776286754413,40.24845329010742,0 -75.17769392587996,40.2484834149541,0 -75.17762939215275,40.24852152973791,0 -75.17756893028651,40.24853493516247,0 -75.17745345327201,40.24851980555648,0 -75.17734967955776,40.24848614460416,0 -75.17713990659165,40.24841811365695,0 -75.1767736294232,40.24828984697713,0 -75.17674283445236,40.24825881082802,0 -75.17672230928565,40.24822048281147,0 -75.17668644546237,40.24814072462897,0 -75.17662093206023,40.2479300371149,0 -75.17657513505208,40.24779161866816,0 -75.1765735017508,40.24776006027692,0 -75.17659466053672,40.24773560262611,0 -75.17662929241624,40.24770429459683,0 -75.17671225387666,40.24763738705483,0 -75.17688050708114,40.24750066991228,0 -75.17725102833339,40.24717348300428,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="0A613ED3D741844E31FB">
+        <name>Yellow Trail</name>
+        <LookAt>
+          <longitude>-75.1778620861989</longitude>
+          <latitude>40.24702596544672</latitude>
+          <altitude>95.10112237044362</altitude>
+          <heading>-2.506715228705124</heading>
+          <tilt>14.74244552109971</tilt>
+          <ns1:fovy>34.99999963994124</ns1:fovy>
+          <range>358.3971889960594</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_14930260C141C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>lions-pride-park</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>yellow-trail</value>
+          </Data>
+          <Data name="trailId">
+            <value>1002</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+						-75.17783696413844,40.24745517775392,0 -75.17793034926902,40.24746132106011,0 -75.17802129749586,40.24745016165522,0 -75.17815575515355,40.24742009922192,0 -75.17828103864431,40.24736579645407,0 -75.17841595077861,40.24727530334121,0 -75.17851856357045,40.24716998406729,0 -75.17857977640735,40.24697865871743,0 -75.17858762436316,40.24685808786722,0 -75.17852084692004,40.24673936363681,0 -75.17850876678132,40.24659641062178,0 -75.1785663962078,40.24641101154009,0 -75.17856909465768,40.24634253410615,0 -75.17856610883717,40.24627429945117,0 -75.17850175416041,40.24619912239299,0 -75.17844588681517,40.2461434066726,0 -75.17836329999523,40.24610704486935,0 -75.17826299505361,40.24608617363287,0 -75.17816318178804,40.24609000275727,0 -75.17808323481181,40.24610485875656,0 -75.17798640253922,40.24612690563941,0 -75.17789951229437,40.24614198745358,0 -75.17780517886699,40.24613926829734,0 -75.17774821283338,40.24613011525903,0 -75.17754997660491,40.24610351146794,0 -75.1774621092604,40.24603641823525,0 -75.17754991516844,40.24610274012861,0 -75.1775290927216,40.24612515841104,0 -75.17749761751625,40.24614507459768,0 -75.17743398722715,40.24618869800653,0 -75.1773266187182,40.24628922468173,0 -75.17725753562434,40.24638898653905,0 -75.17724591794473,40.2464202524444,0 -75.17723072639482,40.24646598096324,0 -75.17718018598087,40.2465624136807,0 -75.17717442326062,40.2466586640746,0 -75.17716394485404,40.24676365826051,0 -75.17716993232226,40.24688600789779,0 -75.17724976690715,40.24716867899525,0 -75.17757222536568,40.24740280730249,0 -75.17783696413844,40.24745517775392,0
+					</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark id="09A612D3D9418457147E">
+        <name>Kids Mt. Trail</name>
+        <LookAt>
+          <longitude>-75.17788361616807</longitude>
+          <latitude>40.24652285160956</latitude>
+          <altitude>95.66853803544345</altitude>
+          <heading>-2.506715250885968</heading>
+          <tilt>14.7424459908271</tilt>
+          <ns1:fovy>34.99999963994124</ns1:fovy>
+          <range>358.6033537423646</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>lions-pride-park</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>kids-mountain-trail</value>
+          </Data>
+          <Data name="trailId">
+            <value>3002</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17768370801234,40.24612511648142,0 -75.17765533476764,40.24621859062735,0 -75.17764995937996,40.24631920804543,0 -75.1775746673526,40.24637706981914,0 -75.17755738282959,40.24645337934761,0 -75.17756822485526,40.24652334546674,0 -75.17758664013728,40.24658064606094,0 -75.17758664153043,40.2466100218921,0 -75.17756922530887,40.24661782041719,0 -75.17753261943471,40.24661665031894,0 -75.17752062172606,40.24657423311084,0 -75.17750086362621,40.2465598552206,0 -75.17745207155804,40.24653195731589,0 -75.17740688717198,40.24653473009084,0 -75.17738387901201,40.24654948446302,0 -75.17737232591098,40.24656955563052,0 -75.17735701292382,40.24659734324386,0 -75.17736696003865,40.24661171228769,0 -75.17739401215614,40.24663453905541,0 -75.17741877431843,40.24664019100416,0 -75.17744816472211,40.24662603683974,0 -75.17747156630952,40.24662612538499,0 -75.17749812685467,40.24664354107053,0 -75.17750220945511,40.24666927287563,0 -75.17752421186503,40.24668849298182,0 -75.17753180673633,40.24673341547108,0 -75.17754160693818,40.2467458510796,0 -75.17753252589247,40.24676156514172,0 -75.17751105848353,40.24674076687602,0 -75.17747322900173,40.24672224417595,0 -75.17743949289195,40.24672621780255,0 -75.17743812980149,40.24673894366889,0 -75.1774532366932,40.24676471069947,0 -75.1774943510829,40.2467962942622,0 -75.1775169459457,40.24681702545749,0 -75.17753971769658,40.24682479412169,0 -75.1775526379086,40.24683133476998,0 -75.17758734956195,40.24679606228653,0 -75.17765494669183,40.24677978582456,0 -75.17767383944977,40.24678108321564,0 -75.17770139752187,40.24677393203497,0 -75.17772526677714,40.24677018716538,0 -75.1777927233759,40.24680308763055,0 -75.17786288178401,40.24680550234137,0 -75.1778871593481,40.24687797019999,0 -75.17787034894056,40.24695032291684,0 -75.1778447714009,40.2469724330269,0 -75.17777001777264,40.24702182673727,0 -75.17774167559583,40.2470551153109,0 -75.1777007526444,40.24699483738871,0 -75.17764127852526,40.24698719936815,0 -75.17765183416039,40.24694735648879,0 -75.17771520088564,40.24690876221874,0 -75.17778582962846,40.246892046236,0 -75.17777508056936,40.24679836005206,0 -75.17781493059053,40.24671675823713,0 -75.17790201032838,40.24654778031295,0 -75.1780795719892,40.24638850359339,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="0B300CEC9141845A0E7C">
+        <name>Kids Mt. Trail</name>
+        <LookAt>
+          <longitude>-75.17783051769341</longitude>
+          <latitude>40.24628203744639</latitude>
+          <altitude>113.2377374859832</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99996960212498</ns1:fovy>
+          <range>172.7132704211726</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>lions-pride-park</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>kids-mountain-trail</value>
+          </Data>
+          <Data name="trailId">
+            <value>3002</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17787837800083,40.24658626696852,0 -75.17777363619918,40.24650083141384,0 -75.1777047806907,40.24642428106835,0 -75.17768224288135,40.24636720380917,0 -75.17764802156388,40.24632028623794,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder id="routes-us-202">
+      <name>US-202 Trails</name>
+      <ExtendedData>
+        <Data name="location">
+          <value>us-202</value>
+        </Data>
+        <Data name="content">
+          <value>routeGeometry</value>
+        </Data>
+      </ExtendedData>
+      <Placemark id="016AFF45144183E8403F">
+        <name>Weisel Preserve Trail</name>
+        <LookAt>
+          <longitude>-75.18509324634348</longitude>
+          <latitude>40.2642184395996</latitude>
+          <altitude>-1.414648398423424e-09</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>25.00000000320033</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>us-202</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>weisel-preserve-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17676121953539,40.26046777581486,0 -75.18067992453609,40.2628265909892,0 -75.18100022826994,40.26267779809259,0 -75.18133916079648,40.26253465877775,0 -75.18195891348775,40.26234350271492,0 -75.18225749304112,40.26258075181222,0 -75.18244845034478,40.26271419833165,0 -75.18268094639663,40.2628905769653,0 -75.18267078247737,40.26295920449029,0 -75.18246413681273,40.26303279239215,0 -75.18261772963434,40.26303012345117,0 -75.18272747561326,40.26308977032329,0 -75.1828427711434,40.26314498840712,0 -75.18296927234162,40.26326056394919,0 -75.18413569995711,40.26400694979404,0 -75.18448381383385,40.26392574596606,0 -75.18463754221098,40.26392673610931,0 -75.18478902548706,40.26402803729916,0 -75.18593277241406,40.26473063894377,0 -75.18649517488517,40.26507206778373,0 -75.1868913918737,40.26534431063532,0 -75.18702001632921,40.26544823316363,0 -75.18707825913164,40.26562086541815,0 -75.18710772199381,40.26578926120821,0 -75.18715923203308,40.26597015184532,0 -75.18722581447072,40.26616183067121,0 -75.18726515875051,40.26623804001706,0 -75.18732416487855,40.26628894728304,0 -75.18738862077957,40.26633453368432,0 -75.18752761926216,40.26642411680121,0 -75.18780743408097,40.26660387366183,0 -75.18817477223747,40.26683208064847,0 -75.18835856019186,40.26695346310772,0 -75.1884559283083,40.26701081003668,0 -75.18854368272336,40.26707657788113,0 -75.1886165531678,40.26713640707005,0 -75.18868475776635,40.26721210958271,0 -75.18881465465333,40.26736124823482,0 -75.18908289378001,40.26766142703022,0 -75.18961352105501,40.26825624077483,0 -75.18988275539814,40.26855421547742,0 -75.19002055106668,40.26870675680583,0 -75.19008381095159,40.26877811034313,0 -75.19021247551856,40.26885376643974,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="08455FEB314183EE395F">
+        <name>Route 202 Connector Trail</name>
+        <LookAt>
+          <longitude>-75.1891794689401</longitude>
+          <latitude>40.26911390115985</latitude>
+          <altitude>0</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>1023.607882576213</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>us-202</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>route-202-connector-trail</value>
+          </Data>
+          <Data name="trailId">
+            <value>4001</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.19021153017997,40.26885351621902,0 -75.190279692159,40.26890256466618,0 -75.19049627114723,40.26906490614854,0 -75.19060435163128,40.26914635019084,0 -75.19070592260466,40.26923354879672,0 -75.1907758681041,40.26935325205682,0 -75.1908565888866,40.26946611251014,0 -75.19129646706456,40.26965771151032,0 -75.19158303448553,40.26982286752411,0 -75.19170671789458,40.26994552939642,0 -75.19178930654942,40.2700827502607,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="084967A2064183F0983C">
+        <name>Upper Nike Trail</name>
+        <LookAt>
+          <longitude>-75.17657733134104</longitude>
+          <latitude>40.2475491479543</latitude>
+          <altitude>-7.073241992117119e-10</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>903.0960041524444</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>us-202</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>upper-nike-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17387193210062,40.24872789072622,0 -75.1742838039965,40.24811547755431,0 -75.17458913845923,40.2480341881561,0 -75.17465304985252,40.2478716001231,0 -75.17468145690648,40.24772527049949,0 -75.17471696664266,40.24749764656895,0 -75.17480927797332,40.24738925542109,0 -75.17514841311173,40.24711393694349,0 -75.17544763831079,40.2468362177713,0 -75.17544642111852,40.24674515340016,0 -75.17545319523684,40.24671958022115,0 -75.17546574292327,40.24670794790362,0 -75.17547732783127,40.24670408505931,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="0292CD7C244183FDAEF6">
+        <name>Lower Nike Trail</name>
+        <LookAt>
+          <longitude>-75.15944328119453</longitude>
+          <latitude>40.2273015137382</latitude>
+          <altitude>0</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>1154.688305940212</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>us-202</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>lower-nike-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17415995296366,40.24295742946794,0 -75.17403784331047,40.24270055560099,0 -75.17204262818254,40.2417830207067,0 -75.17134550725712,40.24146187082492,0 -75.17057629245674,40.24075536334852,0 -75.16955468716442,40.23971851962776,0 -75.16924752230197,40.23933756298958,0 -75.16926807799237,40.23928611445778,0 -75.16929959288755,40.23924246049702,0 -75.16936438052345,40.23919798712554,0 -75.16941712645701,40.23916395080467,0 -75.16944280746775,40.23915742225964,0 -75.1696013596048,40.23904167004531,0 -75.16958926132797,40.23901722721195,0 -75.16956153573037,40.23898956834157,0 -75.16941302772277,40.23885196883717,0 -75.16932975452967,40.23877326973143,0 -75.16927582172139,40.23873087905998,0 -75.16925385374996,40.23872719326621,0 -75.16923377047881,40.23873704827218,0 -75.1691970354301,40.2387639669457,0 -75.16919627092994,40.23877822338385,0 -75.16918120959127,40.23879301576891,0 -75.16913959627716,40.23881707297107,0 -75.1689252376612,40.23858030500634,0 -75.16854265381717,40.23820921142056,0 -75.16851786776897,40.23818678060842,0 -75.16850314967762,40.23816150132593,0 -75.1684862357445,40.23811537862077,0 -75.16848034789342,40.23806353144867,0 -75.16850560233401,40.23801357068966,0 -75.16855700560804,40.23792075779009,0 -75.1685693798218,40.23786095870567,0 -75.16852031982917,40.23779822869915,0 -75.1683927643476,40.23773456244134,0 -75.16827747403148,40.23765966082934,0 -75.16822841440603,40.23762033743497,0 -75.1681769024126,40.23757258785972,0 -75.16810576574343,40.23748364232541,0 -75.16806406498861,40.23738439779424,0 -75.16796471916037,40.23718965388903,0 -75.16789113007754,40.23704453212491,0 -75.16780282457385,40.23690409180048,0 -75.16772432894879,40.23668500480461,0 -75.16763479594961,40.23655486347702,0 -75.16754526341622,40.23653426563923,0 -75.16746308977123,40.23655579988218,0 -75.16699313884303,40.23662177845674,0 -75.16639813374242,40.23673335132943,0 -75.16633814950964,40.23672612139712,0 -75.16628868882245,40.23671246463725,0 -75.16623080926924,40.2366779208652,0 -75.1661276786447,40.23661526002623,0 -75.16594036189144,40.23649877456482,0 -75.16568253571302,40.23633810579253,0 -75.16540576898325,40.23618386337201,0 -75.16523844624164,40.23609147939008,0 -75.16516688688014,40.23604488537511,0 -75.16511321741899,40.23599025785971,0 -75.16494484312085,40.2357251537822,0 -75.16491642998888,40.23568819986489,0 -75.16486697019057,40.23565767272386,0 -75.16462485781747,40.23561748651191,0 -75.16459655771531,40.23559363192549,0 -75.16453052414909,40.23553737105592,0 -75.16448296427221,40.23546775764316,0 -75.16445721904057,40.23538089091314,0 -75.1644287877027,40.235204026136,0 -75.16439854795071,40.23516420863587,0 -75.1643621801575,40.2351279618161,0 -75.16432718195811,40.2350946261187,0 -75.16429764223727,40.23505320159966,0 -75.16431819152911,40.2349838338806,0 -75.16431794502778,40.23494928686171,0 -75.16432285335988,40.23489415093152,0 -75.16431724365047,40.23483580319891,0 -75.16430295142239,40.23477808643025,0 -75.16422908068522,40.23458069946233,0 -75.1641678876052,40.23450124039346,0 -75.16412721798579,40.23446376942788,0 -75.16410477960237,40.2344466398416,0 -75.16407392668481,40.23443914552808,0 -75.16401993425951,40.2344204101722,0 -75.16395892997916,40.23443272225649,0 -75.16385234783849,40.23446591108428,0 -75.16376189322648,40.23446805235606,0 -75.16370860213986,40.23447661716433,0 -75.16363287279003,40.23448839342308,0 -75.16359711165386,40.23450712905081,0 -75.16355994818193,40.23455423559228,0 -75.16352348593657,40.2346248953077,0 -75.16336291110065,40.23472017885403,0 -75.16328788252284,40.23477103235843,0 -75.16322591501014,40.23485059582299,0 -75.16315168205089,40.23494498325741,0 -75.1631196445998,40.23496927986515,0 -75.1631118459929,40.23497008439177,0 -75.16308908249252,40.23497201525465,0 -75.16307158832153,40.23497362430357,0 -75.16305809884,40.23496992349725,0 -75.16299022992152,40.234956407513,0 -75.16286710333823,40.23491773318107,0 -75.16281143617474,40.2348995727009,0 -75.16275412136737,40.23487114473593,0 -75.16270328286896,40.23483925602216,0 -75.1626767302706,40.23482121043568,0 -75.16265179681004,40.23480168168599,0 -75.16263657765401,40.23477918653284,0 -75.16262783474717,40.23475446658415,0 -75.16260735514655,40.23470464617797,0 -75.16259512982933,40.23468574511565,0 -75.16259059647562,40.23467190194314,0 -75.16257613230403,40.23466526674011,0 -75.16254526286774,40.23465682273871,0 -75.1625174151078,40.23463951874756,0 -75.1624648605312,40.23460959410429,0 -75.1624458528519,40.23459527002786,0 -75.16239404304352,40.23459428117637,0 -75.16232407413334,40.23457599052337,0 -75.16231169302355,40.23452918149722,0 -75.16230088411606,40.23450832746306,0 -75.16229479183566,40.23449632515027,0 -75.16230599378841,40.2344738208205,0 -75.16231110344808,40.23446361885789,0 -75.16231739225739,40.23445266675091,0 -75.1623331142728,40.23443076253386,0 -75.16235748337941,40.2344015068991,0 -75.16236593394412,40.23435244743659,0 -75.1623462814639,40.23431208962766,0 -75.16230324250652,40.23429933719898,0 -75.16226963676662,40.23429048550604,0 -75.16223524493694,40.23429048550661,0 -75.16222109516487,40.23429048550945,0 -75.16220910715563,40.23429153571255,0 -75.16219790524556,40.23428748493247,0 -75.1621884720593,40.23428208389171,0 -75.16217746667613,40.23427728296441,0 -75.16215525937747,40.23426543070863,0 -75.16211094846899,40.23424645241832,0 -75.16207252249373,40.23422552302122,0 -75.16206348236076,40.23422162227392,0 -75.16205345960562,40.23421577115101,0 -75.16203596891984,40.23420271864283,0 -75.16201002770174,40.23418306481285,0 -75.16198844653574,40.23415223634427,0 -75.16197702325567,40.2341367883863,0 -75.16197832873151,40.23411909796732,0 -75.16197930784971,40.23411112482083,0 -75.16197898145543,40.23410290251439,0 -75.16198191882522,40.23408546125346,0 -75.16201923131104,40.23394079974042,0 -75.16206043696796,40.23390103452203,0 -75.16208355369996,40.23387709663857,0 -75.16210117732076,40.23386067211559,0 -75.16215038620929,40.233785363907,0 -75.16216938310995,40.23373539139972,0 -75.16219202078452,40.23367150227536,0 -75.1622001343072,40.23365117411562,0 -75.16220308214275,40.23364277249603,0 -75.16220423479163,40.23363140793158,0 -75.1622099610164,40.23356438864502,0 -75.16221231926647,40.23354488488768,0 -75.16221702927548,40.23352554922728,0 -75.1622317411435,40.23348886047596,0 -75.16228911728646,40.23341735450102,0 -75.16231412736647,40.23338665559456,0 -75.16232491599251,40.23335183854945,0 -75.16217362629322,40.23319364383616,0 -75.16207343279562,40.23305688968081,0 -75.1620855103387,40.23301906883022,0 -75.16205868045218,40.23298907648272,0 -75.16201939389254,40.23292323959515,0 -75.16195288285525,40.23285338482055,0 -75.16186213281598,40.2328216105322,0 -75.16178445354204,40.23279811350852,0 -75.16170091178763,40.23279699466665,0 -75.16139768998966,40.23271042603208,0 -75.16083399301205,40.23255340011173,0 -75.16054763843623,40.23249335663008,0 -75.16042446937031,40.23244752244339,0 -75.16036937818582,40.23240675272677,0 -75.16032022458914,40.23235590591847,0 -75.15988133438471,40.23169913028213,0 -75.15954980005186,40.23140856788869,0 -75.15914799047469,40.23117141586161,0 -75.15755918552928,40.2302429394776,0 -75.15746348371395,40.23020693257393,0 -75.15736581684754,40.23017032554207,0 -75.15717348328032,40.23009828698978,0 -75.15715319014799,40.23008885987569,0 -75.15713177028115,40.23008165848946,0 -75.15710936785767,40.23007145652188,0 -75.15709836316022,40.23006635553667,0 -75.15708511438831,40.23006353192089,0 -75.15702164040256,40.23004871689498,0 -75.15689232575934,40.23002280218302,0 -75.15683140836339,40.23000826845625,0 -75.15671596122614,40.22997926286745,0 -75.15629718993866,40.22978263474509,0 -75.15628602449347,40.22974411739946,0 -75.15629760337846,40.22972264869328,0 -75.1563199340403,40.22966992409832,0 -75.15638196372916,40.22959446797769,0 -75.15651015829155,40.22943439990016,0 -75.15655088704216,40.22939313295822,0 -75.15657012983164,40.22934951840281,0 -75.15659278019459,40.22929978250053,0 -75.15662344836963,40.22925968770883,0 -75.15675087903934,40.22910471051681,0 -75.15680154735092,40.22901412191913,0 -75.1568395136561,40.22891708250189,0 -75.15696761318763,40.22879059243144,0 -75.15724790941267,40.22851590422183,0 -75.15780162242507,40.22796108467212,0 -75.15876926548708,40.22706027750195,0 -75.15872107733472,40.22693939425054,0 -75.1582927356654,40.22681467078931,0 -75.15804989842835,40.22667134892072,0 -75.15792254742696,40.2265373254366,0 -75.15768161427357,40.2262456263263,0 -75.15755430822237,40.22605444137938,0 -75.15737734252589,40.2259193280957,0 -75.15725581230642,40.22589002639848,0 -75.15716413170493,40.2258346786266,0 -75.15702128084354,40.22573700590544,0 -75.15685710905434,40.22567189035703,0 -75.15659345197689,40.22562800281072,0 -75.15640510354228,40.22551561062863,0 -75.15619829018968,40.22542444762908,0 -75.15596721626359,40.22544781399049,0 -75.15574415368805,40.22541467842004,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="032659062C418579C75B">
+        <name>Kings Court Access</name>
+        <LookAt>
+          <longitude>-75.18685185071597</longitude>
+          <latitude>40.26602643182966</latitude>
+          <altitude>121.6106019678736</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>35</ns1:fovy>
+          <range>571.6086440121582</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>us-202</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>kings-court-access</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.18621304871714,40.26574906327971,0 -75.18636369381734,40.26571790350842,0 -75.1864358283776,40.26569280190012,0 -75.1865115313155,40.26566351885723,0 -75.18660849154224,40.26560863439133,0 -75.1867537527766,40.26546171029752,0 -75.18688138164002,40.26534263390688,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder id="routes-location-review">
+      <name>Trails Needing Location Review</name>
+      <ExtendedData>
+        <Data name="location">
+          <value>unassigned</value>
+        </Data>
+        <Data name="content">
+          <value>routeGeometry</value>
+        </Data>
+      </ExtendedData>
+      <Placemark id="0C5FA016B74183D50941">
+        <name>Emerson Preserve Trail</name>
+        <LookAt>
+          <longitude>-75.15451415319171</longitude>
+          <latitude>40.24955360813209</latitude>
+          <altitude>99.65754174997583</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>5460.096159499954</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>unassigned</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>emerson-preserve-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17491484335655,40.25260955624728,0 -75.17274815753012,40.25466554266382,0 -75.17255332536827,40.254904909909,0 -75.17239004621386,40.25515766229528,0 -75.17221394931337,40.2553258351566,0 -75.17218546700038,40.25541570384662,0 -75.17217736772595,40.25550620077763,0 -75.17191497239129,40.25573990951312,0 -75.17169237265156,40.25591967523324,0 -75.17125188964062,40.25632580482624,0 -75.17096477182963,40.25666011712099,0 -75.17065869303281,40.25677880681272,0 -75.17057032234268,40.25684143287025,0 -75.17040096839543,40.25702730334605,0 -75.17025667199826,40.2572064172341,0 -75.17010537534088,40.25734656484494,0 -75.16993333561359,40.2574166298,0 -75.1696582842863,40.25767822430579,0 -75.16910874536103,40.25817007652105,0 -75.16849503433055,40.25873625815987,0 -75.16844322491522,40.25882074340293,0 -75.16844309614216,40.25886785239275,0 -75.16846936297954,40.25890925608404,0 -75.16852148214264,40.25895338554498,0 -75.1686688917052,40.25902287218412,0 -75.16895176122621,40.25912677246424,0 -75.1691184749908,40.25914826001576,0 -75.16929464980149,40.25915819961661,0 -75.16948096372847,40.25914262169616,0 -75.16967893393063,40.25911209863075,0 -75.17077592757282,40.25897135287224,0 -75.17105037741365,40.25892718136674,0 -75.17131716288098,40.25890802572548,0 -75.17186044013724,40.25886487198091,0 -75.17330235852101,40.25874827568837,0 -75.17363735341874,40.25874974210958,0 -75.17395760347139,40.2587640256689,0 -75.17418226457933,40.2588019026004,0 -75.17437654872039,40.25885713328252,0 -75.17453872922465,40.25891943464143,0 -75.17468594716061,40.25899988213506,0 -75.17496310605921,40.2591715785476,0 -75.17552097099218,40.25950917841974,0 -75.176087033949,40.25984463676723,0 -75.17637864425865,40.26001972938607,0 -75.17651834421115,40.26010611339716,0 -75.17668474765163,40.26020472235648,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="00CC4088114183D95678">
+        <name>Mill Creek Preserve Trail</name>
+        <LookAt>
+          <longitude>-75.17535712169774</longitude>
+          <latitude>40.26243353581533</latitude>
+          <altitude>82.46000790632333</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>1500.512405348418</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>unassigned</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>mill-creek-preserve-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.1767045834889,40.26018305640113,0 -75.17655127543026,40.26037187822336,0 -75.17677625319428,40.26045261298518,0 -75.17615935801452,40.26119564593625,0 -75.17586413083176,40.26152026981747,0 -75.17519208475827,40.26213218140786,0 -75.17264775328559,40.26401794736171,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="052204E74B4183DB3A8C">
+        <name>Mill Creek Preserve Trail</name>
+        <LookAt>
+          <longitude>-75.17855960064128</longitude>
+          <latitude>40.26416344077228</latitude>
+          <altitude>89.18231146666481</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>1411.316288234666</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>unassigned</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>mill-creek-preserve-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17518590297651,40.26214154789159,0 -75.17618240489149,40.26382560211687,0 -75.17605946599777,40.26395928160691,0 -75.17595168975491,40.26403735680754,0 -75.17588030413827,40.26412503852977,0 -75.17584602360067,40.26419327739747,0 -75.17582664723231,40.26429677309783,0 -75.17584261330981,40.26440568309111,0 -75.17591607297722,40.26450035290982,0 -75.17604723240797,40.26455608168188,0 -75.17624449834224,40.26463848433902,0 -75.17643502813912,40.26472183941875,0 -75.17649599807395,40.26484008736127,0 -75.17647124847767,40.26493805586524,0 -75.17634357411227,40.2650397523066,0 -75.17619623023781,40.26509015313677,0 -75.17588026976001,40.26517602864679,0 -75.17561626080941,40.26525450740134,0 -75.17539822504234,40.26526178160827,0 -75.17513607260415,40.26531583534473,0 -75.17471215564188,40.26547106402921,0 -75.17397523373207,40.26582238448283,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="0A96E5F19F4183DE73D1">
+        <name>Mill Creek Preserve Trail</name>
+        <LookAt>
+          <longitude>-75.17661931978104</longitude>
+          <latitude>40.26484743762542</latitude>
+          <altitude>84.88458259832356</altitude>
+          <heading>0</heading>
+          <tilt>0</tilt>
+          <ns1:fovy>34.99999963949695</ns1:fovy>
+          <range>295.7836923640207</range>
+          <altitudeMode>absolute</altitudeMode>
+        </LookAt>
+        <styleUrl>#__managed_style_041F9A4AF641C3B41104</styleUrl>
+        <ExtendedData>
+          <Data name="location">
+            <value>unassigned</value>
+          </Data>
+          <Data name="trailGroupId">
+            <value>mill-creek-preserve-trail</value>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <coordinates>
+				-75.17647727937974,40.2649346973284,0 -75.17660727107439,40.26485755086063,0 -75.17664347594454,40.26478937420387,0 -75.17668464622174,40.26471912418999,0 -75.17680585289644,40.26468199359292,0 -75.17695381075599,40.2646430608993,0 -75.17704363448409,40.26462449069806,0 -75.17713809274221,40.26462453460476,0 -75.177302047007,40.26460450243358,0 -75.17737729749513,40.26458041542051,0
+			</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

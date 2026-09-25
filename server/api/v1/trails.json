@@ -1,0 +1,1678 @@
+{
+  "landmarks": [
+    {
+      "category": "Trail",
+      "coordinates": {
+        "latitude": 40.2472,
+        "longitude": -75.1773
+      },
+      "description": "This paved trail leads you around the outside of the park and is great exercise.",
+      "id": 1002,
+      "imageAlt": "Yellow Trail at Lions Pride Park",
+      "imagePath": "lions-pride-park/images/Yellow_trail.jpg",
+      "isOpen": false,
+      "location": "lions-pride-park",
+      "longDescription": "The yellow trail is a 0.4-mile paved loop around the park and connects with the trail around IPW and the rest of Upper Nike.",
+      "name": "Yellow Trail",
+      "trailDistanceDescription": "This 0.4-mile paved trail loops around Kids Mountain and the Grove. Just to the right of the main entrance, a link connects to IPW Park around the soccer fields. About halfway around, a connector leads to the Green Trail."
+    },
+    {
+      "category": "Trail",
+      "coordinates": {
+        "latitude": 40.24774,
+        "longitude": -75.17829
+      },
+      "description": "This limestone trail passes the meadow and the Rain Garden.",
+      "id": 3001,
+      "imageAlt": "Picture of Green Trail",
+      "imagePath": "lions-pride-park/images/trail.jpg",
+      "isOpen": true,
+      "location": "lions-pride-park",
+      "longDescription": "The Green Trail connects to the wetlands trail and extends around the Rain Garden area.",
+      "name": "Green Trail",
+      "trailDistanceDescription": "This crushed-stone, U-shaped trail runs about 0.25 miles around the back of the park and leads to the Rain Garden nature area. From the Yellow Trail connector, walk left toward the Rain Garden or right around the lacrosse field toward the nature signs. The two ends do not currently connect. That will change when the pond-to-wetland project is completed."
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.2460564,
+        "longitude": -75.17748759999999
+      },
+      "description": "Welcome! This is the entrance to Lions Pride Park. ",
+      "id": 1009,
+      "imageAlt": "View of trees and field from park entrance",
+      "imagePath": "lions-pride-park/images/park_entrance.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Welcome to Lions Pride Park! The entrance is the start of the Yellow Trail. Walk to your right to enter Kids Mountain or straight ahead to the Grove. Note the engraved walls recognizing the donors who made this park possible. The restrooms are located to your left.",
+      "name": "Park Entrance"
+    },
+    {
+      "category": "Building",
+      "coordinates": {
+        "latitude": 40.24617,
+        "longitude": -75.17828
+      },
+      "description": "Men's and women's restrooms have changing tables. A water fountain is located at the rear of the building.",
+      "id": 1011,
+      "imageAlt": "Small white building with two entrances for bathrooms",
+      "imagePath": "lions-pride-park/images/restrooms.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "The restrooms are in the southern part of the park, just south of the pavilion on the Yellow Trail. The men's and women's restrooms are ADA-accessible, and each has a changing table. A water fountain is located at the rear of the building.",
+      "name": "Restrooms"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24668,
+        "longitude": -75.17796
+      },
+      "description": "The Grove is a relaxing family area with games, chairs, tables, and hammocks.",
+      "id": 1012,
+      "imageAlt": "Picture of the Grove",
+      "imagePath": "lions-pride-park/images/the_grove.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "The Grove offers intergenerational experiences in a scenic setting, including life-size games and picnic areas for building lasting family memories. Seating areas include benches and tables that accommodate people with a range of physical needs. At the center of the Grove is a large circular area dedicated to the Warrington Lions Club. It is surrounded by tables with built-in chess and checkerboards. Game pieces are available at no charge. Please return all equipment when you finish so it remains available to other visitors.",
+      "name": "The Grove"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24683,
+        "longitude": -75.17772
+      },
+      "description": "Kids Mountain is loaded with swings, slides, climbing towers and rope bridges for hours of fun.",
+      "id": 1003,
+      "imageAlt": "Picture of the Kids Mountain",
+      "imagePath": "lions-pride-park/images/kids_mountain.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Kids Mountain is a state-of-the-art play area that is fully accessible to people of all abilities. It includes swings, slides, climbing towers, and rope bridges. The topography supports climbing, sledding, walking, and scenic views. This 15-foot-high mountain offers several ways for children of all ages and abilities to ascend and descend. A rope bridge from the large tower connects Kids Mountain to the smaller mountain. The smaller hill includes a net climbing structure and several activities along its edges: a zigzag climbing ladder, a spider-web climbing net, sliding pipes, and a four-foot-wide slide. Colorful half-domes help children make their way up and down the hill.",
+      "name": "Kids Mountain"
+    },
+    {
+      "category": "Building",
+      "coordinates": {
+        "latitude": 40.24633,
+        "longitude": -75.17831
+      },
+      "description": "The pavilion is a covered gathering place next to the Grove.",
+      "id": 1015,
+      "imageAlt": "Covered pavilion at Lions Pride Park",
+      "imagePath": "lions-pride-park/images/pavilion.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "The covered pavilion can hold 50 to 75 people and can be rented for parties and gatherings. It is conveniently located next to the Grove, grills, and picnic tables.",
+      "name": "Pavilion"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.2471,
+        "longitude": -75.1786
+      },
+      "description": "Learn how invasive plants affect the local environment and natural habitats.",
+      "id": 2001,
+      "imageAlt": "Spotted lantern fly on a branch",
+      "imagePath": "lions-pride-park/images/invasive_species.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Invasive species are plants or animals that are not native to the area where they now live. They can spread quickly and cause environmental and economic damage. They make up around 41% of the vegetation in Pennsylvania. Invasive plants reduce habitat for native wildlife and outcompete native plants, disrupting the food chain and the natural balance of the local environment.",
+      "name": "Invasive Species"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24669,
+        "longitude": -75.17764
+      },
+      "description": "The Small Slides lead down Kids Mountain through two sand-filled areas. Reach the slides from Kids Mountain Trail or by using the stairs between the slides.",
+      "id": 2003,
+      "imageAlt": "Small slides",
+      "imagePath": "lions-pride-park/images/small_slides.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Three small green slides lead down from the top of Kids Mountain through two sand-filled areas. The sand is one of several play surfaces found throughout the park. Reach the slides from the walking path that winds up the mountain or by using the two sets of stairs between them. These slides are shorter and less steep than the main slides.",
+      "name": "Small Slides"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24828899717622,
+        "longitude": -75.17688975009902
+      },
+      "description": "Learn why bees are important to the environment and how we can help them thrive.",
+      "id": 2005,
+      "imageAlt": "Honey bee gathering pollen from a yellow flower",
+      "imagePath": "lions-pride-park/images/bees.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Bees are insects known as pollinators. Western honeybees are well known for producing honey and pollinating flowers, fruits, and vegetables. Most crops require insect pollination to produce seeds. Bees live in colonies, also known as hives, where they reproduce and store honey for winter. Honeybees fly quickly and beat their wings around 200 times per second. Unfortunately, bee populations are declining because of viruses, climate change, decreasing crop diversity, and habitat loss. Reducing pesticide use and the effects of climate change can help these important pollinators recover. You can also help by planting native shrubs and flowers in your yard. Beekeeping has recently become an interesting and popular hobby.",
+      "name": "Bees"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24847,
+        "longitude": -75.17741
+      },
+      "description": "Learn about butterflies and their role in the environment.",
+      "id": 2006,
+      "imageAlt": "Monarch butterfly standing on a stick",
+      "imagePath": "lions-pride-park/images/butterfly.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Butterflies and moths pollinate plants and provide food for other animals. They make up the second-largest order of insects. Thousands of tiny, overlapping scales cover their wings. Each scale is a single color, and together they create the complex patterns seen on the wings. Monarch butterfly populations have declined by more than 90% over the past ten years. Butterflies in general are in trouble, but a few nectar and host plants can attract and sustain dozens of species. Limiting insecticide and herbicide use can also help their populations recover.",
+      "name": "Butterflies"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24675,
+        "longitude": -75.17748
+      },
+      "description": "The side of Kids Mountain is a natural play area and is great for sledding. Get to it from the Kids Mountain Trail.",
+      "id": 2007,
+      "imageAlt": "Play slope",
+      "imagePath": "lions-pride-park/images/slope.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "This side (back of the mountain) is natural and allows individuals to run up, roll down and in the winter is an excellent sledding hill. The area is accessed from Kids Mountain Trail.",
+      "name": "Natural Slope"
+    },
+    {
+      "category": "Trail",
+      "coordinates": {
+        "latitude": 40.24625,
+        "longitude": -75.17765
+      },
+      "description": "This ADA-accessible trail leads to the top of Kids Mountain and its play activities.",
+      "id": 3002,
+      "imageAlt": "Kids Mountain Trail",
+      "imagePath": "lions-pride-park/images/Mountain_trail.jpg",
+      "isOpen": true,
+      "location": "lions-pride-park",
+      "longDescription": "This gently sloping, ADA-accessible trail leads to the top of Kids Mountain. It is wheelchair-friendly and suited to visitors with limited mobility. A rest area along the trail offers a place to sit and enjoy a scenic view of the park. The natural side of the mountain allows visitors to run up and roll down. In winter, it is also an excellent sledding hill.",
+      "name": "Kids Mountain Trail",
+      "trailDistanceDescription": "This 400-foot trail leads to the top of Kids Mountain. Its ADA-accessible slope is suitable for visitors with limited mobility."
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24706,
+        "longitude": -75.17775
+      },
+      "description": "Tuned musical instruments are for your use and enjoyment. Have fun!",
+      "id": 3004,
+      "imageAlt": "The Music Grove",
+      "imagePath": "lions-pride-park/images/music_grove.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "The Music Grove is located behind the smaller mountain and next to the swings. Visitors will find an array of oversized, tuned musical instruments to play.",
+      "name": "Music Grove"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24823104346003,
+        "longitude": -75.17676387486681
+      },
+      "description": "The Rain Garden collects runoff from different parts of the park and supports many native plants and small animals.",
+      "id": 3005,
+      "imageAlt": "The Rain Garden",
+      "imagePath": "lions-pride-park/images/rain_garden.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "This Rain Garden collects stormwater from the park. Also known as a bioretention basin, it receives runoff from rain, snow, hail, and sleet through underground pipes. Rain gardens can remove up to 90% of nutrients and chemicals and up to 80% of sediment before runoff enters a body of water. This garden will look dry most of the time, but it will collect water during storms and drain within 12 to 48 hours. That process helps clean the water before it enters the Little Neshaminy watershed. Native plants and wildflowers are typically planted in rain gardens.",
+      "name": "Rain Garden"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24646,
+        "longitude": -75.1781
+      },
+      "description": "All Adirondack chairs, benches, and picnic tables in the park are made from 100% recycled plastic.",
+      "id": 3006,
+      "imageAlt": "Recycled Furniture",
+      "imagePath": "lions-pride-park/images/recycled_furn.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "All Adirondack chairs, benches, and picnic tables in the park are made from 100% recycled plastic. By using recycled plastic furnishings, the park helps close the recycling loop. Incorporating recycled plastic into outdoor products conserves virgin resources and reduces the need to log, drill, and mine for raw materials. Using recycled content also creates demand for recycled materials and helps make recycling economically viable.",
+      "name": "Recycled Plastic Furniture"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24651,
+        "longitude": -75.17757999999999
+      },
+      "description": "Native pollinator plants provide nectar and pollen for butterflies, bees, bats, hummingbirds, and other wildlife.",
+      "id": 3007,
+      "imageAlt": "Some Pollinator Plants",
+      "imagePath": "lions-pride-park/images/pollinators.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Native pollinator plants are essential to ensure the production of nectar and pollen that support a diversity of butterflies, bees, bats, hummingbirds and other insects. These plants are also essential for plant reproduction and provide food and shelter for wildlife. ",
+      "name": "Pollinator Plants"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24832220977843,
+        "longitude": -75.17698934309132
+      },
+      "description": "Insects support ecosystems by pollinating plants, spreading seeds, and providing food for other animals.",
+      "id": 3008,
+      "imageAlt": "Some Insects",
+      "imagePath": "lions-pride-park/images/insects.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Insects are the largest group of animals on Earth. There may be up to 10 million species in many shapes, colors, and sizes. All insects share several characteristics: no backbone, three body sections, two antennae, and six legs. Insects pollinate plants, spread seeds, and provide a protein-rich food source for other animals and people.",
+      "name": "Insects"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24601,
+        "longitude": -75.1774
+      },
+      "description": "Recycling bins at Lions Pride Park allow visitors to separate food containers, paper products, empty plastic and glass bottles, and aluminum cans from trash. Please do not place plastic bags in the recycling bins because they can damage recycling equipment. Plastic bags can be recycled at participating supermarkets. Recycling reduces the amount of waste sent to landfills. Only clean paper used for reading and writing is recyclable. All containers must be completely empty to avoid contamination.",
+      "id": 2002,
+      "imageAlt": "Recycling at Lions Pride Park",
+      "imagePath": "lions-pride-park/images/Recycling.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "Recycling bins at Lions Pride Park allow visitors to separate food containers, paper products, empty plastic and glass bottles, and aluminum cans from trash. Please do not place plastic bags in the recycling bins because they can damage recycling equipment. Plastic bags can be recycled at participating supermarkets. Recycling reduces the amount of waste sent to landfills. Only clean paper used for reading and writing is recyclable. All containers must be completely empty to avoid contamination.",
+      "name": "Trash and Recycling"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24791011460211,
+        "longitude": -75.17828079874792
+      },
+      "description": "Walk along the edge of the woods and see what plants and wildlife you can see.",
+      "id": 3003,
+      "imageAlt": "Green Trail connection",
+      "imagePath": "lions-pride-park/images/Green_Trail_Connection.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "If you bear left at this junction, you'll connect to the Green Trail. Otherwise, continue on the Yellow Trail toward the park entrance.",
+      "name": "Green Trail Turnoff"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24721261887349,
+        "longitude": -75.17849517626533
+      },
+      "description": "Turn left to reach the beginning of the Green Trail. Turn right to continue toward the Rain Garden nature area.",
+      "id": 2004,
+      "imageAlt": "Midpoint entrance to the Green Trail",
+      "imagePath": "lions-pride-park/images/Green_Trail_mid.jpg",
+      "location": "lions-pride-park",
+      "longDescription": "This is the midpoint entrance to the Green Trail. Turn left to walk along the woods toward the beginning of the trail near the pond. Turn right to head toward the Rain Garden nature area.",
+      "name": "Green Trail Midpoint"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.268116,
+        "longitude": -75.18954099999999
+      },
+      "description": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations.",
+      "id": 1,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Nesting.jpg",
+      "location": "us-202",
+      "longDescription": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations. Bluebirds and other cavity-nesting birds, such as tree swallows, screech owls, and kestrels, benefit the community by eating insects and small rodents.",
+      "name": "Bluebird and Cavity-Nesting Bird Program"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.265828,
+        "longitude": -75.187085
+      },
+      "description": "Pollinator habitats are gardens that provide food, water, and safe living space for native pollinators.",
+      "id": 2,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Pollinator2021.jpg",
+      "location": "us-202",
+      "longDescription": "Pollinator habitats are gardens that provide food, water, and safe living space for native pollinators. This habitat includes different plants that provide nectar for a variety of pollinator species throughout the growing season.",
+      "name": "Pollinator Habitat"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.26537276849958,
+        "longitude": -75.18690524913067
+      },
+      "description": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek.",
+      "id": 3,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202PetWaste.jpg",
+      "location": "us-202",
+      "longDescription": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek. These organisms can pose a health hazard to people and pets. Picking up after your pet helps control the spread of disease to people and wildlife and protects Warrington's waterways. Thank you for bagging your pet's waste and putting it in the trash.",
+      "name": "Pet Waste"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.248622,
+        "longitude": -75.17392699999999
+      },
+      "description": "A naturalized detention basin is a constructed dry pond designed to collect stormwater runoff. Native plants help absorb and filter pollutants from the water.",
+      "id": 4,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Basin.jpg",
+      "location": "us-202",
+      "longDescription": "A naturalized detention basin is a constructed dry pond designed to collect stormwater runoff. Native plants help absorb and filter pollutants from the water. Naturalizing stormwater basins reduces mowing, increases groundwater recharge, reduces pollutants entering streams and rivers, and expands wildlife habitat.",
+      "name": "Naturalized Basin"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.248232,
+        "longitude": -75.17419199999999
+      },
+      "description": "This corridor is being actively managed by the Warrington Environmental Advisory Council to promote native plants.",
+      "id": 5,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202NativePlantMgt.jpg",
+      "location": "us-202",
+      "longDescription": "The Warrington Environmental Advisory Council actively manages this corridor to promote native plants. Invasive plants are controlled to prevent them from crowding out native vegetation. Step off the trail and explore. Many native plants have been identified, and some produce edible fruits and nuts. Please enjoy the area responsibly.",
+      "name": "Native Plant Management Area"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.24604744797347,
+        "longitude": -75.17824829746803
+      },
+      "description": "Rain barrels collect and store rainwater from a roof. Reusing this water helps conserve water and save money.",
+      "id": 6,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202RainBarrel.jpg",
+      "location": "us-202",
+      "longDescription": "Rain barrels collect and store rainwater from a roof. Reusing this water helps conserve water and save money.",
+      "name": "Rain Barrels"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23859468262437,
+        "longitude": -75.1689610811989
+      },
+      "description": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations.",
+      "id": 7,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Nesting.jpg",
+      "location": "us-202",
+      "longDescription": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations. Bluebirds and other cavity-nesting birds, such as tree swallows, screech owls, and kestrels, benefit the community by eating insects and small rodents.",
+      "name": "Bluebird and Cavity-Nesting Bird Program"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23773890249959,
+        "longitude": -75.16848140454132
+      },
+      "description": "Native plants existed in the area before colonization. Invasive plants are nonnative species that originated in other parts of the country or world.",
+      "id": 8,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202NativePlantsVsInvasive.jpg",
+      "location": "us-202",
+      "longDescription": "Native plants existed in the area before colonization. They have grown here for thousands of years and are adapted to the local soil and climate. Once established, they need minimal maintenance. Invasive plants are nonnative species that originated in other parts of the country or world. They have few natural predators, can spread quickly, and are often harmful to other plants and animals.",
+      "name": "Native Plants vs. Invasive Plants"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23738508784395,
+        "longitude": -75.16802229648994
+      },
+      "description": "This corridor is being actively managed by the Warrington Environmental Advisory Council to promote native plants.",
+      "id": 9,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202NativePlantMgt.jpg",
+      "location": "us-202",
+      "longDescription": "The Warrington Environmental Advisory Council actively manages this corridor to promote native plants. Invasive plants are controlled to prevent them from crowding out native vegetation. Step off the trail and explore. Many native plants have been identified, and some produce edible fruits and nuts. Please enjoy the area responsibly.",
+      "name": "Native Plant Management Area"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.236587,
+        "longitude": -75.167368
+      },
+      "description": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek.",
+      "id": 10,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202PetWaste.jpg",
+      "location": "us-202",
+      "longDescription": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek. These organisms can pose a health hazard to people and pets. Picking up after your pet helps control the spread of disease to people and wildlife and protects Warrington's waterways. Thank you for bagging your pet's waste and putting it in the trash.",
+      "name": "Pet Waste"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23603579844846,
+        "longitude": -75.16509378821878
+      },
+      "description": "Trees improve biodiversity, store carbon, and absorb and filter pollutants from stormwater.",
+      "id": 11,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Trees.jpg",
+      "location": "us-202",
+      "longDescription": "Trees improve biodiversity, store carbon, and absorb and filter pollutants from stormwater. They provide food and habitat for many animal species. Trees also reduce flooding and filter surface water and groundwater, removing pollutants before they reach a stream. They capture and store carbon and filter air pollutants and unpleasant odors from the air.",
+      "name": "Trees"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.2346940383878,
+        "longitude": -75.16252556527606
+      },
+      "description": "Wetlands are areas where water covers the soil all or varying times of the year.",
+      "id": 12,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Wetlands.jpg",
+      "location": "us-202",
+      "longDescription": "Wetlands are areas where water covers the soil for all or part of the year. Most plants that grow there are water-loving species, and the subsoil is saturated for much of the year.",
+      "name": "Wetlands"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23477801495635,
+        "longitude": -75.16433993138311
+      },
+      "description": "Neshaminy Creek contains bluegill, bass, and trout.",
+      "id": 13,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Fish.jpg",
+      "location": "us-202",
+      "longDescription": "Neshaminy Creek contains bluegill, bass, and trout. Stormwater runoff from rain and snowmelt can carry sediment, pesticides, oil, and other chemicals. These pollutants affect fish and can accumulate in their bodies. Some contaminants may then be passed to people through the food chain.",
+      "name": "Fish"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23257475363144,
+        "longitude": -75.16116185158916
+      },
+      "description": "A meadow is an open field covered mostly by tall grasses.",
+      "id": 14,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Meadows.jpg",
+      "location": "us-202",
+      "longDescription": "A meadow is an open field covered mostly by tall grasses. Meadows provide habitat for many birds, insects, and small animals. Flowering plants add natural beauty. Meadows also absorb rainfall and runoff, reduce flooding, store carbon, and require less mowing.",
+      "name": "Meadows"
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.23153438710905,
+        "longitude": -75.15977719445252
+      },
+      "description": "Waterfowl are ducks, geese, and other large aquatic birds.",
+      "id": 15,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202Waterfowl.jpg",
+      "location": "us-202",
+      "longDescription": "Waterfowl are ducks, geese, and other large aquatic birds. Adult geese, goslings, and eggs provide food for other animals. Please do not feed wild birds. Feeding can cause poor health, overcrowding, and the spread of disease.",
+      "name": "Waterfowl"
+    },
+    {
+      "category": "Trail",
+      "coordinates": {
+        "latitude": 40.2700344,
+        "longitude": -75.1917515
+      },
+      "description": "This mostly paved trail connects the US-202 Parkway Trail to the Bradford Dam reservoir and the trail that passes through it.",
+      "id": 4001,
+      "imageAlt": "Picture of 202 Connector Trail",
+      "imagePath": "us-202/images/202LittleNeshaminy.jpg",
+      "isOpen": true,
+      "location": "us-202",
+      "longDescription": "This paved trail, with one short gravel segment, connects the US-202 Parkway Trail to the Bradford Dam trail.",
+      "name": "202 Connector Trail",
+      "trailDistanceDescription": "This paved trail, with one short gravel segment, connects the US-202 Parkway Trail to the Bradford Dam trail."
+    },
+    {
+      "category": "PointOfInterest",
+      "coordinates": {
+        "latitude": 40.2272362,
+        "longitude": -75.1586589
+      },
+      "description": "This is the end of the trail.",
+      "id": 16,
+      "imageAlt": "",
+      "imagePath": "us-202/images/202LittleNeshaminy.jpg",
+      "location": "us-202",
+      "longDescription": "This is the end of the trail.",
+      "name": "End of Trail"
+    }
+  ],
+  "locations": [
+    {
+      "address": "3129 Bradley Rd, Warrington, PA 18976",
+      "altBeaconUUID": "00112233-4455-6677-8899-aabbccddeeff",
+      "beaconMajorCode": 17,
+      "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "id": "lions-pride-park",
+      "name": "Lions Pride Park"
+    },
+    {
+      "address": "Stump Road across from 785, Chalfont, PA 18914",
+      "altBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "beaconMajorCode": 20,
+      "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "id": "us-202",
+      "name": "US202 to Bradford Dam"
+    }
+  ],
+  "trails": [
+    {
+      "boundaryCoordinates": [
+        {
+          "distanceToNextClockwise": "160 feet",
+          "distanceToNextClockwiseDescription": "From the entrance, proceed on the trail to the left approximately 160 feet to the restrooms or 200 feet straight ahead to the Grove",
+          "distanceToNextCounterClockwise": "500 feet",
+          "distanceToNextCounterClockwiseDescription": "In 500 feet, you will reach one of the entrances to the Green Trail",
+          "landmarkId": 1002,
+          "latitude": 40.2472,
+          "longitude": -75.1773
+        },
+        {
+          "latitude": 40.24716867899525,
+          "longitude": -75.17724976690715
+        },
+        {
+          "latitude": 40.24688600789779,
+          "longitude": -75.17716993232226
+        },
+        {
+          "latitude": 40.24676365826051,
+          "longitude": -75.17716394485404
+        },
+        {
+          "latitude": 40.2466586640746,
+          "longitude": -75.17717442326062
+        },
+        {
+          "latitude": 40.2465624136807,
+          "longitude": -75.17718018598087
+        },
+        {
+          "latitude": 40.24646598096324,
+          "longitude": -75.17723072639482
+        },
+        {
+          "latitude": 40.2464202524444,
+          "longitude": -75.17724591794473
+        },
+        {
+          "latitude": 40.24638898653905,
+          "longitude": -75.17725753562434
+        },
+        {
+          "latitude": 40.24628922468173,
+          "longitude": -75.1773266187182
+        },
+        {
+          "latitude": 40.24618869800653,
+          "longitude": -75.17743398722715
+        },
+        {
+          "latitude": 40.24614507459768,
+          "longitude": -75.17749761751625
+        },
+        {
+          "latitude": 40.24612515841104,
+          "longitude": -75.1775290927216
+        },
+        {
+          "latitude": 40.24610274012861,
+          "longitude": -75.17754991516844
+        },
+        {
+          "latitude": 40.24603641823525,
+          "longitude": -75.1774621092604
+        },
+        {
+          "latitude": 40.24610351146794,
+          "longitude": -75.17754997660491
+        },
+        {
+          "latitude": 40.24613011525903,
+          "longitude": -75.17774821283338
+        },
+        {
+          "latitude": 40.24613926829734,
+          "longitude": -75.17780517886699
+        },
+        {
+          "latitude": 40.24614198745358,
+          "longitude": -75.17789951229437
+        },
+        {
+          "latitude": 40.24612690563941,
+          "longitude": -75.17798640253922
+        },
+        {
+          "latitude": 40.24610485875656,
+          "longitude": -75.17808323481181
+        },
+        {
+          "latitude": 40.24609000275727,
+          "longitude": -75.17816318178804
+        },
+        {
+          "latitude": 40.24608617363287,
+          "longitude": -75.17826299505361
+        },
+        {
+          "distanceToNextClockwise": "75 feet",
+          "distanceToNextClockwiseDescription": "Continue on the trail 75 feet and the pavilion is on the right, 50 feet from the trail",
+          "distanceToNextCounterClockwise": "160 feet",
+          "distanceToNextCounterClockwiseDescription": "From the restrooms, continue 160 feet to the park entrance",
+          "landmarkId": 1011,
+          "latitude": 40.24617,
+          "longitude": -75.17828
+        },
+        {
+          "latitude": 40.24610704486935,
+          "longitude": -75.17836329999523
+        },
+        {
+          "latitude": 40.2461434066726,
+          "longitude": -75.17844588681517
+        },
+        {
+          "latitude": 40.24619912239299,
+          "longitude": -75.17850175416041
+        },
+        {
+          "latitude": 40.24627429945117,
+          "longitude": -75.17856610883717
+        },
+        {
+          "latitude": 40.24634253410615,
+          "longitude": -75.17856909465768
+        },
+        {
+          "latitude": 40.24641101154009,
+          "longitude": -75.1785663962078
+        },
+        {
+          "latitude": 40.24659641062178,
+          "longitude": -75.17850876678132
+        },
+        {
+          "latitude": 40.24673936363681,
+          "longitude": -75.17852084692004
+        },
+        {
+          "latitude": 40.24685808786722,
+          "longitude": -75.17858762436316
+        },
+        {
+          "latitude": 40.24697865871743,
+          "longitude": -75.17857977640735
+        },
+        {
+          "latitude": 40.24716998406729,
+          "longitude": -75.17851856357045
+        },
+        {
+          "latitude": 40.24727530334121,
+          "longitude": -75.17841595077861
+        },
+        {
+          "latitude": 40.24736579645407,
+          "longitude": -75.17828103864431
+        },
+        {
+          "distanceToNextClockwise": "150 feet",
+          "distanceToNextClockwiseDescription": "125 feet to sign  on left for The Woods and Invasive Species and 25 feet more to the Green Trail",
+          "distanceToNextCounterClockwise": "350 feet",
+          "distanceToNextCounterClockwiseDescription": "350 feet to the Pavilion on the left",
+          "landmarkId": 3003,
+          "latitude": 40.24791011460211,
+          "longitude": -75.17828079874792
+        },
+        {
+          "latitude": 40.24745016165522,
+          "longitude": -75.17802129749586
+        },
+        {
+          "latitude": 40.24746132106011,
+          "longitude": -75.17793034926902
+        },
+        {
+          "latitude": 40.24745517775392,
+          "longitude": -75.17783696413844
+        },
+        {
+          "latitude": 40.24740280730249,
+          "longitude": -75.17757222536568
+        }
+      ],
+      "id": 1002,
+      "isOpen": false,
+      "location": "lions-pride-park",
+      "name": "Yellow Trail",
+      "trailDistanceDescription": "This 0.4-mile paved trail loops around Kids Mountain and the Grove. Just to the right of the main entrance, a link connects to IPW Park around the soccer fields. About halfway around, a connector leads to the Green Trail."
+    },
+    {
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24717348300428,
+          "longitude": -75.17725102833339
+        },
+        {
+          "latitude": 40.24750066991228,
+          "longitude": -75.17688050708114
+        },
+        {
+          "latitude": 40.24763738705483,
+          "longitude": -75.17671225387666
+        },
+        {
+          "latitude": 40.24770429459683,
+          "longitude": -75.17662929241624
+        },
+        {
+          "latitude": 40.24773560262611,
+          "longitude": -75.17659466053672
+        },
+        {
+          "latitude": 40.24776006027692,
+          "longitude": -75.1765735017508
+        },
+        {
+          "latitude": 40.24779161866816,
+          "longitude": -75.17657513505208
+        },
+        {
+          "latitude": 40.2479300371149,
+          "longitude": -75.17662093206023
+        },
+        {
+          "latitude": 40.24814072462897,
+          "longitude": -75.17668644546237
+        },
+        {
+          "latitude": 40.24822048281147,
+          "longitude": -75.17672230928565
+        },
+        {
+          "latitude": 40.24825881082802,
+          "longitude": -75.17674283445236
+        },
+        {
+          "latitude": 40.24828984697713,
+          "longitude": -75.1767736294232
+        },
+        {
+          "latitude": 40.24841811365695,
+          "longitude": -75.17713990659165
+        },
+        {
+          "latitude": 40.24848614460416,
+          "longitude": -75.17734967955776
+        },
+        {
+          "latitude": 40.24851980555648,
+          "longitude": -75.17745345327201
+        },
+        {
+          "latitude": 40.24853493516247,
+          "longitude": -75.17756893028651
+        },
+        {
+          "latitude": 40.24852152973791,
+          "longitude": -75.17762939215275
+        },
+        {
+          "latitude": 40.2484834149541,
+          "longitude": -75.17769392587996
+        },
+        {
+          "latitude": 40.24845329010742,
+          "longitude": -75.17776286754413
+        },
+        {
+          "latitude": 40.24841561627897,
+          "longitude": -75.17784363489156
+        },
+        {
+          "latitude": 40.24835697595046,
+          "longitude": -75.17795585584656
+        },
+        {
+          "latitude": 40.24829243051597,
+          "longitude": -75.17806274605624
+        },
+        {
+          "latitude": 40.24816341128543,
+          "longitude": -75.17819983066997
+        },
+        {
+          "latitude": 40.24805980263666,
+          "longitude": -75.17826019118422
+        },
+        {
+          "latitude": 40.24796259764645,
+          "longitude": -75.17830359280012
+        },
+        {
+          "latitude": 40.24788098254336,
+          "longitude": -75.17830281349869
+        },
+        {
+          "latitude": 40.2478113283904,
+          "longitude": -75.17827004160594
+        },
+        {
+          "latitude": 40.24740322615002,
+          "longitude": -75.17756956245012
+        },
+        {
+          "latitude": 40.24781797096905,
+          "longitude": -75.17827044553401
+        },
+        {
+          "distanceToNextClockwise": "350 feet",
+          "distanceToNextClockwiseDescription": "This will take you along the woods and back to the Yellow Trail",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the beginning of the Green Trail",
+          "landmarkId": 3001,
+          "latitude": 40.24774,
+          "longitude": -75.17829
+        },
+        {
+          "latitude": 40.24767364043139,
+          "longitude": -75.17821061998168
+        },
+        {
+          "latitude": 40.24758543054401,
+          "longitude": -75.17820810821176
+        },
+        {
+          "latitude": 40.24752654888025,
+          "longitude": -75.17821881137387
+        },
+        {
+          "latitude": 40.2474747446546,
+          "longitude": -75.17823931000996
+        },
+        {
+          "distanceToNextClockwise": "350 feet",
+          "distanceToNextClockwiseDescription": "Returning to the Yellow Trail allows you to turn right and walk 350 feet to the pavilion or turn left to return to the park entrance in about 700 feet.",
+          "distanceToNextCounterClockwise": "600 feet",
+          "distanceToNextCounterClockwiseDescription": "The link from the Yellow Trail enters the Green Trail at its mid-point. The trail to the left will take you 350 feet along the treeline to the area which ends at the Green trailhead near the pond. To the right takes you 600 feet to the Rain Garden",
+          "landmarkId": 2004,
+          "latitude": 40.24721261887349,
+          "longitude": -75.17849517626533
+        },
+        {
+          "latitude": 40.2474747446546,
+          "longitude": -75.17823931000996
+        },
+        {
+          "latitude": 40.24752654888025,
+          "longitude": -75.17821881137387
+        },
+        {
+          "latitude": 40.24758543054401,
+          "longitude": -75.17820810821176
+        },
+        {
+          "latitude": 40.24767364043139,
+          "longitude": -75.17821061998168
+        },
+        {
+          "latitude": 40.24781797096905,
+          "longitude": -75.17827044553401
+        },
+        {
+          "latitude": 40.24740322615002,
+          "longitude": -75.17756956245012
+        },
+        {
+          "latitude": 40.2478113283904,
+          "longitude": -75.17827004160594
+        },
+        {
+          "latitude": 40.24788098254336,
+          "longitude": -75.17830281349869
+        },
+        {
+          "latitude": 40.24796259764645,
+          "longitude": -75.17830359280012
+        },
+        {
+          "latitude": 40.24805980263666,
+          "longitude": -75.17826019118422
+        },
+        {
+          "latitude": 40.24816341128543,
+          "longitude": -75.17819983066997
+        },
+        {
+          "latitude": 40.24829243051597,
+          "longitude": -75.17806274605624
+        },
+        {
+          "latitude": 40.24835697595046,
+          "longitude": -75.17795585584656
+        },
+        {
+          "latitude": 40.24841561627897,
+          "longitude": -75.17784363489156
+        },
+        {
+          "latitude": 40.24845329010742,
+          "longitude": -75.17776286754413
+        },
+        {
+          "latitude": 40.2484834149541,
+          "longitude": -75.17769392587996
+        },
+        {
+          "latitude": 40.24852152973791,
+          "longitude": -75.17762939215275
+        },
+        {
+          "latitude": 40.24853493516247,
+          "longitude": -75.17756893028651
+        },
+        {
+          "latitude": 40.24851980555648,
+          "longitude": -75.17745345327201
+        },
+        {
+          "latitude": 40.24848614460416,
+          "longitude": -75.17734967955776
+        },
+        {
+          "latitude": 40.24841811365695,
+          "longitude": -75.17713990659165
+        },
+        {
+          "latitude": 40.24828984697713,
+          "longitude": -75.1767736294232
+        },
+        {
+          "latitude": 40.24825881082802,
+          "longitude": -75.17674283445236
+        },
+        {
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about bees.",
+          "distanceToNextCounterClockwise": "650 feet",
+          "distanceToNextCounterClockwiseDescription": "Walk back 275 feet toward Kids Mountain to rejoin the Yellow Trail or continue to the right 650 feet back toward the Green trail connection and the beginning of the Green Trail",
+          "landmarkId": 3005,
+          "latitude": 40.24823104346003,
+          "longitude": -75.17676387486681
+        },
+        {
+          "latitude": 40.24825881082802,
+          "longitude": -75.17674283445236
+        },
+        {
+          "latitude": 40.24828984697713,
+          "longitude": -75.1767736294232
+        },
+        {
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about insects.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about the Rain Garden",
+          "landmarkId": 2005,
+          "latitude": 40.24828899717622,
+          "longitude": -75.17688975009902
+        },
+        {
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about butterflies.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about bees.",
+          "landmarkId": 3008,
+          "latitude": 40.24832220977843,
+          "longitude": -75.17698934309132
+        },
+        {
+          "latitude": 40.24841811365695,
+          "longitude": -75.17713990659165
+        },
+        {
+          "latitude": 40.24848614460416,
+          "longitude": -75.17734967955776
+        },
+        {
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the end of the Green Trail.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about insects.",
+          "landmarkId": 2006,
+          "latitude": 40.24847,
+          "longitude": -75.17741
+        },
+        {
+          "latitude": 40.24851980555648,
+          "longitude": -75.17745345327201
+        },
+        {
+          "latitude": 40.24853493516247,
+          "longitude": -75.17756893028651
+        },
+        {
+          "latitude": 40.24852152973791,
+          "longitude": -75.17762939215275
+        },
+        {
+          "latitude": 40.2484834149541,
+          "longitude": -75.17769392587996
+        },
+        {
+          "latitude": 40.24845329010742,
+          "longitude": -75.17776286754413
+        },
+        {
+          "latitude": 40.24841561627897,
+          "longitude": -75.17784363489156
+        },
+        {
+          "latitude": 40.24835697595046,
+          "longitude": -75.17795585584656
+        },
+        {
+          "latitude": 40.24829243051597,
+          "longitude": -75.17806274605624
+        },
+        {
+          "latitude": 40.24816341128543,
+          "longitude": -75.17819983066997
+        },
+        {
+          "latitude": 40.24805980263666,
+          "longitude": -75.17826019118422
+        },
+        {
+          "latitude": 40.24796259764645,
+          "longitude": -75.17830359280012
+        },
+        {
+          "latitude": 40.24788098254336,
+          "longitude": -75.17830281349869
+        },
+        {
+          "latitude": 40.2478113283904,
+          "longitude": -75.17827004160594
+        },
+        {
+          "latitude": 40.24740322615002,
+          "longitude": -75.17756956245012
+        },
+        {
+          "latitude": 40.24781797096905,
+          "longitude": -75.17827044553401
+        },
+        {
+          "latitude": 40.24767364043139,
+          "longitude": -75.17821061998168
+        },
+        {
+          "latitude": 40.24758543054401,
+          "longitude": -75.17820810821176
+        },
+        {
+          "latitude": 40.24752654888025,
+          "longitude": -75.17821881137387
+        },
+        {
+          "latitude": 40.2474747446546,
+          "longitude": -75.17823931000996
+        },
+        {
+          "latitude": 40.24736277611961,
+          "longitude": -75.17828884734304
+        }
+      ],
+      "id": 3001,
+      "isOpen": true,
+      "location": "lions-pride-park",
+      "name": "Green Trail",
+      "trailDistanceDescription": "This crushed-stone, U-shaped trail runs about 0.25 miles around the back of the park and leads to the Rain Garden nature area. From the Yellow Trail connector, walk left toward the Rain Garden or right around the lacrosse field toward the nature signs. The two ends do not currently connect. That will change when the pond-to-wetland project is completed."
+    },
+    {
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24658626696852,
+          "longitude": -75.17787837800083
+        },
+        {
+          "latitude": 40.24650083141384,
+          "longitude": -75.17777363619918
+        },
+        {
+          "latitude": 40.24642428106835,
+          "longitude": -75.1777047806907
+        },
+        {
+          "latitude": 40.24636720380917,
+          "longitude": -75.17768224288135
+        },
+        {
+          "latitude": 40.24632028623794,
+          "longitude": -75.17764802156388
+        },
+        {
+          "latitude": 40.24612511648142,
+          "longitude": -75.17768370801234
+        },
+        {
+          "latitude": 40.24621859062735,
+          "longitude": -75.17765533476764
+        },
+        {
+          "distanceToNextClockwise": "75 feet",
+          "distanceToNextClockwiseDescription": "Along the left side of the trail is a sign  with information about pollinator plants. There is a rope handrail on the right side",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the beginning of the Kids Mountain Trail. The park entrance is 30 feet further downhill on your left",
+          "landmarkId": 3002,
+          "latitude": 40.24625,
+          "longitude": -75.17765
+        },
+        {
+          "latitude": 40.24631920804543,
+          "longitude": -75.17764995937996
+        },
+        {
+          "latitude": 40.24637706981914,
+          "longitude": -75.1775746673526
+        },
+        {
+          "latitude": 40.24645337934761,
+          "longitude": -75.17755738282959
+        },
+        {
+          "distanceToNextClockwise": "300 feet",
+          "distanceToNextClockwiseDescription": "300 feet up the pleasantly inclined trail takes you to the gentle slope, open in winter for sledding.",
+          "distanceToNextCounterClockwise": "75 feet",
+          "distanceToNextCounterClockwiseDescription": "Takes you back to the beginning of Kids Mountain Trail",
+          "landmarkId": 3007,
+          "latitude": 40.24651,
+          "longitude": -75.17757999999999
+        },
+        {
+          "latitude": 40.24652334546674,
+          "longitude": -75.17756822485526
+        },
+        {
+          "latitude": 40.24658064606094,
+          "longitude": -75.17758664013728
+        },
+        {
+          "latitude": 40.2466100218921,
+          "longitude": -75.17758664153043
+        },
+        {
+          "latitude": 40.24661782041719,
+          "longitude": -75.17756922530887
+        },
+        {
+          "latitude": 40.24661665031894,
+          "longitude": -75.17753261943471
+        },
+        {
+          "latitude": 40.24657423311084,
+          "longitude": -75.17752062172606
+        },
+        {
+          "latitude": 40.2465598552206,
+          "longitude": -75.17750086362621
+        },
+        {
+          "latitude": 40.24653195731589,
+          "longitude": -75.17745207155804
+        },
+        {
+          "latitude": 40.24653473009084,
+          "longitude": -75.17740688717198
+        },
+        {
+          "latitude": 40.24654948446302,
+          "longitude": -75.17738387901201
+        },
+        {
+          "latitude": 40.24656955563052,
+          "longitude": -75.17737232591098
+        },
+        {
+          "latitude": 40.24659734324386,
+          "longitude": -75.17735701292382
+        },
+        {
+          "latitude": 40.24661171228769,
+          "longitude": -75.17736696003865
+        },
+        {
+          "latitude": 40.24663453905541,
+          "longitude": -75.17739401215614
+        },
+        {
+          "latitude": 40.24664019100416,
+          "longitude": -75.17741877431843
+        },
+        {
+          "latitude": 40.24662603683974,
+          "longitude": -75.17744816472211
+        },
+        {
+          "latitude": 40.24662612538499,
+          "longitude": -75.17747156630952
+        },
+        {
+          "latitude": 40.24664354107053,
+          "longitude": -75.17749812685467
+        },
+        {
+          "latitude": 40.24666927287563,
+          "longitude": -75.17750220945511
+        },
+        {
+          "latitude": 40.24668849298182,
+          "longitude": -75.17752421186503
+        },
+        {
+          "latitude": 40.24673341547108,
+          "longitude": -75.17753180673633
+        },
+        {
+          "latitude": 40.2467458510796,
+          "longitude": -75.17754160693818
+        },
+        {
+          "latitude": 40.24676156514172,
+          "longitude": -75.17753252589247
+        },
+        {
+          "latitude": 40.24674076687602,
+          "longitude": -75.17751105848353
+        },
+        {
+          "distanceToNextClockwise": "55 feet",
+          "distanceToNextClockwiseDescription": "Another 55 feet takes you to the summit of Kids Mountain.  Let the good times roll!!",
+          "distanceToNextCounterClockwise": "300 feet",
+          "distanceToNextCounterClockwiseDescription": "Along the right side of the trail is a sign  with information about pollinator plants",
+          "landmarkId": 2007,
+          "latitude": 40.24675,
+          "longitude": -75.17748
+        },
+        {
+          "latitude": 40.24672224417595,
+          "longitude": -75.17747322900173
+        },
+        {
+          "latitude": 40.24672621780255,
+          "longitude": -75.17743949289195
+        },
+        {
+          "latitude": 40.24673894366889,
+          "longitude": -75.17743812980149
+        },
+        {
+          "latitude": 40.24676471069947,
+          "longitude": -75.1774532366932
+        },
+        {
+          "latitude": 40.2467962942622,
+          "longitude": -75.1774943510829
+        },
+        {
+          "latitude": 40.24681702545749,
+          "longitude": -75.1775169459457
+        },
+        {
+          "latitude": 40.24682479412169,
+          "longitude": -75.17753971769658
+        },
+        {
+          "latitude": 40.24683133476998,
+          "longitude": -75.1775526379086
+        },
+        {
+          "latitude": 40.24679606228653,
+          "longitude": -75.17758734956195
+        },
+        {
+          "latitude": 40.24677978582456,
+          "longitude": -75.17765494669183
+        },
+        {
+          "latitude": 40.24678108321564,
+          "longitude": -75.17767383944977
+        },
+        {
+          "latitude": 40.24677393203497,
+          "longitude": -75.17770139752187
+        },
+        {
+          "latitude": 40.24677018716538,
+          "longitude": -75.17772526677714
+        },
+        {
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the top of Kids Mountain and end of the trail.",
+          "distanceToNextCounterClockwise": "55 feet",
+          "distanceToNextCounterClockwiseDescription": "Downhill on the trail takes you to the gentle slope, open in winter for sledding. There is a rope handrail along the left side of the trail.",
+          "landmarkId": 1003,
+          "latitude": 40.24683,
+          "longitude": -75.17772
+        },
+        {
+          "latitude": 40.24680308763055,
+          "longitude": -75.1777927233759
+        },
+        {
+          "latitude": 40.24680550234137,
+          "longitude": -75.17786288178401
+        },
+        {
+          "latitude": 40.24687797019999,
+          "longitude": -75.1778871593481
+        },
+        {
+          "latitude": 40.24695032291684,
+          "longitude": -75.17787034894056
+        },
+        {
+          "latitude": 40.2469724330269,
+          "longitude": -75.1778447714009
+        },
+        {
+          "latitude": 40.24702182673727,
+          "longitude": -75.17777001777264
+        },
+        {
+          "latitude": 40.2470551153109,
+          "longitude": -75.17774167559583
+        },
+        {
+          "latitude": 40.24699483738871,
+          "longitude": -75.1777007526444
+        },
+        {
+          "latitude": 40.24698719936815,
+          "longitude": -75.17764127852526
+        },
+        {
+          "latitude": 40.24694735648879,
+          "longitude": -75.17765183416039
+        },
+        {
+          "latitude": 40.24690876221874,
+          "longitude": -75.17771520088564
+        },
+        {
+          "latitude": 40.246892046236,
+          "longitude": -75.17778582962846
+        },
+        {
+          "latitude": 40.24679836005206,
+          "longitude": -75.17777508056936
+        },
+        {
+          "latitude": 40.24671675823713,
+          "longitude": -75.17781493059053
+        },
+        {
+          "latitude": 40.24654778031295,
+          "longitude": -75.17790201032838
+        },
+        {
+          "latitude": 40.24638850359339,
+          "longitude": -75.1780795719892
+        }
+      ],
+      "id": 3002,
+      "isOpen": true,
+      "location": "lions-pride-park",
+      "name": "Kids Mountain Trail",
+      "trailDistanceDescription": "This 400-foot trail leads to the top of Kids Mountain. Its ADA-accessible slope is suitable for visitors with limited mobility."
+    },
+    {
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.2700827502607,
+          "longitude": -75.19178930654942
+        },
+        {
+          "distanceToNextClockwise": "319 yards;",
+          "distanceToNextClockwiseDescription": "319 yards to Bluebird and cavity nesting bird program",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the start of the trail",
+          "landmarkId": 4001,
+          "latitude": 40.2700344,
+          "longitude": -75.1917515
+        },
+        {
+          "latitude": 40.26994552939642,
+          "longitude": -75.19170671789458
+        },
+        {
+          "latitude": 40.26982286752411,
+          "longitude": -75.19158303448553
+        },
+        {
+          "latitude": 40.26965771151032,
+          "longitude": -75.19129646706456
+        },
+        {
+          "latitude": 40.26946611251014,
+          "longitude": -75.1908565888866
+        },
+        {
+          "latitude": 40.26935325205682,
+          "longitude": -75.1907758681041
+        },
+        {
+          "latitude": 40.26923354879672,
+          "longitude": -75.19070592260466
+        },
+        {
+          "latitude": 40.26914635019084,
+          "longitude": -75.19060435163128
+        },
+        {
+          "latitude": 40.26906490614854,
+          "longitude": -75.19049627114723
+        },
+        {
+          "latitude": 40.26890256466618,
+          "longitude": -75.190279692159
+        },
+        {
+          "distanceToNextClockwise": "365 yards;",
+          "distanceToNextClockwiseDescription": "365 yards to Pollinator Habitat",
+          "distanceToNextCounterClockwise": "319 yards",
+          "distanceToNextCounterClockwiseDescription": "319 yards to Trailhead",
+          "landmarkId": 1,
+          "latitude": 40.268116,
+          "longitude": -75.18954099999999
+        },
+        {
+          "distanceToNextClockwise": "64 yards;",
+          "distanceToNextClockwiseDescription": "64 yards to Pet Waste",
+          "distanceToNextCounterClockwise": "365 yards",
+          "distanceToNextCounterClockwiseDescription": "365 yards to Bluebird and cavity nesting bird program",
+          "landmarkId": 2,
+          "latitude": 40.265828,
+          "longitude": -75.187085
+        },
+        {
+          "distanceToNextClockwise": "3983 yards;",
+          "distanceToNextClockwiseDescription": "3983 yards to Naturalized Basin",
+          "distanceToNextCounterClockwise": "64 yards",
+          "distanceToNextCounterClockwiseDescription": "64 yards to Pollinator Habitat",
+          "landmarkId": 3,
+          "latitude": 40.26537276849958,
+          "longitude": -75.18690524913067
+        },
+        {
+          "distanceToNextClockwise": "54 yards;",
+          "distanceToNextClockwiseDescription": "54 yards to Native Plant Management Area",
+          "distanceToNextCounterClockwise": "3983 yards",
+          "distanceToNextCounterClockwiseDescription": "3983 yards to Pet Waste",
+          "landmarkId": 4,
+          "latitude": 40.248622,
+          "longitude": -75.17392699999999
+        },
+        {
+          "distanceToNextClockwise": "420 yards;",
+          "distanceToNextClockwiseDescription": "420 yards to Rain Barrels",
+          "distanceToNextCounterClockwise": "54 yards",
+          "distanceToNextCounterClockwiseDescription": "54 yards to Naturalized Basin",
+          "landmarkId": 5,
+          "latitude": 40.248232,
+          "longitude": -75.17419199999999
+        },
+        {
+          "distanceToNextClockwise": "1131 yards;",
+          "distanceToNextClockwiseDescription": "1131 yards to Bluebird and cavity nesting bird program",
+          "distanceToNextCounterClockwise": "420 yards",
+          "distanceToNextCounterClockwiseDescription": "420 yards to Native Plant Management Area",
+          "landmarkId": 6,
+          "latitude": 40.24604744797347,
+          "longitude": -75.17824829746803
+        },
+        {
+          "distanceToNextClockwise": "112 yards;",
+          "distanceToNextClockwiseDescription": "112 yards to Native Plant vs Invasive Plants",
+          "distanceToNextCounterClockwise": "1131 yards",
+          "distanceToNextCounterClockwiseDescription": "1131 yards to Rain Barrels",
+          "landmarkId": 7,
+          "latitude": 40.23859468262437,
+          "longitude": -75.1689610811989
+        },
+        {
+          "distanceToNextClockwise": "163 yards;",
+          "distanceToNextClockwiseDescription": "163 yards to Native Plant Management Area",
+          "distanceToNextCounterClockwise": "112 yards",
+          "distanceToNextCounterClockwiseDescription": "112 yards to Bluebird and cavity nesting bird program",
+          "landmarkId": 8,
+          "latitude": 40.23773890249959,
+          "longitude": -75.16848140454132
+        },
+        {
+          "distanceToNextClockwise": "81 yards;",
+          "distanceToNextClockwiseDescription": "81 yards to Pet Waste",
+          "distanceToNextCounterClockwise": "163 yards",
+          "distanceToNextCounterClockwiseDescription": "163 yards to Native Plant vs Invasive Plants",
+          "landmarkId": 9,
+          "latitude": 40.23738508784395,
+          "longitude": -75.16802229648994
+        },
+        {
+          "distanceToNextClockwise": "269 yards;",
+          "distanceToNextClockwiseDescription": "269 yards to Trees",
+          "distanceToNextCounterClockwise": "81 yards",
+          "distanceToNextCounterClockwiseDescription": "81 yards to Native Plant Management Area",
+          "landmarkId": 10,
+          "latitude": 40.236587,
+          "longitude": -75.167368
+        },
+        {
+          "distanceToNextClockwise": "141 yards;",
+          "distanceToNextClockwiseDescription": "141 yards to Wetlands",
+          "distanceToNextCounterClockwise": "269 yards",
+          "distanceToNextCounterClockwiseDescription": "269 yards to Pet Waste",
+          "landmarkId": 11,
+          "latitude": 40.23603579844846,
+          "longitude": -75.16509378821878
+        },
+        {
+          "distanceToNextClockwise": "92 yards;",
+          "distanceToNextClockwiseDescription": "92 yards to Fish",
+          "distanceToNextCounterClockwise": "141 yards",
+          "distanceToNextCounterClockwiseDescription": "141 yards to Trees",
+          "landmarkId": 12,
+          "latitude": 40.2346940383878,
+          "longitude": -75.16252556527606
+        },
+        {
+          "distanceToNextClockwise": "532 yards;",
+          "distanceToNextClockwiseDescription": "532 yards to Meadows",
+          "distanceToNextCounterClockwise": "92 yards",
+          "distanceToNextCounterClockwiseDescription": "92 yards to Wetlands",
+          "landmarkId": 13,
+          "latitude": 40.23477801495635,
+          "longitude": -75.16433993138311
+        },
+        {
+          "distanceToNextClockwise": "138 yards;",
+          "distanceToNextClockwiseDescription": "138 yards to Waterfowl",
+          "distanceToNextCounterClockwise": "532 yards",
+          "distanceToNextCounterClockwiseDescription": "532 yards to Fish",
+          "landmarkId": 14,
+          "latitude": 40.23257475363144,
+          "longitude": -75.16116185158916
+        },
+        {
+          "distanceToNextClockwise": "858 yards;",
+          "distanceToNextClockwiseDescription": "858 yards to End of trail",
+          "distanceToNextCounterClockwise": "138 yards",
+          "distanceToNextCounterClockwiseDescription": "138 yards to Meadows",
+          "landmarkId": 15,
+          "latitude": 40.23153438710905,
+          "longitude": -75.15977719445252
+        },
+        {
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the end of the trail",
+          "distanceToNextCounterClockwise": "858 yards",
+          "distanceToNextCounterClockwiseDescription": "858 yards to Waterfowl",
+          "landmarkId": 16,
+          "latitude": 40.2272362,
+          "longitude": -75.1586589
+        },
+        {
+          "latitude": 40.26890256466618,
+          "longitude": -75.190279692159
+        },
+        {
+          "latitude": 40.26906490614854,
+          "longitude": -75.19049627114723
+        },
+        {
+          "latitude": 40.26914635019084,
+          "longitude": -75.19060435163128
+        },
+        {
+          "latitude": 40.26923354879672,
+          "longitude": -75.19070592260466
+        },
+        {
+          "latitude": 40.26935325205682,
+          "longitude": -75.1907758681041
+        },
+        {
+          "latitude": 40.26946611251014,
+          "longitude": -75.1908565888866
+        },
+        {
+          "latitude": 40.26965771151032,
+          "longitude": -75.19129646706456
+        },
+        {
+          "latitude": 40.26982286752411,
+          "longitude": -75.19158303448553
+        },
+        {
+          "latitude": 40.26994552939642,
+          "longitude": -75.19170671789458
+        },
+        {
+          "latitude": 40.2700827502607,
+          "longitude": -75.19178930654942
+        }
+      ],
+      "id": 4001,
+      "isOpen": true,
+      "location": "us-202",
+      "name": "202 Connector Trail",
+      "trailDistanceDescription": "This paved trail, with one short gravel segment, connects the US-202 Parkway Trail to the Bradford Dam trail."
+    }
+  ]
+}

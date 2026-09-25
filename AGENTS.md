@@ -44,7 +44,14 @@ Point only with the stable `recordKey`; join Trails to route placemarks with
 Do not make either mobile app download live Sheet tabs independently. Generate
 and validate the single atomic `server/warrington-trails.json` with
 `scripts/master_sheet.py`; both apps already consume that file. A validation
-failure must stop deployment and preserve the last successful app data.
+failure must stop the app-data update and preserve the last successful app data.
+Static website assets may still deploy with that preserved data.
+
+Pin released apps to a major data contract under `server/api/vN/`. Keep v1 and
+the unversioned legacy URLs available for installed builds. Publish the unified
+string Trail ID contract as v2 only after its generator, fixtures and both apps
+are ready. Never repoint a released app to a moving `latest` endpoint, and never
+overwrite an older major version with a breaking schema.
 
 Use full `https://trails.warringtoneac.org/...` URLs in the Sheet's `imagePath`
 cells so editors can open them directly. `scripts/master_sheet.py` must normalize
