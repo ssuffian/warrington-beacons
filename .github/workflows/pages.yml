@@ -30,10 +30,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build app data from the master Sheet and KML
+        id: app-data
+        continue-on-error: true
         run: |
           python3 scripts/fetch_master_sheet.py 1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P /tmp/warrington-master-csv
           python3 scripts/master_sheet.py /tmp/warrington-master-csv --kml server/talking-trails.kml --output-dir /tmp/warrington-master-validation
           cp /tmp/warrington-master-validation/candidate.json server/warrington-trails.json
+      - name: Preserve the last validated app data
+        if: steps.app-data.outcome == 'failure'
+        run: echo "::warning::Master Sheet validation failed. Publishing static site changes with the last validated warrington-trails.json."
+      - name: Build image library
+        run: |
           python3 scripts/build_image_library.py
       - uses: actions/upload-pages-artifact@v3
         with:
