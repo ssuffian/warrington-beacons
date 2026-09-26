@@ -1,0 +1,63 @@
+name: Prepare trail data release
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_version:
+        description: Existing API major version to update
+        required: true
+        default: v1
+        type: choice
+        options:
+          - v1
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate and validate the release candidate
+        run: |
+          python3 scripts/fetch_master_sheet.py 1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P /tmp/warrington-master-csv
+          python3 scripts/master_sheet.py /tmp/warrington-master-csv --kml server/talking-trails.kml --output-dir /tmp/warrington-master-validation
+      - name: Stage the selected API version
+        env:
+          API_VERSION: ${{ inputs.api_version }}
+        run: |
+          test -d "server/api/$API_VERSION"
+          cp /tmp/warrington-master-validation/candidate.json "server/api/$API_VERSION/trails.json"
+          cp server/talking-trails.kml "server/api/$API_VERSION/talking-trails.kml"
+          if [ "$API_VERSION" = "v1" ]; then
+            cp /tmp/warrington-master-validation/candidate.json server/warrington-trails.json
+          fi
+          python3 scripts/build_image_library.py
+      - name: Open a review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          API_VERSION: ${{ inputs.api_version }}
+        run: |
+          if [ -z "$(git status --porcelain -- server)" ]; then
+            echo "No published data changed."
+            exit 0
+          fi
+          branch="data-release-$API_VERSION-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add server
+          git commit -m "Prepare $API_VERSION trail data release"
+          git push origin "$branch"
+          cat > /tmp/data-release-pr.md <<EOF
+          This pull request contains a validated $API_VERSION data snapshot generated from the master spreadsheet and the committed KML.
+
+          Review the JSON and KML changes before merging. Merging publishes the committed snapshot; later spreadsheet edits will not change the live server until another release pull request is generated and merged.
+          EOF
+          gh pr create \
+            --base "${{ github.event.repository.default_branch }}" \
+            --head "$branch" \
+            --title "Prepare $API_VERSION trail data release" \
+            --body-file /tmp/data-release-pr.md

@@ -1,6 +1,7 @@
 # Warrington Trails data server
 
-Static JSON served via GitHub Pages at `https://trails.warringtoneac.org/`.
+Static JSON served at `https://trails.warringtoneac.org/`. The hosting provider
+may change, but releases always deploy committed files from `server/`.
 
 ## Versioned API
 
@@ -22,10 +23,9 @@ to `/api/vN/` so a future schema migration cannot silently break installed
 builds.
 
 The legacy `/warrington-trails.json` and `/talking-trails.kml` endpoints remain
-available for existing app builds. During the v1 period, a successful Sheet/KML
-validation updates both the legacy URLs and `/api/v1/`. A failed validation
-updates neither; static website changes may still deploy with the last validated
-data.
+available for existing app builds. During the v1 period, an approved data-release
+pull request updates both the legacy URLs and `/api/v1/`. Spreadsheet edits alone
+update neither. A failed validation cannot create a release pull request.
 
 ## Image library
 
@@ -79,14 +79,15 @@ tour membership and stop order. Use the workbook for text, hardware status,
 app inclusion, beacon configuration and directional wording.
 
 `scripts/master_sheet.py` validates the workbook and KML together and generates
-the atomic `warrington-trails.json` consumed by both apps. The Pages workflow
-does the same from the public Sheet tabs before deployment, so invalid or
-partially edited source data cannot replace the last successful app data.
+the atomic `warrington-trails.json` consumed by both apps. The manually started
+**Prepare trail data release** workflow does the same from the public Sheet tabs
+and opens a review pull request. Only merging that snapshot changes served app
+data.
 
 Update the served copy here for future deployments. `data/trails/Talking Trails.kml`
 is the original import snapshot, not the active served source. Neither copying
 the file nor changing app source publishes a deployment or updates installed
-apps; Pages deployment and new app builds are required.
+apps; a data-release pull request and new app builds are required.
 
 - `warrington-trails.json` — combined file used by the Android app (one UUID,
   per-location major codes, all landmarks and trails)

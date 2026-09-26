@@ -34,10 +34,18 @@ Both mobile apps continue to read one atomic file:
 
 `https://trails.warringtoneac.org/warrington-trails.json`
 
-The Pages workflow downloads the four public Sheet data tabs, validates them
-together with `server/talking-trails.kml`, and generates that JSON. A failed or
-partially edited source cannot replace the last successful Pages deployment.
-The scheduled job runs every 15 minutes; a manual workflow run is also available.
+Spreadsheet edits are drafts and never update the live server automatically.
+Run the **Prepare trail data release** GitHub workflow when a snapshot is ready.
+It downloads the four public Sheet data tabs, validates them together with
+`server/talking-trails.kml`, and opens a pull request containing the generated
+JSON and KML snapshot. Review and merge that pull request to publish it. A
+failed or partially edited source cannot create a release pull request.
+
+Choose the existing API major version in the workflow. Content can change
+within a major version, but field names, types and relationships cannot. A
+breaking contract change requires implementing a new `/api/vN/` generator,
+updating both apps, and adding that version to the workflow and
+`server/api/versions.json` before it can be published.
 
 For a local validation run:
 
@@ -52,7 +60,7 @@ The command writes `validation.csv`, `candidate.json` and `changes.diff` outside
 the served directory. After review, `candidate.json` is the generated form of
 `server/warrington-trails.json`.
 
-The workflow reads public Google Sheet tabs by name with:
+The release workflow reads public Google Sheet tabs by name with:
 
 ```sh
 python3 scripts/fetch_master_sheet.py SHEET_ID /tmp/warrington-master-csv

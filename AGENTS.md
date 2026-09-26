@@ -53,6 +53,13 @@ string Trail ID contract as v2 only after its generator, fixtures and both apps
 are ready. Never repoint a released app to a moving `latest` endpoint, and never
 overwrite an older major version with a breaking schema.
 
+Never publish spreadsheet edits automatically or regenerate served JSON during
+an ordinary site deployment. Use the manually started **Prepare trail data
+release** workflow to validate an existing API major and open a review pull
+request. The committed snapshot is published only after that pull request is
+reviewed and merged. Add a new major version to the workflow only after its
+generator, fixtures, both apps and `server/api/versions.json` are ready.
+
 Use full `https://trails.warringtoneac.org/...` URLs in the Sheet's `imagePath`
 cells so editors can open them directly. `scripts/master_sheet.py` must normalize
 those URLs to server-relative paths in app JSON to preserve compatibility with
