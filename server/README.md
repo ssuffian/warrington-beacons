@@ -13,6 +13,21 @@ when the JSON or KML contract has a breaking change.
 | v1 | Legacy/current production | `/api/v1/trails.json` | `/api/v1/talking-trails.kml` | Numeric trail ID plus KML `trailGroupId` |
 | v2 | Planned | `/api/v2/trails.json` | `/api/v2/talking-trails.kml` | Unified string Trail ID |
 
+Each published version has a machine-readable JSON Schema at
+`/api/vN/schema.json`. For v1, see `/api/v1/schema.json`. The release workflow
+validates both the versioned response and its legacy alias against that schema
+before opening a pull request.
+
+Changing values, wording, coordinates, images, beacon assignments, or adding and
+removing records does not require a version bump when the resulting document
+still satisfies the current schema and its cross-record invariants. Changing a
+field name or type, adding or removing a field, changing a required field,
+changing an allowed enum value, or changing how records relate requires a new
+major API version and corresponding app support. `additionalProperties: false`
+makes accidental fields fail validation instead of silently expanding v1.
+GitHub also treats every schema already present on `main` as immutable: a new
+major version is added in a new directory instead of editing the old schema.
+
 `/api/versions.json` lists only versions that have actually been published. Do
 not create a placeholder v2 response: the new apps should receive a missing-file
 error until the v2 generator, validation and fixtures are complete.

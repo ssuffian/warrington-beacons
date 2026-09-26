@@ -60,6 +60,16 @@ request. The committed snapshot is published only after that pull request is
 reviewed and merged. Add a new major version to the workflow only after its
 generator, fixtures, both apps and `server/api/versions.json` are ready.
 
+Treat `server/api/vN/schema.json` and its documented cross-record invariants as
+the immutable contract for a published major version. Data-only changes may add,
+remove or revise records when they still validate. Do not edit an existing
+schema to admit a field, type, required-property, enum or relationship change;
+create a new major endpoint and update both apps instead. Run
+`scripts/validate_api_contract.py` for versioned JSON and legacy aliases before
+deployment.
+The **Protect published API contracts** workflow rejects edits or deletion of a
+schema already present on `main`; add a new `server/api/vN/schema.json` instead.
+
 Use full `https://trails.warringtoneac.org/...` URLs in the Sheet's `imagePath`
 cells so editors can open them directly. `scripts/master_sheet.py` must normalize
 those URLs to server-relative paths in app JSON to preserve compatibility with

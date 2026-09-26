@@ -1,0 +1,35 @@
+name: Protect published API contracts
+
+on:
+  pull_request:
+    paths:
+      - server/api/v*/schema.json
+      - .github/workflows/api-contract.yml
+  push:
+    branches: [main]
+    paths:
+      - server/api/v*/schema.json
+      - .github/workflows/api-contract.yml
+
+permissions:
+  contents: read
+
+jobs:
+  immutable-schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reject changes to published schemas
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          changed="$(git diff --name-only "$BASE_SHA" HEAD -- 'server/api/v*/schema.json')"
+          for schema in $changed; do
+            if git cat-file -e "$BASE_SHA:$schema" 2>/dev/null; then
+              echo "::error file=$schema::Published API schemas are immutable. Add a new /api/vN/schema.json and update the apps instead."
+              exit 1
+            fi
+          done
+          echo "No published API schema was changed."

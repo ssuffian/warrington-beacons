@@ -47,6 +47,13 @@ breaking contract change requires implementing a new `/api/vN/` generator,
 updating both apps, and adding that version to the workflow and
 `server/api/versions.json` before it can be published.
 
+The authoritative v1 contract is `server/api/v1/schema.json`. The workflow
+validates generated data against it. New spreadsheet rows, revised text, images,
+coordinates, beacon values and other data changes stay on v1 when validation
+passes. Any proposed output shape that fails because a property, type, required
+field, enum or relationship changed must be implemented as a new major version;
+do not loosen the existing schema to make a breaking candidate pass.
+
 For a local validation run:
 
 ```sh

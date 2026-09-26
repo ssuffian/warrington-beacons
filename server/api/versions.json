@@ -5,6 +5,7 @@
       "version": 1,
       "status": "legacy",
       "schema": "numeric-trail-id",
+      "jsonSchema": "https://trails.warringtoneac.org/api/v1/schema.json",
       "data": "https://trails.warringtoneac.org/api/v1/trails.json",
       "kml": "https://trails.warringtoneac.org/api/v1/talking-trails.kml"
     }

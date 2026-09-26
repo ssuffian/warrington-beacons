@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install contract validator
+        run: python3 -m pip install --disable-pip-version-check -r scripts/requirements-api-contract.txt
       - name: Generate and validate the release candidate
         run: |
           python3 scripts/fetch_master_sheet.py 1Pl3uBhqcJbEpxifa4ko2-RpFK4rOT44P /tmp/warrington-master-csv
@@ -33,6 +35,10 @@ jobs:
           cp server/talking-trails.kml "server/api/$API_VERSION/talking-trails.kml"
           if [ "$API_VERSION" = "v1" ]; then
             cp /tmp/warrington-master-validation/candidate.json server/warrington-trails.json
+          fi
+          python3 scripts/validate_api_contract.py "server/api/$API_VERSION/schema.json" "server/api/$API_VERSION/trails.json"
+          if [ "$API_VERSION" = "v1" ]; then
+            python3 scripts/validate_api_contract.py server/api/v1/schema.json server/warrington-trails.json
           fi
           python3 scripts/build_image_library.py
       - name: Open a review pull request

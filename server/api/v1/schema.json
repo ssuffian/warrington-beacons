@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trails.warringtoneac.org/api/v1/schema.json",
+  "title": "Warrington Talking Trails API v1",
+  "description": "The stable JSON contract used by released v1 mobile clients. Spreadsheet and KML edits may change values and array contents without changing this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "landmarks",
+    "locations",
+    "trails"
+  ],
+  "properties": {
+    "landmarks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/landmark"
+      }
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/location"
+      }
+    },
+    "trails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/trail"
+      }
+    }
+  },
+  "$defs": {
+    "coordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    },
+    "landmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category",
+        "coordinates",
+        "description",
+        "id",
+        "imageAlt",
+        "imagePath",
+        "location",
+        "longDescription",
+        "name"
+      ],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "Building",
+            "PointOfInterest",
+            "Trail"
+          ]
+        },
+        "coordinates": {
+          "$ref": "#/$defs/coordinate"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "imageAlt": {
+          "type": "string"
+        },
+        "imagePath": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^/]"
+        },
+        "isOpen": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1
+        },
+        "longDescription": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trailDistanceDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "address",
+        "altBeaconUUID",
+        "beaconMajorCode",
+        "iBeaconUUID",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "altBeaconUUID": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "beaconMajorCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "iBeaconUUID": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "routeCoordinate": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/coordinate"
+        },
+        {
+          "$ref": "#/$defs/trailStop"
+        }
+      ]
+    },
+    "trail": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boundaryCoordinates",
+        "id",
+        "isOpen",
+        "location",
+        "name",
+        "trailDistanceDescription"
+      ],
+      "properties": {
+        "boundaryCoordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/routeCoordinate"
+          }
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isOpen": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trailDistanceDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "trailStop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "distanceToNextClockwise",
+        "distanceToNextClockwiseDescription",
+        "distanceToNextCounterClockwise",
+        "distanceToNextCounterClockwiseDescription",
+        "landmarkId",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "distanceToNextClockwise": {
+          "type": "string"
+        },
+        "distanceToNextClockwiseDescription": {
+          "type": "string"
+        },
+        "distanceToNextCounterClockwise": {
+          "type": "string"
+        },
+        "distanceToNextCounterClockwiseDescription": {
+          "type": "string"
+        },
+        "landmarkId": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    }
+  },
+  "x-invariants": [
+    "Location IDs are unique.",
+    "Landmark IDs are unique.",
+    "Trail IDs are unique.",
+    "Every landmark and trail location references an existing location ID.",
+    "Every boundaryCoordinates landmarkId references an existing landmark ID."
+  ]
+}

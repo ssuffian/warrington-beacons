@@ -89,6 +89,7 @@ Breaking data-shape changes use a new major version in the URL:
 ```text
 https://trails.warringtoneac.org/api/v1/trails.json
 https://trails.warringtoneac.org/api/v1/talking-trails.kml
+https://trails.warringtoneac.org/api/v1/schema.json
 ```
 
 Version 1 preserves the deployed numeric Trail ID schema. The unified string
@@ -96,6 +97,10 @@ Trail ID schema will be published under `/api/v2/` after the generator and both
 apps support it. Content may change within a major version, but its field names,
 types and relationships must remain compatible. Mobile releases must pin a
 specific major version; they must not use a moving `latest` endpoint.
+The JSON Schema is the machine-readable boundary: spreadsheet and KML content
+changes remain on v1 when the generated response validates, while a new field,
+field type, required property, enum or record relationship requires a new major
+version. Published schemas are immutable.
 
 The original `/warrington-trails.json` and `/talking-trails.kml` URLs remain for
 already-installed builds. Publishing a new API version must not replace or
