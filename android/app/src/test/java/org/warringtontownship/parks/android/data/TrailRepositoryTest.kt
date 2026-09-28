@@ -9,6 +9,7 @@ import org.junit.Test
 import org.warringtontownship.parks.android.beacon.BeaconRegion
 import org.warringtontownship.parks.android.data.model.TrailsData
 import org.warringtontownship.parks.android.data.network.TrailsApiService
+import org.warringtontownship.parks.android.data.network.TrailsApiContract
 import org.warringtontownship.parks.android.data.repository.TrailRepository
 import java.io.File
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -41,11 +42,18 @@ class TrailRepositoryTest {
     }
 
     @Test
+    fun `pins network data to API version one`() {
+        assertEquals("v1", TrailsApiContract.VERSION)
+        assertEquals("api/v1/trails.json", TrailsApiContract.DATA_PATH)
+        assertEquals("api/v1/talking-trails.kml", TrailsApiContract.KML_PATH)
+    }
+
+    @Test
     fun `KML replaces overview geometry without importing its point markers`() = runBlocking {
         val api = object : TrailsApiService {
             override suspend fun getTrailsData(): TrailsData = FakeApiService().getTrailsData()
             override suspend fun getTrailKml(): okhttp3.ResponseBody =
-                File("../../server/talking-trails.kml").readText().toResponseBody()
+                File("../../server/api/v1/talking-trails.kml").readText().toResponseBody()
         }
         val repo = TrailRepository(api)
         repo.loadData()

@@ -13,8 +13,9 @@ https://trails.warringtoneac.org/
 (GitHub Pages, deployed from the `server/` folder at the root of
 this repo — see the top-level README for details)
 
-The main data file is `warrington-trails.json`, at the root of the
-hosted files, which includes the trail geometry, landmarks, and
+The app pins API contract v1 and loads `api/v1/trails.json` plus
+`api/v1/talking-trails.kml` from the hosted files. The JSON includes
+the trail geometry, landmarks, and
 locations for both Lions Pride Park and the US202 to Bradford Dam
 trail.
 
@@ -112,7 +113,7 @@ don't have to look anything up while you walk.
 FEATURES
 
 • Trail map showing every point of interest, and where you are
-• 40 landmarks across the two parks, with photos and descriptions
+• 38 landmarks across the two parks, with photos and descriptions
 • Trail tours listing the distance to the next stop in either direction
 • Announcements as you arrive, which keep working with the screen off and
   the phone in your pocket

@@ -25,6 +25,18 @@ class MapServiceTest: XCTestCase {
         testLandmarkService = nil
     }
 
+    func testApiVersionOneEndpoints() {
+        XCTAssertEqual(API_MAJOR_VERSION, "v1")
+        XCTAssertEqual(
+            getApiUrlString(baseUrlString: "https://trails.warringtoneac.org/", resource: "trails.json"),
+            "https://trails.warringtoneac.org/api/v1/trails.json"
+        )
+        XCTAssertEqual(
+            getApiUrlString(baseUrlString: "https://trails.warringtoneac.org", resource: "talking-trails.kml"),
+            "https://trails.warringtoneac.org/api/v1/talking-trails.kml"
+        )
+    }
+
     func testClockwiseBlueTrail() throws {
         let concreteTestLandmarkService = try XCTUnwrap(testLandmarkService, "A suitable test landmark service couldn't be created")
         

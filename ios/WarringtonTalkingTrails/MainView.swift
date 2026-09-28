@@ -178,7 +178,7 @@ struct MainView: View {
         // Use the same single, maintained dataset as Android. It contains every
         // location, landmark, trail, beacon region and relative image path.
         loadFailed = false
-        fetchTrailData(urlString: "\(BASE_URL_STRING)/warrington-trails.json") { loaded in
+        fetchTrailData(urlString: TRAILS_DATA_URL_STRING) { loaded in
             DispatchQueue.main.async {
                 if loaded {
                 self.userData.initialized = true

@@ -16,12 +16,10 @@ copy and submission checklist.
 
 --
 
-[JSON Data File](https://lions-pride-park-configuration.s3.us-east-2.amazonaws.com/lionsPrideData.json)
-(legacy Lions Pride Park data — the AWS account is inaccessible; a
-local copy is preserved in `server/lions-pride-park/` at the repo
-root. The app now loads US202 data from
-`https://trails.warringtoneac.org/us-202/`, set via `base_url_string`
-in `WarringtonTalkingTrails/Info.plist`.)
+[Versioned JSON Data](https://trails.warringtoneac.org/api/v1/trails.json) and
+[KML routes](https://trails.warringtoneac.org/api/v1/talking-trails.kml). The
+app is pinned to API contract v1; `base_url_string` in
+`WarringtonTalkingTrails/Info.plist` supplies the host.
 
 [Google Sheet for updating data](https://docs.google.com/spreadsheets/d/1zaS5Gm6D1ukShIyJ1eN_7_A6c8kUTmqMx9ZZDJn6EvY)
 

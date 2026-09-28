@@ -79,6 +79,6 @@ class TrailsDataParsingTest {
     }
 
     companion object {
-        const val DATA_FILE = "../../server/warrington-trails.json"
+        const val DATA_FILE = "../../server/api/v1/trails.json"
     }
 }

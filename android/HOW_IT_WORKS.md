@@ -49,21 +49,18 @@ The app has **no local database and no backend of its own**. On launch it downlo
 single JSON file:
 
 ```
-https://trails.warringtoneac.org/warrington-trails.json
+https://trails.warringtoneac.org/api/v1/trails.json
 ```
 
 served from GitHub Pages (see README for the hosting/DNS setup and the messy
-account-ownership history). The file contains four top-level sections (mapped in
+account-ownership history). The file contains three top-level arrays (mapped in
 `data/model/TrailsData.kt`):
 
-- **`iBeaconUUID` / `altBeaconUUID`** — per-location UUIDs carried by the beacons'
-  iBeacon and AltBeacon advertisement frames. They differ on Lions Pride hardware,
-  so both are ranged (see `TrailRepository.getBeaconRegions()`).
 - **`locations[]`** (2 today: Lions Pride Park and US202 to Bradford Dam) — each with an
-  `id`, name, address, and its own **beacon major code** (17 for Lions Pride, 20 for
-  US202). This is the one place the data (and `TrailRepository`) distinguish the two
-  locations.
-- **`landmarks[]`** (40 today, across both locations) — each with an `id`, a `location`
+  `id`, name, address, its own **beacon major code** (17 for Lions Pride, 20 for
+  US202), and the iBeacon/AltBeacon UUIDs ranged at that location. This is the one
+  place the data (and `TrailRepository`) distinguish the two locations.
+- **`landmarks[]`** (38 today, across both locations) — each with an `id`, a `location`
   (which of the two locations it belongs to), name, category, coordinates, short + long
   descriptions, and an `imagePath`. Landmark ids are unique across both locations (US202
   uses 1–16 and 4001; Lions Pride uses 1002–3008), so a bare id is still enough to look
@@ -83,10 +80,9 @@ belongs to. That mapping is maintained by hand when programming beacons (see REA
 §Beacon Programming).
 
 Content updates (new landmarks, reworded descriptions, photos, for either location)
-therefore require **no app release** — just push a change to `server/` in the monorepo
-(auto-deployed to GitHub Pages). Note that the iOS app still reads the old
-`us-202/us202trail-v2.json` file directly, so a US202 data edit currently has to be made
-in both files until iOS migrates to `warrington-trails.json`.
+therefore require **no app release** when they still satisfy the v1 schema. Run the
+manual data-release workflow and merge its reviewed snapshot; both mobile apps then
+receive the same `/api/v1/` data.
 
 ## How beacon detection works
 
@@ -212,7 +208,7 @@ Standard modern single-module Android app, ~2,100 lines of Kotlin:
   README is history for Android). `ui/common/TrailMap.kt` is the shared map
   composable, an `AndroidView`-wrapped osmdroid `MapView`: camera auto-fit to the
   combined bounds of both locations, **one polyline per trail (four today, across the
-  two locations)**, markers for all 40 landmarks from both locations with custom icons
+  two locations)**, markers for all 38 landmarks from both locations with custom icons
   (trailhead / POI / current stop), optional "my location" overlay once fine-location
   permission is granted, and camera-follow behaviors used by the tour screen
   (`focusPosition` pans if the current stop is off-screen; `centerZoomPosition` zooms
@@ -235,7 +231,7 @@ Standard modern single-module Android app, ~2,100 lines of Kotlin:
     runs silently when announcements are off). The list screen groups trails under a
     header per location (via `TrailRepository.getTrailsByLocation()`) instead of one
     flat list.
-  - `LandmarksViewModel` — loads all 40 landmarks grouped by location for the Landmarks
+  - `LandmarksViewModel` — loads all 38 landmarks grouped by location for the Landmarks
     tab; no beacon involvement, since it's a browse-only list.
   - `SettingsViewModel` — the Simplified Text preference and the live beacon list.
 

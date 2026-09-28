@@ -124,7 +124,7 @@ struct MainMapView: UIViewRepresentable {
             deinit { kmlTask?.cancel() }
 
             func loadKml(on mapView: MKMapView) {
-                let url = URL(string: "https://trails.warringtoneac.org/talking-trails.kml")!
+                let url = getUrl(TRAILS_KML_URL_STRING)
                 let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 20)
                 kmlTask = URLSession.shared.dataTask(with: request) { [weak self, weak mapView] data, response, error in
                     guard error == nil, let data = data,
