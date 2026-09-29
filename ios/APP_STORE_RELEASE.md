@@ -11,8 +11,8 @@ Warrington Talking Trails.
 - Existing App Store ID: `1532727572`
 - Bundle ID: `org.warringtontownship.lionspride`
 - Apple Developer Team ID: `ZA7MADZY65`
-- Version: `2.0`
-- Build: `20260929.1`; increment for every subsequent upload
+- Version: `2.0.1`
+- Build: `20260929.2`; increment for every subsequent upload
 - Primary category: Travel
 - Platform: iPhone
 - Minimum OS: iOS 17.0

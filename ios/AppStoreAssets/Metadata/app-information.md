@@ -6,7 +6,7 @@
 - Apple Developer Team ID: `ZA7MADZY65`
 - SKU: `warrington-talking-trails-ios`
 - Primary language: English (U.S.)
-- Version: `2.0`
+- Version: `2.0.1`
 - Build: `2`
 - Platform: iPhone
 - Minimum OS: iOS 17.0

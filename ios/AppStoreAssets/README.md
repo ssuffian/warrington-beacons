@@ -1,11 +1,11 @@
 # Warrington Talking Trails — App Store submission package
 
-This folder contains the assets and copy for version 2.0 of the existing Lions
+This folder contains the assets and copy for version 2.0.1 of the existing Lions
 Pride Park App Store listing.
 
 ## Ready now
 
-- App Store build `2.0 (20260929.1)` includes the maintained combined trail
+- App Store build `2.0.1 (20260929.2)` includes the maintained combined trail
   dataset, the complete VoiceOver interaction and automatic-announcement pass,
   and pins JSON and KML loading to API v1. Its signed IPA is the only IPA kept
   in `Build/`. It is ready to upload and has not been uploaded automatically.
@@ -27,8 +27,8 @@ on September 16, 2026:
 
 ## Final actions in App Store Connect
 
-1. Upload `Build/WarringtonTalkingTrails-2.0-20260929.1.ipa`, wait for build
-   `2.0 (20260929.1)` to finish processing, then select it for version `2.0` of
+1. Upload `Build/WarringtonTalkingTrails-2.0.1-20260929.2.ipa`, wait for build
+   `2.0.1 (20260929.2)` to finish processing, then select it for version `2.0.1` of
    Lions Pride Park.
 2. Paste the files in `Metadata/` into the matching fields.
 3. Upload the three screenshots in filename order to the 6.9-inch iPhone slot.

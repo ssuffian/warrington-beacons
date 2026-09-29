@@ -4,8 +4,8 @@
   "currentBuilds": {
     "ios": {
       "appId": "org.warringtontownship.lionspride",
-      "version": "2.0",
-      "build": "20260929.1",
+      "version": "2.0.1",
+      "build": "20260929.2",
       "apiVersion": "v1",
       "status": "readyForUpload",
       "data": "https://trails.warringtoneac.org/api/v1/trails.json",
@@ -26,9 +26,25 @@
       "platform": "ios",
       "appId": "org.warringtontownship.lionspride",
       "version": "2.0",
+      "build": "20260929.1",
+      "apiVersion": "v1",
+      "status": "supersededBeforeUpload"
+    },
+    {
+      "platform": "ios",
+      "appId": "org.warringtontownship.lionspride",
+      "version": "2.0",
       "build": "20260926.1",
       "apiVersion": "v1",
-      "status": "previousBuild"
+      "status": "supersededBeforeUpload"
+    },
+    {
+      "platform": "ios",
+      "appId": "org.warringtontownship.lionspride",
+      "version": "2.0",
+      "build": "20260923.2",
+      "apiVersion": "v1",
+      "status": "production"
     },
     {
       "platform": "android",
