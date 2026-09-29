@@ -30,6 +30,7 @@ jobs:
         run: |
           python3 -m pip install --disable-pip-version-check -r scripts/requirements-api-contract.txt
           python3 scripts/validate_api_contract.py server/api/v1/schema.json server/api/v1/trails.json server/warrington-trails.json
+          python3 scripts/validate_app_builds.py
       - name: Build image library
         run: |
           python3 scripts/build_image_library.py

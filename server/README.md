@@ -32,6 +32,22 @@ major version is added in a new directory instead of editing the old schema.
 not create a placeholder v2 response: the new apps should receive a missing-file
 error until the v2 generator, validation and fixtures are complete.
 
+`/api/app-builds.json` is the release ledger for mobile clients. Its
+`currentBuilds` entries record each platform's store version, build number,
+application ID, pinned API version and exact data URLs. Move the former entry to
+`history` and add the new current entry whenever a mobile build number changes.
+The status is a short operational note such as `readyForUpload`, `testFlight`,
+`playTesting` or `production`; update it as the build advances through the
+stores. The ledger is available publicly at
+`https://trails.warringtoneac.org/api/app-builds.json`.
+
+Run `python3 scripts/validate_app_builds.py` before a release. It reads the
+Android and iOS build settings and API constants directly, verifies that their
+API version is published, and fails if the ledger or endpoint URLs disagree.
+The same check runs in GitHub Actions and before Pages deployment. This ledger
+tracks which API a build was made to use. App Store Connect and Play Console
+remain the sources for install/adoption counts on users' phones.
+
 Content and trail status may change within a major version. Field names, field
 types and relationships may not. Never point a released app at `latest`; pin it
 to `/api/vN/` so a future schema migration cannot silently break installed

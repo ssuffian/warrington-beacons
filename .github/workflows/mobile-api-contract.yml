@@ -1,0 +1,34 @@
+name: Check mobile build API mapping
+
+on:
+  pull_request:
+    paths:
+      - android/app/build.gradle.kts
+      - android/app/src/main/java/org/warringtontownship/parks/android/data/network/TrailsApiService.kt
+      - ios/WarringtonTalkingTrails.xcodeproj/project.pbxproj
+      - ios/WarringtonTalkingTrails/Service/Utils.swift
+      - server/api/app-builds.json
+      - server/api/versions.json
+      - scripts/validate_app_builds.py
+      - .github/workflows/mobile-api-contract.yml
+  push:
+    branches: [main]
+    paths:
+      - android/app/build.gradle.kts
+      - android/app/src/main/java/org/warringtontownship/parks/android/data/network/TrailsApiService.kt
+      - ios/WarringtonTalkingTrails.xcodeproj/project.pbxproj
+      - ios/WarringtonTalkingTrails/Service/Utils.swift
+      - server/api/app-builds.json
+      - server/api/versions.json
+      - scripts/validate_app_builds.py
+      - .github/workflows/mobile-api-contract.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/validate_app_builds.py

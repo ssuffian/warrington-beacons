@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.warringtontownship.parks.android.data.network.TrailsApiContract
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -119,10 +120,9 @@ fun SettingsScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
             val context = LocalContext.current
-            val versionName = context.packageManager
-                .getPackageInfo(context.packageName, 0).versionName
+            val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
             Text(
-                text = "Version $versionName",
+                text = "Version ${packageInfo.versionName} (${packageInfo.longVersionCode}) · Data API ${TrailsApiContract.VERSION}",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,

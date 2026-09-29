@@ -29,6 +29,13 @@ configurations, verify the archive's `CFBundleVersion`, and run the relevant
 build/tests. Uploading is an external release action; only perform it when the
 user requested the TestFlight upload.
 
+Every mobile build must have a matching entry in
+`server/api/app-builds.json`. When an Android version code/name or iOS build or
+marketing version changes, move the old entry to `history`, update
+`currentBuilds`, and run `python3 scripts/validate_app_builds.py`. When an API
+pin changes, update this ledger in the same commit. Both apps must continue to
+show their app version, build number and data API version in Settings.
+
 Keep deployable mobile artifacts in their established locations. Store only the
 current signed iOS IPA in `ios/AppStoreAssets/Build/`, replacing older local IPA
 exports. Keep the current Android AAB only at

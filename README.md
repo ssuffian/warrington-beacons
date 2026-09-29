@@ -44,6 +44,8 @@ S3 bucket.) Contents, organized by app:
 * `api/versions.json` — machine-readable list of published API versions. New app
   releases pin a major version instead of following an unversioned or `latest`
   URL.
+* `api/app-builds.json` — public release ledger showing the exact iOS and
+  Android build numbers and the API major version each build uses.
 * `server/us-202/` — the US202 to Bradford Dam trail. Everything the
   apps need is here:
   * `us202trail-v2.json` — trail geometry, landmarks, and beacon
@@ -101,6 +103,13 @@ The JSON Schema is the machine-readable boundary: spreadsheet and KML content
 changes remain on v1 when the generated response validates, while a new field,
 field type, required property, enum or record relationship requires a new major
 version. Published schemas are immutable.
+
+The build-to-API ledger is published at
+`https://trails.warringtoneac.org/api/app-builds.json`. Each app also shows its
+version, build number and pinned data API in Settings. When either app's build
+number or API constant changes, update `server/api/app-builds.json` in the same
+commit. `scripts/validate_app_builds.py` and the **Check mobile build API
+mapping** workflow reject a mismatch.
 
 The original `/warrington-trails.json` and `/talking-trails.kml` URLs remain for
 already-installed builds. Publishing a new API version must not replace or
