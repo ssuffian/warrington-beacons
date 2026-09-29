@@ -164,6 +164,14 @@ The Android Play Store account is "Warrington Parks" and owned by Andy Oles
 at the township.  He granted Aaron Mulder temporary access which
 has since expired.
 
+## Current Play release artifact
+
+The current signed bundle is always kept at
+`app/build/outputs/bundle/release/app-release.aab`. For API v1 it is version
+code `6`, version name `2026.9.26`. Upload that file to Play Console. Files
+under `app/build/intermediates/` are Gradle working files and should not be kept
+or uploaded.
+
 ## Beacon Programming
 
 You can Google for the RadBeacon E4 user manual, currently:

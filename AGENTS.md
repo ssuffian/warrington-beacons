@@ -29,6 +29,13 @@ configurations, verify the archive's `CFBundleVersion`, and run the relevant
 build/tests. Uploading is an external release action; only perform it when the
 user requested the TestFlight upload.
 
+Keep deployable mobile artifacts in their established locations. Store only the
+current signed iOS IPA in `ios/AppStoreAssets/Build/`, replacing older local IPA
+exports. Keep the current Android AAB only at
+`android/app/build/outputs/bundle/release/app-release.aab`; remove Gradle's
+intermediary AAB after verification. Do not create a second release-artifact
+tree under `outputs/`.
+
 ## Master data and map releases
 
 Treat `server/talking-trails.kml` as the sole source of geographic truth. Point
