@@ -34,7 +34,9 @@ Every mobile build must have a matching entry in
 marketing version changes, move the old entry to `history`, update
 `currentBuilds`, and run `python3 scripts/validate_app_builds.py`. When an API
 pin changes, update this ledger in the same commit. Both apps must continue to
-show their app version, build number and data API version in Settings.
+show their app version, build number and data API version in Settings. Update
+the current build's ledger status as it advances through the stores, using
+`readyForUpload`, `testFlight`, `playTesting` or `production` as appropriate.
 
 Keep deployable mobile artifacts in their established locations. Store only the
 current signed iOS IPA in `ios/AppStoreAssets/Build/`, replacing older local IPA
