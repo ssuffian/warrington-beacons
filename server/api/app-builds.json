@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29",
+  "updatedAt": "2026-09-30",
   "manifestVersion": 1,
   "currentBuilds": {
     "ios": {
@@ -7,7 +7,7 @@
       "version": "2.0.2",
       "build": "20260929.3",
       "apiVersion": "v2",
-      "status": "readyForUpload",
+      "status": "appStoreProcessing",
       "data": "https://trails.warringtoneac.org/api/v2/trails.json",
       "kml": "https://trails.warringtoneac.org/api/v2/talking-trails.kml"
     },
