@@ -15,7 +15,8 @@
 - [x] Project configured for bundle ID `org.warringtontownship.lionspride` and team `ZA7MADZY65`.
 - [x] Version `2.0`, build `20260923.2` is Ready for Distribution.
 - [x] Version `2.0.1`, build `20260929.2` signed and exported.
-- [ ] Upload and select processed build `2.0.1 (20260929.2)` for the version.
+- [x] Upload build `2.0.1 (20260929.2)` to App Store Connect.
+- [ ] Select processed build `2.0.1 (20260929.2)` for the version.
 - [ ] Enter categories: Travel (primary), Navigation (secondary).
 - [ ] Enter price (Free), tax category, and country/region availability.
 - [ ] Complete the age-rating questionnaire using `app-information.md`.

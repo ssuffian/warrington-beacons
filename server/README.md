@@ -36,9 +36,9 @@ error until the v2 generator, validation and fixtures are complete.
 `currentBuilds` entries record each platform's store version, build number,
 application ID, pinned API version and exact data URLs. Move the former entry to
 `history` and add the new current entry whenever a mobile build number changes.
-The status is a short operational note such as `readyForUpload`, `testFlight`,
-`playTesting` or `production`; update it as the build advances through the
-stores. The ledger is available publicly at
+The status is a short operational note such as `readyForUpload`,
+`appStoreProcessing`, `testFlight`, `playTesting` or `production`; update it as
+the build advances through the stores. The ledger is available publicly at
 `https://trails.warringtoneac.org/api/app-builds.json`.
 
 Run `python3 scripts/validate_app_builds.py` before a release. It reads the

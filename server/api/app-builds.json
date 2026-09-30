@@ -7,7 +7,7 @@
       "version": "2.0.1",
       "build": "20260929.2",
       "apiVersion": "v1",
-      "status": "readyForUpload",
+      "status": "appStoreProcessing",
       "data": "https://trails.warringtoneac.org/api/v1/trails.json",
       "kml": "https://trails.warringtoneac.org/api/v1/talking-trails.kml"
     },

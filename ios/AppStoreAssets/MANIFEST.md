@@ -30,8 +30,8 @@ the actual app. Do not upload the older exploratory captures in
 - Existing App Store ID: `1532727572`
 - File: `Build/WarringtonTalkingTrails-2.0.1-20260929.2.ipa`
 - SHA-256: `48daf95478ba3edd172e43f52754684a46780d04c0b6adfb92aa73b529ee0dc3`
-- Status: signed and verified locally; ready to upload as the update following
-  version 2.0, which is Ready for Distribution.
+- Status: signed, verified and uploaded successfully September 29, 2026; App
+  Store Connect reported that the package is processing.
 
 The older `Build/WarringtonTalkingTrails-1.0-4.ipa` was signed by the personal
 developer team for a separate App Store record. It must not be submitted as the
