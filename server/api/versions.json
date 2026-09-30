@@ -1,5 +1,5 @@
 {
-  "currentVersion": 1,
+  "currentVersion": 2,
   "versions": [
     {
       "version": 1,
@@ -8,6 +8,14 @@
       "jsonSchema": "https://trails.warringtoneac.org/api/v1/schema.json",
       "data": "https://trails.warringtoneac.org/api/v1/trails.json",
       "kml": "https://trails.warringtoneac.org/api/v1/talking-trails.kml"
+    },
+    {
+      "version": 2,
+      "status": "current",
+      "schema": "unified-string-trail-id",
+      "jsonSchema": "https://trails.warringtoneac.org/api/v2/schema.json",
+      "data": "https://trails.warringtoneac.org/api/v2/trails.json",
+      "kml": "https://trails.warringtoneac.org/api/v2/talking-trails.kml"
     }
   ]
 }

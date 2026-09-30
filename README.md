@@ -41,6 +41,8 @@ S3 bucket.) Contents, organized by app:
   and beacon codes for both.
 * `api/v1/` — versioned copy of the deployed numeric Trail ID schema. Existing
   unversioned URLs remain available for installed apps.
+* `api/v2/` — current unified string Trail ID schema, including trails that do
+  not have beacon stops.
 * `api/versions.json` — machine-readable list of published API versions. New app
   releases pin a major version instead of following an unversioned or `latest`
   URL.
@@ -92,11 +94,14 @@ Breaking data-shape changes use a new major version in the URL:
 https://trails.warringtoneac.org/api/v1/trails.json
 https://trails.warringtoneac.org/api/v1/talking-trails.kml
 https://trails.warringtoneac.org/api/v1/schema.json
+https://trails.warringtoneac.org/api/v2/trails.json
+https://trails.warringtoneac.org/api/v2/talking-trails.kml
+https://trails.warringtoneac.org/api/v2/schema.json
 ```
 
-Version 1 preserves the deployed numeric Trail ID schema. The unified string
-Trail ID schema will be published under `/api/v2/` after the generator and both
-apps support it. Content may change within a major version, but its field names,
+Version 1 preserves the deployed numeric Trail ID schema. Version 2 uses one
+canonical string Trail ID across the spreadsheet, KML, JSON, and new apps, and
+allows route-only trails without beacon stops. Content may change within a major version, but its field names,
 types and relationships must remain compatible. Mobile releases must pin a
 specific major version; they must not use a moving `latest` endpoint.
 The JSON Schema is the machine-readable boundary: spreadsheet and KML content

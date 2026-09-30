@@ -47,12 +47,12 @@ breaking contract change requires implementing a new `/api/vN/` generator,
 updating both apps, and adding that version to the workflow and
 `server/api/versions.json` before it can be published.
 
-The authoritative v1 contract is `server/api/v1/schema.json`. The workflow
-validates generated data against it. New spreadsheet rows, revised text, images,
-coordinates, beacon values and other data changes stay on v1 when validation
-passes. Any proposed output shape that fails because a property, type, required
-field, enum or relationship changed must be implemented as a new major version;
-do not loosen the existing schema to make a breaking candidate pass.
+The current contract is `server/api/v2/schema.json`. It uses the same string
+Trail ID in the Trails sheet, Stop Content sheet, and KML `trailId` metadata.
+The generator canonicalizes editor capitalization and spaces to lowercase
+kebab-case. Trails with no associated beacons are valid and contain route
+coordinates without embedded landmark stops. The frozen v1 contract remains at
+`server/api/v1/schema.json` for installed v1 clients.
 
 For a local validation run:
 
@@ -60,6 +60,7 @@ For a local validation run:
 python3 scripts/master_sheet.py \
   outputs/master-kml-source-of-truth-2026-09-23/warrington-master-review.xlsx \
   --kml server/talking-trails.kml \
+  --api-version v2 \
   --output-dir outputs/master-kml-validation-2026-09-23
 ```
 
@@ -77,9 +78,22 @@ Required live tab names are Beacons, Locations, Trails and Stop Content.
 
 ## Editing rules
 
-In Google Earth, keep every Point's `recordKey`. A tour stop also needs integer
-`trailId` and consecutive `stopOrder` values beginning at 1. Route placemarks
-used by a selectable tour need the `trailGroupId` named in the Trails tab.
+In Google Earth, keep every Point's `recordKey`. A tour stop also needs the
+string `trailId` used in the spreadsheet and a consecutive `stopOrder` beginning
+at 1. Route placemarks use that same `trailId`. A route may have no Point stops.
+
+Google Earth's web project export currently drops custom `ExtendedData`, even
+though it retains each Placemark's stable `id`. Do not replace the served KML
+with that download directly. Import it through the metadata-preserving command:
+
+```sh
+python3 scripts/import_google_earth_kml.py ~/Downloads/Talking\ Trails.kml
+```
+
+The importer copies names and geometry by Placemark ID, retains app join fields,
+and keeps generated app points that are absent from the Earth project. It stops
+if the export contains a new Placemark ID, since that item must first receive an
+explicit `recordKey` or trail ID instead of being guessed from its name.
 
 In the spreadsheet, set `reviewStatus` to Approved only when a row is ready.
 Active Beacons require complete app content, a valid unique Minor, a known

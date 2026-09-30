@@ -55,6 +55,7 @@ def tables(path):
     aliases = {
         'Beacons': {'Minor': 'id', 'Source Minor': 'sourceId', 'Source Major': 'sourceMajor', 'App Inclusion': 'appStatus'},
         'Locations': {'Major': 'beaconMajorCode', 'iBeacon UUID': 'iBeaconUUID', 'AltBeacon UUID': 'altBeaconUUID'},
+        'Trails': {'Trail ID': 'id'},
         'Stop Content': {'Trail ID': 'trailId', 'KML recordKey': 'recordKey',
                          'Forward Distance': 'forwardDistance', 'Forward Instructions': 'forwardInstructions',
                          'Reverse Distance': 'reverseDistance', 'Reverse Instructions': 'reverseInstructions'},
@@ -89,7 +90,12 @@ def _coords(text):
     return result
 
 
-def read_kml(path):
+def canonical_trail_id(value):
+    """Normalize editor-entered trail IDs to stable lowercase URL-safe IDs."""
+    return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', str(value or '').strip().lower())).strip('-')
+
+
+def read_kml(path, api_version='v1'):
     root = ET.parse(path).getroot(); points, routes, errors = {}, {}, []
     for pm in root.findall('.//k:Placemark', KNS):
         meta = _data(pm); point = pm.find('k:Point', KNS)
@@ -100,7 +106,8 @@ def read_kml(path):
             elif len(coordinates) != 1: errors.append((key, 'Point must have exactly one coordinate'))
             else: points[key] = {'coordinate': coordinates[0], 'trailId': meta.get('trailId', '').strip(), 'stopOrder': meta.get('stopOrder', '').strip()}
             continue
-        group = meta.get('trailGroupId', '').strip()
+        group = (meta.get('trailId', '') if api_version == 'v2' else meta.get('trailGroupId', '')).strip()
+        if api_version == 'v2': group = canonical_trail_id(group)
         if not group: continue
         parts = [_coords(n.text) for n in pm.findall('.//k:LineString/k:coordinates', KNS)]
         parts += [_coords(n.text) for n in pm.findall('.//k:Polygon/k:outerBoundaryIs/k:LinearRing/k:coordinates', KNS)]
@@ -178,7 +185,7 @@ def route_with_stops(parts, stops):
     return result
 
 
-def validate(t, kml_path):
+def validate(t, kml_path, api_version='v1'):
     errors = []
     def fail(where, issue): errors.append({'record': str(where), 'issue': issue})
     def integer(v, where):
@@ -190,7 +197,9 @@ def validate(t, kml_path):
     for name in ('Beacons', 'Locations', 'Trails', 'Stop Content'):
         if name not in t: fail(name, 'Required tab missing')
     if errors: return {}, errors
-    points, routes, kml_errors = read_kml(kml_path)
+    points, routes, kml_errors = read_kml(kml_path, api_version)
+    if api_version == 'v2':
+        for point in points.values(): point['trailId'] = canonical_trail_id(point['trailId'])
     for where, issue in kml_errors: fail(where, issue)
     locations = []
     for r in t['Locations']:
@@ -232,16 +241,23 @@ def validate(t, kml_path):
     if len(ids) != len(set(ids)): fail('Beacons', 'Duplicate active IDs')
     content = {}
     for r in t['Stop Content']:
-        key = (str(r.get('trailId', '')), r.get('recordKey', ''))
+        trail_key = str(r.get('trailId', ''))
+        if api_version == 'v2': trail_key = canonical_trail_id(trail_key)
+        key = (trail_key, r.get('recordKey', ''))
         if key in content: fail(key, 'Duplicate Stop Content row')
         content[key] = {'distanceToNextClockwise': r.get('forwardDistance', ''), 'distanceToNextClockwiseDescription': r.get('forwardInstructions', ''),
                         'distanceToNextCounterClockwise': r.get('reverseDistance', ''), 'distanceToNextCounterClockwiseDescription': r.get('reverseInstructions', '')}
     trails, used_content = [], set()
     for r in t['Trails']:
-        trail_id, where = str(r.get('id', '')), 'Trail '+str(r.get('id', '')); group = r.get('kmlTrailGroupId', '')
+        trail_id = str(r.get('id', ''))
+        if api_version == 'v2': trail_id = canonical_trail_id(trail_id)
+        where = 'Trail '+trail_id
+        group = trail_id if api_version == 'v2' else r.get('kmlTrailGroupId', '')
         if r.get('reviewStatus') != 'Approved': fail(where, 'Trail needs approval')
         if group not in routes: fail(where, 'No KML route for '+group)
-        tr = {'id': integer(trail_id, where), 'location': r.get('location', ''), 'name': r.get('name', ''), 'isOpen': boolean(r.get('isOpen'), where), 'trailDistanceDescription': r.get('trailDistanceDescription', '')}
+        output_id = trail_id if api_version == 'v2' else integer(trail_id, where)
+        if not trail_id: fail(where, 'Missing trail ID')
+        tr = {'id': output_id, 'location': r.get('location', ''), 'name': r.get('name', ''), 'isOpen': boolean(r.get('isOpen'), where), 'trailDistanceDescription': r.get('trailDistanceDescription', '')}
         if tr['location'] not in location_ids: fail(where, 'Unknown location')
         stop_points = []
         for key, point in points.items():
@@ -254,8 +270,11 @@ def validate(t, kml_path):
             stop_points.append({'order': order, 'coordinate': point['coordinate'], 'landmarkId': active_by_key[key]['id'], 'content': stop_content})
         stop_points.sort(key=lambda x: x['order'])
         if [x['order'] for x in stop_points] != list(range(1, len(stop_points)+1)): fail(where, 'KML stopOrder must be consecutive from 1')
-        if len(stop_points) < 2: fail(where, 'Trail needs at least two KML stops')
-        if group in routes: tr['boundaryCoordinates'] = route_with_stops(routes[group], stop_points)
+        if len(stop_points) == 1: fail(where, 'Trail needs either zero or at least two KML stops')
+        if group in routes:
+            tr['boundaryCoordinates'] = route_with_stops(routes[group], stop_points) if stop_points else [
+                {'latitude': latitude, 'longitude': longitude} for latitude, longitude in _merge(routes[group])
+            ]
         trails.append(tr)
     for pair in content.keys() - used_content: fail(pair, 'Stop Content row has no matching KML membership')
     if len({r['id'] for r in trails}) != len(trails): fail('Trails', 'Duplicate trail IDs')
@@ -264,11 +283,12 @@ def validate(t, kml_path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('workbook', type=Path)
+    parser.add_argument('--api-version', choices=('v1', 'v2'), default='v1')
     parser.add_argument('--kml', type=Path, default=ROOT/'server/talking-trails.kml'); parser.add_argument('--output-dir', type=Path, required=True); args = parser.parse_args()
     out = args.output_dir.resolve()
     if out == ROOT or out.is_relative_to(ROOT/'server'): parser.error('Use a separate review output directory, never server/')
     out.mkdir(parents=True, exist_ok=True); baseline = json.loads((ROOT/'server/warrington-trails.json').read_text())
-    try: candidate, errors = validate(tables(args.workbook), args.kml)
+    try: candidate, errors = validate(tables(args.workbook), args.kml, args.api_version)
     except (ValueError, KeyError, zipfile.BadZipFile, ET.ParseError) as exc: candidate, errors = {}, [{'record': 'Input', 'issue': str(exc)}]
     with (out/'validation.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['record', 'issue']); w.writeheader(); w.writerows(errors)

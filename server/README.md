@@ -10,8 +10,8 @@ when the JSON or KML contract has a breaking change.
 
 | Version | Status | JSON | KML | Trail identifier |
 | --- | --- | --- | --- | --- |
-| v1 | Legacy/current production | `/api/v1/trails.json` | `/api/v1/talking-trails.kml` | Numeric trail ID plus KML `trailGroupId` |
-| v2 | Planned | `/api/v2/trails.json` | `/api/v2/talking-trails.kml` | Unified string Trail ID |
+| v1 | Legacy production | `/api/v1/trails.json` | `/api/v1/talking-trails.kml` | Numeric trail ID plus KML `trailGroupId` |
+| v2 | Current | `/api/v2/trails.json` | `/api/v2/talking-trails.kml` | Unified string Trail ID; route-only trails allowed |
 
 Each published version has a machine-readable JSON Schema at
 `/api/vN/schema.json`. For v1, see `/api/v1/schema.json`. The release workflow
@@ -28,9 +28,7 @@ makes accidental fields fail validation instead of silently expanding v1.
 GitHub also treats every schema already present on `main` as immutable: a new
 major version is added in a new directory instead of editing the old schema.
 
-`/api/versions.json` lists only versions that have actually been published. Do
-not create a placeholder v2 response: the new apps should receive a missing-file
-error until the v2 generator, validation and fixtures are complete.
+`/api/versions.json` lists only versions that have actually been published.
 
 `/api/app-builds.json` is the release ledger for mobile clients. Its
 `currentBuilds` entries record each platform's store version, build number,
@@ -53,10 +51,10 @@ types and relationships may not. Never point a released app at `latest`; pin it
 to `/api/vN/` so a future schema migration cannot silently break installed
 builds.
 
-The legacy `/warrington-trails.json` and `/talking-trails.kml` endpoints remain
-available for existing app builds. During the v1 period, an approved data-release
-pull request updates both the legacy URLs and `/api/v1/`. Spreadsheet edits alone
-update neither. A failed validation cannot create a release pull request.
+The legacy `/warrington-trails.json` and complete `/api/v1/` snapshot remain
+available for existing app builds. The unversioned `/talking-trails.kml` is the
+editable source for current releases. Spreadsheet edits alone update no JSON
+endpoint. A failed validation cannot create a release pull request.
 
 ## Image library
 
@@ -87,9 +85,8 @@ hosting setup when ready.
 
 ## Google Earth route geometry
 
-`talking-trails.kml` is the served route source from the September 10, 2026
-Talking Trails Google Earth export, with the northern Pollinator Garden renamed
-Pollinator Habitat after coordinate reconciliation. After deployment it is
+`talking-trails.kml` is the current served route source imported from the
+September 29, 2026 Talking Trails Google Earth project. After deployment it is
 available at `https://trails.warringtoneac.org/talking-trails.kml`.
 
 Both apps' overview maps fetch this file and draw its LineStrings and Polygon
@@ -99,10 +96,9 @@ placemarks. Multiple geometries with the same route group remain separate in
 KML; the generator combines them for the selected tour's JSON route.
 
 Route placemarks are grouped into Lions Pride Park, US-202 and Trails Needing
-Location Review folders. Each route has `location` and `trailGroupId`
-ExtendedData. Repeated Mill Creek and Kids Mt. geometries share their respective
-group ID but remain separate shapes. Native apps currently ignore this metadata;
-the admin location filter uses it.
+Location Review folders. Each route has `location`, legacy `trailGroupId`, and
+the v2 unified `trailId` ExtendedData. Repeated Kids Mt. geometries share one
+trail ID; the three named Mill Creek routes have distinct trail IDs.
 
 Point placemarks store the master workbook's stable `recordKey` in
 ExtendedData. Use Google Earth/KML to edit point locations, route geometry,

@@ -5,7 +5,7 @@ from master_sheet import ROOT, normalize_image_path, read_kml, tables, validate
 
 
 WORKBOOK = ROOT/'outputs/master-kml-source-of-truth-2026-09-23/warrington-master-review.xlsx'
-KML = ROOT/'server/talking-trails.kml'
+KML = ROOT/'server/api/v1/talking-trails.kml'
 
 
 class MasterValidationTest(unittest.TestCase):

@@ -20,7 +20,12 @@ class GroupedKmlTest(unittest.TestCase):
             self.assertTrue(data.get('trailGroupId'))
             routes.append((pm.findtext('k:name', namespaces=NS), data))
         self.assertEqual(len(routes), 15)
-        self.assertEqual({d['trailGroupId'] for n,d in routes if n == 'Mill Creek Preserve Trail'}, {'mill-creek-preserve-trail'})
+        mill_creek = {n for n, d in routes if d['trailGroupId'] == 'mill-creek-preserve-trail'}
+        self.assertEqual(mill_creek, {
+            'Mill Creek Preserve at Lower State Trail',
+            'Mill Creek Preserve Main Trail',
+            'Mill Creek Preserve Trail to West Reforestation Field ',
+        })
         self.assertEqual({d['trailGroupId'] for n,d in routes if n == 'Kids Mt. Trail'}, {'kids-mountain-trail'})
         points = root.findall('.//k:Point/..', NS)
         self.assertEqual(len(points), 57)
