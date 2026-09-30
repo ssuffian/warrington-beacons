@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 let BASE_URL_STRING = getBaseUrlString()
-let API_MAJOR_VERSION = "v1"
+let API_MAJOR_VERSION = "v2"
 let TRAILS_DATA_URL_STRING = getApiUrlString(resource: "trails.json")
 let TRAILS_KML_URL_STRING = getApiUrlString(resource: "talking-trails.kml")
 

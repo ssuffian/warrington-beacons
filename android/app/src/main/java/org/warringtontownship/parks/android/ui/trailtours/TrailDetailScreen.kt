@@ -41,9 +41,9 @@ import org.warringtontownship.parks.android.ui.common.TrailMapMarker
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrailDetailScreen(
-    trailId: Int,
+    trailId: String,
     onBack: () -> Unit,
-    onStartTour: (Int, Boolean, Int) -> Unit,
+    onStartTour: (String, Boolean, Int) -> Unit,
     viewModel: TrailToursViewModel = hiltViewModel(),
 ) {
     val trail = viewModel.getTrailById(trailId)

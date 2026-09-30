@@ -49,7 +49,7 @@ The app has **no local database and no backend of its own**. On launch it downlo
 single JSON file:
 
 ```
-https://trails.warringtoneac.org/api/v1/trails.json
+https://trails.warringtoneac.org/api/v2/trails.json
 ```
 
 served from GitHub Pages (see README for the hosting/DNS setup and the messy
@@ -82,7 +82,7 @@ belongs to. That mapping is maintained by hand when programming beacons (see REA
 Content updates (new landmarks, reworded descriptions, photos, for either location)
 therefore require **no app release** when they still satisfy the v1 schema. Run the
 manual data-release workflow and merge its reviewed snapshot; both mobile apps then
-receive the same `/api/v1/` data.
+receive the same `/api/v2/` data.
 
 ## How beacon detection works
 

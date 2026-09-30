@@ -35,8 +35,8 @@
     "beaconMajorCode": 17
   },
   "landmarks": [
-      {
-     "name": "Blue Trail",
+    {
+      "name": "Blue Trail",
       "category": "Trail",
       "id": 1001,
       "coordinates": {
@@ -356,47 +356,48 @@
   ],
   "trails": [
     {
-       "name": "Blue Trail",
-       "id": 1001,
-       "isOpen": true,
-       "trailDistanceDescription": "The blue trail is a 0.4 mile loop around the grove of Lions Pride Park with 2 points of interest including the Lions Club Plaza and Womping Willow",
-       "boundaryCoordinates": [{
-               "latitude": 40.2460564,
-               "longitude": -75.1774876,
-               "landmarkId": 1001
-           },
-           {
-               "longitude": -75.1783427,
-               "latitude": 40.2458652,
-               "landmarkId": 1009
-           },
-           {
-               "longitude": -75.1781982,
-               "latitude": 40.2461667,
-               "landmarkId": 1012
-           },
-           {
-               "latitude": 40.2462,
-               "longitude": -75.1781
-           },
-           {
-               "latitude": 40.2467,
-               "longitude": -75.1784
-           },
-           {
-               "latitude": 40.2462,
-               "longitude": -75.1787
-           },
-           {
-               "longitude": -75.1788337,
-               "latitude": 40.246209,
-               "landmarkId": 1016
-           }
-       ]
+      "name": "Blue Trail",
+      "id": "1001",
+      "isOpen": true,
+      "trailDistanceDescription": "The blue trail is a 0.4 mile loop around the grove of Lions Pride Park with 2 points of interest including the Lions Club Plaza and Womping Willow",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.2460564,
+          "longitude": -75.1774876,
+          "landmarkId": 1001
+        },
+        {
+          "longitude": -75.1783427,
+          "latitude": 40.2458652,
+          "landmarkId": 1009
+        },
+        {
+          "longitude": -75.1781982,
+          "latitude": 40.2461667,
+          "landmarkId": 1012
+        },
+        {
+          "latitude": 40.2462,
+          "longitude": -75.1781
+        },
+        {
+          "latitude": 40.2467,
+          "longitude": -75.1784
+        },
+        {
+          "latitude": 40.2462,
+          "longitude": -75.1787
+        },
+        {
+          "longitude": -75.1788337,
+          "latitude": 40.246209,
+          "landmarkId": 1016
+        }
+      ]
     },
     {
       "name": "Yellow Trail",
-      "id": 1002,
+      "id": "1002",
       "isOpen": false,
       "trailDistanceDescription": "This is a paved 0.4 mile trail around Kids Mountain and the Grove.  Just to the right of the main entrance is a link to the IPW Park around the soccer fields. About half-way around, is a connector to the Green Trail.",
       "boundaryCoordinates": [
@@ -635,7 +636,7 @@
     },
     {
       "name": "Green Trail",
-      "id": 3001,
+      "id": "3001",
       "isOpen": true,
       "trailDistanceDescription": "This is a crushed stone U-shaped trail about .25 miles around the back of the park leading to the Rain Garden nature area. The link from the Yellow trail allows you to walk left toward the Rain Garden, or right around the lacrosse field to the rain garden and some informative nature signs. the two ends do not currently connect to one another. This will change when the pond to wetland project is completed.",
       "boundaryCoordinates": [
@@ -749,7 +750,7 @@
     },
     {
       "name": "Kids Mountain Trail",
-      "id": 3002,
+      "id": "3002",
       "isOpen": true,
       "trailDistanceDescription": "This is a 400 foot trail leading to the top of Kids Mountain. The slope is ADA compliant and friendly for those with mobility issues.",
       "boundaryCoordinates": [

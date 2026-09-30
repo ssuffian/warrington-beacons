@@ -94,7 +94,7 @@ class NotificationService : NSObject, UNUserNotificationCenterDelegate{
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = TRAIL_TOUR_POINT_OF_INTEREST_IDENTIFIER
         
-        guard let trail = landmarkService.getTrailById(id: trailLandmark.id) else { return }
+        guard let trail = landmarkService.getTrailForLandmark(id: trailLandmark.id) else { return }
         if MapService.isSelectedLandmarkOnTrail(trail: trail, landmark: currentLandmark) {
             guard let distanceTuple = MapService.distanceToNextLandmark(
                 trail: trail,

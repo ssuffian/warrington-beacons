@@ -34,7 +34,7 @@ class TrailsDataParsingTest {
     @Test
     fun `parses every landmark and trail from both locations`() {
         assertEquals(38, data.landmarks.size)
-        assertEquals(4, data.trails.size)
+        assertEquals(11, data.trails.size)
         assertEquals(21, data.landmarks.count { it.location == "lions-pride-park" })
         assertEquals(17, data.landmarks.count { it.location == "us-202" })
     }
@@ -79,6 +79,6 @@ class TrailsDataParsingTest {
     }
 
     companion object {
-        const val DATA_FILE = "../../server/api/v1/trails.json"
+        const val DATA_FILE = "../../server/api/v2/trails.json"
     }
 }

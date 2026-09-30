@@ -17,9 +17,9 @@ class LandmarkService {
     private var landmarksById: [Int: Landmark]
     private var landmarksByName: [String: Landmark]
     private var landmarksByCategory: [Landmark.Category: [Landmark]]
-    private var trailsById: [Int: Trail]
+    private var trailsById: [String: Trail]
     private var trails = [Trail]()
-    private var spans: [Int: MKCoordinateSpan]
+    private var spans: [String: MKCoordinateSpan]
 
     // Both parks' files are fetched concurrently and each calls processData;
     // keep the merge single-threaded.
@@ -129,15 +129,21 @@ class LandmarkService {
         return landmarksById[id]
     }
 
-    func getTrailById(id: Int) -> Trail? {
+    func getTrailById(id: String) -> Trail? {
         return trailsById[id]
+    }
+
+    func getTrailForLandmark(id: Int) -> Trail? {
+        return trails.first { trail in
+            trail.boundaryCoordinates.contains { $0.landmarkId == id }
+        }
     }
     
     func getCenterCoordinates(id: Int) -> CLLocationCoordinate2D? {
         let landmark = getLandmarkById(id: id)
         if landmark != nil {
             if landmark!.category == .Trail {
-                return getTrailCenterCoordinates(id: id)
+                return getTrailForLandmark(id: id).flatMap { getTrailCenterCoordinates(id: $0.id) }
             }
             else {
                 return landmark?.locationCoordinate
@@ -146,7 +152,7 @@ class LandmarkService {
         return nil
     }
     
-    func getTrailCenterCoordinates(id: Int) -> CLLocationCoordinate2D? {
+    func getTrailCenterCoordinates(id: String) -> CLLocationCoordinate2D? {
 
         if let trail = getTrailById(id: id) {
             return CLLocationCoordinate2D(latitude: trail.midCoordinates!.latitude, longitude: trail.midCoordinates!.longitude)
@@ -167,7 +173,7 @@ class LandmarkService {
         }
     }
 
-    func getLandmarksByTrailId(id: Int) -> [Landmark] {
+    func getLandmarksByTrailId(id: String) -> [Landmark] {
         let trail = self.getTrailById(id: id)
         var landmarks = [Landmark]()
         trail?.boundaryCoordinates.forEach { coordinate in
@@ -180,7 +186,7 @@ class LandmarkService {
         return landmarks
     }
     
-    func getSpanForTrail(trailId: Int) -> MKCoordinateSpan? {
+    func getSpanForTrail(trailId: String) -> MKCoordinateSpan? {
         return spans[trailId]
     }
         

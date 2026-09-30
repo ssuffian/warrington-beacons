@@ -19,9 +19,9 @@ object NavRoutes {
     // Trail Tours
     const val TRAIL_TOURS = "trail_tours"
     const val TRAIL_DETAIL = "trail_detail/{trailId}"
-    fun trailDetail(trailId: Int) = "trail_detail/$trailId"
+    fun trailDetail(trailId: String) = "trail_detail/$trailId"
     const val TRAIL_TOUR = "trail_tour/{trailId}/{reverse}/{startLandmarkId}"
-    fun trailTour(trailId: Int, reverse: Boolean, startLandmarkId: Int) = "trail_tour/$trailId/$reverse/$startLandmarkId"
+    fun trailTour(trailId: String, reverse: Boolean, startLandmarkId: Int) = "trail_tour/$trailId/$reverse/$startLandmarkId"
 
     // About
     const val ABOUT = "about"

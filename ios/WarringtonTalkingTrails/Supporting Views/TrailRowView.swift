@@ -8,58 +8,58 @@ A single row to be displayed in a list of landmarks.
 import SwiftUI
 
 struct TrailRowView: View {
-    var landmark: Landmark
-    var trail: Trail?
+    var trail: Trail
+    var landmark: Landmark?
 
-    init(landmark: Landmark) {
-        self.landmark = landmark
-        self.trail = landmarkService.getTrailById(id: landmark.id)
+    init(trail: Trail) {
+        self.trail = trail
+        let landmarks = landmarkService.getLandmarksByTrailId(id: trail.id)
+        self.landmark = landmarks.first { $0.category == .Trail } ?? landmarks.first
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .top) {
-                AsyncImage(url: landmark.imageUrl) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    ProgressView()
+                if let landmark {
+                    AsyncImage(url: landmark.imageUrl) { image in
+                        image.resizable().scaledToFit()
+                    } placeholder: { ProgressView() }
+                    .frame(width: 75, height: 75)
+                    .accessibilityHidden(true)
+                } else {
+                    Image(systemName: "figure.hiking")
+                        .font(.system(size: 34))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 75, height: 75)
+                        .accessibilityHidden(true)
                 }
-                .frame(width: 75, height: 75)
-                .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(landmark.name).modifier(LabelStyle())
-                    if let trail {
-                        Text("\(MapService.getLandmarksOnTrail(trail: trail).count) points of interest")
-                            .modifier(SmallGrayStyle())
-                    }
+                    Text(trail.name).modifier(LabelStyle())
+                    Text("\(MapService.getLandmarksOnTrail(trail: trail).count) points of interest")
+                        .modifier(SmallGrayStyle())
                 }
                 Spacer()
             }
 
-            if let trail {
-                Text(trail.trailDistanceDescription)
-                    .modifier(SmallGrayStyle())
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+            Text(trail.trailDistanceDescription)
+                .modifier(SmallGrayStyle())
+                .fixedSize(horizontal: false, vertical: true)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityLabel)
     }
 
     private var accessibilityLabel: String {
-        guard let trail else { return landmark.name }
         let count = MapService.getLandmarksOnTrail(trail: trail).count
-        return "\(landmark.name), \(trail.trailDistanceDescription), \(count) points of interest"
+        return "\(trail.name), \(trail.trailDistanceDescription), \(count) points of interest"
     }
 }
 
 struct TrailRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TrailRowView(landmark: landmarkService.getLandmarks()[0])
+            TrailRowView(trail: landmarkService.getTrails()[0])
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }

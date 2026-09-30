@@ -24,8 +24,8 @@ builds add a fifth **Beacons** tab listing every beacon in range with distances
 The app pins the version 1 JSON and KML contracts on the project's hosted site:
 
 ```
-https://trails.warringtoneac.org/api/v1/trails.json
-https://trails.warringtoneac.org/api/v1/talking-trails.kml
+https://trails.warringtoneac.org/api/v2/trails.json
+https://trails.warringtoneac.org/api/v2/talking-trails.kml
 ```
 
 The base URL lives in `Info.plist` under `base_url_string` (read by

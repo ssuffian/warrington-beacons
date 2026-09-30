@@ -62,7 +62,7 @@ class TrailRepository @Inject constructor(
 
     fun getTrails(): List<Trail> = data?.trails ?: emptyList()
 
-    fun getTrailById(id: Int): Trail? = data?.trails?.find { it.id == id }
+    fun getTrailById(id: String): Trail? = data?.trails?.find { it.id == id }
 
     fun getLocations(): List<Location> = data?.locations ?: emptyList()
 
@@ -82,7 +82,7 @@ class TrailRepository @Inject constructor(
         getLandmarks().map { it.coordinates } +
             getMapRoutes().flatten()
 
-    fun getBoundsForTrail(trailId: Int): List<Coordinates> =
+    fun getBoundsForTrail(trailId: String): List<Coordinates> =
         getTrailById(trailId)?.boundaryCoordinates
             ?.map { Coordinates(it.latitude, it.longitude) }
             ?: emptyList()

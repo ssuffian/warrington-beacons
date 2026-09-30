@@ -25,15 +25,15 @@ class MapServiceTest: XCTestCase {
         testLandmarkService = nil
     }
 
-    func testApiVersionOneEndpoints() {
-        XCTAssertEqual(API_MAJOR_VERSION, "v1")
+    func testApiVersionTwoEndpoints() {
+        XCTAssertEqual(API_MAJOR_VERSION, "v2")
         XCTAssertEqual(
             getApiUrlString(baseUrlString: "https://trails.warringtoneac.org/", resource: "trails.json"),
-            "https://trails.warringtoneac.org/api/v1/trails.json"
+            "https://trails.warringtoneac.org/api/v2/trails.json"
         )
         XCTAssertEqual(
             getApiUrlString(baseUrlString: "https://trails.warringtoneac.org", resource: "talking-trails.kml"),
-            "https://trails.warringtoneac.org/api/v1/talking-trails.kml"
+            "https://trails.warringtoneac.org/api/v2/talking-trails.kml"
         )
     }
 
@@ -41,7 +41,7 @@ class MapServiceTest: XCTestCase {
         let concreteTestLandmarkService = try XCTUnwrap(testLandmarkService, "A suitable test landmark service couldn't be created")
         
         let blueTrailLM = concreteTestLandmarkService.getLandmarkById(id: 1001)
-        let blueTrail = concreteTestLandmarkService.getTrailById(id: 1001)
+        let blueTrail = concreteTestLandmarkService.getTrailById(id: "1001")
         let coordinates = MapService.pointsToNextLandmark(trail: blueTrail!, currentLandmark: blueTrailLM!, direction: Direction.Clockwise)
         print(coordinates)
         print(coordinates.count)
@@ -90,7 +90,7 @@ class MapServiceTest: XCTestCase {
         let concreteTestLandmarkService = try XCTUnwrap(testLandmarkService, "A suitable test landmark service couldn't be created")
         
         let blueTrailLM = concreteTestLandmarkService.getLandmarkById(id: 1001)
-        let blueTrail = concreteTestLandmarkService.getTrailById(id: 1001)
+        let blueTrail = concreteTestLandmarkService.getTrailById(id: "1001")
         let coordinates = MapService.pointsToNextLandmark(trail: blueTrail!, currentLandmark: blueTrailLM!, direction: Direction.CounterClockwise)
         print(coordinates)
         print(coordinates.count)

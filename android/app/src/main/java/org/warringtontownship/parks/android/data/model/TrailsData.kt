@@ -38,7 +38,7 @@ data class Landmark(
 )
 
 data class Trail(
-    val id: Int,
+    val id: String,
     val location: String,
     val name: String,
     val isOpen: Boolean,

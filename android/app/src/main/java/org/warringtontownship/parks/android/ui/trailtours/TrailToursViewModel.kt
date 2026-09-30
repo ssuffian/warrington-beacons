@@ -102,9 +102,9 @@ class TrailToursViewModel @Inject constructor(
     }
 
     fun getClosestBeaconMinorCode(): Int? = beaconScanner.closestBeaconMinorCode.value
-    fun getTrailById(id: Int): Trail? = trailRepository.getTrailById(id)
+    fun getTrailById(id: String): Trail? = trailRepository.getTrailById(id)
     fun getLandmarkById(id: Int): Landmark? = trailRepository.getLandmarkById(id)
-    fun getBoundsForTrail(trailId: Int): List<Coordinates> = trailRepository.getBoundsForTrail(trailId)
+    fun getBoundsForTrail(trailId: String): List<Coordinates> = trailRepository.getBoundsForTrail(trailId)
     fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
 
     /**

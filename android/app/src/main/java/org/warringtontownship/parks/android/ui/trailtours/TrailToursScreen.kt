@@ -31,7 +31,7 @@ private fun landmarkCount(trail: Trail): Int =
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrailToursScreen(
-    onTrailClick: (Int) -> Unit,
+    onTrailClick: (String) -> Unit,
     viewModel: TrailToursViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

@@ -29,32 +29,31 @@ struct TrailListView: View {
                         .frame(height: 4)
                         .padding(.horizontal, 20)
                     List {
-                        ForEach(landmarkService.getLandmarks().filter{$0.category.rawValue == "Trail"}) { landmark in
+                        ForEach(landmarkService.getTrails()) { trail in
 
                             Button(action: {
-                                guard let trail = landmarkService.getTrailById(id: landmark.id) else {
-                                    return
-                                }
-                                self.userData.trailLandmark = landmark
+                                let landmarks = landmarkService.getLandmarksByTrailId(id: trail.id)
+                                let trailhead = landmarks.first { $0.category == .Trail } ?? landmarks.first
+                                self.userData.trailLandmark = trailhead
                                 if let nearbyLandmark = self.userData.nearbyLandmark {
                                     let trails = landmarkService.getTrailsByLandmarkId(id: nearbyLandmark.id)
                                     if trails.first?.id == trail.id {
                                         self.userData.trailTourCurrentLandmark = nearbyLandmark
                                     } else {
-                                        self.userData.trailTourCurrentLandmark = landmark
+                                        self.userData.trailTourCurrentLandmark = trailhead
                                     }
                                     self.userData.checkForTrailTourEnd()
                                 } else {
-                                    self.userData.trailTourCurrentLandmark = landmark
+                                    self.userData.trailTourCurrentLandmark = trailhead
                                 }
                                 self.userData.trailTourTrail = trail
                                 self.trailDetailsView = true
                             }) {
-                                TrailRowView(landmark: landmark)
+                                TrailRowView(trail: trail)
                             }
                             .buttonStyle(.plain)
                             .accessibilityElement(children: .ignore)
-                            .accessibilityLabel(trailAccessibilityLabel(for: landmark))
+                            .accessibilityLabel(trailAccessibilityLabel(for: trail))
                             .accessibilityHint("Opens trail details")
                         }
                     }.navigationBarTitle(Text("Trail Tours"), displayMode: .inline)
@@ -71,12 +70,9 @@ struct TrailListView: View {
         }
     }
 
-    private func trailAccessibilityLabel(for landmark: Landmark) -> String {
-        guard let trail = landmarkService.getTrailById(id: landmark.id) else {
-            return landmark.name
-        }
+    private func trailAccessibilityLabel(for trail: Trail) -> String {
         let count = MapService.getLandmarksOnTrail(trail: trail).count
-        return "\(landmark.name), \(trail.trailDistanceDescription), \(count) points of interest"
+        return "\(trail.name), \(trail.trailDistanceDescription), \(count) points of interest"
     }
 }
 

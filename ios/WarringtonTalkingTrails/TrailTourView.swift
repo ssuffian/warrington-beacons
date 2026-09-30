@@ -77,7 +77,9 @@ struct TrailTourView: View {
         var landmarks = [Landmark]()
         landmarks.append(landmark)
         if landmark.category == Landmark.Category.Trail {
-            landmarks.append(contentsOf: landmarkService.getLandmarksByTrailId(id: landmark.id))
+            if let trail = userData.trailTourTrail {
+                landmarks.append(contentsOf: landmarkService.getLandmarksByTrailId(id: trail.id))
+            }
         }
         return landmarks
     }

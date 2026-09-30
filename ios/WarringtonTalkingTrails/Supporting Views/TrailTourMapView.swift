@@ -25,16 +25,16 @@ struct TrailTourMapView: UIViewRepresentable {
     }
     
     func updateMapArea(map:MKMapView) {
-        if userData.trailLandmark != nil {
-            let selectedLandmark = userData.trailLandmark!
-            var span = landmarkService.getSpanForTrail(trailId: selectedLandmark.id)
+        if let selectedTrail = userData.trailTourTrail {
+            var span = landmarkService.getSpanForTrail(trailId: selectedTrail.id)
             if span == nil {
-                print("NO SPAN FOR \(selectedLandmark.name)")
+                print("NO SPAN FOR \(selectedTrail.name)")
                 span = MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04)
             }
-            let region = MKCoordinateRegion(center: selectedLandmark.locationCoordinate, span: span!)
+            let centerCoordinates = landmarkService.getTrailCenterCoordinates(id: selectedTrail.id)
+            let center = centerCoordinates ?? CLLocationCoordinate2D(latitude: 40.25, longitude: -75.18)
+            let region = MKCoordinateRegion(center: center, span: span!)
             map.setRegion(region, animated: true)
-            let centerCoordinates = landmarkService.getCenterCoordinates(id: selectedLandmark.id)
             if centerCoordinates != nil {
                 map.setCenter(centerCoordinates!, animated: false)
             }
@@ -62,10 +62,7 @@ struct TrailTourMapView: UIViewRepresentable {
             init(_ control: TrailTourMapView) {
                 self.control = control
                 self.landmarks = control.landmarks
-                let trailLandmark = self.landmarks.first { landmark in
-                    landmark.category == Landmark.Category.Trail
-                }
-                self.trail = trailLandmark.flatMap { landmarkService.getTrailById(id: $0.id) }
+                self.trail = control.userData.trailTourTrail
             }
             
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -180,7 +177,7 @@ struct TrailTourMapView: UIViewRepresentable {
         
         if trailLandmark.count > 0 {
             // what to do if no landmarks are a trail?
-            let trail = landmarkService.getTrailById(id: trailLandmark[0].id)
+            let trail = self.userData.trailTourTrail
             if trail != nil {
                 let points = trail!.boundaryCoordinates.map{CLLocationCoordinate2D(
                                     latitude: $0.latitude,

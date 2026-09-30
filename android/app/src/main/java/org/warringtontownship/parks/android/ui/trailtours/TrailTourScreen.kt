@@ -40,7 +40,7 @@ import org.warringtontownship.parks.android.ui.common.TrailMapMarker
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrailTourScreen(
-    trailId: Int,
+    trailId: String,
     reverse: Boolean,
     startLandmarkId: Int,
     onBack: () -> Unit,

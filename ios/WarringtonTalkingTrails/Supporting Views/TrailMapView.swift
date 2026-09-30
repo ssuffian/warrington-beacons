@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 
 struct TrailMapView: UIViewRepresentable {
-    var trailLandmark: Landmark
+    var trail: Trail
     @Environment(UserData.self) var userData
 
     func makeUIView(context: Context) -> MKMapView {
@@ -18,14 +18,17 @@ struct TrailMapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType.mutedStandard
-        var span = landmarkService.getSpanForTrail(trailId: trailLandmark.id)
+        var span = landmarkService.getSpanForTrail(trailId: trail.id)
         if span == nil {
-            print("NO SPAN FOR \(trailLandmark.name)")
+            print("NO SPAN FOR \(trail.name)")
             span = MKCoordinateSpan(latitudeDelta: 0.0031, longitudeDelta: 0.0031)
         }
-        let region = MKCoordinateRegion(center: trailLandmark.locationCoordinate, span: span!)
+        let center = trail.midCoordinates.map {
+            CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
+        } ?? CLLocationCoordinate2D(latitude: 40.25, longitude: -75.18)
+        let region = MKCoordinateRegion(center: center, span: span!)
         mapView.setRegion(region, animated: true)
-        let centerCoordinates = landmarkService.getCenterCoordinates(id: trailLandmark.id)
+        let centerCoordinates = landmarkService.getTrailCenterCoordinates(id: trail.id)
         if centerCoordinates != nil {
             mapView.setCenter(centerCoordinates!, animated: true)
         }
@@ -47,11 +50,11 @@ struct TrailMapView: UIViewRepresentable {
         
         final class Coordinator: NSObject, MKMapViewDelegate {
             var control: TrailMapView
-            var trailLandmark: Landmark
+            var trail: Trail
 
             init(_ control: TrailMapView) {
                 self.control = control
-                self.trailLandmark = control.trailLandmark
+                self.trail = control.trail
             }
             
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -124,7 +127,7 @@ struct TrailMapView: UIViewRepresentable {
         
         var newAnnotations = [LandmarkAnnotation]()
         
-        newAnnotations.append(contentsOf: landmarkService.getLandmarksByTrailId(id: trailLandmark.id).map
+        newAnnotations.append(contentsOf: landmarkService.getLandmarksByTrailId(id: trail.id).map
             {
                 LandmarkAnnotation(landmark: $0)
             })
@@ -133,12 +136,11 @@ struct TrailMapView: UIViewRepresentable {
     
     private func addBoundary(from mapView: MKMapView) {
         mapView.removeOverlays(mapView.overlays)
-        let trail = landmarkService.getTrailById(id: trailLandmark.id)
-        if trail != nil {
-            var points = trail!.boundaryCoordinates.map{CLLocationCoordinate2D(
+        if !trail.boundaryCoordinates.isEmpty {
+            var points = trail.boundaryCoordinates.map{CLLocationCoordinate2D(
                                 latitude: $0.latitude,
                                 longitude: $0.longitude)}
-            if !trail!.isOpen {
+            if !trail.isOpen {
                 points.append(CLLocationCoordinate2D(latitude: points[0].latitude, longitude: points[0].longitude))
             }
             let polygon = MKPolyline(coordinates:points, count: points.count)
@@ -151,6 +153,6 @@ struct TrailMapView_Previews: PreviewProvider {
     
     static var previews: some View {
 
-        TrailMapView(trailLandmark: landmarkService.getLandmarkById(id: 1002)!).environment(UserData.shared)
+        TrailMapView(trail: landmarkService.getTrails()[0]).environment(UserData.shared)
     }
 }

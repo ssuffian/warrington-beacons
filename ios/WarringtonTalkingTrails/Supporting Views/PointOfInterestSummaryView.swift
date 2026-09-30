@@ -50,7 +50,7 @@ struct PointOfInterestSummaryView: View {
                     }
                     if landmark.category == .Trail {
                         Button(action: {
-                                guard let trail = landmarkService.getTrailById(id: landmark.id) else {
+                                guard let trail = landmarkService.getTrailForLandmark(id: landmark.id) else {
                                     return
                                 }
                                 self.userData.trailLandmark = landmark

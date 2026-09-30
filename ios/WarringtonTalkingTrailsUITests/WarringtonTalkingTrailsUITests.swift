@@ -202,7 +202,7 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
 
         app.tabBars.buttons["Trail Tours"].tap()
         let trailRow = app.buttons.matching(
-            NSPredicate(format: "label BEGINSWITH '202 Connector Trail,'")).firstMatch
+            NSPredicate(format: "label BEGINSWITH 'Yellow Trail,'")).firstMatch
         XCTAssertTrue(trailRow.waitForExistence(timeout: 20))
         try auditVoiceOver(in: app)
         trailRow.tap()

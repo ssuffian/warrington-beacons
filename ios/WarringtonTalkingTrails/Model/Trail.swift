@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 struct Trail: Hashable, Codable, Identifiable {
-    var id = 0
+    var id = ""
     var location: String?
     var name: String
     var isOpen: Bool

@@ -7,7 +7,7 @@ import org.warringtontownship.parks.android.data.model.KmlRoutes
 
 class KmlRoutesTest {
     @Test fun `real KML uses routes and polygon boundaries but never point placemarks`() {
-        val routes = KmlRoutes.parse(File("../../server/api/v1/talking-trails.kml").readText())
+        val routes = KmlRoutes.parse(File("../../server/api/v2/talking-trails.kml").readText())
         assertEquals(15, routes.size)
         assertTrue(routes.all { it.size >= 2 })
         assertTrue(routes.flatten().all { it.latitude in 40.0..41.0 && it.longitude in -76.0..-75.0 })

@@ -75,14 +75,14 @@ fun AppNavHost(
             }
             composable(
                 route = NavRoutes.TRAIL_DETAIL,
-                arguments = listOf(navArgument("trailId") { type = NavType.IntType }),
+                arguments = listOf(navArgument("trailId") { type = NavType.StringType }),
             ) { backStackEntry ->
                 val graphEntry = remember(backStackEntry) {
                     navController.getBackStackEntry(NavRoutes.TRAIL_TOURS_GRAPH)
                 }
                 val viewModel = hiltViewModel<TrailToursViewModel>(graphEntry)
                 TrailDetailScreen(
-                    trailId = backStackEntry.arguments?.getInt("trailId") ?: 0,
+                    trailId = backStackEntry.arguments?.getString("trailId") ?: "",
                     onBack = { navController.popBackStack() },
                     onStartTour = { trailId, reverse, startLandmarkId ->
                         navController.navigate(NavRoutes.trailTour(trailId, reverse, startLandmarkId))
@@ -93,7 +93,7 @@ fun AppNavHost(
             composable(
                 route = NavRoutes.TRAIL_TOUR,
                 arguments = listOf(
-                    navArgument("trailId") { type = NavType.IntType },
+                    navArgument("trailId") { type = NavType.StringType },
                     navArgument("reverse") { type = NavType.BoolType },
                     navArgument("startLandmarkId") { type = NavType.IntType },
                 ),
@@ -103,7 +103,7 @@ fun AppNavHost(
                 }
                 val viewModel = hiltViewModel<TrailToursViewModel>(graphEntry)
                 TrailTourScreen(
-                    trailId = backStackEntry.arguments?.getInt("trailId") ?: 0,
+                    trailId = backStackEntry.arguments?.getString("trailId") ?: "",
                     reverse = backStackEntry.arguments?.getBoolean("reverse") ?: false,
                     startLandmarkId = backStackEntry.arguments?.getInt("startLandmarkId") ?: 0,
                     onBack = { navController.popBackStack() },

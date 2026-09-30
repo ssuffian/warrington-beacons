@@ -239,15 +239,17 @@ struct MainMapView: UIViewRepresentable {
         
         if trailLandmarks.count > 0 {
             trailLandmarks.forEach{ trail in
-                let trail = landmarkService.getTrailById(id: trail.id)
+                let trail = landmarkService.getTrailForLandmark(id: trail.id)
                 var selected = false
-                if self.userData.mainMapSelectedLandmark != nil && trail!.id == self.userData.mainMapSelectedLandmark!.id{
+                if let selectedLandmark = self.userData.mainMapSelectedLandmark,
+                   trail?.id == landmarkService.getTrailForLandmark(id: selectedLandmark.id)?.id {
                     selected = true
                 }
-                var points = trail!.boundaryCoordinates.map{CLLocationCoordinate2D(
+                guard let trail else { return }
+                var points = trail.boundaryCoordinates.map{CLLocationCoordinate2D(
                                     latitude: $0.latitude,
                                     longitude: $0.longitude)}
-                if !trail!.isOpen {
+                if !trail.isOpen {
                     points.append(CLLocationCoordinate2D(latitude: points[0].latitude, longitude: points[0].longitude))
                 }
                 let polygon = SelectablePolyline(coordinates:points, count: points.count)

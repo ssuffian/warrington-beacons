@@ -22,7 +22,8 @@ struct PointOfInterestDetailsView: View {
     }
     
     func landmarkNamesForTrailSeparated(landmark: Landmark) -> String {
-        let landmarks = landmarkService.getLandmarksByTrailId(id: landmark.id)
+        guard let trail = landmarkService.getTrailForLandmark(id: landmark.id) else { return "None" }
+        let landmarks = landmarkService.getLandmarksByTrailId(id: trail.id)
         if landmarks.count > 0 {
             return landmarks.filter {$0.name != landmark.name}.map { $0.name }.joined(separator: ", ")
         }

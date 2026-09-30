@@ -16,9 +16,9 @@ copy and submission checklist.
 
 --
 
-[Versioned JSON Data](https://trails.warringtoneac.org/api/v1/trails.json) and
-[KML routes](https://trails.warringtoneac.org/api/v1/talking-trails.kml). The
-app is pinned to API contract v1; `base_url_string` in
+[Versioned JSON Data](https://trails.warringtoneac.org/api/v2/trails.json) and
+[KML routes](https://trails.warringtoneac.org/api/v2/talking-trails.kml). The
+app is pinned to API contract v2; `base_url_string` in
 `WarringtonTalkingTrails/Info.plist` supplies the host.
 
 [Google Sheet for updating data](https://docs.google.com/spreadsheets/d/1zaS5Gm6D1ukShIyJ1eN_7_A6c8kUTmqMx9ZZDJn6EvY)
