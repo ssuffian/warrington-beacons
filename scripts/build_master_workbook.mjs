@@ -22,7 +22,7 @@ const wb = Workbook.create();
 for (const [name, rows] of Object.entries(tables)) {
   const sheet = wb.worksheets.add(name);
   const hasNewStatus = name==='Beacons' && rows.some(r=>'Status' in r);
-  const priority=name==='Beacons'?['recordKey','name','id','location',hasNewStatus?'Status':'beaconStatus',...(hasNewStatus?['purchaseCount']:[]),'appStatus','reviewStatus','category']:[];
+  const priority=name==='Beacons'?['recordKey','name','id','location','trailId','stopOrder',hasNewStatus?'Status':'beaconStatus',...(hasNewStatus?['purchaseCount']:[]),'appStatus','reviewStatus','category']:[];
   const headers = [...new Set([...priority,...rows.flatMap(r => Object.keys(r))])]
     .filter(k => !excludedColumns[name]?.has(k));
   const labels={
@@ -69,6 +69,15 @@ for (const [name, rows] of Object.entries(tables)) {
     if (k==='appStatus') col.dataValidation={rule:{type:'list',values:['Active','Draft','Retired']}};
     if (k==='Status') col.dataValidation={rule:{type:'list',values:['Working','Needs reprogrammed','Missing','Broken','To be purchased']}};
     if (k==='purchaseCount') col.dataValidation={rule:{type:'whole',operator:'greaterThanOrEqual',formula1:0}};
+    if (name==='Beacons' && k==='trailId') {
+      col.setNumberFormat('@');
+      col.format.columnWidth=44;
+      col.dataValidation={rule:{type:'list',values:tables.Trails.map(r=>String(r.id)).filter(Boolean)}};
+    }
+    if (name==='Beacons' && k==='stopOrder') {
+      col.setNumberFormat('0');
+      col.dataValidation={rule:{type:'whole',operator:'greaterThanOrEqual',formula1:1}};
+    }
   }
   if (name==='Guide') {
     for (let row=0; row<rows.length; row++) {
@@ -79,6 +88,8 @@ for (const [name, rows] of Object.entries(tables)) {
   }
 }
 wb.recalculate();
+console.log((await wb.inspect({kind:'table',range:'Beacons!A1:H4',include:'values,formulas',tableMaxRows:4,tableMaxCols:8,maxChars:1800})).ndjson);
+console.log((await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#NUM!|#SPILL!',options:{useRegex:true,maxResults:10},maxChars:1000})).ndjson);
 await fs.mkdir(output,{recursive:true});
 await (await SpreadsheetFile.exportXlsx(wb)).save(output+'/warrington-master-review.xlsx');
 for (const name of Object.keys(tables)) {

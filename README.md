@@ -140,7 +140,7 @@ Minor code for each beacon matches a landmark `id` in
 
 The KML file is the source of truth for coordinates and route geometry. The
 master spreadsheet is the source of truth for descriptions, images, beacon
-numbers and walking instructions.
+numbers, trail membership, stop order and walking instructions.
 
 1. Choose a unique, permanent location ID made from lowercase words separated
    by hyphens, such as `lions-pride-park`. Do not change it when the displayed
@@ -179,8 +179,8 @@ numbers and walking instructions.
 6. Mark the trail `Approved` after its spreadsheet row and KML route are ready.
 
 A trail does not need a beacon. A beacon does not need to be part of a trail.
-They become associated only when the beacon's KML Point contains that trail's
-Trail ID.
+They become associated when the beacon's Beacons row contains that trail's
+`trailId` and its `stopOrder`.
 
 ### Add a beacon to a trail
 
@@ -188,8 +188,8 @@ Trail ID.
    `recordKey` and a numeric Minor. Use the UUID and Major from the matching row
    on the Locations tab when programming the physical beacon.
 2. Add a KML Point at the beacon's physical location with the same `recordKey`.
-3. To make it a guided stop, add the trail's string `trailId` and a consecutive
-   `stopOrder` to that KML Point. Begin at `1` and do not leave gaps within a
+3. To make it a guided stop, enter the trail's string `trailId` and a consecutive
+   `stopOrder` on the Beacons row. Begin at `1` and do not leave gaps within a
    trail.
 4. Add a Stop Content row using the same Trail ID and KML `recordKey`. Enter the
    forward and reverse distances and instructions.
@@ -204,14 +204,14 @@ Green Trail:
 
 ```text
 Trails row:       Trail ID = green-trail
-Beacons row:      recordKey = LP-3, Minor = 3001
+Beacons row:      recordKey = LP-3, Minor = 3001, trailId = green-trail, stopOrder = 1
 KML route:        trailId = green-trail
-KML Point:        recordKey = LP-3, trailId = green-trail, stopOrder = 1
+KML Point:        recordKey = LP-3 (coordinates only)
 Stop Content row: Trail ID = green-trail, KML recordKey = LP-3
 ```
 
-If the KML Point omits `trailId` and `stopOrder`, the beacon remains a standalone
-landmark. If a trail has no points with its Trail ID, it remains a normal mapped
+If the Beacons row leaves `trailId` and `stopOrder` blank, the beacon remains a standalone
+landmark. If a trail has no active Beacons with its Trail ID, it remains a normal mapped
 trail without a beacon-guided tour.
 
 ### Update an existing trail
@@ -223,7 +223,7 @@ trail without a beacon-guided tour.
    retain the same `trailId`.
 4. Update the matching row on the spreadsheet's Trails tab when its name,
    description, open status or other content changes.
-5. Update any affected KML tour points and Stop Content instructions.
+5. Update any affected Beacons `trailId`/`stopOrder` values and Stop Content instructions.
 6. Set `reviewStatus` to `Approved` only after the route, text and optional tour
    stops are complete.
 
