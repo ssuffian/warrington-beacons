@@ -2,18 +2,18 @@
 
 The two editable sources have separate responsibilities:
 
-- **Google Earth/KML owns location:** every Point coordinate, every route shape,
-  each point's optional `trailId`, and its `stopOrder`.
+- **Google Earth/KML owns geometry:** every Point coordinate and route shape.
 - **The master spreadsheet owns content:** names, descriptions, images, beacon
-  IDs and status, location configuration, trail text, and turn-by-turn wording.
+  IDs and status, location configuration, trail text, turn-by-turn wording,
+  and the Beacons tab's optional `trailId` and `stopOrder`.
 
 `recordKey` is the permanent join between a Beacons row, a Stop Content row and
 a KML Point. `kmlTrailGroupId` joins a Trails row to one or more KML route
 placemarks. Do not move coordinates or stop order back into the spreadsheet.
 
-The final local workbook is:
+The updated local workbook, seeded from the public Sheet on September 30, is:
 
-`outputs/master-kml-source-of-truth-2026-09-23/warrington-master-review.xlsx`
+`outputs/beacon-trail-memberships-2026-09-30/warrington-master-review.xlsx`
 
 It contains Guide, Beacons, Locations, Trails and Stop Content tabs. Draft and
 Retired rows remain in the master for ongoing planning and history but do not
@@ -58,10 +58,10 @@ For a local validation run:
 
 ```sh
 python3 scripts/master_sheet.py \
-  outputs/master-kml-source-of-truth-2026-09-23/warrington-master-review.xlsx \
+  outputs/beacon-trail-memberships-2026-09-30/warrington-master-review.xlsx \
   --kml server/talking-trails.kml \
   --api-version v2 \
-  --output-dir outputs/master-kml-validation-2026-09-23
+  --output-dir outputs/master-membership-validation
 ```
 
 The command writes `validation.csv`, `candidate.json` and `changes.diff` outside
@@ -78,9 +78,27 @@ Required live tab names are Beacons, Locations, Trails and Stop Content.
 
 ## Editing rules
 
-In Google Earth, keep every Point's `recordKey`. A tour stop also needs the
-string `trailId` used in the spreadsheet and a consecutive `stopOrder` beginning
-at 1. Route placemarks use that same `trailId`. A route may have no Point stops.
+In Google Earth/KML, keep every Point's `recordKey`. Route placemarks use the
+same canonical `trailId` as the Trails tab. A route may have no beacon stops.
+
+On Beacons, set `trailId` to the Trail ID from Trails and `stopOrder` to its
+position in the tour, beginning at 1 with no gaps. Leave both fields blank for
+a standalone point. Each row supports one trail membership. Stop Content must
+use that same Trail ID and `recordKey`. Old KML Point `trailId` and `stopOrder`
+values are ignored by the generator; spreadsheet edits are authoritative.
+
+For an existing Sheet without these columns, explicitly seed them from the KML
+once (this never publishes data or overwrites existing membership edits):
+
+```sh
+python3 scripts/migrate_sheet_memberships.py /tmp/warrington-master-csv /tmp/master-memberships.json
+node scripts/build_master_workbook.mjs /tmp/master-memberships.json outputs/master-memberships
+```
+
+Add the populated `trailId` and `stopOrder` columns to the live Beacons tab by
+matching `recordKey`, and update the Guide instructions. Do not replace newer
+Sheet content with an older workbook. Generation blocks if the columns are
+missing, a Trail ID is unknown, an order is invalid, or stop content is unmatched.
 
 Google Earth's web project export currently drops custom `ExtendedData`, even
 though it retains each Placemark's stable `id`. Do not replace the served KML
@@ -97,7 +115,7 @@ explicit `recordKey` or trail ID instead of being guessed from its name.
 
 In the spreadsheet, set `reviewStatus` to Approved only when a row is ready.
 Active Beacons require complete app content, a valid unique Minor, a known
-location, an existing image file and a matching KML Point. Every KML tour stop
+location, an existing image file and a matching KML Point. Every active Beacon tour stop
 requires one matching Stop Content row.
 
 Use the public image library at `https://trails.warringtoneac.org/images/` to

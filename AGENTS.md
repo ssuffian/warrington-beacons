@@ -48,15 +48,16 @@ tree under `outputs/`.
 
 ## Master data and map releases
 
-Treat `server/talking-trails.kml` as the sole source of geographic truth. Point
-coordinates, route shapes, tour membership (`trailId`) and tour sequence
-(`stopOrder`) belong in KML so they can be maintained in Google Earth. Never add
-those fields back to the master spreadsheet.
+Treat `server/talking-trails.kml` as the sole source of geographic truth for
+point coordinates and route shapes. The Beacons tab owns tour membership
+(`trailId`) and tour sequence (`stopOrder`). Google Earth web cannot reliably
+maintain that metadata. Do not use KML Point membership fields during generation;
+old Point values remain migration/history metadata only.
 
 Treat the master Sheet as the source of text, images, beacon IDs/status,
-location configuration and directional instructions. Join a Sheet row to a KML
+location configuration, trail membership, stop order and directional instructions. Join a Sheet row to a KML
 Point only with the stable `recordKey`. In v2, join Trails, Stop Content, route
-placemarks and Point memberships with the same canonical string `trailId`.
+placemarks and Beacons memberships with the same canonical string `trailId`.
 `kmlTrailGroupId`/`trailGroupId` remains v1 metadata only. Do not guess a link
 from name or proximity.
 
