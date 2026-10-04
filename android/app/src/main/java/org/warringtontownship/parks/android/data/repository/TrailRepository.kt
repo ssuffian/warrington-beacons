@@ -58,7 +58,14 @@ class TrailRepository @Inject constructor(
         trail.boundaryCoordinates.map { Coordinates(it.latitude, it.longitude) }
     }
 
-    fun getLandmarkById(id: Int): Landmark? = data?.landmarks?.find { it.id == id }
+    fun getLandmarkById(id: String): Landmark? = data?.landmarks?.find { it.id == id }
+
+    /**
+     * The place a detected beacon announces. Matching is by the place's optional
+     * beaconMinor, never its ID: a place with no beaconMinor is never matched.
+     */
+    fun getLandmarkByBeaconMinor(minor: Int): Landmark? =
+        data?.landmarks?.find { it.beaconMinor != null && it.beaconMinor == minor }
 
     fun getTrails(): List<Trail> = data?.trails ?: emptyList()
 
@@ -82,10 +89,11 @@ class TrailRepository @Inject constructor(
         getLandmarks().map { it.coordinates } +
             getMapRoutes().flatten()
 
-    fun getBoundsForTrail(trailId: String): List<Coordinates> =
-        getTrailById(trailId)?.boundaryCoordinates
-            ?.map { Coordinates(it.latitude, it.longitude) }
-            ?: emptyList()
+    fun getBoundsForTrail(trailId: String): List<Coordinates> {
+        val trail = getTrailById(trailId) ?: return emptyList()
+        return trail.boundaryCoordinates.map { Coordinates(it.latitude, it.longitude) } +
+            listOfNotNull(trail.start, trail.end).map { Coordinates(it.latitude, it.longitude) }
+    }
 
     fun getBeaconRegions(): List<BeaconRegion> {
         if (data == null) return emptyList()

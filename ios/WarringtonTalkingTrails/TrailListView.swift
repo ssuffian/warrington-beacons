@@ -32,21 +32,7 @@ struct TrailListView: View {
                         ForEach(landmarkService.getTrails()) { trail in
 
                             Button(action: {
-                                let landmarks = landmarkService.getLandmarksByTrailId(id: trail.id)
-                                let trailhead = landmarks.first { $0.category == .Trail } ?? landmarks.first
-                                self.userData.trailLandmark = trailhead
-                                if let nearbyLandmark = self.userData.nearbyLandmark {
-                                    let trails = landmarkService.getTrailsByLandmarkId(id: nearbyLandmark.id)
-                                    if trails.first?.id == trail.id {
-                                        self.userData.trailTourCurrentLandmark = nearbyLandmark
-                                    } else {
-                                        self.userData.trailTourCurrentLandmark = trailhead
-                                    }
-                                    self.userData.checkForTrailTourEnd()
-                                } else {
-                                    self.userData.trailTourCurrentLandmark = trailhead
-                                }
-                                self.userData.trailTourTrail = trail
+                                self.userData.prepareTrailTour(trail: trail, preferredLandmark: self.userData.nearbyLandmark)
                                 self.trailDetailsView = true
                             }) {
                                 TrailRowView(trail: trail)

@@ -28,8 +28,8 @@ android {
         applicationId = "org.warringtontownship.parks.android"
         minSdk = 31
         targetSdk = 36
-        versionCode = 8
-        versionName = "2026.9.29.1"
+        versionCode = 9
+        versionName = "2026.10.4"
     }
 
     signingConfigs {

@@ -14,7 +14,8 @@ let landmarkService = LandmarkService()
 
 class LandmarkService {
     private var landmarks = [Landmark]()
-    private var landmarksById: [Int: Landmark]
+    private var landmarksById: [String: Landmark]
+    private var landmarksByBeaconMinor: [Int: Landmark]
     private var landmarksByName: [String: Landmark]
     private var landmarksByCategory: [Landmark.Category: [Landmark]]
     private var trailsById: [String: Trail]
@@ -78,6 +79,7 @@ class LandmarkService {
             }
 
             landmarksById.removeAll()
+            landmarksByBeaconMinor.removeAll()
             landmarksByName.removeAll()
             Landmark.Category.allCases.forEach{c in
                 landmarksByCategory[c] = [Landmark]()
@@ -85,6 +87,9 @@ class LandmarkService {
 
             landmarks.forEach{landmark in
                 landmarksById[landmark.id] = landmark
+                if let minor = landmark.beaconMinor {
+                    landmarksByBeaconMinor[minor] = landmark
+                }
                 landmarksByName[landmark.name] = landmark
                 landmarksByCategory[landmark.category]?.append(landmark)
             }
@@ -99,6 +104,7 @@ class LandmarkService {
     
     init() {
         landmarksById = [:]
+        landmarksByBeaconMinor = [:]
         landmarksByName = [:]
         landmarksByCategory = [:]
         trailsById = [:]
@@ -121,25 +127,27 @@ class LandmarkService {
         return landmarksByName[name]
     }
     
-    func getLandmarkById(id: NSNumber) -> Landmark? {
-        return landmarksById[id as! Int]
+    func getLandmarkById(id: String) -> Landmark? {
+        return landmarksById[id]
     }
 
-    func getLandmarkById(id: Int) -> Landmark? {
-        return landmarksById[id]
+    /// The place broadcast by the beacon with this Minor. Places without a
+    /// beaconMinor are never returned.
+    func getLandmarkByBeaconMinor(_ minor: Int) -> Landmark? {
+        return landmarksByBeaconMinor[minor]
     }
 
     func getTrailById(id: String) -> Trail? {
         return trailsById[id]
     }
 
-    func getTrailForLandmark(id: Int) -> Trail? {
+    func getTrailForLandmark(id: String) -> Trail? {
         return trails.first { trail in
             trail.boundaryCoordinates.contains { $0.landmarkId == id }
         }
     }
     
-    func getCenterCoordinates(id: Int) -> CLLocationCoordinate2D? {
+    func getCenterCoordinates(id: String) -> CLLocationCoordinate2D? {
         let landmark = getLandmarkById(id: id)
         if landmark != nil {
             if landmark!.category == .Trail {
@@ -154,13 +162,11 @@ class LandmarkService {
     
     func getTrailCenterCoordinates(id: String) -> CLLocationCoordinate2D? {
 
-        if let trail = getTrailById(id: id) {
-            return CLLocationCoordinate2D(latitude: trail.midCoordinates!.latitude, longitude: trail.midCoordinates!.longitude)
-        }
-        return nil
+        guard let mid = getTrailById(id: id)?.midCoordinates else { return nil }
+        return CLLocationCoordinate2D(latitude: mid.latitude, longitude: mid.longitude)
     }
 
-    func getTrailsByLandmarkId(id: Int) -> [Trail] {
+    func getTrailsByLandmarkId(id: String) -> [Trail] {
         let trails = landmarkService.getTrails()
 
         return trails.filter {
@@ -199,7 +205,13 @@ class LandmarkService {
             var maxLat:CLLocationDegrees = -90.0;
             var minLon:CLLocationDegrees = 180.0;
             var maxLon:CLLocationDegrees = -180.0;
-            for loc in trail.boundaryCoordinates {
+            // Include the beacon-free start/end so their markers stay in view.
+            var points = trail.boundaryCoordinates.map { (latitude: $0.latitude, longitude: $0.longitude) }
+            for endpoint in [trail.start, trail.end].compactMap({ $0 }) {
+                points.append((latitude: endpoint.latitude, longitude: endpoint.longitude))
+            }
+            guard !points.isEmpty else { return }
+            for loc in points {
                 if loc.latitude < minLat {minLat = loc.latitude}
                 if loc.longitude < minLon {minLon = loc.longitude}
                 if loc.latitude > maxLat {maxLat = loc.latitude}

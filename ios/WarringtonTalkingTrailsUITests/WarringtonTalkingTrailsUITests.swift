@@ -145,15 +145,15 @@ class WarringtonTalkingTrailsUITests: XCTestCase {
         search.tap()
 
         let trailRow = app.buttons.matching(
-            NSPredicate(format: "label BEGINSWITH '202 Connector Trail,'")).firstMatch
+            NSPredicate(format: "label BEGINSWITH 'Green Trail,'")).firstMatch
         XCTAssertTrue(trailRow.waitForExistence(timeout: 10), "Trailhead should be listed in Search (data loaded)")
         trailRow.tap()
 
-        // Back on the map, the summary shows the trailhead name ("202 Connector
+        // Back on the map, the summary shows the trailhead name ("Green
         // Trailhead") as a tappable link; tapping it is the cross-tab launch into the
         // Trail Tours tab's detail screen.
         let trailheadLink = app.buttons.matching(NSPredicate(
-            format: "label == '202 Connector Trailhead' AND NOT identifier BEGINSWITH 'landmark-map-pin-'"
+            format: "label == 'Green Trailhead' AND NOT identifier BEGINSWITH 'landmark-map-pin-'"
         )).firstMatch
         XCTAssertTrue(trailheadLink.waitForExistence(timeout: 10), "Trailhead summary link should appear")
         trailheadLink.tap()

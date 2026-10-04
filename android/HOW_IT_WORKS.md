@@ -49,7 +49,7 @@ The app has **no local database and no backend of its own**. On launch it downlo
 single JSON file:
 
 ```
-https://trails.warringtoneac.org/api/v2/trails.json
+https://trails.warringtoneac.org/api/v3/trails.json
 ```
 
 served from GitHub Pages (see README for the hosting/DNS setup and the messy
@@ -60,35 +60,40 @@ account-ownership history). The file contains three top-level arrays (mapped in
   `id`, name, address, its own **beacon major code** (17 for Lions Pride, 20 for
   US202), and the iBeacon/AltBeacon UUIDs ranged at that location. This is the one
   place the data (and `TrailRepository`) distinguish the two locations.
-- **`landmarks[]`** (38 today, across both locations) — each with an `id`, a `location`
-  (which of the two locations it belongs to), name, category, coordinates, short + long
-  descriptions, and an `imagePath`. Landmark ids are unique across both locations (US202
-  uses 1–16 and 4001; Lions Pride uses 1002–3008), so a bare id is still enough to look
-  one up. Images are fetched on demand from
+- **`landmarks[]`** (34 today, across both locations) — each with a string `id` (the
+  stable master-Sheet/KML `recordKey`, e.g. `LP-2`, `EAC-9`), a `location`, name,
+  category, coordinates, short + long descriptions, an `imagePath`, and an optional
+  integer `beaconMinor` present only when a physical beacon broadcasts that place. Images are fetched on demand from
   `https://trails.warringtoneac.org/<imagePath>` (Coil).
 - **`trails[]`** (4 today, across both locations) — each tagged with a `location`, with
   an ordered list of `boundaryCoordinates` tracing that trail's path. Most entries are
   just lat/lng points for drawing the polyline; entries that also carry a `landmarkId`
-  are **tour stops**, with human-written distance descriptions to the next stop in each
-  direction (`distanceToNextClockwise*` / `distanceToNextCounterClockwise*` — shown as
-  Forward/Reverse in the UI).
+  (a landmark's string `id`) are **tour stops**, listed in tour order, with human-written
+  distance descriptions to the next stop in each direction (`distanceToNextClockwise*` /
+  `distanceToNextCounterClockwise*` — shown as Forward/Reverse in the UI). A trail may
+  have zero, one or many stops, plus optional beacon-free `start` / `end` points
+  (`latitude`, `longitude`, `distance`, `directions`). Start directions lead forward to
+  the first stop; end directions lead back to the last stop. The trail detail and tour
+  maps draw them as "Trail start" / "Trail end"; a forward tour begins at the start and
+  a reverse tour at the end when present (see `ui/trailtours/TourPlan.kt`).
 
-**Key invariant:** a landmark's `id` doubles as the beacon **minor code**, and ids are
-unique across both locations. When the scanner reports "beacon minor 7 is closest," the
-app looks up landmark id 7 directly — it doesn't need to know which location the beacon
-belongs to. That mapping is maintained by hand when programming beacons (see README
+**Key invariant:** beacons are matched to places by `beaconMinor`, never by `id`, and
+`beaconMinor` values are unique across both locations. When the scanner reports "beacon
+minor 1002 is closest," the app looks up the landmark whose `beaconMinor` is 1002
+(`TrailRepository.getLandmarkByBeaconMinor`) — it doesn't need to know which location
+the beacon belongs to. A place with no `beaconMinor` is never matched. That mapping is maintained by hand when programming beacons (see README
 §Beacon Programming).
 
 Content updates (new landmarks, reworded descriptions, photos, for either location)
-therefore require **no app release** when they still satisfy the v1 schema. Run the
+therefore require **no app release** when they still satisfy the v3 schema. Run the
 manual data-release workflow and merge its reviewed snapshot; both mobile apps then
-receive the same `/api/v2/` data.
+receive the same `/api/v3/` data.
 
 ## How beacon detection works
 
 - Hardware: RadBeacon E4 units at both locations broadcasting **AltBeacon** (Android)
   and **iBeacon** (iOS) frames, all sharing UUID `035a0617-...`; the major code is
-  per-location (`17` Lions Pride, `20` US202), and minor = landmark id.
+  per-location (`17` Lions Pride, `20` US202), and minor = the landmark's `beaconMinor`.
 - `beacon/BeaconScanner.kt` wraps the [AltBeacon Android library]. It's a Hilt
   `@Singleton` shared by all screens. Rather than a single `Region`, it ranges **one
   AltBeacon region per location** (same UUID, each location's own major code, built
@@ -297,7 +302,7 @@ notifications, but the map, content, manual tour navigation, and in-app arrival 
 Debug builds include a `FakeBeaconReceiver` (in `app/src/debug/`, never compiled into
 release — verified by inspecting the release APK manifest) that injects fake detections
 into `BeaconScanner`, so all beacon-driven behavior works on the emulator, for either
-location's landmark ids. The `simulate_beacon.sh` script in `android/` wraps it:
+location's landmark `beaconMinor` values. The `simulate_beacon.sh` script in `android/` wraps it:
 
 ```bash
 ./simulate_beacon.sh 7                  # near US202 landmark 7 (1.0 m)
@@ -327,7 +332,7 @@ to the radio. Three things to know:
 For radio-level testing on a real phone, use a transmitter app such as Beacon Scope (by
 the AltBeacon library's author) with an AltBeacon layout, UUID
 `035a0617-0875-4cc7-a29c-be0caa8f557c`, major `17` (Lions Pride) or `20` (US202),
-minor = landmark id.
+minor = the landmark's `beaconMinor`.
 
 ## Things that are intentionally simple (don't be surprised)
 

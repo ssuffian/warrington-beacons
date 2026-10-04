@@ -14,13 +14,13 @@ struct BeaconInfoView: View {
 
     init(beacon: RangedBeacon) {
         self.beacon = beacon
-        self.landmark = landmarkService.getLandmarkById(id: beacon.minor)
+        self.landmark = landmarkService.getLandmarkByBeaconMinor(beacon.minor)
     }
     var body: some View {
         HStack {
             Text("\(self.beacon.minor)")
-            if (self.landmark != nil) {
-                Text("\(self.landmark!.name)").frame(width: 125, alignment: .leading)
+            if let landmark = self.landmark {
+                Text(landmark.name).frame(width: 125, alignment: .leading)
             } else {
                 Text("???").frame(width: 125, alignment: .leading)
             }

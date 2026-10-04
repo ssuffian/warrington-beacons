@@ -53,15 +53,7 @@ struct PointOfInterestSummaryView: View {
                                 guard let trail = landmarkService.getTrailForLandmark(id: landmark.id) else {
                                     return
                                 }
-                                self.userData.trailLandmark = landmark
-                                self.userData.trailTourTrail = trail
-                                self.userData.trailTourCurrentLandmark = landmark
-                                self.userData.trailTourNextLandmark = MapService.findNextLandmark(
-                                    trail: trail,
-                                    landmark: landmark,
-                                    direction: self.userData.trailDirection
-                                )
-                                self.userData.checkForTrailTourEnd()
+                                self.userData.prepareTrailTour(trail: trail, preferredLandmark: landmark)
                                 self.selectedTab = 1
                                 // If this call is synchronous it corrupts the navigation stack
                                 // The "back" link has two things overwriting each other for certain trails

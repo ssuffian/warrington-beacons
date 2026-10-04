@@ -46,11 +46,14 @@ import org.warringtontownship.parks.android.data.model.Coordinates
 import java.io.File
 
 data class TrailMapMarker(
-    val id: Int,
+    val id: String,
     val title: String,
     val category: String,
     val latitude: Double,
     val longitude: Double,
+    // A beacon-free trail start or end (API v3). Drawn with the trailhead pin but
+    // not tappable: there is no landmark sheet to open for it.
+    val isEndpoint: Boolean = false,
 )
 
 /**
@@ -98,11 +101,11 @@ fun TrailMap(
     markers: List<TrailMapMarker>,
     boundsCoordinates: List<Coordinates>,
     modifier: Modifier = Modifier,
-    onMarkerClick: ((Int) -> Unit)? = null,
+    onMarkerClick: ((String) -> Unit)? = null,
     focusPosition: Coordinates? = null,
     centerZoomPosition: Coordinates? = null,
     centerZoomLevel: Float = 18f,
-    highlightedMarkerId: Int? = null,
+    highlightedMarkerId: String? = null,
     collapseMarkersWhenZoomedOut: Boolean = false,
     onLocationPermissionResult: (() -> Unit)? = null,
 ) {
@@ -249,7 +252,7 @@ fun TrailMap(
                     "Trail map. Use accessibility actions to open a landmark."
                 }
                 if (onMarkerClick != null) {
-                    customActions = accessibleMarkers.map { marker ->
+                    customActions = accessibleMarkers.filterNot { it.isEndpoint }.map { marker ->
                         CustomAccessibilityAction(
                             label = "Open ${marker.title}, ${if (marker.category == "Trail") "Trailhead" else "Landmark"}",
                             action = {
@@ -280,7 +283,7 @@ fun TrailMap(
                 accessibleMarkers.forEach { marker ->
                     val iconRes = when {
                         marker.id == highlightedMarkerId -> R.drawable.current_marker
-                        marker.category == "Trail" -> R.drawable.trailhead_marker
+                        marker.isEndpoint || marker.category == "Trail" -> R.drawable.trailhead_marker
                         else -> R.drawable.poi_marker
                     }
                     view.overlays.add(Marker(view).apply {
@@ -290,6 +293,7 @@ fun TrailMap(
                         title = marker.title
                         infoWindow = null
                         setOnMarkerClickListener { _, _ ->
+                            if (marker.isEndpoint) return@setOnMarkerClickListener true
                             onMarkerClick?.invoke(marker.id)
                             onMarkerClick != null
                         }

@@ -1,8 +1,29 @@
 {
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-04",
   "manifestVersion": 1,
   "currentBuilds": {
     "ios": {
+      "appId": "org.warringtontownship.lionspride",
+      "version": "2.1.0",
+      "build": "20261004.1",
+      "apiVersion": "v3",
+      "status": "readyForUpload",
+      "data": "https://trails.warringtoneac.org/api/v3/trails.json",
+      "kml": "https://trails.warringtoneac.org/api/v3/talking-trails.kml"
+    },
+    "android": {
+      "appId": "org.warringtontownship.parks.android",
+      "version": "2026.10.4",
+      "build": "9",
+      "apiVersion": "v3",
+      "status": "readyForUpload",
+      "data": "https://trails.warringtoneac.org/api/v3/trails.json",
+      "kml": "https://trails.warringtoneac.org/api/v3/talking-trails.kml"
+    }
+  },
+  "history": [
+    {
+      "platform": "ios",
       "appId": "org.warringtontownship.lionspride",
       "version": "2.0.2",
       "build": "20260929.3",
@@ -11,7 +32,8 @@
       "data": "https://trails.warringtoneac.org/api/v2/trails.json",
       "kml": "https://trails.warringtoneac.org/api/v2/talking-trails.kml"
     },
-    "android": {
+    {
+      "platform": "android",
       "appId": "org.warringtontownship.parks.android",
       "version": "2026.9.29.1",
       "build": "8",
@@ -19,9 +41,7 @@
       "status": "readyForUpload",
       "data": "https://trails.warringtoneac.org/api/v2/trails.json",
       "kml": "https://trails.warringtoneac.org/api/v2/talking-trails.kml"
-    }
-  },
-  "history": [
+    },
     {
       "platform": "android",
       "appId": "org.warringtontownship.parks.android",

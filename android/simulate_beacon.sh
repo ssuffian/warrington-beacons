@@ -4,7 +4,7 @@
 # (Backed by FakeBeaconReceiver, which only exists in debug builds.)
 #
 # Usage:
-#   ./simulate_beacon.sh <minor> [distance-meters]   # one beacon (minor = landmark id)
+#   ./simulate_beacon.sh <minor> [distance-meters]   # one beacon (minor = landmark beaconMinor)
 #   ./simulate_beacon.sh 7:2.5 8:10 4001:40          # several beacons at once
 #   ./simulate_beacon.sh clear                       # walk out of range of everything
 #   ./simulate_beacon.sh walk [seconds-per-stop]     # auto-walk US202 landmarks 1..16 (Ctrl-C stops)

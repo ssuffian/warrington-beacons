@@ -88,7 +88,7 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             beaconScanner.detectedBeacons.collect { beacons ->
                 _beaconList.value = beacons.map { beacon ->
-                    val landmark = trailRepository.getLandmarkById(beacon.minorCode)
+                    val landmark = trailRepository.getLandmarkByBeaconMinor(beacon.minorCode)
                     BeaconDisplayItem(
                         landmarkName = landmark?.name ?: "Unknown (${beacon.minorCode})",
                         distance = beacon.distance,

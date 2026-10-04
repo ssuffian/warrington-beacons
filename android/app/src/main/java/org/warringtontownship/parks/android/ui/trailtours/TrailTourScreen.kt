@@ -42,7 +42,7 @@ import org.warringtontownship.parks.android.ui.common.TrailMapMarker
 fun TrailTourScreen(
     trailId: String,
     reverse: Boolean,
-    startLandmarkId: Int,
+    startLandmarkId: String?,
     onBack: () -> Unit,
     viewModel: TrailToursViewModel,
 ) {
@@ -53,21 +53,19 @@ fun TrailTourScreen(
         return
     }
 
-    val stops = remember(trail) {
-        trail.boundaryCoordinates.filter { it.landmarkId != null }
-    }
+    val stops = remember(trail) { tourStops(trail) }
 
     if (stops.isEmpty()) {
         TourMessageScreen(message = "This trail has no tour stops.", onBack = onBack)
         return
     }
     var currentIndex by remember {
-        val beaconMinor = viewModel.getClosestBeaconMinorCode()
-        val beaconIndex = if (beaconMinor != null) stops.indexOfFirst { it.landmarkId == beaconMinor } else -1
-        val startIndex = if (beaconIndex >= 0) beaconIndex else stops.indexOfFirst { it.landmarkId == startLandmarkId }
-        mutableIntStateOf(if (startIndex >= 0) startIndex else 0)
+        // A beacon is matched to a place by its beaconMinor, never by the place ID.
+        val beaconLandmarkId = viewModel.getClosestBeaconLandmarkId()
+        val beaconIndex = if (beaconLandmarkId != null) stops.indexOfFirst { it.landmarkId == beaconLandmarkId } else -1
+        mutableIntStateOf(if (beaconIndex >= 0) beaconIndex else initialTourIndex(stops, startLandmarkId, reverse))
     }
-    var sheetLandmarkId by remember { mutableStateOf<Int?>(null) }
+    var sheetLandmarkId by remember { mutableStateOf<String?>(null) }
     // Only a beacon-opened sheet is announced. A Previous/Next or marker tap is
     // already narrated by TalkBack as the user's own action; speaking it again
     // would double up.
@@ -81,7 +79,7 @@ fun TrailTourScreen(
 
     LaunchedEffect(Unit) {
         // Check if a beacon is already in range when the screen starts
-        val initialBeacon = viewModel.getClosestBeaconMinorCode()
+        val initialBeacon = viewModel.getClosestBeaconLandmarkId()
         if (initialBeacon != null) {
             val stopIndex = stops.indexOfFirst { it.landmarkId == initialBeacon }
             if (stopIndex >= 0) {
@@ -93,41 +91,57 @@ fun TrailTourScreen(
             }
         }
         // Then collect future beacon changes
-        viewModel.beaconEvent.collect { minorCode ->
-            val stopIndex = stops.indexOfFirst { it.landmarkId == minorCode }
+        viewModel.beaconEvent.collect { landmarkId ->
+            val stopIndex = stops.indexOfFirst { it.landmarkId == landmarkId }
             if (stopIndex >= 0) {
                 currentIndex = stopIndex
                 sheetOpenedByBeacon = true
-                sheetLandmarkId = minorCode
+                sheetLandmarkId = landmarkId
                 val stop = stops[stopIndex]
                 beaconZoomPosition = Coordinates(stop.latitude, stop.longitude)
             }
         }
     }
 
-    val currentStop = stops[currentIndex]
-    val nextIndex = if (reverse) {
-        if (currentIndex > 0) currentIndex - 1 else stops.size - 1
-    } else {
-        (currentIndex + 1) % stops.size
+    val currentStop = stops[currentIndex.coerceIn(0, stops.size - 1)]
+    val currentLandmark = currentStop.landmarkId?.let { viewModel.getLandmarkById(it) }
+    val nextTitle = when (
+        val next = nextInTour(
+            stopCount = stops.size,
+            currentIndex = currentIndex.coerceIn(0, stops.size - 1),
+            reverse = reverse,
+            hasStart = trail.start != null,
+            hasEnd = trail.end != null,
+        )
+    ) {
+        is TourNext.Stop -> stops[next.index].landmarkId?.let { viewModel.getLandmarkById(it) }?.name
+        TourNext.TrailStart -> TRAIL_START_TITLE
+        TourNext.TrailEnd -> TRAIL_END_TITLE
     }
-    val nextStop = stops[nextIndex]
-    val currentLandmark = viewModel.getLandmarkById(currentStop.landmarkId!!)
-    val nextLandmark = viewModel.getLandmarkById(nextStop.landmarkId!!)
+    // Directions from the trail start lead forward to the first stop; from the trail
+    // end they lead back to the last stop.
+    val approachDirections = when {
+        !reverse && currentIndex == 0 ->
+            trail.start?.directions?.takeIf { it.isNotBlank() }?.let { "From the trail start: $it" }
+        reverse && currentIndex == stops.size - 1 ->
+            trail.end?.directions?.takeIf { it.isNotBlank() }?.let { "From the trail end: $it" }
+        else -> null
+    }
 
     val coords = trail.boundaryCoordinates.map {
         Coordinates(it.latitude, it.longitude)
     }
-    val markerList = stops.map { stop ->
-        val lm = viewModel.getLandmarkById(stop.landmarkId!!)
+    val markerList = stops.mapNotNull { stop ->
+        val landmarkId = stop.landmarkId ?: return@mapNotNull null
+        val lm = viewModel.getLandmarkById(landmarkId)
         TrailMapMarker(
-            id = stop.landmarkId,
+            id = landmarkId,
             title = lm?.name ?: "Stop",
             category = lm?.category ?: "",
             latitude = stop.latitude,
             longitude = stop.longitude,
         )
-    }
+    } + endpointMarkers(trail)
     val bounds = viewModel.getBoundsForTrail(trailId)
 
     Scaffold(
@@ -165,7 +179,7 @@ fun TrailTourScreen(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Next: ${nextLandmark?.name ?: "Unknown"}",
+                    text = "Next: ${nextTitle ?: "Unknown"}",
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.primary,
                 )
@@ -178,6 +192,13 @@ fun TrailTourScreen(
                     },
                     style = MaterialTheme.typography.bodyLarge,
                 )
+                if (approachDirections != null) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = approachDirections,
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
                 Spacer(modifier = Modifier.height(12.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -228,10 +249,11 @@ fun TrailTourScreen(
         }
     }
 
-    if (sheetLandmarkId != null) {
-        val landmark = viewModel.getLandmarkById(sheetLandmarkId!!)
+    val openSheetLandmarkId = sheetLandmarkId
+    if (openSheetLandmarkId != null) {
+        val landmark = viewModel.getLandmarkById(openSheetLandmarkId)
         val announcement = if (sheetOpenedByBeacon) {
-            viewModel.announcementTextFor(sheetLandmarkId!!)?.let { "${it.title}. ${it.body}" }
+            viewModel.announcementTextFor(openSheetLandmarkId)?.let { "${it.title}. ${it.body}" }
         } else {
             null
         }

@@ -58,6 +58,11 @@ struct TrailMapView: UIViewRepresentable {
             }
             
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+                if let endpoint = annotation as? TrailEndpointAnnotation {
+                    let view = endpoint.markerView(on: mapView)
+                    view.accessibilityHint = "Selects the \(endpoint.kind.title.lowercased()) as the tour starting point"
+                    return view
+                }
                 guard let annotation = annotation as? LandmarkAnnotation else { return nil }
                 let identifier = "MapAnnotation\(annotation.id)"
                 var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? AccessibleLandmarkAnnotationView
@@ -88,14 +93,15 @@ struct TrailMapView: UIViewRepresentable {
             func mapView(_ mapView: MKMapView,
                          didSelect view: MKAnnotationView) {
                 
-                let annotation = view.annotation as? LandmarkAnnotation
-                
-                let landmark = landmarkService.getLandmarkById(id: annotation!.landmark!.id)
-                
-                if landmark != nil {
-                    self.control.userData.trailTourCurrentLandmark = landmark!
-                    self.control.userData.checkForTrailTourEnd()
+                if let endpoint = view.annotation as? TrailEndpointAnnotation {
+                    self.control.userData.selectTrailEndpoint(endpoint.kind)
+                    return
                 }
+                guard let id = (view.annotation as? LandmarkAnnotation)?.landmark?.id,
+                      let landmark = landmarkService.getLandmarkById(id: id) else { return }
+                self.control.userData.trailTourEndpoint = nil
+                self.control.userData.trailTourCurrentLandmark = landmark
+                self.control.userData.checkForTrailTourEnd()
             }
             
             func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -125,18 +131,19 @@ struct TrailMapView: UIViewRepresentable {
     private func updateAnnotations(from mapView: MKMapView) {
         mapView.removeAnnotations(mapView.annotations)
         
-        var newAnnotations = [LandmarkAnnotation]()
+        var newAnnotations = [MKAnnotation]()
         
         newAnnotations.append(contentsOf: landmarkService.getLandmarksByTrailId(id: trail.id).map
             {
                 LandmarkAnnotation(landmark: $0)
             })
+        newAnnotations.append(contentsOf: TrailEndpointAnnotation.annotations(for: trail))
         mapView.addAnnotations(newAnnotations)
     }
     
     private func addBoundary(from mapView: MKMapView) {
         mapView.removeOverlays(mapView.overlays)
-        if !trail.boundaryCoordinates.isEmpty {
+        if trail.boundaryCoordinates.count >= 2 {
             var points = trail.boundaryCoordinates.map{CLLocationCoordinate2D(
                                 latitude: $0.latitude,
                                 longitude: $0.longitude)}
@@ -153,6 +160,8 @@ struct TrailMapView_Previews: PreviewProvider {
     
     static var previews: some View {
 
-        TrailMapView(trail: landmarkService.getTrails()[0]).environment(UserData.shared)
+        if let trail = landmarkService.getTrails().first {
+            TrailMapView(trail: trail).environment(UserData.shared)
+        }
     }
 }

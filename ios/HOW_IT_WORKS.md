@@ -21,17 +21,26 @@ builds add a fifth **Beacons** tab listing every beacon in range with distances
 
 ## The data
 
-The app pins the version 1 JSON and KML contracts on the project's hosted site:
+The app pins the version 3 JSON and KML contracts on the project's hosted site:
 
 ```
-https://trails.warringtoneac.org/api/v2/trails.json
-https://trails.warringtoneac.org/api/v2/talking-trails.kml
+https://trails.warringtoneac.org/api/v3/trails.json
+https://trails.warringtoneac.org/api/v3/talking-trails.kml
 ```
 
 The base URL lives in `Info.plist` under `base_url_string` (read by
 `Service/Utils.swift`). The JSON decodes into `Model/` structs (`WarringtonTalkingTrailsData` =
-`locations[]` + `landmarks[]` + `trails[]`), mirroring the Android models. Landmark `id`
-doubles as the beacon **minor** value. Fetching happens once at startup in
+`locations[]` + `landmarks[]` + `trails[]`), mirroring the Android models. In v3 a
+landmark `id` is the stable string `recordKey` (e.g. `"EAC-2"`), and the optional
+`beaconMinor` is the iBeacon **minor** that identifies it
+(`LandmarkService.getLandmarkByBeaconMinor`). Places without `beaconMinor` still appear on
+maps and lists and can be tour stops, but no beacon ever matches them. Each trail's
+`boundaryCoordinates[].landmarkId` lists its tour stops in tour order. A trail may also
+carry optional beacon-free `start`/`end` points (`{latitude, longitude, distance,
+directions}`): they are drawn as flag markers on the trail and tour maps, can be tapped
+on the trail details map as the tour starting point, and the tour shows "From the trail
+start: …" / "From the trail end: …" directions from them, or "Trail end"/"Trail start" as
+the next target when leaving the last/first stop toward them. Fetching happens once at startup in
 `MainView.loadData()` — revalidating with the server when online (ETag 304s), falling
 back to the cached copy offline.
 
@@ -136,7 +145,7 @@ the SwiftUI app's `.onOpenURL`, and handled by
 at the repo root:
 
 ```bash
-./simulate_beacon.sh 7          # near landmark 7 (1.0 m)
+./simulate_beacon.sh 7          # near the place whose beaconMinor is 7 (1.0 m)
 ./simulate_beacon.sh 7 2.5      # ...at 2.5 m
 ./simulate_beacon.sh walk       # auto-walk stops 1..16, 8s each
 ./simulate_beacon.sh clear      # out of range of everything
@@ -144,14 +153,15 @@ at the repo root:
 
 Behavior notes:
 - Works only on a **booted simulator** running a **debug** build. It resolves to
-  `xcrun simctl openurl booted warringtontalkingtrails://fakebeacon?minor=<id>&distance=<m>`.
+  `xcrun simctl openurl booted warringtontalkingtrails://fakebeacon?minor=<beaconMinor>&distance=<m>`.
 - **First send may show an "Open in Warrington Talking Trails?" prompt** — that's iOS's
   confirmation when a URL targets the already-frontmost app; tap Open. Sending while
   the app is backgrounded delivers cleanly and foregrounds it.
 - Injection is one beacon at a time (matching how iOS ranges a nearest beacon) and
   bypasses the seen-count / 60s cooldown debounce on purpose — dev loops shouldn't
   wait a minute. The debounce still governs the real radio path.
-- Landmark ids: 1–16 (stops), 4001 (trailhead).
+- Beacon minors are the landmarks' `beaconMinor` values in the v3 JSON (e.g. 1–15 on
+  the US-202 trails, 1002–3008 at Lions Pride Park).
 - **Release safety:** the `FakeBeacon` handler and injection methods are wrapped in
   `#if DEBUG` — verified absent from the release binary (0 symbols). The
   `warringtontalkingtrails` URL-scheme *declaration* in `Info.plist` is static and remains in
@@ -160,5 +170,5 @@ Behavior notes:
   follow-up, not done.)
 
 For **radio-level** testing before the field test, a second phone broadcasting
-**iBeacon** (UUID `035a0617-0875-4cc7-a29c-be0caa8f557c`, major `20`, minor = landmark
-id) via the Beacon Scope app exercises the real CoreLocation path on device.
+**iBeacon** (UUID `035a0617-0875-4cc7-a29c-be0caa8f557c`, major `20`, minor = the
+landmark's `beaconMinor`) via the Beacon Scope app exercises the real CoreLocation path on device.

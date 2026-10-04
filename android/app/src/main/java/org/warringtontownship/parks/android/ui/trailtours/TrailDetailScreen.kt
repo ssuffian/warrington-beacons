@@ -43,13 +43,13 @@ import org.warringtontownship.parks.android.ui.common.TrailMapMarker
 fun TrailDetailScreen(
     trailId: String,
     onBack: () -> Unit,
-    onStartTour: (String, Boolean, Int) -> Unit,
+    onStartTour: (String, Boolean, String?) -> Unit,
     viewModel: TrailToursViewModel = hiltViewModel(),
 ) {
     val trail = viewModel.getTrailById(trailId)
     val bounds = viewModel.getBoundsForTrail(trailId)
     var reverse by remember { mutableStateOf(false) }
-    var selectedLandmarkId by remember { mutableStateOf<Int?>(null) }
+    var selectedLandmarkId by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         topBar = {
@@ -75,22 +75,28 @@ fun TrailDetailScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             if (trail != null) {
-                val markers = trail.boundaryCoordinates
-                    .filter { it.landmarkId != null }
-                    .map { coord ->
-                        val lm = viewModel.getLandmarkById(coord.landmarkId!!)
-                        TrailMapMarker(
-                            id = coord.landmarkId,
-                            title = lm?.name ?: "Stop",
-                            category = lm?.category ?: "",
-                            latitude = coord.latitude,
-                            longitude = coord.longitude,
-                        )
-                    }
-                val startMarker = selectedLandmarkId?.let { id ->
+                val markers = tourStops(trail).mapNotNull { coord ->
+                    val landmarkId = coord.landmarkId ?: return@mapNotNull null
+                    val lm = viewModel.getLandmarkById(landmarkId)
+                    TrailMapMarker(
+                        id = landmarkId,
+                        title = lm?.name ?: "Stop",
+                        category = lm?.category ?: "",
+                        latitude = coord.latitude,
+                        longitude = coord.longitude,
+                    )
+                }
+                // A chosen stop wins. Otherwise begin at the trail's own start (or end,
+                // reversed) when the data has one, before guessing a "Trail" stop.
+                val selectedMarker = selectedLandmarkId?.let { id ->
                     markers.firstOrNull { it.id == id }
-                } ?: markers.firstOrNull { it.category == "Trail" }
-                ?: markers.firstOrNull()
+                }
+                val trailhead = if (selectedMarker == null) trailheadFor(trail, reverse) else null
+                val startMarker = selectedMarker
+                    ?: if (trailhead != null) null else {
+                        markers.firstOrNull { it.category == "Trail" } ?: markers.firstOrNull()
+                    }
+                val startTitle = trailhead?.title ?: startMarker?.title
 
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
@@ -132,7 +138,10 @@ fun TrailDetailScreen(
                         }
                     }
                     val startIndex = markers.indexOfFirst { it.id == startMarker?.id }
-                    val headingToward = if (startIndex >= 0 && markers.size > 1) {
+                    val headingToward = if (trailhead != null) {
+                        // From the trail start the first stop is next; from the end, the last.
+                        (if (reverse) markers.lastOrNull() else markers.firstOrNull())?.title
+                    } else if (startIndex >= 0 && markers.size > 1) {
                         val nextIndex = if (reverse) {
                             if (startIndex > 0) startIndex - 1 else markers.size - 1
                         } else {
@@ -149,10 +158,10 @@ fun TrailDetailScreen(
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }
-                    if (startMarker != null) {
+                    if (startTitle != null) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Starting at: ${startMarker.title}",
+                            text = "Starting at: $startTitle",
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.End,
                             modifier = Modifier.fillMaxWidth()
@@ -171,7 +180,7 @@ fun TrailDetailScreen(
 
                 TrailMap(
                     routes = listOf(coords),
-                    markers = markers,
+                    markers = markers + endpointMarkers(trail),
                     boundsCoordinates = bounds,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -181,10 +190,10 @@ fun TrailDetailScreen(
 
                 Button(
                     onClick = {
-                            val startId = startMarker?.id ?: 0
-                            onStartTour(trailId, reverse, startId)
+                        // Null starts the tour from the trail start/end itself.
+                        onStartTour(trailId, reverse, startMarker?.id)
                     },
-                    enabled = startMarker != null,
+                    enabled = markers.isNotEmpty(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),

@@ -66,6 +66,9 @@ struct TrailTourMapView: UIViewRepresentable {
             }
             
             func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+                if let endpoint = annotation as? TrailEndpointAnnotation {
+                    return endpoint.markerView(on: mapView)
+                }
                 guard let annotation = annotation as? LandmarkAnnotation else { return nil }
                 let identifier = "MainMapAnnotation\(annotation.id)"
                 var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? AccessibleLandmarkAnnotationView
@@ -149,55 +152,34 @@ struct TrailTourMapView: UIViewRepresentable {
             func mapView(_ mapView: MKMapView,
                          didSelect view: MKAnnotationView) {
                 
-                let annotation = view.annotation as? LandmarkAnnotation
-                if annotation != nil && annotation?.landmark != nil {
-                    let landmark = landmarkService.getLandmarkById(id: annotation!.landmark!.id)
-                
-                    if landmark != nil {
-                        control.userData.trailTourSelectedLandmark = landmark!
-                        control.showPointOfInterestDetails = true
-                    }
-                }
+                guard let id = (view.annotation as? LandmarkAnnotation)?.landmark?.id,
+                      let landmark = landmarkService.getLandmarkById(id: id) else { return }
+                control.userData.trailTourSelectedLandmark = landmark
+                control.showPointOfInterestDetails = true
             }
         }
     
     
     private func updateAnnotations(from mapView: MKMapView) {
         mapView.removeAnnotations(mapView.annotations)
-        let newAnnotations = landmarks.map { LandmarkAnnotation(landmark: $0) }
+        var newAnnotations: [MKAnnotation] = landmarks.map { LandmarkAnnotation(landmark: $0) }
+        if let trail = userData.trailTourTrail {
+            newAnnotations.append(contentsOf: TrailEndpointAnnotation.annotations(for: trail))
+        }
         mapView.addAnnotations(newAnnotations)
     }
     
     private func addBoundary(from mapView: MKMapView) {
         mapView.removeOverlays(mapView.overlays)
         
-        let trailLandmark = self.landmarks.filter {l in
-            l.category == Landmark.Category.Trail
-        }
-        
-        if trailLandmark.count > 0 {
-            // what to do if no landmarks are a trail?
-            let trail = self.userData.trailTourTrail
-            if trail != nil {
-                let points = trail!.boundaryCoordinates.map{CLLocationCoordinate2D(
-                                    latitude: $0.latitude,
-                                    longitude: $0.longitude)}
-//                print(trail!.isOpen)
-//                if !trail!.isOpen {
-//                    points.append(CLLocationCoordinate2D(latitude: points[0].latitude, longitude: points[0].longitude))
-//                }
-                let polygon = NamedPolyline(coordinates:points, count: points.count)
-                polygon.name = "Base"
-                mapView.addOverlay(polygon)
-//                if !self.userData.trailTourEnded {
-//                    let lineCoordinates = MapService.pointsToNextLandmark(trail: trail!, currentLandmark: self.userData.trailTourCurrentLandmark!, direction: self.userData.trailDirection)
-//                    let polyline = NamedPolyline(coordinates:
-//                        lineCoordinates, count: lineCoordinates.count)
-//                    polyline.name = "Directions"
-//                    mapView.insertOverlay(polyline, above: polygon)
-//                }
-            }
-        }
+        // Draw the route whether or not the trail has a Trail-category landmark.
+        guard let trail = self.userData.trailTourTrail, trail.boundaryCoordinates.count >= 2 else { return }
+        let points = trail.boundaryCoordinates.map{CLLocationCoordinate2D(
+                            latitude: $0.latitude,
+                            longitude: $0.longitude)}
+        let polygon = NamedPolyline(coordinates:points, count: points.count)
+        polygon.name = "Base"
+        mapView.addOverlay(polygon)
     }
 }
 
