@@ -56,8 +56,8 @@ def tables(path):
         'Beacons': {'Minor': 'id', 'Source Minor': 'sourceId', 'Source Major': 'sourceMajor', 'App Inclusion': 'appStatus',
                     'Trail ID': 'trailId', 'Stop Order': 'stopOrder'},
         'Locations': {'Major': 'beaconMajorCode', 'iBeacon UUID': 'iBeaconUUID', 'AltBeacon UUID': 'altBeaconUUID'},
-        'Trails': {'Trail ID': 'id'},
-        'Stop Content': {'Trail ID': 'trailId', 'KML recordKey': 'recordKey',
+        'Trails': {'Trail ID': 'id', 'Start recordKey': 'startRecordKey', 'End recordKey': 'endRecordKey'},
+        'Stop Content': {'Trail ID': 'trailId', 'KML recordKey': 'recordKey', 'Stop Order': 'stopOrder',
                          'Forward Distance': 'forwardDistance', 'Forward Instructions': 'forwardInstructions',
                          'Reverse Distance': 'reverseDistance', 'Reverse Instructions': 'reverseInstructions'},
         'Trail Stops': {'Trail ID': 'trailId', 'Stop Order': 'stopOrder', 'Beacon Minor': 'landmarkId',
@@ -107,8 +107,9 @@ def read_kml(path, api_version='v1'):
             elif len(coordinates) != 1: errors.append((key, 'Point must have exactly one coordinate'))
             else: points[key] = {'coordinate': coordinates[0], 'trailId': meta.get('trailId', '').strip(), 'stopOrder': meta.get('stopOrder', '').strip()}
             continue
-        group = (meta.get('trailId', '') if api_version == 'v2' else meta.get('trailGroupId', '')).strip()
-        if api_version == 'v2': group = canonical_trail_id(group)
+        string_ids = api_version in ('v2', 'v3')
+        group = (meta.get('trailId', '') if string_ids else meta.get('trailGroupId', '')).strip()
+        if string_ids: group = canonical_trail_id(group)
         if not group: continue
         parts = [_coords(n.text) for n in pm.findall('.//k:LineString/k:coordinates', KNS)]
         parts += [_coords(n.text) for n in pm.findall('.//k:Polygon/k:outerBoundaryIs/k:LinearRing/k:coordinates', KNS)]
@@ -155,6 +156,7 @@ def route_with_stops(parts, stops):
 
     def plain(point): return {'latitude': point[0], 'longitude': point[1]}
     def stop_value(stop):
+        if stop.get('endpoint'): return plain(stop['coordinate'])
         value = {'latitude': stop['coordinate'][0], 'longitude': stop['coordinate'][1], 'landmarkId': stop['landmarkId']}
         value.update(stop['content']); return value
     def between(a, b):
@@ -169,6 +171,14 @@ def route_with_stops(parts, stops):
             selected = sorted((((a-d) % total, p) for d, p in zip(cumulative[:-1], path[:-1]) if 0 < (a-d) % total < backward))
         return [plain(p) for _, p in selected]
 
+    if len(stops) == 1:
+        # A lone anchor cannot orient the route, so keep the KML direction around it.
+        pos = positions[0]
+        if closed:
+            loop = sorted((((d-pos) % total, p) for d, p in zip(cumulative[:-1], path[:-1]) if (d-pos) % total > 0))
+            return [stop_value(stops[0])] + [plain(p) for _, p in loop]
+        return ([plain(p) for d, p in zip(cumulative, path) if d < pos] + [stop_value(stops[0])]
+                + [plain(p) for d, p in zip(cumulative, path) if d > pos])
     result = []
     if not closed and len(positions) > 1:
         # Include the route before the first stop from the end implied by the
@@ -214,33 +224,45 @@ def validate(t, kml_path, api_version='v1'):
         locations.append(loc)
     location_ids = [r['id'] for r in locations]
     if len(location_ids) != len(set(location_ids)): fail('Locations', 'Duplicate IDs')
-    landmarks, active_by_key, memberships, beacon_keys = [], {}, {}, set()
-    trail_ids = {canonical_trail_id(r.get('id', '')) if api_version == 'v2' else str(r.get('id', '')).strip()
-                 for r in t['Trails']} - {''}
+    string_ids = api_version in ('v2', 'v3')
+    def trail_key(value): return canonical_trail_id(value) if string_ids else str(value or '').strip()
+    trail_rows = {}
+    for r in t['Trails']:
+        trail_id = trail_key(r.get('id', ''))
+        if trail_id in trail_rows: fail('Trails', 'Duplicate trail IDs')
+        trail_rows[trail_id] = r
+    endpoints = {}
+    for trail_id, r in trail_rows.items():
+        for role, column in (('start', 'startRecordKey'), ('end', 'endRecordKey')):
+            key = str(r.get(column, '')).strip()
+            if key: endpoints[(trail_id, role)] = key
+    landmarks, places, beacon_keys, minors = [], {}, set(), {}
     for r in t['Beacons']:
         where = r.get('recordKey', 'Beacon')
         if not where or where == 'Beacon': fail(where, 'Missing recordKey')
         if where in beacon_keys: fail(where, 'Duplicate Beacon recordKey')
         beacon_keys.add(where)
-        if 'trailId' not in r or 'stopOrder' not in r:
-            fail(where, 'Beacons requires trailId and stopOrder columns; migrate existing KML memberships first')
-        trail_id = str(r.get('trailId', '')).strip()
-        if api_version == 'v2': trail_id = canonical_trail_id(trail_id)
-        stop_order = str(r.get('stopOrder', '')).strip()
-        if trail_id and trail_id not in trail_ids: fail(where, 'Unknown Beacons trailId: '+trail_id)
-        if bool(trail_id) != bool(stop_order): fail(where, 'Set both trailId and stopOrder, or leave both blank')
-        order = integer(stop_order, where) if stop_order else 0
-        if stop_order and order < 1: fail(where, 'stopOrder must be positive')
         if r.get('reviewStatus') != 'Approved': fail(where, 'Needs review')
         if r.get('appStatus') not in ('Active', 'Draft', 'Retired'): fail(where, 'Invalid appStatus')
         if r.get('appStatus') != 'Active': continue
-        if trail_id: memberships[where] = {'trailId': trail_id, 'order': order}
-        if where not in points: fail(where, 'Active beacon has no KML Point')
+        # A blank Minor marks a place without a physical beacon.
+        minor_text = str(r.get('id', '')).strip()
+        minor = integer(minor_text, where) if minor_text else None
+        if minor is not None:
+            if not 0 <= minor <= 65535: fail(where, 'Minor out of range')
+            if minor in minors: fail(where, f'Minor {minor} is also used by {minors[minor]}')
+            minors[minor] = where
+        if where not in points: fail(where, 'Active place has no KML Point')
         lm = {k: r.get(k, '') for k in ('name', 'category', 'description', 'longDescription', 'imagePath', 'imageAlt')}
         for k in ('name', 'category', 'description', 'longDescription', 'imagePath'):
             if not lm[k].strip(): fail(where, 'Missing '+k)
         if lm['category'] not in ('Trail', 'Building', 'PointOfInterest'): fail(where, 'Invalid category')
-        lm['id'] = integer(r.get('id'), where); lm['location'] = r.get('location', '')
+        if api_version == 'v3':
+            lm['id'] = where
+            if minor is not None: lm['beaconMinor'] = minor
+        else:
+            lm['id'] = minor
+        lm['location'] = r.get('location', '')
         if lm['location'] not in location_ids: fail(where, 'Unknown location')
         try: lm['imagePath'] = normalize_image_path(lm['imagePath'])
         except ValueError as exc: fail(where, str(exc))
@@ -250,64 +272,87 @@ def validate(t, kml_path, api_version='v1'):
             lat, lon = points[where]['coordinate']; lm['coordinates'] = {'latitude': lat, 'longitude': lon}
         if r.get('isOpen') != '': lm['isOpen'] = boolean(r.get('isOpen'), where)
         if r.get('trailDistanceDescription'): lm['trailDistanceDescription'] = r['trailDistanceDescription']
-        landmarks.append(lm); active_by_key[where] = lm
-    ids = [r['id'] for r in landmarks]
-    if len(ids) != len(set(ids)): fail('Beacons', 'Duplicate active IDs')
-    content = {}
+        places[where] = {'landmark': lm, 'minor': minor}
+        # Earlier contracts identify places by Minor, so they cannot include beacon-free places.
+        if api_version == 'v3' or minor is not None: landmarks.append(lm)
+    content, stops = {}, {}
     for r in t['Stop Content']:
-        trail_key = str(r.get('trailId', ''))
-        if api_version == 'v2': trail_key = canonical_trail_id(trail_key)
-        key = (trail_key, r.get('recordKey', ''))
+        trail_id = trail_key(r.get('trailId', '')); record_key = str(r.get('recordKey', '')).strip()
+        key = (trail_id, record_key)
         if key in content: fail(key, 'Duplicate Stop Content row')
         content[key] = {'distanceToNextClockwise': r.get('forwardDistance', ''), 'distanceToNextClockwiseDescription': r.get('forwardInstructions', ''),
                         'distanceToNextCounterClockwise': r.get('reverseDistance', ''), 'distanceToNextCounterClockwiseDescription': r.get('reverseInstructions', '')}
-    trails, used_content = [], set()
-    for r in t['Trails']:
-        trail_id = str(r.get('id', ''))
-        if api_version == 'v2': trail_id = canonical_trail_id(trail_id)
+        if trail_id not in trail_rows: fail(key, 'Unknown Stop Content Trail ID: '+trail_id); continue
+        stop_order = str(r.get('stopOrder', '')).strip()
+        if not stop_order:
+            if record_key not in (endpoints.get((trail_id, 'start')), endpoints.get((trail_id, 'end'))):
+                fail(key, "Set Stop Order, or make this recordKey the trail's Start or End recordKey")
+            continue
+        order = integer(stop_order, key)
+        if order < 1: fail(key, 'Stop Order must be positive'); continue
+        if record_key not in places: fail(key, 'Tour stop is not an active Beacons row'); continue
+        stops.setdefault(trail_id, []).append({'order': order, 'key': record_key})
+    trails = []
+    for trail_id, r in trail_rows.items():
         where = 'Trail '+trail_id
-        group = trail_id if api_version == 'v2' else r.get('kmlTrailGroupId', '')
+        group = trail_id if string_ids else r.get('kmlTrailGroupId', '')
         if r.get('reviewStatus') != 'Approved': fail(where, 'Trail needs approval')
         if group not in routes: fail(where, 'No KML route for '+group)
-        output_id = trail_id if api_version == 'v2' else integer(trail_id, where)
+        output_id = trail_id if string_ids else integer(trail_id, where)
         if not trail_id: fail(where, 'Missing trail ID')
         tr = {'id': output_id, 'location': r.get('location', ''), 'name': r.get('name', ''), 'isOpen': boolean(r.get('isOpen'), where), 'trailDistanceDescription': r.get('trailDistanceDescription', '')}
         if tr['location'] not in location_ids: fail(where, 'Unknown location')
+        members = sorted(stops.get(trail_id, []), key=lambda x: x['order'])
+        if [x['order'] for x in members] != list(range(1, len(members)+1)): fail(where, 'Stop Order must be consecutive from 1')
         stop_points = []
-        for key, membership in memberships.items():
-            if membership['trailId'] != trail_id: continue
-            if key not in points: continue
-            point = points[key]; order = membership['order']
-            pair = (trail_id, key)
-            if pair not in content: fail(key, 'Beacon tour stop has no Stop Content row'); stop_content = {}
-            else: stop_content = content[pair]; used_content.add(pair)
-            stop_points.append({'order': order, 'coordinate': point['coordinate'], 'landmarkId': active_by_key[key]['id'], 'content': stop_content})
-        stop_points.sort(key=lambda x: x['order'])
-        if [x['order'] for x in stop_points] != list(range(1, len(stop_points)+1)): fail(where, 'Beacons stopOrder must be consecutive from 1')
-        if len(stop_points) == 1: fail(where, 'Trail needs either zero or at least two Beacon stops')
-        if group in routes:
-            tr['boundaryCoordinates'] = route_with_stops(routes[group], stop_points) if stop_points else [
+        for member in members:
+            place = places[member['key']]
+            if api_version != 'v3' and place['minor'] is None: continue
+            stop_points.append({'coordinate': points[member['key']]['coordinate'], 'content': content[(trail_id, member['key'])],
+                                'landmarkId': member['key'] if api_version == 'v3' else place['minor']})
+        if api_version != 'v3' and len(stop_points) == 1: stop_points = []
+        anchors = list(stop_points)
+        for role in ('start', 'end'):
+            key = endpoints.get((trail_id, role))
+            if not key: continue
+            if key not in points: fail(where, f'{role.title()} recordKey {key} has no KML Point'); continue
+            if places.get(key, {}).get('minor') is not None: fail(where, f'{role.title()} recordKey {key} is an active beacon; use a separate point')
+            stop_content = content.get((trail_id, key), {})
+            anchor = {'coordinate': points[key]['coordinate'], 'endpoint': True}
+            anchors.insert(0, anchor) if role == 'start' else anchors.append(anchor)
+            if api_version == 'v3':
+                side = 'Clockwise' if role == 'start' else 'CounterClockwise'
+                lat, lon = points[key]['coordinate']
+                tr[role] = {'latitude': lat, 'longitude': lon, 'distance': stop_content.get('distanceToNext'+side, ''),
+                            'directions': stop_content.get('distanceToNext'+side+'Description', '')}
+        if endpoints.get((trail_id, 'start')) and endpoints.get((trail_id, 'start')) == endpoints.get((trail_id, 'end')):
+            fail(where, 'Start and End recordKey must differ')
+        if group in routes and routes[group]:
+            tr['boundaryCoordinates'] = route_with_stops(routes[group], anchors) if anchors else [
                 {'latitude': latitude, 'longitude': longitude} for latitude, longitude in _merge(routes[group])
             ]
         trails.append(tr)
-    for pair in content.keys() - used_content: fail(pair, 'Stop Content row has no matching active Beacons membership')
-    if len({r['id'] for r in trails}) != len(trails): fail('Trails', 'Duplicate trail IDs')
     return {'locations': locations, 'trails': trails, 'landmarks': landmarks}, errors
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('workbook', type=Path)
-    parser.add_argument('--api-version', choices=('v1', 'v2'), default='v1')
+    parser.add_argument('--api-version', choices=('v1', 'v2', 'v3'), default='v1')
     parser.add_argument('--kml', type=Path, default=ROOT/'server/talking-trails.kml'); parser.add_argument('--output-dir', type=Path, required=True); args = parser.parse_args()
     out = args.output_dir.resolve()
     if out == ROOT or out.is_relative_to(ROOT/'server'): parser.error('Use a separate review output directory, never server/')
-    out.mkdir(parents=True, exist_ok=True); baseline = json.loads((ROOT/'server/warrington-trails.json').read_text())
+    out.mkdir(parents=True, exist_ok=True); baseline_path = ROOT/'server/api'/args.api_version/'trails.json'
+    if args.api_version == 'v1' or not baseline_path.is_file(): baseline_path = ROOT/'server/warrington-trails.json'
+    baseline = json.loads(baseline_path.read_text())
     try: candidate, errors = validate(tables(args.workbook), args.kml, args.api_version)
     except (ValueError, KeyError, zipfile.BadZipFile, ET.ParseError) as exc: candidate, errors = {}, [{'record': 'Input', 'issue': str(exc)}]
     with (out/'validation.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['record', 'issue']); w.writeheader(); w.writerows(errors)
     for name in ('candidate.json', 'changes.diff'): (out/name).unlink(missing_ok=True)
-    if errors: print(f'Blocked: {len(errors)} issues. See {out / "validation.csv"}'); return 1
+    if errors:
+        print(f'Blocked: {len(errors)} issues. See {out / "validation.csv"}')
+        for error in errors: print(f"  {error['record']}: {error['issue']}")
+        return 1
     old = json.dumps(baseline, indent=2, ensure_ascii=False, sort_keys=True)+'\n'; new = json.dumps(candidate, indent=2, ensure_ascii=False, sort_keys=True)+'\n'
     (out/'candidate.json').write_text(new); (out/'changes.diff').write_text(''.join(difflib.unified_diff(old.splitlines(True), new.splitlines(True), fromfile='current JSON', tofile='sheet + KML')))
     print(f'Validated. Candidate and diff written to {out}. Nothing published.'); return 0

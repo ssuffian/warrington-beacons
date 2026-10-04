@@ -1,0 +1,3554 @@
+{
+  "locations": [
+    {
+      "id": "lions-pride-park",
+      "name": "Lions Pride Park",
+      "address": "3129 Bradley Rd, Warrington, PA 18976",
+      "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "altBeaconUUID": "00112233-4455-6677-8899-aabbccddeeff",
+      "beaconMajorCode": 17
+    },
+    {
+      "id": "us-202",
+      "name": "US202 to Bradford Dam",
+      "address": "Stump Road across from 785, Chalfont, PA 18914",
+      "iBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "altBeaconUUID": "035a0617-0875-4cc7-a29c-be0caa8f557c",
+      "beaconMajorCode": 20
+    }
+  ],
+  "trails": [
+    {
+      "id": "yellow-trail",
+      "location": "lions-pride-park",
+      "name": "Yellow Trail",
+      "isOpen": false,
+      "trailDistanceDescription": "This 0.4-mile paved trail loops around Kids Mountain and the Grove. Just to the right of the main entrance, a link connects to IPW Park around the soccer fields. About halfway around, a connector leads to the Green Trail.",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.2460564,
+          "longitude": -75.17748759999999,
+          "landmarkId": "LP-4",
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": ""
+        },
+        {
+          "latitude": 40.24603641823525,
+          "longitude": -75.1774621092604
+        },
+        {
+          "latitude": 40.24610274012861,
+          "longitude": -75.17754991516844
+        },
+        {
+          "latitude": 40.24612515841104,
+          "longitude": -75.1775290927216
+        },
+        {
+          "latitude": 40.24614507459768,
+          "longitude": -75.17749761751625
+        },
+        {
+          "latitude": 40.24618869800653,
+          "longitude": -75.17743398722715
+        },
+        {
+          "latitude": 40.24628922468173,
+          "longitude": -75.1773266187182
+        },
+        {
+          "latitude": 40.24638898653905,
+          "longitude": -75.17725753562434
+        },
+        {
+          "latitude": 40.2464202524444,
+          "longitude": -75.17724591794473
+        },
+        {
+          "latitude": 40.24646598096324,
+          "longitude": -75.17723072639482
+        },
+        {
+          "latitude": 40.2465624136807,
+          "longitude": -75.17718018598087
+        },
+        {
+          "latitude": 40.2466586640746,
+          "longitude": -75.17717442326062
+        },
+        {
+          "latitude": 40.24676365826051,
+          "longitude": -75.17716394485404
+        },
+        {
+          "latitude": 40.24688600789779,
+          "longitude": -75.17716993232226
+        },
+        {
+          "latitude": 40.24716867899525,
+          "longitude": -75.17724976690715
+        },
+        {
+          "latitude": 40.2472,
+          "longitude": -75.1773,
+          "landmarkId": "LP-2",
+          "distanceToNextClockwise": "160 feet",
+          "distanceToNextClockwiseDescription": "From the entrance, proceed on the trail to the left approximately 160 feet to the restrooms or 200 feet straight ahead to the Grove",
+          "distanceToNextCounterClockwise": "500 feet",
+          "distanceToNextCounterClockwiseDescription": "In 500 feet, you will reach one of the entrances to the Green Trail"
+        },
+        {
+          "latitude": 40.24716867899525,
+          "longitude": -75.17724976690715
+        },
+        {
+          "latitude": 40.24688600789779,
+          "longitude": -75.17716993232226
+        },
+        {
+          "latitude": 40.24676365826051,
+          "longitude": -75.17716394485404
+        },
+        {
+          "latitude": 40.2466586640746,
+          "longitude": -75.17717442326062
+        },
+        {
+          "latitude": 40.2465624136807,
+          "longitude": -75.17718018598087
+        },
+        {
+          "latitude": 40.24646598096324,
+          "longitude": -75.17723072639482
+        },
+        {
+          "latitude": 40.2464202524444,
+          "longitude": -75.17724591794473
+        },
+        {
+          "latitude": 40.24638898653905,
+          "longitude": -75.17725753562434
+        },
+        {
+          "latitude": 40.24628922468173,
+          "longitude": -75.1773266187182
+        },
+        {
+          "latitude": 40.24618869800653,
+          "longitude": -75.17743398722715
+        },
+        {
+          "latitude": 40.24614507459768,
+          "longitude": -75.17749761751625
+        },
+        {
+          "latitude": 40.24612515841104,
+          "longitude": -75.1775290927216
+        },
+        {
+          "latitude": 40.24610274012861,
+          "longitude": -75.17754991516844
+        },
+        {
+          "latitude": 40.24603641823525,
+          "longitude": -75.1774621092604
+        },
+        {
+          "latitude": 40.24610351146794,
+          "longitude": -75.17754997660491
+        },
+        {
+          "latitude": 40.24613011525903,
+          "longitude": -75.17774821283338
+        },
+        {
+          "latitude": 40.24613926829734,
+          "longitude": -75.17780517886699
+        },
+        {
+          "latitude": 40.24614198745358,
+          "longitude": -75.17789951229437
+        },
+        {
+          "latitude": 40.24612690563941,
+          "longitude": -75.17798640253922
+        },
+        {
+          "latitude": 40.24610485875656,
+          "longitude": -75.17808323481181
+        },
+        {
+          "latitude": 40.24609000275727,
+          "longitude": -75.17816318178804
+        },
+        {
+          "latitude": 40.24608617363287,
+          "longitude": -75.17826299505361
+        },
+        {
+          "latitude": 40.24617,
+          "longitude": -75.17828,
+          "landmarkId": "LP-5",
+          "distanceToNextClockwise": "75 feet",
+          "distanceToNextClockwiseDescription": "Continue on the trail 75 feet and the pavilion is on the right, 50 feet from the trail",
+          "distanceToNextCounterClockwise": "160 feet",
+          "distanceToNextCounterClockwiseDescription": "From the restrooms, continue 160 feet to the park entrance"
+        },
+        {
+          "latitude": 40.24610704486935,
+          "longitude": -75.17836329999523
+        },
+        {
+          "latitude": 40.24633,
+          "longitude": -75.17831,
+          "landmarkId": "LP-8",
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": ""
+        },
+        {
+          "latitude": 40.24610704486935,
+          "longitude": -75.17836329999523
+        },
+        {
+          "latitude": 40.24608617363287,
+          "longitude": -75.17826299505361
+        },
+        {
+          "latitude": 40.24609000275727,
+          "longitude": -75.17816318178804
+        },
+        {
+          "latitude": 40.24610485875656,
+          "longitude": -75.17808323481181
+        },
+        {
+          "latitude": 40.24612690563941,
+          "longitude": -75.17798640253922
+        },
+        {
+          "latitude": 40.24668,
+          "longitude": -75.17796,
+          "landmarkId": "LP-6",
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": ""
+        },
+        {
+          "latitude": 40.24612690563941,
+          "longitude": -75.17798640253922
+        },
+        {
+          "latitude": 40.24610485875656,
+          "longitude": -75.17808323481181
+        },
+        {
+          "latitude": 40.24609000275727,
+          "longitude": -75.17816318178804
+        },
+        {
+          "latitude": 40.24608617363287,
+          "longitude": -75.17826299505361
+        },
+        {
+          "latitude": 40.24610704486935,
+          "longitude": -75.17836329999523
+        },
+        {
+          "latitude": 40.2461434066726,
+          "longitude": -75.17844588681517
+        },
+        {
+          "latitude": 40.24619912239299,
+          "longitude": -75.17850175416041
+        },
+        {
+          "latitude": 40.24627429945117,
+          "longitude": -75.17856610883717
+        },
+        {
+          "latitude": 40.24634253410615,
+          "longitude": -75.17856909465768
+        },
+        {
+          "latitude": 40.24641101154009,
+          "longitude": -75.1785663962078
+        },
+        {
+          "latitude": 40.24659641062178,
+          "longitude": -75.17850876678132
+        },
+        {
+          "latitude": 40.24673936363681,
+          "longitude": -75.17852084692004
+        },
+        {
+          "latitude": 40.24685808786722,
+          "longitude": -75.17858762436316
+        },
+        {
+          "latitude": 40.24697865871743,
+          "longitude": -75.17857977640735
+        },
+        {
+          "latitude": 40.24716998406729,
+          "longitude": -75.17851856357045
+        },
+        {
+          "latitude": 40.24727530334121,
+          "longitude": -75.17841595077861
+        },
+        {
+          "latitude": 40.24736579645407,
+          "longitude": -75.17828103864431
+        },
+        {
+          "latitude": 40.24791011460211,
+          "longitude": -75.17828079874792,
+          "landmarkId": "LP-27",
+          "distanceToNextClockwise": "150 feet",
+          "distanceToNextClockwiseDescription": "125 feet to sign  on left for The Woods and Invasive Species and 25 feet more to the Green Trail",
+          "distanceToNextCounterClockwise": "350 feet",
+          "distanceToNextCounterClockwiseDescription": "350 feet to the Pavilion on the left"
+        },
+        {
+          "latitude": 40.24736579645407,
+          "longitude": -75.17828103864431
+        },
+        {
+          "latitude": 40.24727530334121,
+          "longitude": -75.17841595077861
+        },
+        {
+          "latitude": 40.24716998406729,
+          "longitude": -75.17851856357045
+        },
+        {
+          "latitude": 40.24697865871743,
+          "longitude": -75.17857977640735
+        },
+        {
+          "latitude": 40.24685808786722,
+          "longitude": -75.17858762436316
+        },
+        {
+          "latitude": 40.24673936363681,
+          "longitude": -75.17852084692004
+        },
+        {
+          "latitude": 40.24659641062178,
+          "longitude": -75.17850876678132
+        },
+        {
+          "latitude": 40.24641101154009,
+          "longitude": -75.1785663962078
+        },
+        {
+          "latitude": 40.24634253410615,
+          "longitude": -75.17856909465768
+        },
+        {
+          "latitude": 40.24627429945117,
+          "longitude": -75.17856610883717
+        },
+        {
+          "latitude": 40.24619912239299,
+          "longitude": -75.17850175416041
+        },
+        {
+          "latitude": 40.2461434066726,
+          "longitude": -75.17844588681517
+        },
+        {
+          "latitude": 40.24610704486935,
+          "longitude": -75.17836329999523
+        },
+        {
+          "latitude": 40.24608617363287,
+          "longitude": -75.17826299505361
+        },
+        {
+          "latitude": 40.24604744797347,
+          "longitude": -75.17824829746803,
+          "landmarkId": "EAC-7",
+          "distanceToNextClockwise": "1131 yards;",
+          "distanceToNextClockwiseDescription": "1131 yards to Bluebird and cavity nesting bird program",
+          "distanceToNextCounterClockwise": "420 yards",
+          "distanceToNextCounterClockwiseDescription": "420 yards to Native Plant Management Area"
+        },
+        {
+          "latitude": 40.24609000275727,
+          "longitude": -75.17816318178804
+        },
+        {
+          "latitude": 40.24610485875656,
+          "longitude": -75.17808323481181
+        },
+        {
+          "latitude": 40.24612690563941,
+          "longitude": -75.17798640253922
+        },
+        {
+          "latitude": 40.24614198745358,
+          "longitude": -75.17789951229437
+        },
+        {
+          "latitude": 40.24613926829734,
+          "longitude": -75.17780517886699
+        },
+        {
+          "latitude": 40.24613011525903,
+          "longitude": -75.17774821283338
+        },
+        {
+          "latitude": 40.24610351146794,
+          "longitude": -75.17754997660491
+        }
+      ]
+    },
+    {
+      "id": "green-trail",
+      "location": "lions-pride-park",
+      "name": "Green Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This crushed-stone, U-shaped trail runs about 0.25 miles around the back of the park and leads to the Rain Garden nature area. From the Yellow Trail connector, walk left toward the Rain Garden or right around the lacrosse field toward the nature signs. The two ends do not currently connect. That will change when the pond-to-wetland project is completed.",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24736277611961,
+          "longitude": -75.17828884734304
+        },
+        {
+          "latitude": 40.2474747446546,
+          "longitude": -75.17823931000996
+        },
+        {
+          "latitude": 40.24752654888025,
+          "longitude": -75.17821881137387
+        },
+        {
+          "latitude": 40.24758543054401,
+          "longitude": -75.17820810821176
+        },
+        {
+          "latitude": 40.24767364043139,
+          "longitude": -75.17821061998168
+        },
+        {
+          "latitude": 40.24774,
+          "longitude": -75.17829,
+          "landmarkId": "LP-3",
+          "distanceToNextClockwise": "350 feet",
+          "distanceToNextClockwiseDescription": "This will take you along the woods and back to the Yellow Trail",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the beginning of the Green Trail"
+        },
+        {
+          "latitude": 40.24781797096905,
+          "longitude": -75.17827044553401
+        },
+        {
+          "latitude": 40.24740322615002,
+          "longitude": -75.17756956245012
+        },
+        {
+          "latitude": 40.2478113283904,
+          "longitude": -75.17827004160594
+        },
+        {
+          "latitude": 40.24788098254336,
+          "longitude": -75.17830281349869
+        },
+        {
+          "latitude": 40.24796259764645,
+          "longitude": -75.17830359280012
+        },
+        {
+          "latitude": 40.24805980263666,
+          "longitude": -75.17826019118422
+        },
+        {
+          "latitude": 40.24816341128543,
+          "longitude": -75.17819983066997
+        },
+        {
+          "latitude": 40.24829243051597,
+          "longitude": -75.17806274605624
+        },
+        {
+          "latitude": 40.24835697595046,
+          "longitude": -75.17795585584656
+        },
+        {
+          "latitude": 40.24841561627897,
+          "longitude": -75.17784363489156
+        },
+        {
+          "latitude": 40.24845329010742,
+          "longitude": -75.17776286754413
+        },
+        {
+          "latitude": 40.2484834149541,
+          "longitude": -75.17769392587996
+        },
+        {
+          "latitude": 40.24852152973791,
+          "longitude": -75.17762939215275
+        },
+        {
+          "latitude": 40.24853493516247,
+          "longitude": -75.17756893028651
+        },
+        {
+          "latitude": 40.24851980555648,
+          "longitude": -75.17745345327201
+        },
+        {
+          "latitude": 40.24848614460416,
+          "longitude": -75.17734967955776
+        },
+        {
+          "latitude": 40.24841811365695,
+          "longitude": -75.17713990659165
+        },
+        {
+          "latitude": 40.24830474663678,
+          "longitude": -75.17688379883495,
+          "landmarkId": "LP-15",
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about insects.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about the Rain Garden"
+        },
+        {
+          "latitude": 40.24834462813217,
+          "longitude": -75.17699122887448,
+          "landmarkId": "LP-25",
+          "distanceToNextClockwise": "50 feet",
+          "distanceToNextClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about butterflies.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about bees."
+        },
+        {
+          "latitude": 40.24841811365695,
+          "longitude": -75.17713990659165
+        },
+        {
+          "latitude": 40.24848614460416,
+          "longitude": -75.17734967955776
+        },
+        {
+          "latitude": 40.2484913202404,
+          "longitude": -75.17740860775541,
+          "landmarkId": "LP-16",
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the end of the Green Trail.",
+          "distanceToNextCounterClockwise": "50 feet",
+          "distanceToNextCounterClockwiseDescription": "Another 50 feet along the trail takes you to an information sign  about insects."
+        },
+        {
+          "latitude": 40.24851980555648,
+          "longitude": -75.17745345327201
+        },
+        {
+          "latitude": 40.24853493516247,
+          "longitude": -75.17756893028651
+        },
+        {
+          "latitude": 40.24852152973791,
+          "longitude": -75.17762939215275
+        },
+        {
+          "latitude": 40.2484834149541,
+          "longitude": -75.17769392587996
+        },
+        {
+          "latitude": 40.24845329010742,
+          "longitude": -75.17776286754413
+        },
+        {
+          "latitude": 40.24841561627897,
+          "longitude": -75.17784363489156
+        },
+        {
+          "latitude": 40.24835697595046,
+          "longitude": -75.17795585584656
+        },
+        {
+          "latitude": 40.24829243051597,
+          "longitude": -75.17806274605624
+        },
+        {
+          "latitude": 40.24816341128543,
+          "longitude": -75.17819983066997
+        },
+        {
+          "latitude": 40.24805980263666,
+          "longitude": -75.17826019118422
+        },
+        {
+          "latitude": 40.24796259764645,
+          "longitude": -75.17830359280012
+        },
+        {
+          "latitude": 40.24788098254336,
+          "longitude": -75.17830281349869
+        },
+        {
+          "latitude": 40.2478113283904,
+          "longitude": -75.17827004160594
+        },
+        {
+          "latitude": 40.24740322615002,
+          "longitude": -75.17756956245012
+        },
+        {
+          "latitude": 40.24781797096905,
+          "longitude": -75.17827044553401
+        },
+        {
+          "latitude": 40.24767364043139,
+          "longitude": -75.17821061998168
+        },
+        {
+          "latitude": 40.24758543054401,
+          "longitude": -75.17820810821176
+        },
+        {
+          "latitude": 40.24752654888025,
+          "longitude": -75.17821881137387
+        },
+        {
+          "latitude": 40.2474747446546,
+          "longitude": -75.17823931000996
+        },
+        {
+          "latitude": 40.24736277611961,
+          "longitude": -75.17828884734304
+        }
+      ]
+    },
+    {
+      "id": "kids-mountain-trail",
+      "location": "lions-pride-park",
+      "name": "Kids Mountain Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This 400-foot trail leads to the top of Kids Mountain. Its ADA-accessible slope is suitable for visitors with limited mobility.",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24658626696852,
+          "longitude": -75.17787837800083
+        },
+        {
+          "latitude": 40.24650083141384,
+          "longitude": -75.17777363619918
+        },
+        {
+          "latitude": 40.24642428106835,
+          "longitude": -75.1777047806907
+        },
+        {
+          "latitude": 40.24636720380917,
+          "longitude": -75.17768224288135
+        },
+        {
+          "latitude": 40.24632028623794,
+          "longitude": -75.17764802156388
+        },
+        {
+          "latitude": 40.24612511648142,
+          "longitude": -75.17768370801234
+        },
+        {
+          "latitude": 40.24621859062735,
+          "longitude": -75.17765533476764
+        },
+        {
+          "latitude": 40.24625,
+          "longitude": -75.17765,
+          "landmarkId": "LP-19",
+          "distanceToNextClockwise": "75 feet",
+          "distanceToNextClockwiseDescription": "Along the left side of the trail is a sign  with information about pollinator plants. There is a rope handrail on the right side",
+          "distanceToNextCounterClockwise": "",
+          "distanceToNextCounterClockwiseDescription": "This is the beginning of the Kids Mountain Trail. The park entrance is 30 feet further downhill on your left"
+        },
+        {
+          "latitude": 40.24631920804543,
+          "longitude": -75.17764995937996
+        },
+        {
+          "latitude": 40.24637706981914,
+          "longitude": -75.1775746673526
+        },
+        {
+          "latitude": 40.24645337934761,
+          "longitude": -75.17755738282959
+        },
+        {
+          "latitude": 40.24652334546674,
+          "longitude": -75.17756822485526
+        },
+        {
+          "latitude": 40.24658064606094,
+          "longitude": -75.17758664013728
+        },
+        {
+          "latitude": 40.2466100218921,
+          "longitude": -75.17758664153043
+        },
+        {
+          "latitude": 40.24661782041719,
+          "longitude": -75.17756922530887
+        },
+        {
+          "latitude": 40.24661665031894,
+          "longitude": -75.17753261943471
+        },
+        {
+          "latitude": 40.24657423311084,
+          "longitude": -75.17752062172606
+        },
+        {
+          "latitude": 40.2465598552206,
+          "longitude": -75.17750086362621
+        },
+        {
+          "latitude": 40.24653195731589,
+          "longitude": -75.17745207155804
+        },
+        {
+          "latitude": 40.24653473009084,
+          "longitude": -75.17740688717198
+        },
+        {
+          "latitude": 40.24654948446302,
+          "longitude": -75.17738387901201
+        },
+        {
+          "latitude": 40.24656955563052,
+          "longitude": -75.17737232591098
+        },
+        {
+          "latitude": 40.24659734324386,
+          "longitude": -75.17735701292382
+        },
+        {
+          "latitude": 40.24661171228769,
+          "longitude": -75.17736696003865
+        },
+        {
+          "latitude": 40.24663453905541,
+          "longitude": -75.17739401215614
+        },
+        {
+          "latitude": 40.24664019100416,
+          "longitude": -75.17741877431843
+        },
+        {
+          "latitude": 40.24662603683974,
+          "longitude": -75.17744816472211
+        },
+        {
+          "latitude": 40.24662612538499,
+          "longitude": -75.17747156630952
+        },
+        {
+          "latitude": 40.24664354107053,
+          "longitude": -75.17749812685467
+        },
+        {
+          "latitude": 40.24666927287563,
+          "longitude": -75.17750220945511
+        },
+        {
+          "latitude": 40.24668849298182,
+          "longitude": -75.17752421186503
+        },
+        {
+          "latitude": 40.24673341547108,
+          "longitude": -75.17753180673633
+        },
+        {
+          "latitude": 40.2467458510796,
+          "longitude": -75.17754160693818
+        },
+        {
+          "latitude": 40.24676156514172,
+          "longitude": -75.17753252589247
+        },
+        {
+          "latitude": 40.24674076687602,
+          "longitude": -75.17751105848353
+        },
+        {
+          "latitude": 40.24672224417595,
+          "longitude": -75.17747322900173
+        },
+        {
+          "latitude": 40.24672621780255,
+          "longitude": -75.17743949289195
+        },
+        {
+          "latitude": 40.24673894366889,
+          "longitude": -75.17743812980149
+        },
+        {
+          "latitude": 40.24676471069947,
+          "longitude": -75.1774532366932
+        },
+        {
+          "latitude": 40.2467962942622,
+          "longitude": -75.1774943510829
+        },
+        {
+          "latitude": 40.24681702545749,
+          "longitude": -75.1775169459457
+        },
+        {
+          "latitude": 40.24682479412169,
+          "longitude": -75.17753971769658
+        },
+        {
+          "latitude": 40.24683133476998,
+          "longitude": -75.1775526379086
+        },
+        {
+          "latitude": 40.24679606228653,
+          "longitude": -75.17758734956195
+        },
+        {
+          "latitude": 40.24677978582456,
+          "longitude": -75.17765494669183
+        },
+        {
+          "latitude": 40.24678108321564,
+          "longitude": -75.17767383944977
+        },
+        {
+          "latitude": 40.24677393203497,
+          "longitude": -75.17770139752187
+        },
+        {
+          "latitude": 40.24677018716538,
+          "longitude": -75.17772526677714
+        },
+        {
+          "latitude": 40.24683,
+          "longitude": -75.17772,
+          "landmarkId": "LP-7",
+          "distanceToNextClockwise": "",
+          "distanceToNextClockwiseDescription": "This is the top of Kids Mountain and end of the trail.",
+          "distanceToNextCounterClockwise": "55 feet",
+          "distanceToNextCounterClockwiseDescription": "Downhill on the trail takes you to the gentle slope, open in winter for sledding. There is a rope handrail along the left side of the trail."
+        },
+        {
+          "latitude": 40.24680308763055,
+          "longitude": -75.1777927233759
+        },
+        {
+          "latitude": 40.24680550234137,
+          "longitude": -75.17786288178401
+        },
+        {
+          "latitude": 40.24687797019999,
+          "longitude": -75.1778871593481
+        },
+        {
+          "latitude": 40.24695032291684,
+          "longitude": -75.17787034894056
+        },
+        {
+          "latitude": 40.2469724330269,
+          "longitude": -75.1778447714009
+        },
+        {
+          "latitude": 40.24702182673727,
+          "longitude": -75.17777001777264
+        },
+        {
+          "latitude": 40.2470551153109,
+          "longitude": -75.17774167559583
+        },
+        {
+          "latitude": 40.24699483738871,
+          "longitude": -75.1777007526444
+        },
+        {
+          "latitude": 40.24698719936815,
+          "longitude": -75.17764127852526
+        },
+        {
+          "latitude": 40.24694735648879,
+          "longitude": -75.17765183416039
+        },
+        {
+          "latitude": 40.24690876221874,
+          "longitude": -75.17771520088564
+        },
+        {
+          "latitude": 40.246892046236,
+          "longitude": -75.17778582962846
+        },
+        {
+          "latitude": 40.24679836005206,
+          "longitude": -75.17777508056936
+        },
+        {
+          "latitude": 40.24671675823713,
+          "longitude": -75.17781493059053
+        },
+        {
+          "latitude": 40.24654778031295,
+          "longitude": -75.17790201032838
+        },
+        {
+          "latitude": 40.24638850359339,
+          "longitude": -75.1780795719892
+        }
+      ]
+    },
+    {
+      "id": "upper-nike-trail",
+      "location": "us-202",
+      "name": "Upper Nike Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This trail loops around the Wetlands behind the La Cross fields",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24872789072622,
+          "longitude": -75.17387193210062
+        },
+        {
+          "latitude": 40.248622,
+          "longitude": -75.17392699999999,
+          "landmarkId": "EAC-5",
+          "distanceToNextClockwise": "54 yards;",
+          "distanceToNextClockwiseDescription": "54 yards to Native Plant Management Area",
+          "distanceToNextCounterClockwise": "3983 yards",
+          "distanceToNextCounterClockwiseDescription": "3983 yards to Pet Waste"
+        },
+        {
+          "latitude": 40.248232,
+          "longitude": -75.17419199999999,
+          "landmarkId": "EAC-6",
+          "distanceToNextClockwise": "420 yards;",
+          "distanceToNextClockwiseDescription": "420 yards to Rain Barrels",
+          "distanceToNextCounterClockwise": "54 yards",
+          "distanceToNextCounterClockwiseDescription": "54 yards to Naturalized Basin"
+        },
+        {
+          "latitude": 40.24811547755431,
+          "longitude": -75.1742838039965
+        },
+        {
+          "latitude": 40.2480341881561,
+          "longitude": -75.17458913845923
+        },
+        {
+          "latitude": 40.2478716001231,
+          "longitude": -75.17465304985252
+        },
+        {
+          "latitude": 40.24772527049949,
+          "longitude": -75.17468145690648
+        },
+        {
+          "latitude": 40.24749764656895,
+          "longitude": -75.17471696664266
+        },
+        {
+          "latitude": 40.24738925542109,
+          "longitude": -75.17480927797332
+        },
+        {
+          "latitude": 40.24711393694349,
+          "longitude": -75.17514841311173
+        },
+        {
+          "latitude": 40.2468362177713,
+          "longitude": -75.17544763831079
+        },
+        {
+          "latitude": 40.24674515340016,
+          "longitude": -75.17544642111852
+        },
+        {
+          "latitude": 40.24671958022115,
+          "longitude": -75.17545319523684
+        },
+        {
+          "latitude": 40.23859468262437,
+          "longitude": -75.1689610811989,
+          "landmarkId": "EAC-8",
+          "distanceToNextClockwise": "112 yards;",
+          "distanceToNextClockwiseDescription": "112 yards to Native Plant vs Invasive Plants",
+          "distanceToNextCounterClockwise": "1131 yards",
+          "distanceToNextCounterClockwiseDescription": "1131 yards to Rain Barrels"
+        },
+        {
+          "latitude": 40.24670408505931,
+          "longitude": -75.17547732783127
+        }
+      ]
+    },
+    {
+      "id": "ipw-trail",
+      "location": "us-202",
+      "name": "IPW Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This trail loops around the scoccer fields",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24670387590275,
+          "longitude": -75.17547665285878
+        },
+        {
+          "latitude": 40.24671268484385,
+          "longitude": -75.17557907119523
+        },
+        {
+          "latitude": 40.2466932199195,
+          "longitude": -75.1756788487647
+        },
+        {
+          "latitude": 40.2466496384582,
+          "longitude": -75.17587676909501
+        },
+        {
+          "latitude": 40.24656450820881,
+          "longitude": -75.17627387776254
+        },
+        {
+          "latitude": 40.24648406442394,
+          "longitude": -75.176654083418
+        },
+        {
+          "latitude": 40.24644915255138,
+          "longitude": -75.17684431694778
+        },
+        {
+          "latitude": 40.24642448387446,
+          "longitude": -75.17694315654492
+        },
+        {
+          "latitude": 40.24638679822667,
+          "longitude": -75.17702883140632
+        },
+        {
+          "latitude": 40.24635879411287,
+          "longitude": -75.1770782158213
+        },
+        {
+          "latitude": 40.24632353905097,
+          "longitude": -75.1771187241724
+        },
+        {
+          "latitude": 40.24627833105511,
+          "longitude": -75.17713939468887
+        },
+        {
+          "latitude": 40.24623194457384,
+          "longitude": -75.17714471243963
+        },
+        {
+          "latitude": 40.2461737744491,
+          "longitude": -75.17714086513942
+        },
+        {
+          "latitude": 40.24611801951164,
+          "longitude": -75.17712112604889
+        },
+        {
+          "latitude": 40.24601680571403,
+          "longitude": -75.1770771050423
+        },
+        {
+          "latitude": 40.24595628816818,
+          "longitude": -75.17703645680892
+        },
+        {
+          "latitude": 40.24589980284435,
+          "longitude": -75.17698529671816
+        },
+        {
+          "latitude": 40.24579099359661,
+          "longitude": -75.17688038899004
+        },
+        {
+          "latitude": 40.24552986811963,
+          "longitude": -75.17645350292392
+        },
+        {
+          "latitude": 40.24550139744515,
+          "longitude": -75.17641212966515
+        },
+        {
+          "latitude": 40.24546974762994,
+          "longitude": -75.17637092369019
+        },
+        {
+          "latitude": 40.2454329142127,
+          "longitude": -75.17633743382639
+        },
+        {
+          "latitude": 40.24539033797402,
+          "longitude": -75.17631864483458
+        },
+        {
+          "latitude": 40.24534676368151,
+          "longitude": -75.17632127754564
+        },
+        {
+          "latitude": 40.24530558536294,
+          "longitude": -75.17633763550931
+        },
+        {
+          "latitude": 40.24526368624926,
+          "longitude": -75.17635670825183
+        },
+        {
+          "latitude": 40.2452364995775,
+          "longitude": -75.17638412407466
+        },
+        {
+          "latitude": 40.24504900194336,
+          "longitude": -75.17670894174739
+        },
+        {
+          "latitude": 40.24489571808991,
+          "longitude": -75.17685896293524
+        },
+        {
+          "latitude": 40.2448626901149,
+          "longitude": -75.17686127754935
+        },
+        {
+          "latitude": 40.24484366298732,
+          "longitude": -75.17684673540163
+        },
+        {
+          "latitude": 40.24480705877566,
+          "longitude": -75.17680430004893
+        },
+        {
+          "latitude": 40.24478509618226,
+          "longitude": -75.1767354294949
+        },
+        {
+          "latitude": 40.24476661671038,
+          "longitude": -75.17665296080752
+        },
+        {
+          "latitude": 40.24475650891335,
+          "longitude": -75.17663871474335
+        },
+        {
+          "latitude": 40.24474469494862,
+          "longitude": -75.17662595448071
+        },
+        {
+          "latitude": 40.24471346805547,
+          "longitude": -75.17660377306987
+        },
+        {
+          "latitude": 40.24464687647055,
+          "longitude": -75.17659039009268
+        },
+        {
+          "latitude": 40.2446301928616,
+          "longitude": -75.17659196823665
+        },
+        {
+          "latitude": 40.24461041615425,
+          "longitude": -75.17659604227163
+        },
+        {
+          "latitude": 40.24458233958726,
+          "longitude": -75.17660830574684
+        },
+        {
+          "latitude": 40.2445277458525,
+          "longitude": -75.17664548467437
+        },
+        {
+          "latitude": 40.2444855465007,
+          "longitude": -75.17663881650074
+        },
+        {
+          "latitude": 40.24337301449264,
+          "longitude": -75.17484707482619
+        },
+        {
+          "latitude": 40.24329042690707,
+          "longitude": -75.17469269152666
+        },
+        {
+          "latitude": 40.24319649743162,
+          "longitude": -75.17455749938259
+        },
+        {
+          "latitude": 40.24300901596548,
+          "longitude": -75.17427727515164
+        },
+        {
+          "latitude": 40.24295718162968,
+          "longitude": -75.17416030942157
+        },
+        {
+          "latitude": 40.24298303916345,
+          "longitude": -75.17409512256611
+        },
+        {
+          "latitude": 40.24301505862262,
+          "longitude": -75.17403712851309
+        },
+        {
+          "latitude": 40.24311302103661,
+          "longitude": -75.1739242392399
+        },
+        {
+          "latitude": 40.24338296189907,
+          "longitude": -75.1736765253409
+        },
+        {
+          "latitude": 40.24351107252039,
+          "longitude": -75.1735284264029
+        },
+        {
+          "latitude": 40.24382381536771,
+          "longitude": -75.17328652565664
+        },
+        {
+          "latitude": 40.24394062632681,
+          "longitude": -75.17337537928363
+        },
+        {
+          "latitude": 40.24443801909852,
+          "longitude": -75.17418002182227
+        },
+        {
+          "latitude": 40.24456990354818,
+          "longitude": -75.17450089488483
+        },
+        {
+          "latitude": 40.24465280193078,
+          "longitude": -75.17469341904538
+        },
+        {
+          "latitude": 40.24471685948987,
+          "longitude": -75.17481683199446
+        },
+        {
+          "latitude": 40.24471309210825,
+          "longitude": -75.17495505572222
+        },
+        {
+          "latitude": 40.24511789645855,
+          "longitude": -75.17520092785323
+        },
+        {
+          "latitude": 40.24596784667477,
+          "longitude": -75.17529528190477
+        },
+        {
+          "latitude": 40.24608259433878,
+          "longitude": -75.17524158532073
+        },
+        {
+          "latitude": 40.24670387590275,
+          "longitude": -75.17547665285878
+        }
+      ]
+    },
+    {
+      "id": "lower-nike-trail",
+      "location": "us-202",
+      "name": "Lower Nike Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "|This trail begins in the gravel parking lot near therest rooms and follows the Little Neshaminy River down to the Bradford Reservoir",
+      "end": {
+        "latitude": 40.2272362,
+        "longitude": -75.1586589,
+        "distance": "858 yards",
+        "directions": "858 yards to Waterfowl"
+      },
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24295742946794,
+          "longitude": -75.17415995296366
+        },
+        {
+          "latitude": 40.24270055560099,
+          "longitude": -75.17403784331047
+        },
+        {
+          "latitude": 40.2417830207067,
+          "longitude": -75.17204262818254
+        },
+        {
+          "latitude": 40.24146187082492,
+          "longitude": -75.17134550725712
+        },
+        {
+          "latitude": 40.24075536334852,
+          "longitude": -75.17057629245674
+        },
+        {
+          "latitude": 40.23971851962776,
+          "longitude": -75.16955468716442
+        },
+        {
+          "latitude": 40.23933756298958,
+          "longitude": -75.16924752230197
+        },
+        {
+          "latitude": 40.23928611445778,
+          "longitude": -75.16926807799237
+        },
+        {
+          "latitude": 40.23924246049702,
+          "longitude": -75.16929959288755
+        },
+        {
+          "latitude": 40.23919798712554,
+          "longitude": -75.16936438052345
+        },
+        {
+          "latitude": 40.23916395080467,
+          "longitude": -75.169417126457
+        },
+        {
+          "latitude": 40.23915742225964,
+          "longitude": -75.16944280746775
+        },
+        {
+          "latitude": 40.23904167004531,
+          "longitude": -75.1696013596048
+        },
+        {
+          "latitude": 40.23901722721195,
+          "longitude": -75.16958926132797
+        },
+        {
+          "latitude": 40.23898956834157,
+          "longitude": -75.16956153573037
+        },
+        {
+          "latitude": 40.23885196883717,
+          "longitude": -75.16941302772277
+        },
+        {
+          "latitude": 40.23877326973143,
+          "longitude": -75.16932975452967
+        },
+        {
+          "latitude": 40.23873087905998,
+          "longitude": -75.16927582172139
+        },
+        {
+          "latitude": 40.23872719326621,
+          "longitude": -75.16925385374996
+        },
+        {
+          "latitude": 40.23873704827218,
+          "longitude": -75.16923377047881
+        },
+        {
+          "latitude": 40.2387639669457,
+          "longitude": -75.1691970354301
+        },
+        {
+          "latitude": 40.23877822338385,
+          "longitude": -75.16919627092994
+        },
+        {
+          "latitude": 40.23879301576891,
+          "longitude": -75.16918120959127
+        },
+        {
+          "latitude": 40.23881707297107,
+          "longitude": -75.16913959627716
+        },
+        {
+          "latitude": 40.23858030500634,
+          "longitude": -75.1689252376612
+        },
+        {
+          "latitude": 40.23820921142056,
+          "longitude": -75.16854265381717
+        },
+        {
+          "latitude": 40.23818678060842,
+          "longitude": -75.16851786776897
+        },
+        {
+          "latitude": 40.23816150132593,
+          "longitude": -75.16850314967762
+        },
+        {
+          "latitude": 40.23811537862077,
+          "longitude": -75.1684862357445
+        },
+        {
+          "latitude": 40.23806353144867,
+          "longitude": -75.16848034789342
+        },
+        {
+          "latitude": 40.23801357068966,
+          "longitude": -75.16850560233401
+        },
+        {
+          "latitude": 40.23792075779009,
+          "longitude": -75.16855700560804
+        },
+        {
+          "latitude": 40.23786095870567,
+          "longitude": -75.1685693798218
+        },
+        {
+          "latitude": 40.23779822869915,
+          "longitude": -75.16852031982917
+        },
+        {
+          "latitude": 40.23773890249959,
+          "longitude": -75.16848140454132,
+          "landmarkId": "EAC-9",
+          "distanceToNextClockwise": "163 yards;",
+          "distanceToNextClockwiseDescription": "163 yards to Native Plant Management Area",
+          "distanceToNextCounterClockwise": "112 yards",
+          "distanceToNextCounterClockwiseDescription": "112 yards to Bluebird and cavity nesting bird program"
+        },
+        {
+          "latitude": 40.23773456244134,
+          "longitude": -75.1683927643476
+        },
+        {
+          "latitude": 40.23765966082934,
+          "longitude": -75.16827747403148
+        },
+        {
+          "latitude": 40.23762033743497,
+          "longitude": -75.16822841440603
+        },
+        {
+          "latitude": 40.23757258785972,
+          "longitude": -75.1681769024126
+        },
+        {
+          "latitude": 40.23748364232541,
+          "longitude": -75.16810576574343
+        },
+        {
+          "latitude": 40.23738439779424,
+          "longitude": -75.16806406498861
+        },
+        {
+          "latitude": 40.23738508784395,
+          "longitude": -75.16802229648994,
+          "landmarkId": "EAC-10",
+          "distanceToNextClockwise": "81 yards;",
+          "distanceToNextClockwiseDescription": "81 yards to Pet Waste",
+          "distanceToNextCounterClockwise": "163 yards",
+          "distanceToNextCounterClockwiseDescription": "163 yards to Native Plant vs Invasive Plants"
+        },
+        {
+          "latitude": 40.23718965388903,
+          "longitude": -75.16796471916037
+        },
+        {
+          "latitude": 40.23704453212491,
+          "longitude": -75.16789113007754
+        },
+        {
+          "latitude": 40.23690409180048,
+          "longitude": -75.16780282457385
+        },
+        {
+          "latitude": 40.23668500480461,
+          "longitude": -75.1677243289488
+        },
+        {
+          "latitude": 40.23655486347702,
+          "longitude": -75.16763479594961
+        },
+        {
+          "latitude": 40.23653426563923,
+          "longitude": -75.16754526341622
+        },
+        {
+          "latitude": 40.23655579988218,
+          "longitude": -75.16746308977123
+        },
+        {
+          "latitude": 40.236587,
+          "longitude": -75.167368,
+          "landmarkId": "EAC-11",
+          "distanceToNextClockwise": "269 yards;",
+          "distanceToNextClockwiseDescription": "269 yards to Trees",
+          "distanceToNextCounterClockwise": "81 yards",
+          "distanceToNextCounterClockwiseDescription": "81 yards to Native Plant Management Area"
+        },
+        {
+          "latitude": 40.23662177845674,
+          "longitude": -75.16699313884303
+        },
+        {
+          "latitude": 40.23673335132943,
+          "longitude": -75.16639813374242
+        },
+        {
+          "latitude": 40.23672612139712,
+          "longitude": -75.16633814950964
+        },
+        {
+          "latitude": 40.23671246463725,
+          "longitude": -75.16628868882245
+        },
+        {
+          "latitude": 40.2366779208652,
+          "longitude": -75.16623080926924
+        },
+        {
+          "latitude": 40.23661526002623,
+          "longitude": -75.1661276786447
+        },
+        {
+          "latitude": 40.23649877456482,
+          "longitude": -75.16594036189144
+        },
+        {
+          "latitude": 40.23633810579253,
+          "longitude": -75.16568253571302
+        },
+        {
+          "latitude": 40.23618386337201,
+          "longitude": -75.16540576898325
+        },
+        {
+          "latitude": 40.23609147939008,
+          "longitude": -75.16523844624164
+        },
+        {
+          "latitude": 40.23604488537511,
+          "longitude": -75.16516688688014
+        },
+        {
+          "latitude": 40.23603579844846,
+          "longitude": -75.16509378821878,
+          "landmarkId": "EAC-12",
+          "distanceToNextClockwise": "141 yards;",
+          "distanceToNextClockwiseDescription": "141 yards to Wetlands",
+          "distanceToNextCounterClockwise": "269 yards",
+          "distanceToNextCounterClockwiseDescription": "269 yards to Pet Waste"
+        },
+        {
+          "latitude": 40.23599025785971,
+          "longitude": -75.16511321741899
+        },
+        {
+          "latitude": 40.2357251537822,
+          "longitude": -75.16494484312085
+        },
+        {
+          "latitude": 40.23568819986489,
+          "longitude": -75.16491642998888
+        },
+        {
+          "latitude": 40.23565767272386,
+          "longitude": -75.16486697019057
+        },
+        {
+          "latitude": 40.23561748651191,
+          "longitude": -75.16462485781747
+        },
+        {
+          "latitude": 40.23559363192549,
+          "longitude": -75.16459655771531
+        },
+        {
+          "latitude": 40.23553737105592,
+          "longitude": -75.16453052414909
+        },
+        {
+          "latitude": 40.23546775764316,
+          "longitude": -75.16448296427221
+        },
+        {
+          "latitude": 40.23538089091314,
+          "longitude": -75.16445721904057
+        },
+        {
+          "latitude": 40.235204026136,
+          "longitude": -75.1644287877027
+        },
+        {
+          "latitude": 40.23516420863587,
+          "longitude": -75.16439854795071
+        },
+        {
+          "latitude": 40.2351279618161,
+          "longitude": -75.1643621801575
+        },
+        {
+          "latitude": 40.2350946261187,
+          "longitude": -75.16432718195811
+        },
+        {
+          "latitude": 40.23505320159966,
+          "longitude": -75.16429764223727
+        },
+        {
+          "latitude": 40.2349838338806,
+          "longitude": -75.1643181915291
+        },
+        {
+          "latitude": 40.23494928686171,
+          "longitude": -75.16431794502778
+        },
+        {
+          "latitude": 40.23489415093152,
+          "longitude": -75.16432285335988
+        },
+        {
+          "latitude": 40.23483580319891,
+          "longitude": -75.16431724365047
+        },
+        {
+          "latitude": 40.23477808643025,
+          "longitude": -75.16430295142239
+        },
+        {
+          "latitude": 40.23458069946233,
+          "longitude": -75.16422908068522
+        },
+        {
+          "latitude": 40.23450124039346,
+          "longitude": -75.1641678876052
+        },
+        {
+          "latitude": 40.23446376942788,
+          "longitude": -75.1641272179858
+        },
+        {
+          "latitude": 40.2344466398416,
+          "longitude": -75.16410477960237
+        },
+        {
+          "latitude": 40.23443914552808,
+          "longitude": -75.16407392668481
+        },
+        {
+          "latitude": 40.2344204101722,
+          "longitude": -75.16401993425951
+        },
+        {
+          "latitude": 40.23443272225649,
+          "longitude": -75.16395892997916
+        },
+        {
+          "latitude": 40.23446591108428,
+          "longitude": -75.16385234783849
+        },
+        {
+          "latitude": 40.23446805235606,
+          "longitude": -75.16376189322648
+        },
+        {
+          "latitude": 40.23447661716433,
+          "longitude": -75.16370860213986
+        },
+        {
+          "latitude": 40.23448839342308,
+          "longitude": -75.16363287279003
+        },
+        {
+          "latitude": 40.23450712905081,
+          "longitude": -75.16359711165386
+        },
+        {
+          "latitude": 40.23455423559228,
+          "longitude": -75.16355994818193
+        },
+        {
+          "latitude": 40.2346248953077,
+          "longitude": -75.16352348593657
+        },
+        {
+          "latitude": 40.23472017885403,
+          "longitude": -75.16336291110065
+        },
+        {
+          "latitude": 40.23477103235843,
+          "longitude": -75.16328788252284
+        },
+        {
+          "latitude": 40.23485059582299,
+          "longitude": -75.16322591501014
+        },
+        {
+          "latitude": 40.23494498325741,
+          "longitude": -75.1631516820509
+        },
+        {
+          "latitude": 40.23496927986515,
+          "longitude": -75.1631196445998
+        },
+        {
+          "latitude": 40.23497008439177,
+          "longitude": -75.1631118459929
+        },
+        {
+          "latitude": 40.23497201525465,
+          "longitude": -75.16308908249252
+        },
+        {
+          "latitude": 40.23497362430357,
+          "longitude": -75.16307158832153
+        },
+        {
+          "latitude": 40.23496992349725,
+          "longitude": -75.16305809884
+        },
+        {
+          "latitude": 40.234956407513,
+          "longitude": -75.16299022992152
+        },
+        {
+          "latitude": 40.23491773318107,
+          "longitude": -75.16286710333823
+        },
+        {
+          "latitude": 40.2348995727009,
+          "longitude": -75.16281143617474
+        },
+        {
+          "latitude": 40.23487114473593,
+          "longitude": -75.16275412136737
+        },
+        {
+          "latitude": 40.23483925602216,
+          "longitude": -75.16270328286896
+        },
+        {
+          "latitude": 40.23482121043568,
+          "longitude": -75.1626767302706
+        },
+        {
+          "latitude": 40.23480168168599,
+          "longitude": -75.16265179681004
+        },
+        {
+          "latitude": 40.23477918653284,
+          "longitude": -75.16263657765401
+        },
+        {
+          "latitude": 40.23475446658415,
+          "longitude": -75.16262783474717
+        },
+        {
+          "latitude": 40.23470464617797,
+          "longitude": -75.16260735514655
+        },
+        {
+          "latitude": 40.23468574511565,
+          "longitude": -75.16259512982933
+        },
+        {
+          "latitude": 40.23467190194314,
+          "longitude": -75.16259059647562
+        },
+        {
+          "latitude": 40.23466526674011,
+          "longitude": -75.16257613230403
+        },
+        {
+          "latitude": 40.2346940383878,
+          "longitude": -75.16252556527606,
+          "landmarkId": "EAC-13",
+          "distanceToNextClockwise": "92 yards;",
+          "distanceToNextClockwiseDescription": "92 yards to Fish",
+          "distanceToNextCounterClockwise": "141 yards",
+          "distanceToNextCounterClockwiseDescription": "141 yards to Trees"
+        },
+        {
+          "latitude": 40.23466526674011,
+          "longitude": -75.16257613230403
+        },
+        {
+          "latitude": 40.23467190194314,
+          "longitude": -75.16259059647562
+        },
+        {
+          "latitude": 40.23468574511565,
+          "longitude": -75.16259512982933
+        },
+        {
+          "latitude": 40.23470464617797,
+          "longitude": -75.16260735514655
+        },
+        {
+          "latitude": 40.23475446658415,
+          "longitude": -75.16262783474717
+        },
+        {
+          "latitude": 40.23477918653284,
+          "longitude": -75.16263657765401
+        },
+        {
+          "latitude": 40.23480168168599,
+          "longitude": -75.16265179681004
+        },
+        {
+          "latitude": 40.23482121043568,
+          "longitude": -75.1626767302706
+        },
+        {
+          "latitude": 40.23483925602216,
+          "longitude": -75.16270328286896
+        },
+        {
+          "latitude": 40.23487114473593,
+          "longitude": -75.16275412136737
+        },
+        {
+          "latitude": 40.2348995727009,
+          "longitude": -75.16281143617474
+        },
+        {
+          "latitude": 40.23491773318107,
+          "longitude": -75.16286710333823
+        },
+        {
+          "latitude": 40.234956407513,
+          "longitude": -75.16299022992152
+        },
+        {
+          "latitude": 40.23496992349725,
+          "longitude": -75.16305809884
+        },
+        {
+          "latitude": 40.23497362430357,
+          "longitude": -75.16307158832153
+        },
+        {
+          "latitude": 40.23497201525465,
+          "longitude": -75.16308908249252
+        },
+        {
+          "latitude": 40.23497008439177,
+          "longitude": -75.1631118459929
+        },
+        {
+          "latitude": 40.23496927986515,
+          "longitude": -75.1631196445998
+        },
+        {
+          "latitude": 40.23494498325741,
+          "longitude": -75.1631516820509
+        },
+        {
+          "latitude": 40.23485059582299,
+          "longitude": -75.16322591501014
+        },
+        {
+          "latitude": 40.23477103235843,
+          "longitude": -75.16328788252284
+        },
+        {
+          "latitude": 40.23472017885403,
+          "longitude": -75.16336291110065
+        },
+        {
+          "latitude": 40.2346248953077,
+          "longitude": -75.16352348593657
+        },
+        {
+          "latitude": 40.23455423559228,
+          "longitude": -75.16355994818193
+        },
+        {
+          "latitude": 40.23450712905081,
+          "longitude": -75.16359711165386
+        },
+        {
+          "latitude": 40.23448839342308,
+          "longitude": -75.16363287279003
+        },
+        {
+          "latitude": 40.23447661716433,
+          "longitude": -75.16370860213986
+        },
+        {
+          "latitude": 40.23446805235606,
+          "longitude": -75.16376189322648
+        },
+        {
+          "latitude": 40.23446591108428,
+          "longitude": -75.16385234783849
+        },
+        {
+          "latitude": 40.23443272225649,
+          "longitude": -75.16395892997916
+        },
+        {
+          "latitude": 40.2344204101722,
+          "longitude": -75.16401993425951
+        },
+        {
+          "latitude": 40.23443914552808,
+          "longitude": -75.16407392668481
+        },
+        {
+          "latitude": 40.2344466398416,
+          "longitude": -75.16410477960237
+        },
+        {
+          "latitude": 40.23446376942788,
+          "longitude": -75.1641272179858
+        },
+        {
+          "latitude": 40.23450124039346,
+          "longitude": -75.1641678876052
+        },
+        {
+          "latitude": 40.23458069946233,
+          "longitude": -75.16422908068522
+        },
+        {
+          "latitude": 40.23477808643025,
+          "longitude": -75.16430295142239
+        },
+        {
+          "latitude": 40.23477801495635,
+          "longitude": -75.16433993138311,
+          "landmarkId": "EAC-14",
+          "distanceToNextClockwise": "532 yards;",
+          "distanceToNextClockwiseDescription": "532 yards to Meadows",
+          "distanceToNextCounterClockwise": "92 yards",
+          "distanceToNextCounterClockwiseDescription": "92 yards to Wetlands"
+        },
+        {
+          "latitude": 40.23477808643025,
+          "longitude": -75.16430295142239
+        },
+        {
+          "latitude": 40.23458069946233,
+          "longitude": -75.16422908068522
+        },
+        {
+          "latitude": 40.23450124039346,
+          "longitude": -75.1641678876052
+        },
+        {
+          "latitude": 40.23446376942788,
+          "longitude": -75.1641272179858
+        },
+        {
+          "latitude": 40.2344466398416,
+          "longitude": -75.16410477960237
+        },
+        {
+          "latitude": 40.23443914552808,
+          "longitude": -75.16407392668481
+        },
+        {
+          "latitude": 40.2344204101722,
+          "longitude": -75.16401993425951
+        },
+        {
+          "latitude": 40.23443272225649,
+          "longitude": -75.16395892997916
+        },
+        {
+          "latitude": 40.23446591108428,
+          "longitude": -75.16385234783849
+        },
+        {
+          "latitude": 40.23446805235606,
+          "longitude": -75.16376189322648
+        },
+        {
+          "latitude": 40.23447661716433,
+          "longitude": -75.16370860213986
+        },
+        {
+          "latitude": 40.23448839342308,
+          "longitude": -75.16363287279003
+        },
+        {
+          "latitude": 40.23450712905081,
+          "longitude": -75.16359711165386
+        },
+        {
+          "latitude": 40.23455423559228,
+          "longitude": -75.16355994818193
+        },
+        {
+          "latitude": 40.2346248953077,
+          "longitude": -75.16352348593657
+        },
+        {
+          "latitude": 40.23472017885403,
+          "longitude": -75.16336291110065
+        },
+        {
+          "latitude": 40.23477103235843,
+          "longitude": -75.16328788252284
+        },
+        {
+          "latitude": 40.23485059582299,
+          "longitude": -75.16322591501014
+        },
+        {
+          "latitude": 40.23494498325741,
+          "longitude": -75.1631516820509
+        },
+        {
+          "latitude": 40.23496927986515,
+          "longitude": -75.1631196445998
+        },
+        {
+          "latitude": 40.23497008439177,
+          "longitude": -75.1631118459929
+        },
+        {
+          "latitude": 40.23497201525465,
+          "longitude": -75.16308908249252
+        },
+        {
+          "latitude": 40.23497362430357,
+          "longitude": -75.16307158832153
+        },
+        {
+          "latitude": 40.23496992349725,
+          "longitude": -75.16305809884
+        },
+        {
+          "latitude": 40.234956407513,
+          "longitude": -75.16299022992152
+        },
+        {
+          "latitude": 40.23491773318107,
+          "longitude": -75.16286710333823
+        },
+        {
+          "latitude": 40.2348995727009,
+          "longitude": -75.16281143617474
+        },
+        {
+          "latitude": 40.23487114473593,
+          "longitude": -75.16275412136737
+        },
+        {
+          "latitude": 40.23483925602216,
+          "longitude": -75.16270328286896
+        },
+        {
+          "latitude": 40.23482121043568,
+          "longitude": -75.1626767302706
+        },
+        {
+          "latitude": 40.23480168168599,
+          "longitude": -75.16265179681004
+        },
+        {
+          "latitude": 40.23477918653284,
+          "longitude": -75.16263657765401
+        },
+        {
+          "latitude": 40.23475446658415,
+          "longitude": -75.16262783474717
+        },
+        {
+          "latitude": 40.23470464617797,
+          "longitude": -75.16260735514655
+        },
+        {
+          "latitude": 40.23468574511565,
+          "longitude": -75.16259512982933
+        },
+        {
+          "latitude": 40.23467190194314,
+          "longitude": -75.16259059647562
+        },
+        {
+          "latitude": 40.23466526674011,
+          "longitude": -75.16257613230403
+        },
+        {
+          "latitude": 40.23465682273871,
+          "longitude": -75.16254526286774
+        },
+        {
+          "latitude": 40.23463951874756,
+          "longitude": -75.1625174151078
+        },
+        {
+          "latitude": 40.23460959410429,
+          "longitude": -75.1624648605312
+        },
+        {
+          "latitude": 40.23459527002786,
+          "longitude": -75.1624458528519
+        },
+        {
+          "latitude": 40.23459428117637,
+          "longitude": -75.16239404304352
+        },
+        {
+          "latitude": 40.23457599052337,
+          "longitude": -75.16232407413334
+        },
+        {
+          "latitude": 40.23452918149722,
+          "longitude": -75.16231169302355
+        },
+        {
+          "latitude": 40.23450832746306,
+          "longitude": -75.16230088411606
+        },
+        {
+          "latitude": 40.23449632515027,
+          "longitude": -75.16229479183566
+        },
+        {
+          "latitude": 40.2344738208205,
+          "longitude": -75.16230599378841
+        },
+        {
+          "latitude": 40.23446361885789,
+          "longitude": -75.16231110344808
+        },
+        {
+          "latitude": 40.23445266675091,
+          "longitude": -75.16231739225739
+        },
+        {
+          "latitude": 40.23443076253386,
+          "longitude": -75.1623331142728
+        },
+        {
+          "latitude": 40.2344015068991,
+          "longitude": -75.16235748337941
+        },
+        {
+          "latitude": 40.23435244743659,
+          "longitude": -75.16236593394412
+        },
+        {
+          "latitude": 40.23431208962766,
+          "longitude": -75.1623462814639
+        },
+        {
+          "latitude": 40.23429933719898,
+          "longitude": -75.16230324250652
+        },
+        {
+          "latitude": 40.23429048550604,
+          "longitude": -75.16226963676662
+        },
+        {
+          "latitude": 40.23429048550661,
+          "longitude": -75.16223524493694
+        },
+        {
+          "latitude": 40.23429048550945,
+          "longitude": -75.16222109516487
+        },
+        {
+          "latitude": 40.23429153571255,
+          "longitude": -75.16220910715563
+        },
+        {
+          "latitude": 40.23428748493247,
+          "longitude": -75.16219790524556
+        },
+        {
+          "latitude": 40.23428208389171,
+          "longitude": -75.1621884720593
+        },
+        {
+          "latitude": 40.23427728296441,
+          "longitude": -75.16217746667613
+        },
+        {
+          "latitude": 40.23426543070863,
+          "longitude": -75.16215525937747
+        },
+        {
+          "latitude": 40.23424645241832,
+          "longitude": -75.16211094846899
+        },
+        {
+          "latitude": 40.23422552302122,
+          "longitude": -75.16207252249373
+        },
+        {
+          "latitude": 40.23422162227392,
+          "longitude": -75.16206348236076
+        },
+        {
+          "latitude": 40.23421577115101,
+          "longitude": -75.16205345960562
+        },
+        {
+          "latitude": 40.23420271864283,
+          "longitude": -75.16203596891984
+        },
+        {
+          "latitude": 40.23418306481285,
+          "longitude": -75.16201002770174
+        },
+        {
+          "latitude": 40.23415223634427,
+          "longitude": -75.16198844653574
+        },
+        {
+          "latitude": 40.2341367883863,
+          "longitude": -75.16197702325567
+        },
+        {
+          "latitude": 40.23411909796732,
+          "longitude": -75.16197832873151
+        },
+        {
+          "latitude": 40.23411112482083,
+          "longitude": -75.1619793078497
+        },
+        {
+          "latitude": 40.23410290251439,
+          "longitude": -75.16197898145543
+        },
+        {
+          "latitude": 40.23408546125346,
+          "longitude": -75.16198191882522
+        },
+        {
+          "latitude": 40.23394079974042,
+          "longitude": -75.16201923131104
+        },
+        {
+          "latitude": 40.23390103452203,
+          "longitude": -75.16206043696796
+        },
+        {
+          "latitude": 40.23387709663857,
+          "longitude": -75.16208355369996
+        },
+        {
+          "latitude": 40.23386067211559,
+          "longitude": -75.16210117732076
+        },
+        {
+          "latitude": 40.233785363907,
+          "longitude": -75.16215038620929
+        },
+        {
+          "latitude": 40.23373539139972,
+          "longitude": -75.16216938310995
+        },
+        {
+          "latitude": 40.23367150227536,
+          "longitude": -75.16219202078452
+        },
+        {
+          "latitude": 40.23365117411562,
+          "longitude": -75.1622001343072
+        },
+        {
+          "latitude": 40.23364277249603,
+          "longitude": -75.16220308214275
+        },
+        {
+          "latitude": 40.23363140793158,
+          "longitude": -75.16220423479163
+        },
+        {
+          "latitude": 40.23356438864502,
+          "longitude": -75.1622099610164
+        },
+        {
+          "latitude": 40.23354488488768,
+          "longitude": -75.16221231926647
+        },
+        {
+          "latitude": 40.23352554922728,
+          "longitude": -75.16221702927548
+        },
+        {
+          "latitude": 40.23348886047596,
+          "longitude": -75.1622317411435
+        },
+        {
+          "latitude": 40.23341735450102,
+          "longitude": -75.16228911728646
+        },
+        {
+          "latitude": 40.23338665559456,
+          "longitude": -75.16231412736647
+        },
+        {
+          "latitude": 40.23335183854945,
+          "longitude": -75.16232491599251
+        },
+        {
+          "latitude": 40.23319364383616,
+          "longitude": -75.16217362629322
+        },
+        {
+          "latitude": 40.23305688968081,
+          "longitude": -75.16207343279562
+        },
+        {
+          "latitude": 40.23301906883022,
+          "longitude": -75.1620855103387
+        },
+        {
+          "latitude": 40.23298907648272,
+          "longitude": -75.16205868045218
+        },
+        {
+          "latitude": 40.23292323959515,
+          "longitude": -75.16201939389254
+        },
+        {
+          "latitude": 40.23285338482055,
+          "longitude": -75.16195288285525
+        },
+        {
+          "latitude": 40.2328216105322,
+          "longitude": -75.16186213281598
+        },
+        {
+          "latitude": 40.23279811350852,
+          "longitude": -75.16178445354204
+        },
+        {
+          "latitude": 40.23279699466665,
+          "longitude": -75.16170091178763
+        },
+        {
+          "latitude": 40.23271042603208,
+          "longitude": -75.16139768998966
+        },
+        {
+          "latitude": 40.23257475363144,
+          "longitude": -75.16116185158916,
+          "landmarkId": "EAC-15",
+          "distanceToNextClockwise": "138 yards;",
+          "distanceToNextClockwiseDescription": "138 yards to Waterfowl",
+          "distanceToNextCounterClockwise": "532 yards",
+          "distanceToNextCounterClockwiseDescription": "532 yards to Fish"
+        },
+        {
+          "latitude": 40.23255340011173,
+          "longitude": -75.16083399301205
+        },
+        {
+          "latitude": 40.23249335663008,
+          "longitude": -75.16054763843623
+        },
+        {
+          "latitude": 40.23244752244339,
+          "longitude": -75.16042446937031
+        },
+        {
+          "latitude": 40.23240675272677,
+          "longitude": -75.16036937818582
+        },
+        {
+          "latitude": 40.23235590591847,
+          "longitude": -75.16032022458914
+        },
+        {
+          "latitude": 40.23169913028213,
+          "longitude": -75.1598813343847
+        },
+        {
+          "latitude": 40.23153438710905,
+          "longitude": -75.15977719445252,
+          "landmarkId": "EAC-16",
+          "distanceToNextClockwise": "858 yards;",
+          "distanceToNextClockwiseDescription": "858 yards to End of trail",
+          "distanceToNextCounterClockwise": "138 yards",
+          "distanceToNextCounterClockwiseDescription": "138 yards to Meadows"
+        },
+        {
+          "latitude": 40.23140856788869,
+          "longitude": -75.15954980005186
+        },
+        {
+          "latitude": 40.23117141586161,
+          "longitude": -75.1591479904747
+        },
+        {
+          "latitude": 40.2302429394776,
+          "longitude": -75.15755918552928
+        },
+        {
+          "latitude": 40.23020693257393,
+          "longitude": -75.15746348371395
+        },
+        {
+          "latitude": 40.23017032554207,
+          "longitude": -75.15736581684754
+        },
+        {
+          "latitude": 40.23009828698978,
+          "longitude": -75.15717348328032
+        },
+        {
+          "latitude": 40.23008885987569,
+          "longitude": -75.157153190148
+        },
+        {
+          "latitude": 40.23008165848946,
+          "longitude": -75.15713177028115
+        },
+        {
+          "latitude": 40.23007145652188,
+          "longitude": -75.15710936785767
+        },
+        {
+          "latitude": 40.23006635553667,
+          "longitude": -75.15709836316022
+        },
+        {
+          "latitude": 40.23006353192089,
+          "longitude": -75.15708511438831
+        },
+        {
+          "latitude": 40.23004871689498,
+          "longitude": -75.15702164040256
+        },
+        {
+          "latitude": 40.23002280218302,
+          "longitude": -75.15689232575934
+        },
+        {
+          "latitude": 40.23000826845625,
+          "longitude": -75.15683140836339
+        },
+        {
+          "latitude": 40.22997926286745,
+          "longitude": -75.15671596122614
+        },
+        {
+          "latitude": 40.22978263474509,
+          "longitude": -75.15629718993866
+        },
+        {
+          "latitude": 40.22974411739946,
+          "longitude": -75.15628602449347
+        },
+        {
+          "latitude": 40.22972264869328,
+          "longitude": -75.15629760337846
+        },
+        {
+          "latitude": 40.22966992409832,
+          "longitude": -75.1563199340403
+        },
+        {
+          "latitude": 40.22959446797769,
+          "longitude": -75.15638196372916
+        },
+        {
+          "latitude": 40.22943439990016,
+          "longitude": -75.15651015829155
+        },
+        {
+          "latitude": 40.22939313295822,
+          "longitude": -75.15655088704216
+        },
+        {
+          "latitude": 40.22934951840281,
+          "longitude": -75.15657012983164
+        },
+        {
+          "latitude": 40.22929978250053,
+          "longitude": -75.15659278019459
+        },
+        {
+          "latitude": 40.22925968770883,
+          "longitude": -75.15662344836963
+        },
+        {
+          "latitude": 40.22910471051681,
+          "longitude": -75.15675087903934
+        },
+        {
+          "latitude": 40.22901412191913,
+          "longitude": -75.15680154735092
+        },
+        {
+          "latitude": 40.22891708250189,
+          "longitude": -75.1568395136561
+        },
+        {
+          "latitude": 40.22879059243144,
+          "longitude": -75.15696761318763
+        },
+        {
+          "latitude": 40.22851590422183,
+          "longitude": -75.15724790941267
+        },
+        {
+          "latitude": 40.22796108467212,
+          "longitude": -75.15780162242507
+        },
+        {
+          "latitude": 40.2272362,
+          "longitude": -75.1586589
+        },
+        {
+          "latitude": 40.22706027750195,
+          "longitude": -75.15876926548708
+        },
+        {
+          "latitude": 40.22693939425054,
+          "longitude": -75.15872107733472
+        },
+        {
+          "latitude": 40.22681467078931,
+          "longitude": -75.1582927356654
+        },
+        {
+          "latitude": 40.22667134892072,
+          "longitude": -75.15804989842835
+        },
+        {
+          "latitude": 40.2265373254366,
+          "longitude": -75.15792254742696
+        },
+        {
+          "latitude": 40.2262456263263,
+          "longitude": -75.15768161427357
+        },
+        {
+          "latitude": 40.22605444137938,
+          "longitude": -75.15755430822237
+        },
+        {
+          "latitude": 40.2259193280957,
+          "longitude": -75.15737734252589
+        },
+        {
+          "latitude": 40.22589002639848,
+          "longitude": -75.15725581230642
+        },
+        {
+          "latitude": 40.2258346786266,
+          "longitude": -75.15716413170493
+        },
+        {
+          "latitude": 40.22573700590544,
+          "longitude": -75.15702128084354
+        },
+        {
+          "latitude": 40.22567189035703,
+          "longitude": -75.15685710905434
+        },
+        {
+          "latitude": 40.22562800281072,
+          "longitude": -75.15659345197689
+        },
+        {
+          "latitude": 40.22551561062863,
+          "longitude": -75.15640510354228
+        },
+        {
+          "latitude": 40.22542444762908,
+          "longitude": -75.15619829018968
+        },
+        {
+          "latitude": 40.22544781399049,
+          "longitude": -75.15596721626359
+        },
+        {
+          "latitude": 40.22541467842004,
+          "longitude": -75.15574415368805
+        }
+      ]
+    },
+    {
+      "id": "mill-creek-preserve-at-lower-state-trail",
+      "location": "us-202",
+      "name": "Mill Creek Preserve Trail at Lower State",
+      "isOpen": true,
+      "trailDistanceDescription": "This trail follows loer State Road to Bell Flower Drive",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.26018305640113,
+          "longitude": -75.1767045834889
+        },
+        {
+          "latitude": 40.26037187822336,
+          "longitude": -75.17655127543026
+        },
+        {
+          "latitude": 40.26045261298518,
+          "longitude": -75.17677625319428
+        },
+        {
+          "latitude": 40.26119564593625,
+          "longitude": -75.17615935801452
+        },
+        {
+          "latitude": 40.26152026981747,
+          "longitude": -75.17586413083176
+        },
+        {
+          "latitude": 40.26213218140786,
+          "longitude": -75.17519208475827
+        },
+        {
+          "latitude": 40.26401794736171,
+          "longitude": -75.17264775328559
+        }
+      ]
+    },
+    {
+      "id": "mill-creek-preserve-main-trail",
+      "location": "us-202",
+      "name": "Mill Creek Preserve Main Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This is the main entrance road that rulls through the property",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.26214154789159,
+          "longitude": -75.17518590297651
+        },
+        {
+          "latitude": 40.26382560211687,
+          "longitude": -75.17618240489149
+        },
+        {
+          "latitude": 40.26395928160691,
+          "longitude": -75.17605946599777
+        },
+        {
+          "latitude": 40.26403735680754,
+          "longitude": -75.17595168975491
+        },
+        {
+          "latitude": 40.26412503852977,
+          "longitude": -75.17588030413827
+        },
+        {
+          "latitude": 40.26419327739747,
+          "longitude": -75.17584602360067
+        },
+        {
+          "latitude": 40.26429677309783,
+          "longitude": -75.17582664723231
+        },
+        {
+          "latitude": 40.26440568309111,
+          "longitude": -75.17584261330981
+        },
+        {
+          "latitude": 40.26450035290982,
+          "longitude": -75.17591607297722
+        },
+        {
+          "latitude": 40.26455608168188,
+          "longitude": -75.17604723240797
+        },
+        {
+          "latitude": 40.26463848433902,
+          "longitude": -75.17624449834224
+        },
+        {
+          "latitude": 40.26472183941875,
+          "longitude": -75.17643502813912
+        },
+        {
+          "latitude": 40.26484008736127,
+          "longitude": -75.17649599807395
+        },
+        {
+          "latitude": 40.26493805586524,
+          "longitude": -75.17647124847767
+        },
+        {
+          "latitude": 40.2650397523066,
+          "longitude": -75.17634357411227
+        },
+        {
+          "latitude": 40.26509015313677,
+          "longitude": -75.1761962302378
+        },
+        {
+          "latitude": 40.26517602864679,
+          "longitude": -75.17588026976001
+        },
+        {
+          "latitude": 40.26525450740134,
+          "longitude": -75.1756162608094
+        },
+        {
+          "latitude": 40.26526178160827,
+          "longitude": -75.17539822504234
+        },
+        {
+          "latitude": 40.26531583534473,
+          "longitude": -75.17513607260415
+        },
+        {
+          "latitude": 40.26547106402921,
+          "longitude": -75.17471215564188
+        },
+        {
+          "latitude": 40.26582238448283,
+          "longitude": -75.17397523373207
+        }
+      ]
+    },
+    {
+      "id": "mill-creek-preserve-trail-to-western-reforestation-field",
+      "location": "us-202",
+      "name": "Mill Creek Preserve Trail to Western Reforestation Field ",
+      "isOpen": true,
+      "trailDistanceDescription": "This short trail branches off of the main road to the Western Reforestation which is behinf the Fire Station and Public Works Biuldings",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.2649346973284,
+          "longitude": -75.17647727937974
+        },
+        {
+          "latitude": 40.26485755086063,
+          "longitude": -75.17660727107439
+        },
+        {
+          "latitude": 40.26478937420387,
+          "longitude": -75.17664347594454
+        },
+        {
+          "latitude": 40.26471912418999,
+          "longitude": -75.17668464622174
+        },
+        {
+          "latitude": 40.26468199359292,
+          "longitude": -75.17680585289644
+        },
+        {
+          "latitude": 40.2646430608993,
+          "longitude": -75.17695381075599
+        },
+        {
+          "latitude": 40.26462449069806,
+          "longitude": -75.1770436344841
+        },
+        {
+          "latitude": 40.26462453460476,
+          "longitude": -75.17713809274221
+        },
+        {
+          "latitude": 40.26460450243358,
+          "longitude": -75.177302047007
+        },
+        {
+          "latitude": 40.26458041542051,
+          "longitude": -75.17737729749513
+        }
+      ]
+    },
+    {
+      "id": "weisel-preserve-trail",
+      "location": "us-202",
+      "name": "Weisel Preserve Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This trail runs from Stump Road to Lower State Road",
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.26885376643974,
+          "longitude": -75.19021247551856
+        },
+        {
+          "latitude": 40.26877811034313,
+          "longitude": -75.19008381095159
+        },
+        {
+          "latitude": 40.26870675680583,
+          "longitude": -75.19002055106668
+        },
+        {
+          "latitude": 40.26855421547742,
+          "longitude": -75.18988275539814
+        },
+        {
+          "latitude": 40.26825624077483,
+          "longitude": -75.18961352105501
+        },
+        {
+          "latitude": 40.268116,
+          "longitude": -75.18954099999999,
+          "landmarkId": "EAC-2",
+          "distanceToNextClockwise": "365 yards;",
+          "distanceToNextClockwiseDescription": "365 yards to Pollinator Habitat",
+          "distanceToNextCounterClockwise": "319 yards",
+          "distanceToNextCounterClockwiseDescription": "319 yards to Trailhead"
+        },
+        {
+          "latitude": 40.26766142703022,
+          "longitude": -75.18908289378001
+        },
+        {
+          "latitude": 40.26736124823482,
+          "longitude": -75.18881465465333
+        },
+        {
+          "latitude": 40.26721210958271,
+          "longitude": -75.18868475776635
+        },
+        {
+          "latitude": 40.26713640707005,
+          "longitude": -75.1886165531678
+        },
+        {
+          "latitude": 40.26707657788113,
+          "longitude": -75.18854368272336
+        },
+        {
+          "latitude": 40.26701081003668,
+          "longitude": -75.1884559283083
+        },
+        {
+          "latitude": 40.26695346310772,
+          "longitude": -75.18835856019186
+        },
+        {
+          "latitude": 40.26683208064847,
+          "longitude": -75.18817477223747
+        },
+        {
+          "latitude": 40.26660387366183,
+          "longitude": -75.18780743408097
+        },
+        {
+          "latitude": 40.26642411680121,
+          "longitude": -75.18752761926216
+        },
+        {
+          "latitude": 40.26633453368432,
+          "longitude": -75.18738862077957
+        },
+        {
+          "latitude": 40.26628894728304,
+          "longitude": -75.18732416487855
+        },
+        {
+          "latitude": 40.26623804001706,
+          "longitude": -75.1872651587505
+        },
+        {
+          "latitude": 40.26616183067121,
+          "longitude": -75.18722581447072
+        },
+        {
+          "latitude": 40.26597015184532,
+          "longitude": -75.18715923203308
+        },
+        {
+          "latitude": 40.265828,
+          "longitude": -75.187085,
+          "landmarkId": "EAC-3",
+          "distanceToNextClockwise": "64 yards;",
+          "distanceToNextClockwiseDescription": "64 yards to Pet Waste",
+          "distanceToNextCounterClockwise": "365 yards",
+          "distanceToNextCounterClockwiseDescription": "365 yards to Bluebird and cavity nesting bird program"
+        },
+        {
+          "latitude": 40.26578926120821,
+          "longitude": -75.18710772199381
+        },
+        {
+          "latitude": 40.26562086541815,
+          "longitude": -75.18707825913164
+        },
+        {
+          "latitude": 40.26544823316363,
+          "longitude": -75.18702001632921
+        },
+        {
+          "latitude": 40.26537276849958,
+          "longitude": -75.18690524913067,
+          "landmarkId": "EAC-4",
+          "distanceToNextClockwise": "3983 yards;",
+          "distanceToNextClockwiseDescription": "3983 yards to Naturalized Basin",
+          "distanceToNextCounterClockwise": "64 yards",
+          "distanceToNextCounterClockwiseDescription": "64 yards to Pollinator Habitat"
+        },
+        {
+          "latitude": 40.26534431063532,
+          "longitude": -75.1868913918737
+        },
+        {
+          "latitude": 40.26507206778373,
+          "longitude": -75.18649517488517
+        },
+        {
+          "latitude": 40.26473063894377,
+          "longitude": -75.18593277241406
+        },
+        {
+          "latitude": 40.26402803729916,
+          "longitude": -75.18478902548706
+        },
+        {
+          "latitude": 40.26392673610931,
+          "longitude": -75.18463754221098
+        },
+        {
+          "latitude": 40.26392574596606,
+          "longitude": -75.18448381383385
+        },
+        {
+          "latitude": 40.26400694979404,
+          "longitude": -75.18413569995711
+        },
+        {
+          "latitude": 40.26326056394919,
+          "longitude": -75.18296927234162
+        },
+        {
+          "latitude": 40.26314498840712,
+          "longitude": -75.1828427711434
+        },
+        {
+          "latitude": 40.26308977032329,
+          "longitude": -75.18272747561326
+        },
+        {
+          "latitude": 40.26303012345117,
+          "longitude": -75.18261772963434
+        },
+        {
+          "latitude": 40.26303279239215,
+          "longitude": -75.18246413681273
+        },
+        {
+          "latitude": 40.26295920449029,
+          "longitude": -75.18267078247737
+        },
+        {
+          "latitude": 40.2628905769653,
+          "longitude": -75.18268094639663
+        },
+        {
+          "latitude": 40.26271419833165,
+          "longitude": -75.18244845034478
+        },
+        {
+          "latitude": 40.26258075181222,
+          "longitude": -75.18225749304112
+        },
+        {
+          "latitude": 40.26234350271492,
+          "longitude": -75.18195891348775
+        },
+        {
+          "latitude": 40.26253465877775,
+          "longitude": -75.18133916079648
+        },
+        {
+          "latitude": 40.26267779809259,
+          "longitude": -75.18100022826994
+        },
+        {
+          "latitude": 40.2628265909892,
+          "longitude": -75.1806799245361
+        },
+        {
+          "latitude": 40.26046777581486,
+          "longitude": -75.1767612195354
+        }
+      ]
+    },
+    {
+      "id": "route-202-connector-trail",
+      "location": "us-202",
+      "name": "202 Connector Trail",
+      "isOpen": true,
+      "trailDistanceDescription": "This paved trail, with one short gravel segment, connects the US-202 Parkway Trail to the Bradford Dam trail.",
+      "start": {
+        "latitude": 40.2700344,
+        "longitude": -75.1917515,
+        "distance": "319 yards;",
+        "directions": "319 yards to Bluebird and cavity nesting bird program"
+      },
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.26885351621902,
+          "longitude": -75.19021153017997
+        },
+        {
+          "latitude": 40.26890256466618,
+          "longitude": -75.190279692159
+        },
+        {
+          "latitude": 40.26906490614854,
+          "longitude": -75.19049627114723
+        },
+        {
+          "latitude": 40.26914635019084,
+          "longitude": -75.19060435163128
+        },
+        {
+          "latitude": 40.26923354879672,
+          "longitude": -75.19070592260466
+        },
+        {
+          "latitude": 40.26935325205682,
+          "longitude": -75.1907758681041
+        },
+        {
+          "latitude": 40.26946611251014,
+          "longitude": -75.1908565888866
+        },
+        {
+          "latitude": 40.26965771151032,
+          "longitude": -75.19129646706456
+        },
+        {
+          "latitude": 40.26982286752411,
+          "longitude": -75.19158303448553
+        },
+        {
+          "latitude": 40.26994552939642,
+          "longitude": -75.19170671789458
+        },
+        {
+          "latitude": 40.2700344,
+          "longitude": -75.1917515
+        },
+        {
+          "latitude": 40.2700827502607,
+          "longitude": -75.19178930654942
+        }
+      ]
+    }
+  ],
+  "landmarks": [
+    {
+      "name": "Green Trail",
+      "category": "Trail",
+      "description": "This limestone trail passes the meadow and the Rain Garden.",
+      "longDescription": "The Green Trail connects to the wetlands trail and extends around the Rain Garden area.",
+      "imagePath": "lions-pride-park/images/trail.jpg",
+      "imageAlt": "Picture of Green Trail",
+      "id": "LP-3",
+      "beaconMinor": 3001,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24774,
+        "longitude": -75.17829
+      },
+      "isOpen": true,
+      "trailDistanceDescription": "This crushed-stone, U-shaped trail runs about 0.25 miles around the back of the park and leads to the Rain Garden nature area. From the Yellow Trail connector, walk left toward the Rain Garden or right around the lacrosse field toward the nature signs. The two ends do not currently connect. That will change when the pond-to-wetland project is completed."
+    },
+    {
+      "name": "Bees",
+      "category": "PointOfInterest",
+      "description": "Learn why bees are important to the environment and how we can help them thrive.",
+      "longDescription": "Bees are insects known as pollinators. Western honeybees are well known for producing honey and pollinating flowers, fruits, and vegetables. Most crops require insect pollination to produce seeds. Bees live in colonies, also known as hives, where they reproduce and store honey for winter. Honeybees fly quickly and beat their wings around 200 times per second. Unfortunately, bee populations are declining because of viruses, climate change, decreasing crop diversity, and habitat loss. Reducing pesticide use and the effects of climate change can help these important pollinators recover. You can also help by planting native shrubs and flowers in your yard. ",
+      "imagePath": "lions-pride-park/images/bees.jpg",
+      "imageAlt": "Honey bee gathering pollen from a yellow flower",
+      "id": "LP-15",
+      "beaconMinor": 2005,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24830474663678,
+        "longitude": -75.17688379883495
+      }
+    },
+    {
+      "name": "Insects",
+      "category": "PointOfInterest",
+      "description": "Insects support ecosystems by pollinating plants, spreading seeds, and providing food for other animals.",
+      "longDescription": "Insects are the largest group of animals on Earth. There may be up to 10 million species in many shapes, colors, and sizes. All insects share several characteristics: no backbone, three body sections, two antennae, and six legs. Insects pollinate plants, spread seeds, and provide a protein-rich food source for other animals and people.",
+      "imagePath": "lions-pride-park/images/insects.jpg",
+      "imageAlt": "Some Insects",
+      "id": "LP-25",
+      "beaconMinor": 3008,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24834462813217,
+        "longitude": -75.17699122887448
+      }
+    },
+    {
+      "name": "Butterflies",
+      "category": "PointOfInterest",
+      "description": "Learn about butterflies and their role in the environment.",
+      "longDescription": "Butterflies and moths pollinate plants and provide food for other animals. They make up the second-largest order of insects. Thousands of tiny, overlapping scales cover their wings. Each scale is a single color, and together they create the complex patterns seen on the wings. Monarch butterfly populations have declined by more than 90% over the past ten years. Butterflies in general are in trouble, but a few nectar and host plants can attract and sustain dozens of species. Limiting insecticide and herbicide use can also help their populations recover.",
+      "imagePath": "lions-pride-park/images/butterfly.jpg",
+      "imageAlt": "Monarch butterfly standing on a stick",
+      "id": "LP-16",
+      "beaconMinor": 2006,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.2484913202404,
+        "longitude": -75.17740860775541
+      }
+    },
+    {
+      "name": "Kids Mountain Trail",
+      "category": "Trail",
+      "description": "This ADA-accessible trail leads to the top of Kids Mountain and its play activities.",
+      "longDescription": "This gently sloping, ADA-accessible trail leads to the top of Kids Mountain. It is wheelchair-friendly and suited to visitors with limited mobility. A rest area along the trail offers a place to sit and enjoy a scenic view of the park. The natural side of the mountain allows visitors to run up and roll down. In winter, it is also an excellent sledding hill.",
+      "imagePath": "lions-pride-park/images/Mountain_trail.jpg",
+      "imageAlt": "Kids Mountain Trail",
+      "id": "LP-19",
+      "beaconMinor": 3002,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24625,
+        "longitude": -75.17765
+      },
+      "isOpen": true,
+      "trailDistanceDescription": "This 400-foot trail leads to the top of Kids Mountain. Its ADA-accessible slope is suitable for visitors with limited mobility."
+    },
+    {
+      "name": "Pollinator Plants",
+      "category": "PointOfInterest",
+      "description": "Native pollinator plants provide nectar and pollen for butterflies, bees, bats, hummingbirds, and other wildlife.",
+      "longDescription": "Native pollinator plants are essential to ensure the production of nectar and pollen that support a diversity of butterflies, bees, bats, hummingbirds and other insects. These plants are also essential for plant reproduction and provide food and shelter for wildlife. ",
+      "imagePath": "lions-pride-park/images/pollinators.jpg",
+      "imageAlt": "Some Pollinator Plants",
+      "id": "LP-24",
+      "beaconMinor": 3007,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24651,
+        "longitude": -75.17757999999999
+      }
+    },
+    {
+      "name": "Natural Slope",
+      "category": "PointOfInterest",
+      "description": "The side of Kids Mountain is a natural play area and is great for sledding. Get to it from the Kids Mountain Trail.",
+      "longDescription": "This side (back of the mountain) is natural and allows individuals to run up, roll down and in the winter is an excellent sledding hill. The area is accessed from Kids Mountain Trail.",
+      "imagePath": "lions-pride-park/images/slope.jpg",
+      "imageAlt": "Play slope",
+      "id": "LP-17",
+      "beaconMinor": 2007,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24675,
+        "longitude": -75.17748
+      }
+    },
+    {
+      "name": "Kids Mountain",
+      "category": "PointOfInterest",
+      "description": "Kids Mountain is loaded with swings, slides, climbing towers and rope bridges for hours of fun.",
+      "longDescription": "Kids Mountain is a state-of-the-art play area that is fully accessible to people of all abilities. It includes swings, slides, climbing towers, and rope bridges. The topography supports climbing, sledding, walking, and scenic views. This 15-foot-high mountain offers several ways for children of all ages and abilities to ascend and descend. A rope bridge from the large tower connects Kids Mountain to the smaller mountain. The smaller hill includes a net climbing structure and several activities along its edges: a zigzag climbing ladder, a spider-web climbing net, sliding pipes, and a four-foot-wide slide. Colorful half-domes help children make their way up and down the hill.",
+      "imagePath": "lions-pride-park/images/kids_mountain.jpg",
+      "imageAlt": "Picture of the Kids Mountain",
+      "id": "LP-7",
+      "beaconMinor": 1003,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24683,
+        "longitude": -75.17772
+      }
+    },
+    {
+      "name": "Bluebird and Cavity-Nesting Bird Program",
+      "category": "PointOfInterest",
+      "description": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations.",
+      "longDescription": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations. Bluebirds and other cavity-nesting birds, such as tree swallows, screech owls, and kestrels, benefit the community by eating insects and small rodents.",
+      "imagePath": "us-202/images/202Nesting.jpg",
+      "imageAlt": "",
+      "id": "EAC-2",
+      "beaconMinor": 1,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.268116,
+        "longitude": -75.18954099999999
+      }
+    },
+    {
+      "name": "Pollinator Habitat",
+      "category": "PointOfInterest",
+      "description": "Pollinator habitats are gardens that provide food, water, and safe living space for native pollinators.",
+      "longDescription": "Pollinator habitats are gardens that provide food, water, and safe living space for native pollinators. This habitat includes different plants that provide nectar for a variety of pollinator species throughout the growing season.",
+      "imagePath": "us-202/images/202Pollinator2021.jpg",
+      "imageAlt": "",
+      "id": "EAC-3",
+      "beaconMinor": 2,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.265828,
+        "longitude": -75.187085
+      }
+    },
+    {
+      "name": "Pet Waste",
+      "category": "PointOfInterest",
+      "description": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek.",
+      "longDescription": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek. These organisms can pose a health hazard to people and pets. Picking up after your pet helps control the spread of disease to people and wildlife and protects Warrington's waterways. Thank you for bagging your pet's waste and putting it in the trash.",
+      "imagePath": "us-202/images/202PetWaste.jpg",
+      "imageAlt": "",
+      "id": "EAC-4",
+      "beaconMinor": 3,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.26537276849958,
+        "longitude": -75.18690524913067
+      }
+    },
+    {
+      "name": "Naturalized Basin",
+      "category": "PointOfInterest",
+      "description": "A naturalized detention basin is a constructed dry pond designed to collect stormwater runoff. Native plants help absorb and filter pollutants from the water.",
+      "longDescription": "A naturalized detention basin is a constructed dry pond designed to collect stormwater runoff. Native plants help absorb and filter pollutants from the water. Naturalizing stormwater basins reduces mowing, increases groundwater recharge, reduces pollutants entering streams and rivers, and expands wildlife habitat.",
+      "imagePath": "us-202/images/202Basin.jpg",
+      "imageAlt": "",
+      "id": "EAC-5",
+      "beaconMinor": 4,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.248622,
+        "longitude": -75.17392699999999
+      }
+    },
+    {
+      "name": "Native Plant Management Area",
+      "category": "PointOfInterest",
+      "description": "This corridor is being actively managed by the Warrington Environmental Advisory Council to promote native plants.",
+      "longDescription": "The Warrington Environmental Advisory Council actively manages this corridor to promote native plants. Invasive plants are controlled to prevent them from crowding out native vegetation. Step off the trail and explore. Many native plants have been identified, and some produce edible fruits and nuts. Please enjoy the area responsibly.",
+      "imagePath": "us-202/images/202NativePlantMgt.jpg",
+      "imageAlt": "",
+      "id": "EAC-6",
+      "beaconMinor": 5,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.248232,
+        "longitude": -75.17419199999999
+      }
+    },
+    {
+      "name": "Rain Barrels",
+      "category": "PointOfInterest",
+      "description": "Rain barrels collect and store rainwater from a roof. Reusing this water helps conserve water and save money.",
+      "longDescription": "Rain barrels collect and store rainwater from a roof. Reusing this water helps conserve water and save money.",
+      "imagePath": "us-202/images/202RainBarrel.jpg",
+      "imageAlt": "",
+      "id": "EAC-7",
+      "beaconMinor": 6,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24604744797347,
+        "longitude": -75.17824829746803
+      }
+    },
+    {
+      "name": "Bluebird and Cavity-Nesting Bird Program",
+      "category": "PointOfInterest",
+      "description": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations.",
+      "longDescription": "The Warrington Environmental Advisory Council is implementing a bluebird and cavity-nesting bird program along this trail and throughout the Township. Bird boxes have been installed at specific locations to support cavity-nesting bird populations. Bluebirds and other cavity-nesting birds, such as tree swallows, screech owls, and kestrels, benefit the community by eating insects and small rodents.",
+      "imagePath": "us-202/images/202Nesting.jpg",
+      "imageAlt": "",
+      "id": "EAC-8",
+      "beaconMinor": 7,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23859468262437,
+        "longitude": -75.1689610811989
+      }
+    },
+    {
+      "name": "Native Plants vs. Invasive Plants",
+      "category": "PointOfInterest",
+      "description": "Native plants existed in the area before colonization. Invasive plants are nonnative species that originated in other parts of the country or world.",
+      "longDescription": "Native plants existed in the area before colonization. They have grown here for thousands of years and are adapted to the local soil and climate. Once established, they need minimal maintenance. Invasive plants are nonnative species that originated in other parts of the country or world. They have few natural predators, can spread quickly, and are often harmful to other plants and animals.",
+      "imagePath": "us-202/images/202NativePlantsVsInvasive.jpg",
+      "imageAlt": "",
+      "id": "EAC-9",
+      "beaconMinor": 8,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23773890249959,
+        "longitude": -75.16848140454132
+      }
+    },
+    {
+      "name": "Native Plant Management Area",
+      "category": "PointOfInterest",
+      "description": "This corridor is being actively managed by the Warrington Environmental Advisory Council to promote native plants.",
+      "longDescription": "The Warrington Environmental Advisory Council actively manages this corridor to promote native plants. Invasive plants are controlled to prevent them from crowding out native vegetation. Step off the trail and explore. Many native plants have been identified, and some produce edible fruits and nuts. Please enjoy the area responsibly.",
+      "imagePath": "us-202/images/202NativePlantMgt.jpg",
+      "imageAlt": "",
+      "id": "EAC-10",
+      "beaconMinor": 9,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23738508784395,
+        "longitude": -75.16802229648994
+      }
+    },
+    {
+      "name": "Pet Waste",
+      "category": "PointOfInterest",
+      "description": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek.",
+      "longDescription": "Pet waste contains harmful bacteria, viruses, and parasites that can wash into streams such as Neshaminy Creek. These organisms can pose a health hazard to people and pets. Picking up after your pet helps control the spread of disease to people and wildlife and protects Warrington's waterways. Thank you for bagging your pet's waste and putting it in the trash.",
+      "imagePath": "us-202/images/202PetWaste.jpg",
+      "imageAlt": "",
+      "id": "EAC-11",
+      "beaconMinor": 10,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.236587,
+        "longitude": -75.167368
+      }
+    },
+    {
+      "name": "Trees",
+      "category": "PointOfInterest",
+      "description": "Trees improve biodiversity, store carbon, and absorb and filter pollutants from stormwater.",
+      "longDescription": "Trees improve biodiversity, store carbon, and absorb and filter pollutants from stormwater. They provide food and habitat for many animal species. Trees also reduce flooding and filter surface water and groundwater, removing pollutants before they reach a stream. They capture and store carbon and filter air pollutants and unpleasant odors from the air.",
+      "imagePath": "us-202/images/202Trees.jpg",
+      "imageAlt": "",
+      "id": "EAC-12",
+      "beaconMinor": 11,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23603579844846,
+        "longitude": -75.16509378821878
+      }
+    },
+    {
+      "name": "Wetlands",
+      "category": "PointOfInterest",
+      "description": "Wetlands are areas where water covers the soil all or varying times of the year.",
+      "longDescription": "Wetlands are areas where water covers the soil for all or part of the year. Most plants that grow there are water-loving species, and the subsoil is saturated for much of the year.",
+      "imagePath": "us-202/images/202Wetlands.jpg",
+      "imageAlt": "",
+      "id": "EAC-13",
+      "beaconMinor": 12,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.2346940383878,
+        "longitude": -75.16252556527606
+      }
+    },
+    {
+      "name": "Fish",
+      "category": "PointOfInterest",
+      "description": "Neshaminy Creek contains bluegill, bass, and trout.",
+      "longDescription": "Neshaminy Creek contains bluegill, bass, and trout. Stormwater runoff from rain and snowmelt can carry sediment, pesticides, oil, and other chemicals. These pollutants affect fish and can accumulate in their bodies. Some contaminants may then be passed to people through the food chain.",
+      "imagePath": "us-202/images/202Fish.jpg",
+      "imageAlt": "",
+      "id": "EAC-14",
+      "beaconMinor": 13,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23477801495635,
+        "longitude": -75.16433993138311
+      }
+    },
+    {
+      "name": "Meadows",
+      "category": "PointOfInterest",
+      "description": "A meadow is an open field covered mostly by tall grasses.",
+      "longDescription": "A meadow is an open field covered mostly by tall grasses. Meadows provide habitat for many birds, insects, and small animals. Flowering plants add natural beauty. Meadows also absorb rainfall and runoff, reduce flooding, store carbon, and require less mowing.",
+      "imagePath": "us-202/images/202Meadows.jpg",
+      "imageAlt": "",
+      "id": "EAC-15",
+      "beaconMinor": 14,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23257475363144,
+        "longitude": -75.16116185158916
+      }
+    },
+    {
+      "name": "Waterfowl",
+      "category": "PointOfInterest",
+      "description": "Waterfowl are ducks, geese, and other large aquatic birds.",
+      "longDescription": "Waterfowl are ducks, geese, and other large aquatic birds. Adult geese, goslings, and eggs provide food for other animals. Please do not feed wild birds. Feeding can cause poor health, overcrowding, and the spread of disease.",
+      "imagePath": "us-202/images/202Waterfowl.jpg",
+      "imageAlt": "",
+      "id": "EAC-16",
+      "beaconMinor": 15,
+      "location": "us-202",
+      "coordinates": {
+        "latitude": 40.23153438710905,
+        "longitude": -75.15977719445252
+      }
+    },
+    {
+      "name": "Yellow Trail",
+      "category": "Trail",
+      "description": "This paved trail leads you around the outside of the park and is great exercise.",
+      "longDescription": "The yellow trail is a 0.4-mile paved loop around the park and connects with the trail around IPW and the rest of Upper Nike.",
+      "imagePath": "lions-pride-park/images/Yellow_trail.jpg",
+      "imageAlt": "Yellow Trail at Lions Pride Park",
+      "id": "LP-2",
+      "beaconMinor": 1002,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.2472,
+        "longitude": -75.1773
+      },
+      "isOpen": false,
+      "trailDistanceDescription": "This 0.4-mile paved trail loops around Kids Mountain and the Grove. Just to the right of the main entrance, a link connects to IPW Park around the soccer fields. About halfway around, a connector leads to the Green Trail."
+    },
+    {
+      "name": "Restrooms",
+      "category": "Building",
+      "description": "Men's and women's restrooms have changing tables. A water fountain is located at the rear of the building.",
+      "longDescription": "The restrooms are in the southern part of the park, just south of the pavilion on the Yellow Trail. The men's and women's restrooms are ADA-accessible, and each has a changing table. A water fountain is located at the rear of the building.",
+      "imagePath": "lions-pride-park/images/restrooms.jpg",
+      "imageAlt": "Small white building with two entrances for bathrooms",
+      "id": "LP-5",
+      "beaconMinor": 1011,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24617,
+        "longitude": -75.17828
+      }
+    },
+    {
+      "name": "Green Trail Turnoff",
+      "category": "PointOfInterest",
+      "description": "Walk along the edge of the woods and see what plants and wildlife you can see.",
+      "longDescription": "If you bear left at this junction, you'll connect to the Green Trail. Otherwise, continue on the Yellow Trail toward the park entrance.",
+      "imagePath": "lions-pride-park/images/Green_Trail_Connection.jpg",
+      "imageAlt": "Green Trail connection",
+      "id": "LP-27",
+      "beaconMinor": 3003,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24791011460211,
+        "longitude": -75.17828079874792
+      }
+    },
+    {
+      "name": "Pavilion",
+      "category": "Building",
+      "description": "The pavilion is a covered gathering place next to the Grove.",
+      "longDescription": "The covered pavilion can hold 50 to 75 people and can be rented for parties and gatherings. It is conveniently located next to the Grove, grills, and picnic tables.",
+      "imagePath": "lions-pride-park/images/pavilion.jpg",
+      "imageAlt": "Covered pavilion at Lions Pride Park",
+      "id": "LP-8",
+      "beaconMinor": 1015,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24633,
+        "longitude": -75.17831
+      }
+    },
+    {
+      "name": "Park Entrance",
+      "category": "PointOfInterest",
+      "description": "Welcome! This is the entrance to Lions Pride Park. ",
+      "longDescription": "Welcome to Lions Pride Park! The entrance is the start of the Yellow Trail. Walk to your right to enter Kids Mountain or straight ahead to the Grove. Note the engraved walls recognizing the donors who made this park possible. The restrooms are located to your left.",
+      "imagePath": "lions-pride-park/images/park_entrance.jpg",
+      "imageAlt": "View of trees and field from park entrance",
+      "id": "LP-4",
+      "beaconMinor": 1009,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.2460564,
+        "longitude": -75.17748759999999
+      }
+    },
+    {
+      "name": "The Grove",
+      "category": "PointOfInterest",
+      "description": "The Grove is a relaxing family area with games, chairs, tables, and hammocks.",
+      "longDescription": "The Grove offers intergenerational experiences in a scenic setting, including life-size games and picnic areas for building lasting family memories. Seating areas include benches and tables that accommodate people with a range of physical needs. At the center of the Grove is a large circular area dedicated to the Warrington Lions Club. It is surrounded by tables with built-in chess and checkerboards. Game pieces are available at no charge. Please return all equipment when you finish so it remains available to other visitors.",
+      "imagePath": "lions-pride-park/images/the_grove.jpg",
+      "imageAlt": "Picture of the Grove",
+      "id": "LP-6",
+      "beaconMinor": 1012,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24668,
+        "longitude": -75.17796
+      }
+    },
+    {
+      "name": "Invasive Species",
+      "category": "PointOfInterest",
+      "description": "Learn how invasive plants affect the local environment and natural habitats.",
+      "longDescription": "Invasive species are plants or animals that are not native to the area where they now live. They can spread quickly and cause environmental and economic damage. They make up around 41% of the vegetation in Pennsylvania. Invasive plants reduce habitat for native wildlife and outcompete native plants, disrupting the food chain and the natural balance of the local environment.",
+      "imagePath": "lions-pride-park/images/invasive_species.jpg",
+      "imageAlt": "Spotted lantern fly on a branch",
+      "id": "LP-11",
+      "beaconMinor": 2001,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.2471,
+        "longitude": -75.1786
+      }
+    },
+    {
+      "name": "Small Slides",
+      "category": "PointOfInterest",
+      "description": "The Small Slides lead down Kids Mountain through two sand-filled areas. Reach the slides from Kids Mountain Trail or by using the stairs between the slides.",
+      "longDescription": "Three small green slides lead down from the top of Kids Mountain through two sand-filled areas. The sand is one of several play surfaces found throughout the park. Reach the slides from the walking path that winds up the mountain or by using the two sets of stairs between them. These slides are shorter and less steep than the main slides.",
+      "imagePath": "lions-pride-park/images/small_slides.jpg",
+      "imageAlt": "Small slides",
+      "id": "LP-13",
+      "beaconMinor": 2003,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24669,
+        "longitude": -75.17764
+      }
+    },
+    {
+      "name": "Music Grove",
+      "category": "PointOfInterest",
+      "description": "Tuned musical instruments are for your use and enjoyment. Have fun!",
+      "longDescription": "The Music Grove is located behind the smaller mountain and next to the swings. Visitors will find an array of oversized, tuned musical instruments to play.",
+      "imagePath": "lions-pride-park/images/music_grove.jpg",
+      "imageAlt": "The Music Grove",
+      "id": "LP-21",
+      "beaconMinor": 3004,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24706,
+        "longitude": -75.17775
+      }
+    },
+    {
+      "name": "Recycled Plastic Furniture",
+      "category": "PointOfInterest",
+      "description": "All Adirondack chairs, benches, and picnic tables in the park are made from 100% recycled plastic.",
+      "longDescription": "All Adirondack chairs, benches, and picnic tables in the park are made from 100% recycled plastic. By using recycled plastic furnishings, the park helps close the recycling loop. Incorporating recycled plastic into outdoor products conserves virgin resources and reduces the need to log, drill, and mine for raw materials. Using recycled content also creates demand for recycled materials and helps make recycling economically viable.",
+      "imagePath": "lions-pride-park/images/recycled_furn.jpg",
+      "imageAlt": "Recycled Furniture",
+      "id": "LP-23",
+      "beaconMinor": 3006,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24646,
+        "longitude": -75.1781
+      }
+    },
+    {
+      "name": "Trash and Recycling",
+      "category": "PointOfInterest",
+      "description": "Recycling bins at Lions Pride Park allow visitors to separate food containers, paper products, empty plastic and glass bottles, and aluminum cans from trash. Please do not place plastic bags in the recycling bins because they can damage recycling equipment. Plastic bags can be recycled at participating supermarkets. Recycling reduces the amount of waste sent to landfills. Only clean paper used for reading and writing is recyclable. All containers must be completely empty to avoid contamination.",
+      "longDescription": "Recycling bins at Lions Pride Park allow visitors to separate food containers, paper products, empty plastic and glass bottles, and aluminum cans from trash. Please do not place plastic bags in the recycling bins because they can damage recycling equipment. Plastic bags can be recycled at participating supermarkets. Recycling reduces the amount of waste sent to landfills. Only clean paper used for reading and writing is recyclable. All containers must be completely empty to avoid contamination.",
+      "imagePath": "lions-pride-park/images/Recycling.jpg",
+      "imageAlt": "Recycling at Lions Pride Park",
+      "id": "LP-26",
+      "beaconMinor": 2002,
+      "location": "lions-pride-park",
+      "coordinates": {
+        "latitude": 40.24601,
+        "longitude": -75.1774
+      }
+    }
+  ]
+}

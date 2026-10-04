@@ -1,0 +1,7 @@
+"topic","guidance"
+"Start here","Edit content, beacon information, trail membership and stop order in this spreadsheet. Edit point locations and route shapes in Google Earth/KML."
+"Download KML","https://trails.warringtoneac.org/talking-trails.kml"
+"Image library","https://trails.warringtoneac.org/images/"
+"Join key","Keep recordKey unchanged. It links each Beacons row to its KML Point and Stop Content."
+"Review and release","Sheet edits remain drafts. Approve completed rows, then run Prepare trail data release and review its pull request before publication."
+"Trail membership","Beacons trailId and stopOrder determine trail membership and sequence. Use the same Trail ID on Trails and Stop Content. Leave both fields blank for a standalone point."

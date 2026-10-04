@@ -30,5 +30,27 @@ class ApiContractTest(unittest.TestCase):
         self.assertTrue(any('unknown location' in error for error in validate_document(SCHEMA, candidate)))
 
 
+V3_SCHEMA = json.loads((ROOT/'server/api/v3/schema.json').read_text())
+V3_DOCUMENT = json.loads((ROOT/'server/api/v3/trails.json').read_text())
+
+
+class ApiV3ContractTest(unittest.TestCase):
+    def test_current_v3_data_satisfies_contract(self):
+        self.assertEqual(validate_document(V3_SCHEMA, V3_DOCUMENT), [])
+
+    def test_beacon_minor_is_optional_but_unique(self):
+        candidate = copy.deepcopy(V3_DOCUMENT)
+        del candidate['landmarks'][0]['beaconMinor']
+        self.assertEqual(validate_document(V3_SCHEMA, candidate), [])
+        candidate['landmarks'][0]['beaconMinor'] = candidate['landmarks'][1]['beaconMinor']
+        self.assertTrue(any('duplicate beaconMinor' in error for error in validate_document(V3_SCHEMA, candidate)))
+
+    def test_stop_references_use_place_record_keys(self):
+        candidate = copy.deepcopy(V3_DOCUMENT)
+        trail = next(t for t in candidate['trails'] if any('landmarkId' in p for p in t['boundaryCoordinates']))
+        next(p for p in trail['boundaryCoordinates'] if 'landmarkId' in p)['landmarkId'] = 'NOPE-1'
+        self.assertTrue(any('unknown landmark' in error for error in validate_document(V3_SCHEMA, candidate)))
+
+
 if __name__ == '__main__':
     unittest.main()

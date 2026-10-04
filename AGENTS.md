@@ -49,15 +49,18 @@ tree under `outputs/`.
 ## Master data and map releases
 
 Treat `server/talking-trails.kml` as the sole source of geographic truth for
-point coordinates and route shapes. The Beacons tab owns tour membership
-(`trailId`) and tour sequence (`stopOrder`). Google Earth web cannot reliably
+point coordinates and route shapes. The Stop Content tab owns tour membership
+(`Trail ID`) and tour sequence (`Stop Order`); the Trails tab names each trail's
+optional beacon-free Start and End points. Google Earth web cannot reliably
 maintain that metadata. Do not use KML Point membership fields during generation;
 old Point values remain migration/history metadata only.
 
 Treat the master Sheet as the source of text, images, beacon IDs/status,
 location configuration, trail membership, stop order and directional instructions. Join a Sheet row to a KML
-Point only with the stable `recordKey`. In v2, join Trails, Stop Content, route
-placemarks and Beacons memberships with the same canonical string `trailId`.
+Point only with the stable `recordKey`. From v2, join Trails, Stop Content and
+route placemarks with the same canonical string `trailId`. A Beacons row is a
+place; a blank Minor means it has no physical beacon. Never assign a made-up
+Minor to a place without hardware.
 `kmlTrailGroupId`/`trailGroupId` remains v1 metadata only. Do not guess a link
 from name or proximity.
 
@@ -70,7 +73,9 @@ Static website assets may still deploy with that preserved data.
 Pin released apps to a major data contract under `server/api/vN/`. Keep v1 and
 the unversioned legacy URLs available for installed builds. v2 uses one
 canonical string Trail ID across the Sheet, KML, JSON, and new clients, and it
-allows routes without beacon stops. Never repoint a released app to a moving
+allows routes without beacon stops. v3 identifies places by `recordKey`, adds an
+optional `beaconMinor`, and adds optional trail `start`/`end` points. Generate
+v2 and v3 from the same Sheet snapshot. Never repoint a released app to a moving
 `latest` endpoint, and never overwrite an older major version with a breaking
 schema.
 
