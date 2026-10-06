@@ -55,7 +55,7 @@ for (const [name, rows] of Object.entries(tables)) {
     const k=headers[i];const col=sheet.getRangeByIndexes(1,i,rows.length,1);
     if (['id','sourceId','sourceMajor','trailId','landmarkId','pointIndex','beaconMajorCode'].includes(k)) col.setNumberFormat('0');
     if (['latitude','longitude'].includes(k)) col.setNumberFormat('0.#########');
-    if (['description','longDescription','reviewNotes','guidance','issue','instructions','carriedForwardFields','trailDistanceDescription','whatResolvesIt','affectedRecordKeys','coordinateNote','hardwareNotes','decisionNotes','resolution','forwardInstructions','reverseInstructions'].includes(k) || k.endsWith('Description')) {
+    if (['description','longDescription','reviewNotes','guidance','issue','instructions','carriedForwardFields','trailDistanceDescription','whatResolvesIt','affectedRecordKeys','coordinateNote','hardwareNotes','decisionNotes','resolution','forwardInstructions','reverseInstructions','whatChanged','actionNeeded'].includes(k) || k.endsWith('Description')) {
       col.format.columnWidth=70;
       for(let j=0;j<rows.length;j++) {
         const lines=String(rows[j][k]??'').split('\n').reduce((n,s)=>n+Math.max(1,Math.ceil(s.length/70)),0);
