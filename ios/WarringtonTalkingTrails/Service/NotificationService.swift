@@ -86,30 +86,29 @@ class NotificationService : NSObject, UNUserNotificationCenterDelegate{
         }
     }
     
-    func sendTrailTourNotification(currentLandmark: Landmark, nextLandmark: Landmark, trailLandmark: Landmark, trailDirection: Direction) {
+    func sendTrailTourNotification(currentLandmark: Landmark, trail: Trail, trailDirection: Direction, atEndpoint: TrailEndpointKind? = nil) {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         let uuidString = UUID().uuidString
         let content = UNMutableNotificationContent()
         content.title = "Trail tour"
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = TRAIL_TOUR_POINT_OF_INTEREST_IDENTIFIER
-        
-        guard let trail = landmarkService.getTrailForLandmark(id: trailLandmark.id) else { return }
-        if MapService.isSelectedLandmarkOnTrail(trail: trail, landmark: currentLandmark) {
-            guard let distanceTuple = MapService.distanceToNextLandmark(
-                trail: trail,
-                currentLandmark: currentLandmark,
-                direction: trailDirection),
-                  let distanceDescription = distanceTuple.distanceToNextDescription else { return }
-            content.body = "\(currentLandmark.name) has been reached. \(distanceDescription) to \(nextLandmark.trailModifiedName)"
-            AccessibilityService.announce(content.body)
-            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.add(request) { (error) in
-               if error != nil {
-                  // ignore
-               }
-            }
+
+        guard MapService.isSelectedLandmarkOnTrail(trail: trail, landmark: currentLandmark) else { return }
+        let step = MapService.tourStep(trail: trail, currentLandmark: currentLandmark, direction: trailDirection, atEndpoint: atEndpoint)
+        guard !step.directions.isEmpty, !step.nextName.isEmpty else { return }
+        if step.startingFromEndpoint != nil {
+            content.body = "\(step.directions) to \(step.nextName)"
+        } else {
+            content.body = "\(currentLandmark.name) has been reached. \(step.directions) to \(step.nextName)"
+        }
+        AccessibilityService.announce(content.body)
+        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+           if error != nil {
+              // ignore
+           }
         }
     }
 }

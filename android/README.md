@@ -13,8 +13,8 @@ https://trails.warringtoneac.org/
 (GitHub Pages, deployed from the `server/` folder at the root of
 this repo — see the top-level README for details)
 
-The app pins API contract v2 and loads `api/v2/trails.json` plus
-`api/v2/talking-trails.kml` from the hosted files. The JSON includes
+The app pins API contract v3 and loads `api/v3/trails.json` plus
+`api/v3/talking-trails.kml` from the hosted files. The JSON includes
 the trail geometry, landmarks, and
 locations for both Lions Pride Park and the US202 to Bradford Dam
 trail.
@@ -201,4 +201,5 @@ Current values:
   codes are live in this one app at the same time (it ranges a
   beacon region per location and merges the results), rather than
   one major code per separate app as before
-* Minor code: see IDs in `landmark` array in the corresponding data file
+* Minor code: see `beaconMinor` on the matching entry in the `landmarks`
+  array of the data file (places without `beaconMinor` have no beacon)

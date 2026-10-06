@@ -55,7 +55,7 @@ class LandmarkAnnouncer @Inject constructor(
                     return@collect
                 }
                 if (!gate.shouldAnnounce(closest.minorCode, closest.distance)) return@collect
-                val landmark = trailRepository.getLandmarkById(closest.minorCode)
+                val landmark = trailRepository.getLandmarkByBeaconMinor(closest.minorCode)
                 if (landmark == null) {
                     Log.w("LandmarkAnnouncer", "No landmark for minor ${closest.minorCode}")
                     return@collect

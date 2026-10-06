@@ -11,7 +11,7 @@ import javax.inject.Inject
  * Debug-build-only receiver that fakes beacon detections, so beacon-driven UI can be
  * exercised on the emulator (which has no usable Bluetooth radio).
  *
- * Fake a single beacon (minor = landmark id, distance in meters, default 1.0):
+ * Fake a single beacon (minor = landmark beaconMinor, distance in meters, default 1.0):
  *
  *   adb shell am broadcast \
  *     -n org.warringtontownship.parks.android/.beacon.FakeBeaconReceiver \

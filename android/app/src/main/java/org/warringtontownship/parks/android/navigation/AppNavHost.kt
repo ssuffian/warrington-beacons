@@ -95,7 +95,11 @@ fun AppNavHost(
                 arguments = listOf(
                     navArgument("trailId") { type = NavType.StringType },
                     navArgument("reverse") { type = NavType.BoolType },
-                    navArgument("startLandmarkId") { type = NavType.IntType },
+                    navArgument("startLandmarkId") {
+                        type = NavType.StringType
+                        nullable = true
+                        defaultValue = null
+                    },
                 ),
             ) { backStackEntry ->
                 val graphEntry = remember(backStackEntry) {
@@ -105,7 +109,7 @@ fun AppNavHost(
                 TrailTourScreen(
                     trailId = backStackEntry.arguments?.getString("trailId") ?: "",
                     reverse = backStackEntry.arguments?.getBoolean("reverse") ?: false,
-                    startLandmarkId = backStackEntry.arguments?.getInt("startLandmarkId") ?: 0,
+                    startLandmarkId = backStackEntry.arguments?.getString("startLandmarkId"),
                     onBack = { navController.popBackStack() },
                     viewModel = viewModel,
                 )

@@ -8,7 +8,8 @@ import org.warringtontownship.parks.android.data.model.Landmark
 class AnnouncementTextTest {
 
     private val landmark = Landmark(
-        id = 1002,
+        id = "LP-2",
+        beaconMinor = 1002,
         location = "lions-pride-park",
         imagePath = "lions-pride-park/images/Yellow_trail.jpg",
         coordinates = Coordinates(40.24613, -75.177778),

@@ -12,7 +12,12 @@ import CoreLocation
 
 
 struct Landmark: Hashable, Codable, Identifiable {
-    var id: Int
+    // Stable recordKey shared by the master Sheet and KML (e.g. "EAC-2").
+    var id: String
+    // Present only when a physical beacon broadcasts this place. Places
+    // without one are still shown and can be tour stops, but are never
+    // matched by a beacon.
+    var beaconMinor: Int?
     var name: String
     var imageName: String
     var imagePath: String?
@@ -63,14 +68,15 @@ struct Landmark: Hashable, Codable, Identifiable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, name, imageName, imagePath, location, coordinates, category
+        case id, beaconMinor, name, imageName, imagePath, location, coordinates, category
         case description, longDescription, latitudeDelta, longitudeDelta
         case imageAlt, isOpen, trailDistanceDescription
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
+        id = try container.decode(String.self, forKey: .id)
+        beaconMinor = try container.decodeIfPresent(Int.self, forKey: .beaconMinor)
         name = try container.decode(String.self, forKey: .name)
         imagePath = try container.decodeIfPresent(String.self, forKey: .imagePath)
         location = try container.decodeIfPresent(String.self, forKey: .location)
@@ -105,7 +111,8 @@ extension Landmark {
 struct Coordinates: Hashable, Codable {
     var latitude: Double
     var longitude: Double
-    var landmarkId: Int?
+    // Tour stop on the route; references Landmark.id.
+    var landmarkId: String?
     var distanceToNextClockwise: String?
     var distanceToNextCounterClockwise: String?
     var distanceToNextClockwiseDescription: String?

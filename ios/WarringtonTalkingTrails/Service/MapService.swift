@@ -27,52 +27,73 @@ class MapService {
         }
     }
     
-    static func getLandmarksOnTrail(trail: Trail) -> [Landmark] {
-        var landmarks = [Landmark]()
-        
-        for coord in trail.boundaryCoordinates {
-            if coord.landmarkId != nil {
-                let landmark = landmarkService.getLandmarkById(id: coord.landmarkId!)
-                if landmark != nil && landmark?.category != .Trail {
-                    landmarks.append(landmark!)
-                }
-            }
-        }
-        
-        return landmarks
+    static func getLandmarksOnTrail(trail: Trail, service: LandmarkService = landmarkService) -> [Landmark] {
+        return trail.stopIds.compactMap { service.getLandmarkById(id: $0) }
+            .filter { $0.category != .Trail }
     }
-    
-    static func findNextLandmark(trail: Trail, landmark: Landmark, direction: Direction) -> Landmark? {
-        guard !trail.boundaryCoordinates.isEmpty else {
-            return nil
-        }
-        var boundaryCoordinates = direction == .Clockwise ? trail.boundaryCoordinates :
-            trail.boundaryCoordinates.reversed()
-        if direction == .Clockwise {
-            boundaryCoordinates.append(trail.boundaryCoordinates[0])
-        } else {
-            boundaryCoordinates.insert( boundaryCoordinates[boundaryCoordinates.count - 1], at: 0)
-        }
-        var i = 0
-        while i < boundaryCoordinates.count {
-            var b = boundaryCoordinates[i]
-            if b.landmarkId != nil && b.landmarkId == landmark.id {
-                i+=1
-                while i < boundaryCoordinates.count {
-                    b = boundaryCoordinates[i]
-                    if b.landmarkId != nil {
-                        return landmarkService.getLandmarkById(id: b.landmarkId!)
-                    }
-                    i+=1
-                }
-                // continue until we find the landmark
-                // if we don't find one the return the head of the array
-            }
-            i+=1
-        }
-        return landmark
+
+    /// The next tour stop in the given direction, wrapping around the ends.
+    /// Returns the landmark itself when it is not a stop on the trail.
+    static func findNextLandmark(trail: Trail, landmark: Landmark, direction: Direction, service: LandmarkService = landmarkService) -> Landmark? {
+        let stops = trail.stopIds
+        guard !stops.isEmpty else { return nil }
+        guard let index = stops.firstIndex(of: landmark.id) else { return landmark }
+        let step = direction == .Clockwise ? 1 : -1
+        let nextIndex = (index + step + stops.count) % stops.count
+        return service.getLandmarkById(id: stops[nextIndex]) ?? landmark
     }
-    
+
+    /// What the tour card shows next. Beacon-free trail start/end points are
+    /// never landmarks, so they are described separately from the next stop.
+    struct TourStep: Equatable {
+        /// The next tour stop, when the next target is a landmark.
+        var nextLandmark: Landmark?
+        /// Set when the next target is the trail start or end instead of a stop.
+        var nextEndpoint: TrailEndpointKind?
+        /// Set when the visitor is standing at the trail start or end.
+        var startingFromEndpoint: TrailEndpointKind?
+        var directions: String
+
+        var nextName: String {
+            nextEndpoint?.title ?? nextLandmark?.trailModifiedName ?? ""
+        }
+    }
+
+    static func tourStep(trail: Trail, currentLandmark: Landmark, direction: Direction, atEndpoint: TrailEndpointKind? = nil, service: LandmarkService = landmarkService) -> TourStep {
+        let stops = trail.stopIds
+        let isFirstStop = stops.first == currentLandmark.id
+        let isLastStop = stops.last == currentLandmark.id
+
+        // Standing at the start heading forward, or at the end heading back:
+        // the endpoint's own directions lead to the adjacent stop.
+        if atEndpoint == .start, direction == .Clockwise, let start = trail.start,
+           let first = stops.first.flatMap({ service.getLandmarkById(id: $0) }) {
+            return TourStep(nextLandmark: first, startingFromEndpoint: .start,
+                            directions: "From the trail start: \(start.directions)")
+        }
+        if atEndpoint == .end, direction == .CounterClockwise, let end = trail.end,
+           let last = stops.last.flatMap({ service.getLandmarkById(id: $0) }) {
+            return TourStep(nextLandmark: last, startingFromEndpoint: .end,
+                            directions: "From the trail end: \(end.directions)")
+        }
+
+        let distance = distanceToNextLandmark(trail: trail, currentLandmark: currentLandmark, direction: direction)
+        let directions = distance?.distanceToNextDescription ?? ""
+
+        // At the last stop going forward (or the first going back) the stop's
+        // own distance fields point toward the trail end (or start).
+        if direction == .Clockwise, isLastStop, trail.end != nil {
+            return TourStep(nextEndpoint: .end, directions: directions)
+        }
+        if direction == .CounterClockwise, isFirstStop, trail.start != nil {
+            return TourStep(nextEndpoint: .start, directions: directions)
+        }
+        return TourStep(
+            nextLandmark: findNextLandmark(trail: trail, landmark: currentLandmark, direction: direction, service: service),
+            directions: directions
+        )
+    }
+
     static func isSelectedLandmarkOnTrail(trail: Trail, landmark: Landmark) -> Bool {
         for c in trail.boundaryCoordinates {
             if c.landmarkId == landmark.id {
@@ -119,10 +140,8 @@ class MapService {
                 i+=1
                 // track points until the next landmark
                 while i < boundaryCoordinates.count && boundaryCoordinates[i].landmarkId == nil {
-                    if boundaryCoordinates[i].landmarkId == nil {
-                        coord = boundaryCoordinates[i]
-                        coordinates.append(CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude))
-                    }
+                    coord = boundaryCoordinates[i]
+                    coordinates.append(CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude))
                     i+=1
                 }
                 if i < boundaryCoordinates.count {

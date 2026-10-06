@@ -24,7 +24,11 @@ data class Coordinates(
 )
 
 data class Landmark(
-    val id: Int,
+    // Stable recordKey shared by the master Sheet and KML (e.g. "LP-4"). API v3.
+    val id: String,
+    // Present only when a physical beacon broadcasts this place. A place without
+    // one is still shown and can be a tour stop, but no beacon ever matches it.
+    val beaconMinor: Int? = null,
     val location: String,
     val imagePath: String,
     val coordinates: Coordinates,
@@ -44,6 +48,21 @@ data class Trail(
     val isOpen: Boolean,
     val trailDistanceDescription: String,
     val boundaryCoordinates: List<TrailCoordinate>,
+    // Beacon-free trail start and end points (never landmarks). Both optional.
+    val start: TrailEndpoint? = null,
+    val end: TrailEndpoint? = null,
+)
+
+/**
+ * A beacon-free trail start or end. [distance] and [directions] lead toward the
+ * adjacent tour stop: from the start forward to the first stop, and from the end
+ * back to the last stop.
+ */
+data class TrailEndpoint(
+    val latitude: Double,
+    val longitude: Double,
+    val distance: String = "",
+    val directions: String = "",
 )
 
 data class TrailCoordinate(
@@ -53,5 +72,5 @@ data class TrailCoordinate(
     val distanceToNextCounterClockwiseDescription: String? = null,
     val distanceToNextClockwise: String? = null,
     val distanceToNextClockwiseDescription: String? = null,
-    val landmarkId: Int? = null,
+    val landmarkId: String? = null,
 )

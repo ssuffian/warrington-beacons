@@ -7,7 +7,7 @@ import org.junit.Test
 class VisibleMarkersTest {
 
     private fun marker(id: Int, category: String) =
-        TrailMapMarker(id, "landmark $id", category, 40.24, -75.17)
+        TrailMapMarker(id.toString(), "landmark $id", category, 40.24, -75.17)
 
     // Mirrors the real data: 4 trailheads (3 Lions Pride + 1 US202) among 40 landmarks.
     private val allMarkers = buildList {

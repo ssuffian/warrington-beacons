@@ -34,7 +34,7 @@ fun LandmarksScreen(
     viewModel: LandmarksViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    var selectedLandmarkId by remember { mutableStateOf<Int?>(null) }
+    var selectedLandmarkId by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         topBar = {

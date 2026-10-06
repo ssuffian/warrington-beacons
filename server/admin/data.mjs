@@ -148,7 +148,7 @@ export function normalize(tables) {
   const orders = new Map();
   const stops = (tables['Stop Content'] ?? tables['Trail Stops'] ?? tables['Trail Coordinates'] ?? []).filter(r => contentOnly ? clean(r['KML recordKey'] ?? r.recordKey) : clean(r['Beacon Minor'] ?? r.landmarkId)).map(r => {
     const trailId = id(r['Trail ID'] ?? r.trailId); orders.set(trailId, (orders.get(trailId) ?? 0) + 1);
-    return { trailId, recordKey: clean(r['KML recordKey'] ?? r.recordKey), minor: id(r['Beacon Minor'] ?? r.landmarkId), order: contentOnly ? null : legacy ? orders.get(trailId) : number(r['Stop Order'] ?? r.stopOrder),
+    return { trailId, recordKey: clean(r['KML recordKey'] ?? r.recordKey), minor: id(r['Beacon Minor'] ?? r.landmarkId), order: legacy ? orders.get(trailId) : number(r['Stop Order'] ?? r.stopOrder ?? ''),
       forward: r['Forward Instructions'] ?? r.forwardInstructions ?? r.distanceToNextClockwiseDescription ?? '',
       reverse: r['Reverse Instructions'] ?? r.reverseInstructions ?? r.distanceToNextCounterClockwiseDescription ?? '',
       forwardDistance: r['Forward Distance'] ?? r.forwardDistance ?? r.distanceToNextClockwise ?? '',

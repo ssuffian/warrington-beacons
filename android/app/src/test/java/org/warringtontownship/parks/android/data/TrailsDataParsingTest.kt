@@ -3,6 +3,7 @@ package org.warringtontownship.parks.android.data
 import com.google.gson.Gson
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.warringtontownship.parks.android.data.model.TrailsData
@@ -33,10 +34,10 @@ class TrailsDataParsingTest {
 
     @Test
     fun `parses every landmark and trail from both locations`() {
-        assertEquals(38, data.landmarks.size)
+        assertEquals(34, data.landmarks.size)
         assertEquals(11, data.trails.size)
-        assertEquals(21, data.landmarks.count { it.location == "lions-pride-park" })
-        assertEquals(17, data.landmarks.count { it.location == "us-202" })
+        assertEquals(20, data.landmarks.count { it.location == "lions-pride-park" })
+        assertEquals(14, data.landmarks.count { it.location == "us-202" })
     }
 
     @Test
@@ -73,12 +74,55 @@ class TrailsDataParsingTest {
     }
 
     @Test
+    fun `landmark ids are string recordKeys and beacon minors are optional and unique`() {
+        val yellow = data.landmarks.first { it.id == "LP-2" }
+        assertEquals("Yellow Trail", yellow.name)
+        assertEquals(1002, yellow.beaconMinor)
+        assertTrue(data.landmarks.all { it.id.matches(Regex("^[A-Za-z0-9][A-Za-z0-9._-]*$")) })
+        val minors = data.landmarks.mapNotNull { it.beaconMinor }
+        assertEquals(minors.size, minors.toSet().size)
+        assertTrue(minors.all { it in 0..65535 })
+    }
+
+    @Test
+    fun `a place without beaconMinor decodes with a null minor`() {
+        val json = """{"locations":[],"trails":[],"landmarks":[{"id":"EAC-99","location":"us-202",
+            "imagePath":"x.jpg","coordinates":{"latitude":40.2,"longitude":-75.1},"name":"No beacon",
+            "category":"PointOfInterest","description":"d","longDescription":"l","imageAlt":"a"}]}"""
+        val parsed = Gson().fromJson(json, TrailsData::class.java)
+        assertEquals("EAC-99", parsed.landmarks.single().id)
+        assertNull(parsed.landmarks.single().beaconMinor)
+    }
+
+    @Test
+    fun `trail start and end are optional beacon-free endpoints`() {
+        val connector = data.trails.first { it.id == "route-202-connector-trail" }
+        assertNotNull(connector.start)
+        assertNull(connector.end)
+        assertTrue(connector.boundaryCoordinates.none { it.landmarkId != null })
+        assertTrue(connector.start!!.directions.isNotBlank())
+        assertEquals(40.2700344, connector.start!!.latitude, 1e-7)
+
+        val lowerNike = data.trails.first { it.id == "lower-nike-trail" }
+        assertNull(lowerNike.start)
+        assertNotNull(lowerNike.end)
+        assertEquals(-75.1586589, lowerNike.end!!.longitude, 1e-7)
+        assertEquals("858 yards to Waterfowl", lowerNike.end!!.directions)
+        assertTrue(lowerNike.boundaryCoordinates.count { it.landmarkId != null } > 1)
+
+        val yellow = data.trails.first { it.id == "yellow-trail" }
+        assertNull(yellow.start)
+        assertNull(yellow.end)
+        assertEquals("LP-4", yellow.boundaryCoordinates.first { it.landmarkId != null }.landmarkId)
+    }
+
+    @Test
     fun `nullable landmark fields survive absence`() {
         // Several landmarks have no isOpen / trailDistanceDescription in the source data.
         assertNotNull(data.landmarks.first { it.isOpen == null })
     }
 
     companion object {
-        const val DATA_FILE = "../../server/api/v2/trails.json"
+        const val DATA_FILE = "../../server/api/v3/trails.json"
     }
 }

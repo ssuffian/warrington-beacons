@@ -19,11 +19,12 @@ struct TrailDetailsView: View {
                 let tourStops = landmarkService.getLandmarksByTrailId(id: trail.id)
                 VStack(alignment: .leading, spacing: 20) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text(userData.trailLandmark?.longDescription ?? trail.trailDistanceDescription)
+                        // A trail with a beacon-free start has no trailhead landmark to describe it.
+                        Text(trail.start == nil ? (userData.trailLandmark?.longDescription ?? trail.trailDistanceDescription) : trail.trailDistanceDescription)
                             .fixedSize(horizontal: false, vertical: true)
                         if let currentLandmark = userData.trailTourCurrentLandmark, tourStops.count >= 2 {
                             DirectionButtonView().environment(userData)
-                            Text("If you are not starting at the \(currentLandmark.trailModifiedName), select the closest landmark as your starting point.")
+                            Text("If you are not starting at the \(startingPointName(currentLandmark)), select the closest landmark as your starting point.")
                                 .fixedSize(horizontal: false, vertical: true)
                         } else {
                             Text("This trail does not currently have beacon-guided tour stops. You can still use the map to follow its route.")
@@ -79,6 +80,14 @@ struct TrailDetailsView: View {
     }
     
     
+    private func startingPointName(_ currentLandmark: Landmark) -> String {
+        switch userData.trailTourEndpoint {
+        case .start: return "trail start"
+        case .end: return "trail end"
+        case nil: return currentLandmark.trailModifiedName
+        }
+    }
+
     func getLandmarksForMap(landmark: Landmark) -> [Landmark] {
         var landmarks = [Landmark]()
         landmarks.append(landmark)
@@ -95,7 +104,9 @@ struct TrailDetailsView: View {
 struct TrailDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData.shared
-        userData.trailLandmark = landmarkService.getLandmarkById(id: 1002)!
+        if let trail = landmarkService.getTrails().first {
+            userData.prepareTrailTour(trail: trail)
+        }
         return TrailDetailsView()
             .environment(userData)
     }

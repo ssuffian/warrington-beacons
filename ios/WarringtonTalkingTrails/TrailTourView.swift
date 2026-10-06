@@ -24,9 +24,15 @@ struct TrailTourView: View {
             if let current = userData.trailTourNextLandmark,
                let trailLandmark = userData.trailLandmark {
                 VStack(alignment: .leading, spacing: 0) {
-                    let nextDistance = getNextLandmarkDistanceDescription()
+                    let step = userData.trailTourStep
                     ScrollView(.vertical, showsIndicators: true) {
-                        NextPointOfInterestView(selectedLandmark: current, nextLandmarkDistanceDescription: nextDistance, showLandmarkDetails: $showPointOfInterestDetails)
+                        NextPointOfInterestView(
+                            selectedLandmark: step?.nextLandmark ?? current,
+                            nextLandmarkDistanceDescription: step?.directions ?? "",
+                            nextEndpoint: step?.nextEndpoint,
+                            startingFromEndpoint: step?.startingFromEndpoint,
+                            showLandmarkDetails: $showPointOfInterestDetails
+                        )
                             .environment(userData)
                             .padding(16)
                     }
@@ -35,7 +41,7 @@ struct TrailTourView: View {
                     TrailTourMapView(landmarks: getLandmarksForMap(landmark: trailLandmark), showPointOfInterestDetails: $showPointOfInterestDetails).environment(userData)
                 }.navigationBarItems(trailing:
                     TrailTourButtonBarView(landmark: trailLandmark).environment(self.userData)
-                    ).navigationBarTitle("\(trailLandmark.name) Tour", displayMode: .inline)
+                    ).navigationBarTitle("\(userData.trailTourTrail?.name ?? trailLandmark.name) Tour", displayMode: .inline)
             } else {
                 ContentUnavailableView(
                     "Tour Unavailable",
@@ -59,9 +65,8 @@ struct TrailTourView: View {
             BeaconScanner.shared.startScanning()
             // TODO WTF is this doing?
             if UIAccessibility.isVoiceOverRunning {
-                if let nextLandmark = self.userData.trailTourNextLandmark,
-                   let trailLandmark = self.userData.trailLandmark {
-                    self.notificationService.sendTrailTourNotification(currentLandmark: currentLandmark, nextLandmark: nextLandmark, trailLandmark: trailLandmark, trailDirection: self.userData.trailDirection)
+                if let trail = self.userData.trailTourTrail {
+                    self.notificationService.sendTrailTourNotification(currentLandmark: currentLandmark, trail: trail, trailDirection: self.userData.trailDirection, atEndpoint: self.userData.trailTourEndpoint)
                 }
             }
         }.onDisappear {
@@ -74,14 +79,11 @@ struct TrailTourView: View {
     }
     
     func getLandmarksForMap(landmark: Landmark) -> [Landmark] {
-        var landmarks = [Landmark]()
-        landmarks.append(landmark)
-        if landmark.category == Landmark.Category.Trail {
-            if let trail = userData.trailTourTrail {
-                landmarks.append(contentsOf: landmarkService.getLandmarksByTrailId(id: trail.id))
-            }
-        }
-        return landmarks
+        // Every tour stop on the trail, whether or not a Trail-category
+        // trailhead landmark exists.
+        guard let trail = userData.trailTourTrail else { return [landmark] }
+        let stops = landmarkService.getLandmarksByTrailId(id: trail.id)
+        return stops.isEmpty ? [landmark] : stops
     }
     
     func getDirectionForeground(direction: Direction) -> Color {
@@ -101,15 +103,7 @@ struct TrailTourView: View {
     }
     
     func getNextLandmarkDistanceDescription() -> String {
-        guard let trail = userData.trailTourTrail,
-              let currentLandmark = userData.trailTourCurrentLandmark else {
-            return ""
-        }
-        return MapService.distanceToNextLandmark(
-            trail: trail,
-            currentLandmark: currentLandmark,
-            direction: userData.trailDirection
-        )?.distanceToNextDescription ?? ""
+        return userData.trailTourStep?.directions ?? ""
     }
 }
 
@@ -138,11 +132,9 @@ struct TrailTourButtonBarView: View {
                 )
                 self.userData.checkForTrailTourEnd()
 
-                if UIAccessibility.isVoiceOverRunning,
-                   let nextLandmark = self.userData.trailTourNextLandmark,
-                   let trailLandmark = self.userData.trailLandmark {
-                    self.notificationService.sendTrailTourNotification(currentLandmark: currentLandmark, nextLandmark: nextLandmark, trailLandmark: trailLandmark, trailDirection: self.userData.trailDirection)
-                    }
+                if UIAccessibility.isVoiceOverRunning {
+                    self.notificationService.sendTrailTourNotification(currentLandmark: currentLandmark, trail: trail, trailDirection: self.userData.trailDirection, atEndpoint: self.userData.trailTourEndpoint)
+                }
             }
         }
     }
@@ -151,7 +143,7 @@ struct TrailTourButtonBarView: View {
 struct TrailTour_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData.shared
-        userData.trailLandmark = landmarkService.getLandmarks()[0]
+        userData.trailLandmark = landmarkService.getLandmarks().first
         return TrailTourView()
             .environment(userData)
     }

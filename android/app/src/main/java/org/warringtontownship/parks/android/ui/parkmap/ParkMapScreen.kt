@@ -39,7 +39,7 @@ fun ParkMapScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val announcementsEnabled by viewModel.announcementsEnabled.collectAsStateWithLifecycle()
     val statusMessage by viewModel.statusMessage.collectAsStateWithLifecycle()
-    var selectedMarkerId by remember { mutableStateOf<Int?>(null) }
+    var selectedMarkerId by remember { mutableStateOf<String?>(null) }
     var openedByBeacon by remember { mutableStateOf(false) }
 
     DisposableEffect(viewModel) {

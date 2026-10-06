@@ -29,7 +29,7 @@ import org.warringtontownship.parks.android.data.model.Coordinates
 import org.warringtontownship.parks.android.data.model.Landmark
 
 data class MapMarker(
-    val id: Int,
+    val id: String,
     val title: String,
     val category: String,
     val latitude: Double,
@@ -77,8 +77,8 @@ class ParkMapViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ParkMapUiState())
     val uiState: StateFlow<ParkMapUiState> = _uiState.asStateFlow()
 
-    private val _navigationEvent = MutableSharedFlow<Int>()
-    val navigationEvent: SharedFlow<Int> = _navigationEvent.asSharedFlow()
+    private val _navigationEvent = MutableSharedFlow<String>()
+    val navigationEvent: SharedFlow<String> = _navigationEvent.asSharedFlow()
 
     val announcementsEnabled: StateFlow<Boolean> = appPreferences.announcementsEnabled
 
@@ -229,13 +229,13 @@ class ParkMapViewModel @Inject constructor(
         const val SCAN_CONSUMER = "park_map"
     }
 
-    fun getMarkerById(id: Int): MapMarker? = _uiState.value.markers.find { it.id == id }
+    fun getMarkerById(id: String): MapMarker? = _uiState.value.markers.find { it.id == id }
 
-    fun getLandmarkForMarker(markerId: Int): Landmark? = trailRepository.getLandmarkById(markerId)
+    fun getLandmarkForMarker(markerId: String): Landmark? = trailRepository.getLandmarkById(markerId)
 
     fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
 
-    fun announcementTextFor(landmarkId: Int): AnnouncementText? {
+    fun announcementTextFor(landmarkId: String): AnnouncementText? {
         if (!announcer.isAnnouncingEnabled()) return null
         return trailRepository.getLandmarkById(landmarkId)?.let { announcer.textFor(it) }
     }

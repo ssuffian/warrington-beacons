@@ -37,8 +37,8 @@ class TrailToursViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(TrailToursUiState())
     val uiState: StateFlow<TrailToursUiState> = _uiState.asStateFlow()
 
-    private val _beaconEvent = MutableSharedFlow<Int>()
-    val beaconEvent: SharedFlow<Int> = _beaconEvent.asSharedFlow()
+    private val _beaconEvent = MutableSharedFlow<String>()
+    val beaconEvent: SharedFlow<String> = _beaconEvent.asSharedFlow()
 
     private var beaconRegions: List<BeaconRegion> = emptyList()
     private var scanning = false
@@ -101,9 +101,12 @@ class TrailToursViewModel @Inject constructor(
         const val SCAN_CONSUMER = "trail_tour"
     }
 
-    fun getClosestBeaconMinorCode(): Int? = beaconScanner.closestBeaconMinorCode.value
+    /** The place broadcast by the closest beacon, matched by beaconMinor; null if none. */
+    fun getClosestBeaconLandmarkId(): String? =
+        beaconScanner.closestBeaconMinorCode.value
+            ?.let { trailRepository.getLandmarkByBeaconMinor(it)?.id }
     fun getTrailById(id: String): Trail? = trailRepository.getTrailById(id)
-    fun getLandmarkById(id: Int): Landmark? = trailRepository.getLandmarkById(id)
+    fun getLandmarkById(id: String): Landmark? = trailRepository.getLandmarkById(id)
     fun getBoundsForTrail(trailId: String): List<Coordinates> = trailRepository.getBoundsForTrail(trailId)
     fun imageUrlFor(landmark: Landmark): String = trailRepository.imageUrlFor(landmark)
 
@@ -112,7 +115,7 @@ class TrailToursViewModel @Inject constructor(
      * has announcements off — a tour still auto-advances silently in that case,
      * because advancing is navigation the user asked for while speaking is not.
      */
-    fun announcementTextFor(landmarkId: Int): AnnouncementText? {
+    fun announcementTextFor(landmarkId: String): AnnouncementText? {
         if (!announcer.isAnnouncingEnabled()) return null
         return trailRepository.getLandmarkById(landmarkId)?.let { announcer.textFor(it) }
     }

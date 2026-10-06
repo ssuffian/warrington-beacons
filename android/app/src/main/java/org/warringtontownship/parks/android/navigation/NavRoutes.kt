@@ -1,5 +1,7 @@
 package org.warringtontownship.parks.android.navigation
 
+import android.net.Uri
+
 object NavRoutes {
     // Tab graph routes
     const val PARK_MAP_GRAPH = "park_map_graph"
@@ -11,7 +13,7 @@ object NavRoutes {
     // Park Map
     const val PARK_MAP = "park_map"
     const val PARK_MAP_DETAIL = "park_map_detail/{markerId}"
-    fun parkMapDetail(markerId: Int) = "park_map_detail/$markerId"
+    fun parkMapDetail(markerId: String) = "park_map_detail/${Uri.encode(markerId)}"
 
     // Landmarks
     const val LANDMARKS = "landmarks"
@@ -19,9 +21,13 @@ object NavRoutes {
     // Trail Tours
     const val TRAIL_TOURS = "trail_tours"
     const val TRAIL_DETAIL = "trail_detail/{trailId}"
-    fun trailDetail(trailId: String) = "trail_detail/$trailId"
-    const val TRAIL_TOUR = "trail_tour/{trailId}/{reverse}/{startLandmarkId}"
-    fun trailTour(trailId: String, reverse: Boolean, startLandmarkId: Int) = "trail_tour/$trailId/$reverse/$startLandmarkId"
+    fun trailDetail(trailId: String) = "trail_detail/${Uri.encode(trailId)}"
+    // startLandmarkId is optional: absent means begin at the trail's start (or end,
+    // when reversed) rather than at a chosen stop.
+    const val TRAIL_TOUR = "trail_tour/{trailId}/{reverse}?startLandmarkId={startLandmarkId}"
+    fun trailTour(trailId: String, reverse: Boolean, startLandmarkId: String?) =
+        "trail_tour/${Uri.encode(trailId)}/$reverse" +
+            (startLandmarkId?.let { "?startLandmarkId=${Uri.encode(it)}" } ?: "")
 
     // About
     const val ABOUT = "about"

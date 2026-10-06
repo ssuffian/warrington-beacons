@@ -11,7 +11,8 @@ when the JSON or KML contract has a breaking change.
 | Version | Status | JSON | KML | Trail identifier |
 | --- | --- | --- | --- | --- |
 | v1 | Legacy production | `/api/v1/trails.json` | `/api/v1/talking-trails.kml` | Numeric trail ID plus KML `trailGroupId` |
-| v2 | Current | `/api/v2/trails.json` | `/api/v2/talking-trails.kml` | Unified string Trail ID; route-only trails allowed |
+| v2 | Supported | `/api/v2/trails.json` | `/api/v2/talking-trails.kml` | Unified string Trail ID; route-only trails allowed |
+| v3 | Current | `/api/v3/trails.json` | `/api/v3/talking-trails.kml` | Places keyed by recordKey with optional `beaconMinor`; stops without beacons; trail start/end points |
 
 Each published version has a machine-readable JSON Schema at
 `/api/vN/schema.json`. For v1, see `/api/v1/schema.json`. The release workflow

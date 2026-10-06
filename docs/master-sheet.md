@@ -5,15 +5,16 @@ The two editable sources have separate responsibilities:
 - **Google Earth/KML owns geometry:** every Point coordinate and route shape.
 - **The master spreadsheet owns content:** names, descriptions, images, beacon
   IDs and status, location configuration, trail text, turn-by-turn wording,
-  and the Beacons tab's optional `trailId` and `stopOrder`.
+  tour stops and their order, and trail start/end points.
 
 `recordKey` is the permanent join between a Beacons row, a Stop Content row and
-a KML Point. `kmlTrailGroupId` joins a Trails row to one or more KML route
-placemarks. Do not move coordinates or stop order back into the spreadsheet.
+a KML Point. Trails, Stop Content and KML route placemarks share the canonical
+Trail ID. Do not move coordinates back into the spreadsheet.
 
-The updated local workbook, seeded from the public Sheet on September 30, is:
+The local workbook in the October 2026 tour-stop layout, seeded from the public
+Sheet on October 4, is:
 
-`outputs/beacon-trail-memberships-2026-09-30/warrington-master-review.xlsx`
+`outputs/tour-stops-2026-10-04/warrington-master-review.xlsx`
 
 It contains Guide, Beacons, Locations, Trails and Stop Content tabs. Draft and
 Retired rows remain in the master for ongoing planning and history but do not
@@ -41,13 +42,21 @@ It downloads the four public Sheet data tabs, validates them together with
 JSON and KML snapshot. Review and merge that pull request to publish it. A
 failed or partially edited source cannot create a release pull request.
 
-Choose the existing API major version in the workflow. Content can change
+The workflow defaults to **all**, generating v2 and v3 from the same Sheet
+snapshot; every version must validate before any is staged. Content can change
 within a major version, but field names, types and relationships cannot. A
 breaking contract change requires implementing a new `/api/vN/` generator,
 updating both apps, and adding that version to the workflow and
 `server/api/versions.json` before it can be published.
 
-The current contract is `server/api/v2/schema.json`. It uses the same string
+The current contract is `server/api/v3/schema.json`. Places use their
+`recordKey` as `id`; `beaconMinor` appears only for a physical beacon. Trails may
+carry beacon-free `start` and `end` points, and any number of tour stops,
+including stops without beacons. v2 (`server/api/v2/schema.json`) is still
+generated for installed v2 builds: it can only identify places by Minor, so it
+omits places without a beacon, trail start/end points, and single-stop tours.
+
+Both contracts use the same string
 Trail ID in the Trails sheet, Stop Content sheet, and KML `trailId` metadata.
 The generator canonicalizes editor capitalization and spaces to lowercase
 kebab-case. Trails with no associated beacons are valid and contain route
@@ -58,10 +67,10 @@ For a local validation run:
 
 ```sh
 python3 scripts/master_sheet.py \
-  outputs/beacon-trail-memberships-2026-09-30/warrington-master-review.xlsx \
+  outputs/tour-stops-2026-10-04/warrington-master-review.xlsx \
   --kml server/talking-trails.kml \
-  --api-version v2 \
-  --output-dir outputs/master-membership-validation
+  --api-version v3 \
+  --output-dir outputs/master-tour-stop-validation
 ```
 
 The command writes `validation.csv`, `candidate.json` and `changes.diff` outside
@@ -81,24 +90,39 @@ Required live tab names are Beacons, Locations, Trails and Stop Content.
 In Google Earth/KML, keep every Point's `recordKey`. Route placemarks use the
 same canonical `trailId` as the Trails tab. A route may have no beacon stops.
 
-On Beacons, set `trailId` to the Trail ID from Trails and `stopOrder` to its
-position in the tour, beginning at 1 with no gaps. Leave both fields blank for
-a standalone point. Each row supports one trail membership. Stop Content must
-use that same Trail ID and `recordKey`. Old KML Point `trailId` and `stopOrder`
-values are ignored by the generator; spreadsheet edits are authoritative.
+Each Stop Content row is one tour stop: `Trail ID`, `KML recordKey`, the
+directions and `Stop Order`. Number stops 1, 2, 3 … within each trail with no
+gaps; renumber whenever a stop is inserted. A place may be a stop on several
+trails. Forward directions lead to the next stop and Reverse directions lead to
+the previous stop. A Beacons row that has no Stop Content row is a standalone
+place.
 
-For an existing Sheet without these columns, explicitly seed them from the KML
-once (this never publishes data or overwrites existing membership edits):
+On Trails, `Start recordKey` and `End recordKey` optionally name KML Points
+where the trail begins and ends. They must not be active beacons, although they
+may sit beside one. A Stop Content row for a start or end leaves `Stop Order`
+blank: the start row's Forward columns lead to stop 1, and the end row's Reverse
+columns lead back from the end to the last stop.
+
+On Beacons, leave `Minor` blank for a place without a physical beacon. v3 lists
+it with no `beaconMinor`; v2 omits it. A filled Minor must be unique.
+`location` must be a Locations id, never a Trail ID.
+
+To move an older Sheet whose Beacons tab still holds `trailId` and `stopOrder`
+into this layout (this never publishes data):
 
 ```sh
-python3 scripts/migrate_sheet_memberships.py /tmp/warrington-master-csv /tmp/master-memberships.json
-node scripts/build_master_workbook.mjs /tmp/master-memberships.json outputs/master-memberships
+python3 scripts/fetch_master_sheet.py SHEET_ID /tmp/warrington-master-csv
+python3 scripts/migrate_tour_stops.py /tmp/warrington-master-csv /tmp/master-tour-stops.json
+node scripts/build_master_workbook.mjs /tmp/master-tour-stops.json outputs/master-tour-stops
 ```
 
-Add the populated `trailId` and `stopOrder` columns to the live Beacons tab by
-matching `recordKey`, and update the Guide instructions. Do not replace newer
-Sheet content with an older workbook. Generation blocks if the columns are
-missing, a Trail ID is unknown, an order is invalid, or stop content is unmatched.
+The migration keeps every existing column in place, appends `Stop Order` to
+Stop Content and `Start recordKey`/`End recordKey` to Trails, renames the old
+Beacons columns to `old trailId (unused)` and `old stopOrder (unused)`, and
+prints every row that needs an editor's decision. Do not replace newer Sheet
+content with an older workbook. Generation blocks if a Trail ID is unknown, a
+Stop Order is missing or not consecutive, a stop is not an active Beacons row,
+a Minor repeats, or a trail start/end is an active beacon.
 
 Google Earth's web project export currently drops custom `ExtendedData`, even
 though it retains each Placemark's stable `id`. Do not replace the served KML
@@ -114,9 +138,9 @@ if the export contains a new Placemark ID, since that item must first receive an
 explicit `recordKey` or trail ID instead of being guessed from its name.
 
 In the spreadsheet, set `reviewStatus` to Approved only when a row is ready.
-Active Beacons require complete app content, a valid unique Minor, a known
-location, an existing image file and a matching KML Point. Every active Beacon tour stop
-requires one matching Stop Content row.
+Active Beacons require complete app content, a known
+location, an existing image file and a matching KML Point. Minor is optional
+and marks a physical beacon.
 
 Use the public image library at `https://trails.warringtoneac.org/images/` to
 browse available images and copy an image URL. Paste the full URL into the

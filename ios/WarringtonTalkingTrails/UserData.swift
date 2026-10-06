@@ -23,7 +23,15 @@ enum Direction: Hashable {
         didSet { UserDefaults.standard.set(showSimplifiedView, forKey: "simplified_text") }
     }
     var mainMapSelectedLandmark: Landmark?
-    var trailDirection: Direction = .Clockwise
+    var trailDirection: Direction = .Clockwise {
+        didSet {
+            // Turning around at the trail start/end leaves the endpoint behind.
+            if (trailTourEndpoint == .start && trailDirection == .CounterClockwise) ||
+                (trailTourEndpoint == .end && trailDirection == .Clockwise) {
+                trailTourEndpoint = nil
+            }
+        }
+    }
     var nearbyLandmark: Landmark?
     var isTrailTour = false
     var trailTourNextLandmark: Landmark?
@@ -31,6 +39,9 @@ enum Direction: Hashable {
     var trailTourCurrentLandmark: Landmark?
     var trailTourSelectedLandmark: Landmark?
     var trailTourTrail: Trail?
+    // Set while the visitor stands at the trail's beacon-free start or end
+    // (trailTourCurrentLandmark is then the adjacent first/last stop).
+    var trailTourEndpoint: TrailEndpointKind?
     var initialized = false
     var trailTourEnded = false
     var distanceToSelectedLandmark = ""
@@ -48,7 +59,8 @@ enum Direction: Hashable {
     func updateLocation(minor: Int) {
         print("\(type(of:self)): \(#function) minor=\(minor)")
 
-        guard let landmark = landmarkService.getLandmarkById(id: minor) else { return }
+        // Beacons identify places by beaconMinor; places without one never match.
+        guard let landmark = landmarkService.getLandmarkByBeaconMinor(minor) else { return }
 
         // It seems like there should be better way to tell which screens are visible, hacking with env variables
         if isTrailTour {
@@ -58,42 +70,85 @@ enum Direction: Hashable {
         }
     }
     
+    /// Prepares the trail details/tour state for a trail. When the trail has a
+    /// beacon-free start, the tour begins there (heading forward to the first
+    /// stop) unless the visitor is already at a stop on this trail.
+    func prepareTrailTour(trail: Trail, preferredLandmark: Landmark? = nil) {
+        let stops = landmarkService.getLandmarksByTrailId(id: trail.id)
+        let preferred = preferredLandmark.flatMap { landmark in
+            MapService.isSelectedLandmarkOnTrail(trail: trail, landmark: landmark) ? landmark : nil
+        }
+        trailTourTrail = trail
+        if trail.start != nil {
+            trailLandmark = stops.first
+            trailTourCurrentLandmark = preferred ?? stops.first
+            trailTourEndpoint = (preferred == nil && !stops.isEmpty) ? .start : nil
+            if trailTourEndpoint == .start {
+                trailDirection = .Clockwise
+            }
+        } else {
+            let trailhead = stops.first { $0.category == .Trail } ?? stops.first
+            trailLandmark = trailhead
+            trailTourCurrentLandmark = preferred ?? trailhead
+            trailTourEndpoint = nil
+        }
+        trailTourNextLandmark = trailTourCurrentLandmark.flatMap {
+            MapService.findNextLandmark(trail: trail, landmark: $0, direction: trailDirection)
+        }
+        checkForTrailTourEnd()
+    }
+
+    /// Selects the trail start or end as the tour starting point.
+    func selectTrailEndpoint(_ kind: TrailEndpointKind) {
+        guard let trail = trailTourTrail, trail.endpoint(kind) != nil else { return }
+        let stopIds = trail.stopIds
+        guard let adjacentId = kind == .start ? stopIds.first : stopIds.last,
+              let adjacent = landmarkService.getLandmarkById(id: adjacentId) else { return }
+        trailTourEndpoint = kind
+        trailDirection = kind == .start ? .Clockwise : .CounterClockwise
+        trailTourCurrentLandmark = adjacent
+        trailTourNextLandmark = MapService.findNextLandmark(trail: trail, landmark: adjacent, direction: trailDirection)
+        checkForTrailTourEnd()
+    }
+
+    /// The current tour card content, or nil when no tour position is set.
+    var trailTourStep: MapService.TourStep? {
+        guard let trail = trailTourTrail, let current = trailTourCurrentLandmark else { return nil }
+        return MapService.tourStep(trail: trail, currentLandmark: current, direction: trailDirection, atEndpoint: trailTourEndpoint)
+    }
+
     func checkForTrailTourEnd() {
         guard let trailTourTrail = trailTourTrail else { return }
         guard let trailTourCurrentLandmark = trailTourCurrentLandmark else { return }
-        if trailTourTrail.isOpen,
-           let first = trailTourTrail.boundaryCoordinates.first,
-           let last = trailTourTrail.boundaryCoordinates.last {
-            if (trailDirection == .CounterClockwise && trailTourCurrentLandmark.id == first.landmarkId) ||
-               (trailDirection == .Clockwise && trailTourCurrentLandmark.id == last.landmarkId) {
-                trailTourEnded = true;
-            } else {
-                trailTourEnded = false;
-            }
+        let step = MapService.tourStep(trail: trailTourTrail, currentLandmark: trailTourCurrentLandmark,
+                                       direction: trailDirection, atEndpoint: trailTourEndpoint)
+        let stopIds = trailTourTrail.stopIds
+        if step.startingFromEndpoint != nil || step.nextEndpoint != nil {
+            // Heading from or toward a trail start/end: the tour continues.
+            trailTourEnded = false
+        } else if trailTourTrail.isOpen, let first = stopIds.first, let last = stopIds.last {
+            trailTourEnded = (trailDirection == .CounterClockwise && trailTourCurrentLandmark.id == first) ||
+                (trailDirection == .Clockwise && trailTourCurrentLandmark.id == last)
         } else {
-            trailTourEnded = false;
+            trailTourEnded = false
         }
-//        print("Trail tour from \(trailTourCurrentLandmark.name) ended: \(trailTourEnded)")
     }
 
     private func updateTourProgress(landmark: Landmark) {
-        
-        // TODO what's the difference between currentLandmark and trailLandmark, can we make this less confusing?
         guard let trailTourTrail = trailTourTrail else { return }
-        guard let trailLandmark = trailLandmark else { return }
         guard MapService.isSelectedLandmarkOnTrail(trail: trailTourTrail, landmark: landmark) else { return }
 
+        // Arriving at a stop means the visitor has left the trail start/end.
+        trailTourEndpoint = nil
         trailTourCurrentLandmark = landmark
         checkForTrailTourEnd()
 
         if let nextLandmark = MapService.findNextLandmark(trail: trailTourTrail, landmark: landmark, direction: trailDirection) {
             trailTourNextLandmark = nextLandmark
-            let notificationService = NotificationService.shared
-            notificationService.sendTrailTourNotification(
-                    currentLandmark: landmark,
-                    nextLandmark: nextLandmark,
-                    trailLandmark: trailLandmark,
-                    trailDirection: trailDirection
+            NotificationService.shared.sendTrailTourNotification(
+                currentLandmark: landmark,
+                trail: trailTourTrail,
+                trailDirection: trailDirection
             )
         }
     }

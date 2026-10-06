@@ -18,7 +18,7 @@ final class LandmarkAnnotation: NSObject, MKAnnotation {
     let landmark: Landmark?
 
     init(landmark: Landmark) {
-        self.id = String(landmark.id)
+        self.id = landmark.id
         self.title = landmark.trailModifiedName
         self.coordinate = landmark.locationCoordinate
         self.subtitle = ""
@@ -47,6 +47,40 @@ final class LandmarkAnnotation: NSObject, MKAnnotation {
         return GREEN
     }
     
+}
+
+/// A beacon-free trail start or end. These are never landmarks.
+final class TrailEndpointAnnotation: NSObject, MKAnnotation {
+    let kind: TrailEndpointKind
+    let coordinate: CLLocationCoordinate2D
+    let title: String?
+
+    init(kind: TrailEndpointKind, endpoint: TrailEndpoint) {
+        self.kind = kind
+        self.coordinate = endpoint.locationCoordinate
+        self.title = kind.title
+    }
+
+    static func annotations(for trail: Trail) -> [TrailEndpointAnnotation] {
+        [TrailEndpointKind.start, .end].compactMap { kind in
+            trail.endpoint(kind).map { TrailEndpointAnnotation(kind: kind, endpoint: $0) }
+        }
+    }
+
+    func markerView(on mapView: MKMapView) -> MKMarkerAnnotationView {
+        let identifier = "TrailEndpoint\(kind == .start ? "Start" : "End")"
+        let view = (mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView)
+            ?? MKMarkerAnnotationView(annotation: self, reuseIdentifier: identifier)
+        view.annotation = self
+        view.glyphImage = UIImage(systemName: trailEndpointSymbol(kind))
+        view.markerTintColor = kind == .start ? GREEN : .systemRed
+        view.displayPriority = .required
+        view.canShowCallout = true
+        view.isAccessibilityElement = true
+        view.accessibilityIdentifier = "trail-endpoint-\(kind == .start ? "start" : "end")"
+        view.accessibilityLabel = kind.title
+        return view
+    }
 }
 
 /// MapKit's marker is visible to accessibility, but its default activation does

@@ -33,6 +33,10 @@ def validate_document(schema, document):
     unique(landmarks, 'landmarks')
     unique(trails, 'trails')
 
+    minors = [row['beaconMinor'] for row in landmarks if isinstance(row, dict) and 'beaconMinor' in row]
+    for value in sorted({value for value in minors if minors.count(value) > 1}):
+        errors.append(f'$.landmarks: duplicate beaconMinor {value!r}')
+
     location_ids = {row.get('id') for row in locations if isinstance(row, dict)}
     landmark_ids = {row.get('id') for row in landmarks if isinstance(row, dict)}
     for label, rows in (('landmarks', landmarks), ('trails', trails)):

@@ -21,15 +21,15 @@ const tables = JSON.parse(await fs.readFile(input, 'utf8'));
 const wb = Workbook.create();
 for (const [name, rows] of Object.entries(tables)) {
   const sheet = wb.worksheets.add(name);
-  const hasNewStatus = name==='Beacons' && rows.some(r=>'Status' in r);
-  const priority=name==='Beacons'?['recordKey','name','id','location','trailId','stopOrder',hasNewStatus?'Status':'beaconStatus',...(hasNewStatus?['purchaseCount']:[]),'appStatus','reviewStatus','category']:[];
-  const headers = [...new Set([...priority,...rows.flatMap(r => Object.keys(r))])]
+  // Keep the editors' live column order exactly as provided.
+  const headers = [...new Set(rows.flatMap(r => Object.keys(r)))]
     .filter(k => !excludedColumns[name]?.has(k));
   const labels={
     'Beacons':{id:'Minor',sourceId:'Source Minor',sourceMajor:'Source Major',appStatus:'App Inclusion'},
+    'Trails':{startRecordKey:'Start recordKey',endRecordKey:'End recordKey'},
     'Locations':{beaconMajorCode:'Major',iBeaconUUID:'iBeacon UUID',altBeaconUUID:'AltBeacon UUID'},
     'Trail Stops':{trailId:'Trail ID',stopOrder:'Stop Order',landmarkId:'Beacon Minor',forwardDistance:'Forward Distance',forwardInstructions:'Forward Instructions',reverseDistance:'Reverse Distance',reverseInstructions:'Reverse Instructions'},
-    'Stop Content':{trailId:'Trail ID',recordKey:'KML recordKey',forwardDistance:'Forward Distance',forwardInstructions:'Forward Instructions',reverseDistance:'Reverse Distance',reverseInstructions:'Reverse Instructions'},
+    'Stop Content':{trailId:'Trail ID',recordKey:'KML recordKey',stopOrder:'Stop Order',forwardDistance:'Forward Distance',forwardInstructions:'Forward Instructions',reverseDistance:'Reverse Distance',reverseInstructions:'Reverse Instructions'},
     'Trail Coordinates':{landmarkId:'Beacon Minor'},
   };
   const numeric=new Set(['id','sourceId','sourceMajor','trailId','landmarkId','pointIndex','stopOrder','beaconMajorCode','latitude','longitude','purchaseCount','sourceNewBeaconCount']);
@@ -55,7 +55,7 @@ for (const [name, rows] of Object.entries(tables)) {
     const k=headers[i];const col=sheet.getRangeByIndexes(1,i,rows.length,1);
     if (['id','sourceId','sourceMajor','trailId','landmarkId','pointIndex','beaconMajorCode'].includes(k)) col.setNumberFormat('0');
     if (['latitude','longitude'].includes(k)) col.setNumberFormat('0.#########');
-    if (['description','longDescription','reviewNotes','guidance','issue','instructions','carriedForwardFields','trailDistanceDescription','whatResolvesIt','affectedRecordKeys','coordinateNote','hardwareNotes','decisionNotes','resolution','forwardInstructions','reverseInstructions'].includes(k) || k.endsWith('Description')) {
+    if (['description','longDescription','reviewNotes','guidance','issue','instructions','carriedForwardFields','trailDistanceDescription','whatResolvesIt','affectedRecordKeys','coordinateNote','hardwareNotes','decisionNotes','resolution','forwardInstructions','reverseInstructions','whatChanged','actionNeeded'].includes(k) || k.endsWith('Description')) {
       col.format.columnWidth=70;
       for(let j=0;j<rows.length;j++) {
         const lines=String(rows[j][k]??'').split('\n').reduce((n,s)=>n+Math.max(1,Math.ceil(s.length/70)),0);
@@ -74,6 +74,18 @@ for (const [name, rows] of Object.entries(tables)) {
       col.format.columnWidth=44;
       col.dataValidation={rule:{type:'list',values:tables.Trails.map(r=>String(r.id)).filter(Boolean)}};
     }
+    if (name==='Stop Content' && k==='trailId') {
+      col.setNumberFormat('@');
+      col.dataValidation={rule:{type:'list',values:tables.Trails.map(r=>String(r.id)).filter(Boolean)}};
+    }
+    if (name==='Stop Content' && k==='stopOrder') {
+      col.setNumberFormat('0');
+      col.dataValidation={rule:{type:'whole',operator:'greaterThanOrEqual',formula1:1}};
+    }
+    if (name==='Beacons' && k==='location' || name==='Trails' && k==='location') {
+      col.dataValidation={rule:{type:'list',values:tables.Locations.map(r=>String(r.id)).filter(Boolean)}};
+    }
+    if (name==='Beacons' && k.startsWith('old ')) col.format.fill='#EEEEEE';
     if (name==='Beacons' && k==='stopOrder') {
       col.setNumberFormat('0');
       col.dataValidation={rule:{type:'whole',operator:'greaterThanOrEqual',formula1:1}};
