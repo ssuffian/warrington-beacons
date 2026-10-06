@@ -167,8 +167,8 @@ has since expired.
 ## Current Play release artifact
 
 The current signed bundle is always kept at
-`app/build/outputs/bundle/release/app-release.aab`. For API v1 it is version
-code `7`, version name `2026.9.29`. Upload that file to Play Console. Files
+`app/build/outputs/bundle/release/app-release.aab`. For API v3 it is version
+code `9`, version name `2026.10.4`. Upload that file to Play Console. Files
 under `app/build/intermediates/` are Gradle working files and should not be kept
 or uploaded.
 
