@@ -42,6 +42,13 @@ It downloads the four public Sheet data tabs, validates them together with
 JSON and KML snapshot. Review and merge that pull request to publish it. A
 failed or partially edited source cannot create a release pull request.
 
+For v2 and v3, every KML route with a canonical `trailId` must have a matching
+row in the Trails tab, and every Trails row must have a matching KML route.
+Missing rows block generation and identify each omitted Trail ID in the
+validation report. Routes with no beacon stops remain valid. To keep a planned
+route outside app data, do not assign it an app `trailId` in KML until its
+approved Trails row is ready.
+
 The workflow defaults to **all**, generating v2 and v3 from the same Sheet
 snapshot; every version must validate before any is staged. Content can change
 within a major version, but field names, types and relationships cannot. A
