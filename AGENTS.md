@@ -48,6 +48,11 @@ tree under `outputs/`.
 
 ## Master data and map releases
 
+Keep only the current local editor spreadsheet at
+`outputs/master/warrington-master-review.xlsx`. Overwrite it for future
+revisions. Remove superseded spreadsheet versions and their associated previews,
+inspection files, export folders and spreadsheet-only review artifacts.
+
 Treat `server/talking-trails.kml` as the sole source of geographic truth for
 point coordinates and route shapes. The Stop Content tab owns tour membership
 (`Trail ID`) and tour sequence (`Stop Order`); the Trails tab names each trail's
