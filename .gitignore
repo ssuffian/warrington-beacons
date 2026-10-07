@@ -7,6 +7,7 @@
 *.mp4
 play-listing/
 __pycache__/
+android/.kotlin/
 
 # Local signed App Store exports (reproducible; do not commit)
 ios/AppStoreAssets/Build/*.ipa
