@@ -3555,6 +3555,265 @@
       "location": "us-202",
       "name": "202 Connector Trail",
       "trailDistanceDescription": "This paved trail, with one short gravel segment, connects the US-202 Parkway Trail to the Bradford Dam trail."
+    },
+    {
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.25260955624728,
+          "longitude": -75.17491484335655
+        },
+        {
+          "latitude": 40.25466554266382,
+          "longitude": -75.17274815753012
+        },
+        {
+          "latitude": 40.254904909909,
+          "longitude": -75.17255332536827
+        },
+        {
+          "latitude": 40.25515766229528,
+          "longitude": -75.17239004621386
+        },
+        {
+          "latitude": 40.2553258351566,
+          "longitude": -75.17221394931337
+        },
+        {
+          "latitude": 40.25541570384662,
+          "longitude": -75.17218546700038
+        },
+        {
+          "latitude": 40.25550620077763,
+          "longitude": -75.17217736772595
+        },
+        {
+          "latitude": 40.25573990951312,
+          "longitude": -75.17191497239129
+        },
+        {
+          "latitude": 40.25591967523324,
+          "longitude": -75.17169237265156
+        },
+        {
+          "latitude": 40.25632580482624,
+          "longitude": -75.17125188964062
+        },
+        {
+          "latitude": 40.25666011712099,
+          "longitude": -75.17096477182963
+        },
+        {
+          "latitude": 40.25677880681272,
+          "longitude": -75.1706586930328
+        },
+        {
+          "latitude": 40.25684143287025,
+          "longitude": -75.17057032234268
+        },
+        {
+          "latitude": 40.25702730334605,
+          "longitude": -75.17040096839543
+        },
+        {
+          "latitude": 40.2572064172341,
+          "longitude": -75.17025667199826
+        },
+        {
+          "latitude": 40.25734656484494,
+          "longitude": -75.17010537534088
+        },
+        {
+          "latitude": 40.2574166298,
+          "longitude": -75.16993333561359
+        },
+        {
+          "latitude": 40.25767822430579,
+          "longitude": -75.1696582842863
+        },
+        {
+          "latitude": 40.25817007652105,
+          "longitude": -75.16910874536103
+        },
+        {
+          "latitude": 40.25873625815987,
+          "longitude": -75.16849503433055
+        },
+        {
+          "latitude": 40.25882074340293,
+          "longitude": -75.16844322491522
+        },
+        {
+          "latitude": 40.25886785239275,
+          "longitude": -75.16844309614216
+        },
+        {
+          "latitude": 40.25890925608404,
+          "longitude": -75.16846936297954
+        },
+        {
+          "latitude": 40.25895338554498,
+          "longitude": -75.16852148214264
+        },
+        {
+          "latitude": 40.25902287218412,
+          "longitude": -75.1686688917052
+        },
+        {
+          "latitude": 40.25912677246424,
+          "longitude": -75.16895176122621
+        },
+        {
+          "latitude": 40.25914826001576,
+          "longitude": -75.1691184749908
+        },
+        {
+          "latitude": 40.25915819961661,
+          "longitude": -75.16929464980149
+        },
+        {
+          "latitude": 40.25914262169616,
+          "longitude": -75.16948096372847
+        },
+        {
+          "latitude": 40.25911209863075,
+          "longitude": -75.16967893393063
+        },
+        {
+          "latitude": 40.25897135287224,
+          "longitude": -75.17077592757282
+        },
+        {
+          "latitude": 40.25892718136674,
+          "longitude": -75.17105037741365
+        },
+        {
+          "latitude": 40.25890802572548,
+          "longitude": -75.17131716288098
+        },
+        {
+          "latitude": 40.25886487198091,
+          "longitude": -75.17186044013724
+        },
+        {
+          "latitude": 40.25874827568837,
+          "longitude": -75.17330235852101
+        },
+        {
+          "latitude": 40.25874974210958,
+          "longitude": -75.17363735341874
+        },
+        {
+          "latitude": 40.2587640256689,
+          "longitude": -75.1739576034714
+        },
+        {
+          "latitude": 40.2588019026004,
+          "longitude": -75.17418226457933
+        },
+        {
+          "latitude": 40.25885713328252,
+          "longitude": -75.17437654872039
+        },
+        {
+          "latitude": 40.25891943464143,
+          "longitude": -75.17453872922465
+        },
+        {
+          "latitude": 40.25899988213506,
+          "longitude": -75.17468594716061
+        },
+        {
+          "latitude": 40.2591715785476,
+          "longitude": -75.17496310605921
+        },
+        {
+          "latitude": 40.25950917841974,
+          "longitude": -75.17552097099218
+        },
+        {
+          "latitude": 40.25984463676723,
+          "longitude": -75.176087033949
+        },
+        {
+          "latitude": 40.26001972938607,
+          "longitude": -75.17637864425865
+        },
+        {
+          "latitude": 40.26010611339716,
+          "longitude": -75.17651834421115
+        },
+        {
+          "latitude": 40.26020472235648,
+          "longitude": -75.17668474765163
+        }
+      ],
+      "id": "emerson-preserve-trail",
+      "isOpen": true,
+      "location": "emerson-preserve",
+      "name": "Emerson Preserve Trail",
+      "trailDistanceDescription": "Explore the trail at Emerson Preserve."
+    },
+    {
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.26574906327971,
+          "longitude": -75.18621304871714
+        },
+        {
+          "latitude": 40.26571790350842,
+          "longitude": -75.18636369381734
+        },
+        {
+          "latitude": 40.26569280190012,
+          "longitude": -75.1864358283776
+        },
+        {
+          "latitude": 40.26566351885723,
+          "longitude": -75.1865115313155
+        },
+        {
+          "latitude": 40.26560863439133,
+          "longitude": -75.18660849154224
+        },
+        {
+          "latitude": 40.26546171029752,
+          "longitude": -75.1867537527766
+        },
+        {
+          "latitude": 40.26534263390688,
+          "longitude": -75.18688138164002
+        }
+      ],
+      "id": "kings-court-access",
+      "isOpen": true,
+      "location": "us-202",
+      "name": "Kings Court Access",
+      "trailDistanceDescription": "Follow Kings Court Access."
+    },
+    {
+      "boundaryCoordinates": [
+        {
+          "latitude": 40.24841658423806,
+          "longitude": -75.17713501332227
+        },
+        {
+          "latitude": 40.24849040911374,
+          "longitude": -75.17706528653112
+        },
+        {
+          "latitude": 40.24839635520541,
+          "longitude": -75.17674195418265
+        },
+        {
+          "latitude": 40.24913680698285,
+          "longitude": -75.17616177041118
+        }
+      ],
+      "id": "outdoor-classroom-trail",
+      "isOpen": true,
+      "location": "lions-pride-park",
+      "name": "Outdoor Classroom Trail",
+      "trailDistanceDescription": "Explore the Outdoor Classroom Trail at Lions Pride Park."
     }
   ]
 }
