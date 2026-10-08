@@ -15,6 +15,7 @@ Pride Park App Store listing.
 - Three reviewed 6.9-inch iPhone screenshots: `Screenshots-6.9-inch-FINAL/`
 - 1024×1024 RGB app icon: `AppIcon-1024.png`
 - Copy-and-paste listing text: `Metadata/`
+- Product page header and search results illustrations: `CreativeAssets/`
 - App Review and privacy answers: `Metadata/`
 - Public-page source files: `Web/`
 

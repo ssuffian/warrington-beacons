@@ -11,10 +11,13 @@ The two editable sources have separate responsibilities:
 a KML Point. Trails, Stop Content and KML route placemarks share the canonical
 Trail ID. Do not move coordinates back into the spreadsheet.
 
-The local workbook in the October 2026 tour-stop layout, seeded from the public
-Sheet on October 4, is:
+The current local editor workbook, refreshed from the public Sheet on October 7
+with the three missing route rows added, is:
 
-`outputs/tour-stops-2026-10-04/warrington-master-review.xlsx`
+`outputs/master/warrington-master-review.xlsx`
+
+Overwrite this workbook for future revisions. Do not retain superseded
+spreadsheet versions or their previews, inspection files, and export folders.
 
 It contains Guide, Beacons, Locations, Trails and Stop Content tabs. Draft and
 Retired rows remain in the master for ongoing planning and history but do not
@@ -42,6 +45,13 @@ It downloads the four public Sheet data tabs, validates them together with
 JSON and KML snapshot. Review and merge that pull request to publish it. A
 failed or partially edited source cannot create a release pull request.
 
+For v2 and v3, every KML route with a canonical `trailId` must have a matching
+row in the Trails tab, and every Trails row must have a matching KML route.
+Missing rows block generation and identify each omitted Trail ID in the
+validation report. Routes with no beacon stops remain valid. To keep a planned
+route outside app data, do not assign it an app `trailId` in KML until its
+approved Trails row is ready.
+
 The workflow defaults to **all**, generating v2 and v3 from the same Sheet
 snapshot; every version must validate before any is staged. Content can change
 within a major version, but field names, types and relationships cannot. A
@@ -67,7 +77,7 @@ For a local validation run:
 
 ```sh
 python3 scripts/master_sheet.py \
-  outputs/tour-stops-2026-10-04/warrington-master-review.xlsx \
+  outputs/master/warrington-master-review.xlsx \
   --kml server/talking-trails.kml \
   --api-version v3 \
   --output-dir outputs/master-tour-stop-validation

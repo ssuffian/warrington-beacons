@@ -231,6 +231,9 @@ def validate(t, kml_path, api_version='v1'):
         trail_id = trail_key(r.get('id', ''))
         if trail_id in trail_rows: fail('Trails', 'Duplicate trail IDs')
         trail_rows[trail_id] = r
+    if string_ids:
+        for trail_id in sorted(set(routes) - set(trail_rows)):
+            fail('KML route '+trail_id, 'No matching Trails row; add this canonical Trail ID to the master Sheet')
     endpoints = {}
     for trail_id, r in trail_rows.items():
         for role, column in (('start', 'startRecordKey'), ('end', 'endRecordKey')):

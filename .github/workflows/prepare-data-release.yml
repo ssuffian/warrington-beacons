@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Test master Sheet validation
+        run: python3 -m unittest discover -s scripts -p 'test_master_sheet.py'
       - name: Install contract validator
         run: python3 -m pip install --disable-pip-version-check -r scripts/requirements-api-contract.txt
       - name: Generate and validate the release candidates

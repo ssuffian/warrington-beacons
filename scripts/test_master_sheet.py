@@ -1,8 +1,13 @@
 import copy
 import json
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 
-from master_sheet import ROOT, normalize_image_path, read_kml, tables, validate
+from master_sheet import ROOT, KNS, canonical_trail_id, normalize_image_path, read_kml, tables, validate
 from migrate_tour_stops import OLD_ORDER, OLD_TRAIL, migrate
 
 
@@ -17,9 +22,50 @@ def stop_ids(trail):
 class MasterValidationTest(unittest.TestCase):
     def setUp(self):
         self.tables = json.loads((FIXTURES/'master-tour-stops.json').read_text())
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.kml = Path(self.temp.name)/'fixture.kml'
+        # This historical Sheet fixture contains eleven routes. Keep its geometry
+        # tests scoped to those routes; full-source coverage is tested separately.
+        trail_ids = {canonical_trail_id(r['id']) for r in self.tables['Trails']}
+        tree = ET.parse(KML)
+        for parent in tree.getroot().iter():
+            for pm in list(parent):
+                if pm.tag != '{'+KNS['k']+'}Placemark' or pm.find('k:Point', KNS) is not None:
+                    continue
+                route_id = pm.findtext('k:ExtendedData/k:Data[@name="trailId"]/k:value', '', KNS)
+                if route_id and canonical_trail_id(route_id) not in trail_ids:
+                    parent.remove(pm)
+        tree.write(self.kml)
 
     def generate(self, api_version='v3', candidate=None):
-        return validate(candidate or self.tables, KML, api_version)
+        return validate(candidate or self.tables, self.kml, api_version)
+
+    def test_full_kml_reports_omitted_routes_in_both_release_versions(self):
+        for version in ('v2', 'v3'):
+            with self.subTest(version=version):
+                _, errors = validate(self.tables, KML, version)
+                missing = {e['record'] for e in errors if 'No matching Trails row' in e['issue']}
+                self.assertEqual(missing, {'KML route emerson-preserve-trail',
+                                           'KML route kings-court-access',
+                                           'KML route outdoor-classroom-trail'})
+
+    def test_unlisted_route_blocks_cli_without_replacing_published_data(self):
+        out = Path(self.temp.name)/'review'
+        out.mkdir()
+        (out/'candidate.json').write_text('stale candidate')
+        (out/'changes.diff').write_text('stale diff')
+        published = ROOT/'server/api/v3/trails.json'
+        before = published.read_bytes()
+        result = subprocess.run([sys.executable, str(ROOT/'scripts/master_sheet.py'),
+                                 str(FIXTURES/'live-sheet-2026-10-04'), '--kml', str(KML),
+                                 '--api-version', 'v3', '--output-dir', str(out)],
+                                capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('KML route emerson-preserve-trail', result.stdout)
+        self.assertFalse((out/'candidate.json').exists())
+        self.assertFalse((out/'changes.diff').exists())
+        self.assertEqual(published.read_bytes(), before)
 
     def trail(self, result, trail_id):
         return next(t for t in result['trails'] if t['id'] == trail_id)
