@@ -28,8 +28,8 @@ android {
         applicationId = "org.warringtontownship.parks.android"
         minSdk = 31
         targetSdk = 36
-        versionCode = 9
-        versionName = "2026.10.4"
+        versionCode = 10
+        versionName = "2026.10.9"
     }
 
     signingConfigs {
@@ -45,11 +45,8 @@ android {
 
     buildTypes {
         release {
-            // Left off deliberately. The trail data is parsed by Gson straight into
-            // data classes, so R8 renaming their fields would silently produce a
-            // screenful of nulls rather than a build error. Turning it on needs keep
-            // rules for the model classes plus a real device check of the parsed data.
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

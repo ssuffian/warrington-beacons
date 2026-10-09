@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-09",
   "manifestVersion": 1,
   "currentBuilds": {
     "ios": {
@@ -13,8 +13,8 @@
     },
     "android": {
       "appId": "org.warringtontownship.parks.android",
-      "version": "2026.10.4",
-      "build": "9",
+      "version": "2026.10.9",
+      "build": "10",
       "apiVersion": "v3",
       "status": "readyForUpload",
       "data": "https://trails.warringtoneac.org/api/v3/trails.json",
@@ -22,6 +22,16 @@
     }
   },
   "history": [
+    {
+      "platform": "android",
+      "appId": "org.warringtontownship.parks.android",
+      "version": "2026.10.4",
+      "build": "9",
+      "apiVersion": "v3",
+      "status": "playTesting",
+      "data": "https://trails.warringtoneac.org/api/v3/trails.json",
+      "kml": "https://trails.warringtoneac.org/api/v3/talking-trails.kml"
+    },
     {
       "platform": "ios",
       "appId": "org.warringtontownship.lionspride",

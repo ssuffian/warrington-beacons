@@ -37,7 +37,7 @@ class TrailRepositoryTest {
     @Test
     fun `exposes every landmark and trail as one flat set`() {
         assertEquals(34, repository.getLandmarks().size)
-        assertEquals(11, repository.getTrails().size)
+        assertEquals(14, repository.getTrails().size)
         assertEquals("Yellow Trail", repository.getTrailById("yellow-trail")?.name)
         assertEquals("202 Connector Trail", repository.getTrailById("route-202-connector-trail")?.name)
     }
@@ -60,16 +60,16 @@ class TrailRepositoryTest {
         repo.loadData()
         assertEquals(15, repo.getMapRoutes().size)
         assertEquals(34, repo.getLandmarks().size)
-        assertEquals(11, repo.getTrails().size)
+        assertEquals(14, repo.getTrails().size)
         assertEquals(34 + repo.getMapRoutes().sumOf { it.size }, repo.getCombinedBounds().size)
     }
 
     @Test
     fun `groups trails by location in locations order`() {
         val grouped = repository.getTrailsByLocation()
-        assertEquals(listOf("Lions Pride Park", "US202 to Bradford Dam"), grouped.map { it.first.name })
-        assertEquals(3, grouped[0].second.size)
-        assertEquals(8, grouped[1].second.size)
+        assertEquals(listOf("lions-pride-park", "us-202", "upper-nike-park", "lower-nike-park",
+            "weisel-preserve", "mill-creek-park", "ipw-park", "emerson-preserve"), grouped.map { it.first.id })
+        assertEquals(listOf(4, 2, 1, 1, 1, 3, 1, 1), grouped.map { it.second.size })
         assertTrue(grouped[0].second.all { it.location == "lions-pride-park" })
     }
 
@@ -140,9 +140,10 @@ class TrailRepositoryTest {
     @Test
     fun `groups landmarks by location in locations order`() {
         val grouped = repository.getLandmarksByLocation()
-        assertEquals(listOf("Lions Pride Park", "US202 to Bradford Dam"), grouped.map { it.first.name })
-        assertEquals(20, grouped[0].second.size)
-        assertEquals(14, grouped[1].second.size)
+        assertEquals(listOf("lions-pride-park", "us-202", "upper-nike-park", "lower-nike-park",
+            "weisel-preserve", "mill-creek-park", "ipw-park", "emerson-preserve"),
+            grouped.map { it.first.id })
+        assertEquals(listOf(20, 0, 2, 9, 3, 0, 0, 0), grouped.map { it.second.size })
         assertEquals(34, grouped.sumOf { it.second.size })
     }
 
