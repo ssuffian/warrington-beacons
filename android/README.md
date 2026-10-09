@@ -177,6 +177,13 @@ rules in `app/proguard-rules.pro` preserve Gson's API models; the bundle include
 the R8 mapping for Play diagnostics. The app supports rotation and resizable
 windows, and consumes system insets around its navigation and welcome screens.
 
+Native debug symbols are requested with `ndk.debugSymbolLevel = "FULL"` so
+available symbols are included in future bundles. AndroidX graphics-path 1.0.1
+ships its native libraries already stripped; Gradle cannot extract debug metadata
+for those libraries, so Play may still recommend a symbol upload. Build 10 has
+no recoverable native symbol file. This does not affect the bundled R8 mapping
+for Kotlin/Java crash reports.
+
 ## Beacon Programming
 
 You can Google for the RadBeacon E4 user manual, currently:
