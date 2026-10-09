@@ -28,7 +28,7 @@ android {
         applicationId = "org.warringtontownship.parks.android"
         minSdk = 31
         targetSdk = 36
-        versionCode = 10
+        versionCode = 11
         versionName = "2026.10.9"
     }
 
@@ -47,6 +47,9 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

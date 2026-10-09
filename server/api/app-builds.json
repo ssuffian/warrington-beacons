@@ -14,7 +14,7 @@
     "android": {
       "appId": "org.warringtontownship.parks.android",
       "version": "2026.10.9",
-      "build": "10",
+      "build": "11",
       "apiVersion": "v3",
       "status": "readyForUpload",
       "data": "https://trails.warringtoneac.org/api/v3/trails.json",
@@ -22,6 +22,16 @@
     }
   },
   "history": [
+    {
+      "platform": "android",
+      "appId": "org.warringtontownship.parks.android",
+      "version": "2026.10.9",
+      "build": "10",
+      "apiVersion": "v3",
+      "status": "readyForUpload",
+      "data": "https://trails.warringtoneac.org/api/v3/trails.json",
+      "kml": "https://trails.warringtoneac.org/api/v3/talking-trails.kml"
+    },
     {
       "platform": "android",
       "appId": "org.warringtontownship.parks.android",

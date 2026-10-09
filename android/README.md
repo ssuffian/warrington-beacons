@@ -168,7 +168,7 @@ has since expired.
 
 The current signed bundle is always kept at
 `app/build/outputs/bundle/release/app-release.aab`. For API v3 it is version
-code `10`, version name `2026.10.9`, ready for upload. Files
+code `11`, version name `2026.10.9`, ready for upload. Files
 under `app/build/intermediates/` are Gradle working files and should not be kept
 or uploaded.
 
@@ -176,6 +176,13 @@ Release builds use R8 code obfuscation and resource shrinking. The targeted
 rules in `app/proguard-rules.pro` preserve Gson's API models; the bundle includes
 the R8 mapping for Play diagnostics. The app supports rotation and resizable
 windows, and consumes system insets around its navigation and welcome screens.
+
+Native debug symbols are requested with `ndk.debugSymbolLevel = "FULL"` so
+available symbols are included in future bundles. AndroidX graphics-path 1.0.1
+ships its native libraries already stripped; Gradle cannot extract debug metadata
+for those libraries, so Play may still recommend a symbol upload. The current dependency has
+no recoverable native symbol file. This does not affect the bundled R8 mapping
+for Kotlin/Java crash reports.
 
 ## Beacon Programming
 
