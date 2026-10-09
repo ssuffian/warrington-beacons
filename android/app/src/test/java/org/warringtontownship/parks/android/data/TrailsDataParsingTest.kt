@@ -15,29 +15,39 @@ class TrailsDataParsingTest {
         Gson().fromJson(File(DATA_FILE).readText(), TrailsData::class.java)
 
     @Test
-    fun `parses both locations with their beacon major codes`() {
+    fun `parses all locations with their beacon major codes`() {
         // The beacons dual-advertise iBeacon and AltBeacon frames, each with its
         // own per-location UUID (they differ on Lions Pride hardware).
         assertEquals(
             mapOf(
                 "lions-pride-park" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "00112233-4455-6677-8899-aabbccddeeff"),
                 "us-202" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+                "upper-nike-park" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+                "lower-nike-park" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+                "weisel-preserve" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+                "mill-creek-park" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+                "ipw-park" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
+                "emerson-preserve" to ("035a0617-0875-4cc7-a29c-be0caa8f557c" to "035a0617-0875-4cc7-a29c-be0caa8f557c"),
             ),
             data.locations.associate { it.id to (it.iBeaconUUID to it.altBeaconUUID) },
         )
         assertEquals(
-            mapOf("lions-pride-park" to 17, "us-202" to 20),
+            mapOf("lions-pride-park" to 17, "us-202" to 20, "upper-nike-park" to 20,
+                "lower-nike-park" to 20, "weisel-preserve" to 20, "mill-creek-park" to 20,
+                "ipw-park" to 20, "emerson-preserve" to 20),
             data.locations.associate { it.id to it.beaconMajorCode },
         )
         assertTrue(data.locations.all { it.address.isNotBlank() })
     }
 
     @Test
-    fun `parses every landmark and trail from both locations`() {
+    fun `parses every landmark and trail from all locations`() {
         assertEquals(34, data.landmarks.size)
-        assertEquals(11, data.trails.size)
+        assertEquals(14, data.trails.size)
         assertEquals(20, data.landmarks.count { it.location == "lions-pride-park" })
-        assertEquals(14, data.landmarks.count { it.location == "us-202" })
+        assertEquals(3, data.landmarks.count { it.location == "weisel-preserve" })
+        assertEquals(2, data.landmarks.count { it.location == "upper-nike-park" })
+        assertEquals(9, data.landmarks.count { it.location == "lower-nike-park" })
     }
 
     @Test
